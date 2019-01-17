@@ -1,4 +1,14 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+################################################################################
+#
+# Author            : 乔帮主
+# Generate Date     : 2019-01-17
+# Description       :
+#
+################################################################################
+
 from ctypes import *
 from ctypes.wintypes import *
 import subprocess

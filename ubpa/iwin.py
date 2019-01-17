@@ -1,9 +1,13 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''
-Created on 2018。3.29
-@author: Wu.Xin
-主要用于win窗口的操作
-'''
+
+################################################################################
+#
+# Author            : 乔帮主
+# Generate Date     : 2019-01-17
+# Description       : windows窗口的操作
+#
+################################################################################
 
 from ctypes import *
 import datetime
