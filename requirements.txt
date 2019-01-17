@@ -1,1 +1,2 @@
 pyautoit
+__pycache__
