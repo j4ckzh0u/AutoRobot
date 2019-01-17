@@ -18,7 +18,15 @@ import ubpa.ics as ics
 
 
 #dll = cdll.LoadLibrary("UEBAIEWatcher.dll")
-dll = cdll.LoadLibrary("../../bin/UEBAIEWatcher.dll")
+print("*************************************************")
+curfilePath=os.path.abspath(__file__)
+dll_path=os.path.join(curfilePath, r"../../bin/EncryptUtil.dll")
+print(dll_path)
+print("*************************************************")
+
+dll = cdll.LoadLibrary(dll_path)
+
+# dll = cdll.LoadLibrary("../../bin/UEBAIEWatcher.dll")
 #dll = cdll.LoadLibrary(r'D:\work\svn\isa\branches\ueba_5\makesetup\CdaSetupDate\bin\UEBAIEWatcher.dll')
 __logger = ILog(__file__)
 
@@ -55,9 +63,9 @@ def get_text(title="",url="",selector="",waitfor=WAIT_FOR):
         param = get_param(title,url,selector)
         starttime = time.time()
         while True:
-            text = string_at(dll.getText(param), -1).decode('utf-8') 
-            err = string_at(dll.getLastError(), -1).decode('utf-8')  
-            if err  == "": 
+            text = string_at(dll.getText(param), -1).decode('utf-8')
+            err = string_at(dll.getLastError(), -1).decode('utf-8')
+            if err  == "":
                 return text
             else:
                 runtime = time.time() - starttime
@@ -114,8 +122,8 @@ def set_text(title="",url="",selector="",text="",waitfor=WAIT_FOR):
         starttime = time.time()
         while True:
             dll.setText(param)
-            err = string_at(dll.getLastError(), -1).decode('utf-8')  
-            if err  == "": 
+            err = string_at(dll.getLastError(), -1).decode('utf-8')
+            if err  == "":
                 return True
             else:
                 runtime = time.time() - starttime
@@ -125,7 +133,7 @@ def set_text(title="",url="",selector="",text="",waitfor=WAIT_FOR):
                 __logger.debug(r'Attempt Failure - Wait for Attempt to Acquire ' + err)
                 time.sleep(TRY_INTERVAL)
     except Exception as e:
-        raise e 
+        raise e
 
 '''
 判断是否是所选文本
@@ -381,7 +389,7 @@ def do_mouse_click(win_title="",title="",url="",selector="",waitfor=WAIT_FOR):
             ''''如果窗口不活跃状态'''
             if not iwin.do_win_is_active(win_title):
                 iwin.do_win_activate(win_title=win_title, waitfor=waitfor)
-                
+
         param = get_param(title, url,selector)
         starttime = time.time()
         while True:
@@ -415,8 +423,8 @@ def do_keypress(win_title="",title="",url="",selector="",text="",waitfor=WAIT_FO
             ''''如果窗口不活跃状态'''
             if not iwin.do_win_is_active(win_title):
                 iwin.do_win_activate(win_title=win_title, waitfor=waitfor)
-                
-                
+
+
         text = encrypt.decrypt(text)
         param = get_param(title, url,selector,text)
         starttime = time.time()
@@ -527,7 +535,7 @@ def get_element_rect(win_title=None,title=None,url=None,selector=None,waitfor=WA
             if int(result_pos_dic["retCode"]) == 1:
                 print('----------',result_pos_dic["x"], result_pos_dic["y"], result_pos_dic["width"],result_pos_dic["height"])
                 return result_pos_dic["x"], result_pos_dic["y"], result_pos_dic["width"],result_pos_dic["height"]
-               
+
             else:
                 runtime = time.time() - starttime
                 if runtime >= waitfor:
@@ -571,12 +579,12 @@ def do_get_pos(left=None,top=None,width=None,height=None,curson=None,offsetX=0,o
         sc = get_reg_dpi()
         __logger.debug('sc:'+str(sc))
         left = left/sc
-        top = top/sc 
+        top = top/sc
         width = width/sc
         height = height/sc
         __logger.debug('Converted position:left:'+str(left)+" top:"+str(top))
-    
-     
+
+
     try:
         if curs == "center":
             X = left + width/2 + offsetX
@@ -593,7 +601,7 @@ def do_get_pos(left=None,top=None,width=None,height=None,curson=None,offsetX=0,o
         if curs == "rightbottom":
             X = left + width + offsetX
             Y = top + height + offsetY
-        
+
         return X,Y
     except Exception as e:
         raise e
@@ -606,21 +614,21 @@ def get_reg_dpi():
         __logger.debug('platform:'+str(platform_name))
         if 'Windows-7' in platform_name :
             return dpi
-        key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Control Panel\Desktop\WindowMetrics") 
+        key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Control Panel\Desktop\WindowMetrics")
         i = 0
         while 1:
             name, value, type = winreg.EnumValue(key, i)
             if('AppliedDPI' in repr(name)):
                 dpi = value
                 dpi = dpi/96
-                break 
+                break
             i += 1
     except Exception as e:
-        print(e)    
+        print(e)
     finally:
         return dpi
- 
- 
+
+
 def run_javascript(title="",url="",js="",waitfor=WAIT_FOR,pid=0):
     __logger.debug('run_javascript :['+str(title)+']['+str(url)+']['+str(js)+']')
     text = None
