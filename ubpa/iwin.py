@@ -24,7 +24,15 @@ import requests
 
 __logger = ILog(__file__)
 
-dll = windll.LoadLibrary("../Com.Isearch.Func.AutoIt/AutoItX3.dll")  # 调AutoItX3动态库
+
+print("*************************************************")
+curfilePath=os.path.abspath(__file__)
+dll_path=os.path.join(curfilePath, r"../../plugin/Com.Isearch.Func.AutoIt/AutoItX3.dll")
+print(dll_path)
+print("*************************************************")
+dll = windll.LoadLibrary(dll_path)  # 调AutoItX3动态库
+
+# dll = windll.LoadLibrary("../Com.Isearch.Func.AutoIt/AutoItX3.dll")  # 调AutoItX3动态库
 
 #dll = windll.LoadLibrary(r"D:\svn\isa\branches\ueba_5.0\makesetup\CdaSetupDate\plugin\Com.Isearch.Func.AutoIt\AutoItX\AutoItX3.dll")
 

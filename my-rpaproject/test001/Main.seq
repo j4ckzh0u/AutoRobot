@@ -1,0 +1,118 @@
+{
+    "LineList": [
+        {
+            "LineColor": "255, 170, 170",
+            "LineEnd": {
+                "Pidx": "171243492372_l_flow_0",
+                "Px": "5005",
+                "Py": "4971"
+            },
+            "LineSplit": {
+                "Px": "",
+                "Py": ""
+            },
+            "LineStart": {
+                "Pidx": "171243176131_r_flow_0",
+                "Px": "4793",
+                "Py": "4904"
+            },
+            "LineTag": "171244007763",
+            "LineType": "2"
+        }
+    ],
+    "NodeList": [
+        {
+            "NodePanelData": {
+                "InputProperty": [
+                ],
+                "PubProperty": {
+                    "NodeRemark": "",
+                    "mouse_x_pos": "0",
+                    "mouse_y_pos": "0",
+                    "selcomment": "0",
+                    "seltype": "",
+                    "snapshot_preview": ""
+                }
+            },
+            "NodeProperty": {
+                "EP_EnumWidget_NAME": "EnumWidget_Begin",
+                "EP_EnumWidget_VALUE": "10",
+                "EP_Gen": {
+                    "EP_Gen_AFTERDELAY": "",
+                    "EP_Gen_BEFOREDELAY": "",
+                    "EP_Gen_NOTE": ""
+                }
+            },
+            "NodeUI": {
+                "NodePort": [
+                    {
+                        "Pidx": "r_flow_0"
+                    }
+                ],
+                "NodePx": "4618",
+                "NodePy": "4828",
+                "NodeSubType": "EnumWidget_Begin",
+                "NodeTag": "171243176131",
+                "NodeTitle": "开始"
+            }
+        },
+        {
+            "NodePanelData": {
+                "InputProperty": [
+                    {
+                        "ie_path": "'C:/Program Files (x86)/Internet Explorer/iexplore.exe'"
+                    },
+                    {
+                        "url": "'www.baidu.com'"
+                    }
+                ],
+                "PubProperty": {
+                    "NodeRemark": "",
+                    "mouse_x_pos": "0",
+                    "mouse_y_pos": "0",
+                    "selcomment": "0",
+                    "seltype": "",
+                    "snapshot_preview": ""
+                }
+            },
+            "NodeProperty": {
+                "EP_CONTROL": {
+                },
+                "EP_EnumWidget_NAME": "EnumWidget_Config_Begin",
+                "EP_EnumWidget_VALUE": "5000",
+                "EP_Gen": {
+                    "EP_Gen_AFTERDELAY": "",
+                    "EP_Gen_BEFOREDELAY": "",
+                    "EP_Gen_NOTE": ""
+                }
+            },
+            "NodeUI": {
+                "NodePort": [
+                    {
+                        "Pidx": "l_flow_0"
+                    },
+                    {
+                        "Pidx": "l_par_0"
+                    },
+                    {
+                        "Pidx": "l_par_1"
+                    },
+                    {
+                        "Pidx": "r_flow_0"
+                    }
+                ],
+                "NodePx": "4998",
+                "NodePy": "4895",
+                "NodeSubKeyNo": "open03",
+                "NodeSubType": "EnumWidget_Config_Begin",
+                "NodeTag": "171243492372",
+                "NodeTitle": "网站"
+            }
+        }
+    ],
+    "OpType": "0",
+    "SeqTag": "Main_bp",
+    "ViewCenterPx": "5128",
+    "ViewCenterPy": "5080",
+    "ViewScaling": "1"
+}

@@ -3,16 +3,26 @@ from ctypes import *
 from ctypes.wintypes import *
 import subprocess
 import time
-from ubpa import iwin 
+from ubpa import iwin
 from ubpa.iconstant import *
-from ubpa.ierror import * 
+from ubpa.ierror import *
 from ubpa.ilog import ILog
 import ubpa.encrypt as encrypt
 
 
 __logger = ILog(__file__)
 
-dll = windll.LoadLibrary("../Com.Isearch.Func.AutoIt/AutoItX3.dll")
+
+print("*************************************************")
+curfilePath=os.path.abspath(__file__)
+dll_path=os.path.join(curfilePath, r"../../plugin/Com.Isearch.Func.AutoIt/AutoItX3.dll")
+print(dll_path)
+print("*************************************************")
+dll = windll.LoadLibrary(dll_path)  # 调AutoItX3动态库
+
+
+# dll = windll.LoadLibrary("../Com.Isearch.Func.AutoIt/AutoItX3.dll")
+
 #dll = windll.LoadLibrary("AutoItX3.dll")
 
 def run_app(path=None,work_path=None):
@@ -26,7 +36,7 @@ def run_app(path=None,work_path=None):
 def run_shellexecute(path=None,work_path=""):
     __logger.debug('Open file: [' + str(path) + '] ')
     try:
-        os.startfile(path) 
+        os.startfile(path)
     except Exception as e:
         raise e
 
@@ -38,7 +48,7 @@ def do_click_cs(win_title=None,win_text="",control=None,button='left',times=1,wa
         while True:
             rst  = _do_click_cs(win_title,win_text, control,button, times) # 返回1,0，或者报错
             if rst == 1:
-                return rst 
+                return rst
             else:
                 runtime = time.time() - starttime
                 if runtime >= waitfor:
@@ -112,7 +122,7 @@ def mouse_click_cs(win_title=None,x=None,y=None,waitfor=WAIT_FOR):
             if not iwin.do_win_is_active(win_title):
                 iwin.do_win_activate(win_title=win_title, waitfor=waitfor)
         starttime = time.time()
-        while True:    
+        while True:
             rst = _mouse_click_cs("left", x, y, 2, 1)  # 返回1,0，或者报错
             if rst == 1:
                 return rst
@@ -125,7 +135,7 @@ def mouse_click_cs(win_title=None,x=None,y=None,waitfor=WAIT_FOR):
                 time.sleep(TRY_INTERVAL)
     except Exception as e:
         raise e
-    
+
 def mouse_click(win_title=None,x=None,y=None,mouse_button='left',times=1,waitfor=WAIT_FOR):
     '''
     鼠标点击屏幕位置
@@ -150,9 +160,9 @@ def mouse_click(win_title=None,x=None,y=None,mouse_button='left',times=1,waitfor
                 __logger.debug('mouse click Err:[' + str(x) + '][' + str(y) + ']')
                 time.sleep(TRY_INTERVAL)
     except Exception as e:
-        raise e 
-    
-    
+        raise e
+
+
 def mouse_moveto(win_title=None,x=None,y=None,waitfor=WAIT_FOR):
     '''
     鼠标点击屏幕位置
@@ -177,7 +187,7 @@ def mouse_moveto(win_title=None,x=None,y=None,waitfor=WAIT_FOR):
                 __logger.debug('mouse_moveto:[' + str(x) + '][' + str(y) + ']')
                 time.sleep(TRY_INTERVAL)
     except Exception as e:
-        raise e        
+        raise e
 
 
 def control_send_cs(win_title=None,win_text="",control=None,text=None,waitfor=WAIT_FOR):
@@ -287,11 +297,11 @@ def _do_cs_select(win_title=None,win_text="",control=None,select_string=None):
 
 def do_click_pos(win_title=None,win_text=None,control=None,button='left',curson='center',offsetX=0,offsetY=0,times=1,
                  run_mode = 'unctrl',waitfor=WAIT_FOR):
-    
+
     try:
         if run_mode == 'ctrl':
             return  do_click_cs(win_title=win_title,win_text=win_text,control=control,button=button,times=times,waitfor=waitfor)
-        
+
         __logger.debug('click control:[' + str(win_title) + '][' + str(control) + ']')
         if win_title != None and win_title.strip() != '':
             ''''如果窗口不活跃状态'''
@@ -402,7 +412,7 @@ def _do_cs_check(win_title=None,win_text="",control=None,action=None):
 def PostMessage(handle, msg, wparam, lparam):
     """Call API SendMessageW from user32.dll"""
     return ctypes.windll.user32.PostMessageW(handle, msg, wparam, lparam)
-    
+
 def GetWindowLong(handle, nIndex):
     """Call API GetWindowLong from user32.dll"""
     return ctypes.windll.user32.GetWindowLongW(handle, nIndex)
@@ -417,8 +427,8 @@ def do_click_element(win_title=None,win_text=None,control=None,waitfor=WAIT_FOR)
         win = dll.AU3_WinGetHandle(win_title, win_text)
         control_wnd = dll.AU3_ControlGetHandle(win, control)
         controlid=GetWindowLong(control_wnd, -12)
-        parent_wnd=GetParent(control_wnd) 
-        PostMessage(parent_wnd, 0x0111, controlid, control_wnd) 
+        parent_wnd=GetParent(control_wnd)
+        PostMessage(parent_wnd, 0x0111, controlid, control_wnd)
     except Exception as e:
         raise e
 

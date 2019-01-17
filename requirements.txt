@@ -1,2 +1,2 @@
 pyautoit
-__pycache__
+pillow

@@ -1,5 +1,5 @@
-﻿# -*- coding:utf-8 -*-
-''' 
+# -*- coding:utf-8 -*-
+'''
 @author: Wu.Xin
 统一日志记录
 
@@ -14,7 +14,14 @@ import sys
 import configparser
 import chardet
 
-dll_path = u"../../bin/UEBAIEWatcher.dll"
+print("*************************************************")
+curfilePath=os.path.abspath(__file__)
+dll_path=os.path.join(curfilePath, r"..\..\bin\UEBAIEWatcher.dll")
+print(dll_path)
+print("*************************************************")
+
+
+
 dll = cdll.LoadLibrary(dll_path)
 
 
@@ -161,19 +168,19 @@ class ILog(object):
             self.logger.error("LogLevel parameter set wrong")
 
 
-        
-         
+
+
 # if __name__ == '__main__':
 #
 #     logger = ILog(__file__)
 #     #logger.echo_msg(u"中国")
 #     logger.info("ddd")
-    
-    
-        
+
+
+
 # log_local_path = u"d:/log.log"
-# 
-# 
+#
+#
 # logging.basicConfig(level=logging.DEBUG,
 #                     format='[proc] %(asctime)s %(name)-12s %(levelname)-8s %(message)s',
 #                     datefmt='%m-%d %H:%M',
@@ -185,10 +192,10 @@ class ILog(object):
 # console.setFormatter(formatter)
 # # add the handler to the root logger
 # logging.getLogger('').addHandler(console)
-# 
-# 
-# 
-# 
-#     
+#
+#
+#
+#
+#
 # logging.debug('Failed to open file')
 

@@ -1,0 +1,94 @@
+{
+	"Common":{
+		"language":"cn",
+		"tip_window_class_name":"UEBA提示窗口",
+		"menu_log":"日志",
+		"menu_register":"注册",
+		"menu_hide":"隐藏",
+		"menu_setting":"设置",
+		
+		"histroy_recall_back":"回溯",
+		"histroy_delete":"删除",
+		"histroy_open_menu":"打开菜单",
+		"histroy_open_log":"打开日志",
+		
+		"lc_tip":"共有%d个流程,同步时间%s",
+		"task_item_statue_ready":"",
+		"task_item_statue_run":"执行中",
+		"task_item_statue_waitdownload":"等待下载",
+		"task_item_oper_ready":"等待执行",
+		"task_item_oper_run":"正在执行",
+		"task_item_oper_stop":"停止执行",
+		"task_item_oper_log":"查看日志",
+		"task_item_oper_delete":"删除",
+		"task_item_oper_recall":"回溯",
+		
+		"task_statues_desc_timeout":"机器人超时结束",
+		"task_statues_desc_stop":"机器人人为中断",
+		"task_statues_desc_success":"机器人执行成功",
+		"task_statues_desc_failure":"机器人执行失败",
+		
+		"task_statues_list_timeout":"超时结束",
+		"task_statues_list_stop":"中断",
+		"task_statues_list_success":"执行成功",
+		"task_statues_list_failure":"执行失败",
+		"task_statues_list_run":"正在执行",
+
+		"message_task_run":"任务正在执行中",
+		"message_task_delete_check_run":"当前任务正在执行中，删除请先停止任务",
+		"message_common_title":"提示",
+		"message_license_check":"注册检测失败",
+		"message_license_occupy":"注册校验失败，已经有机器人正在执行",
+		"message_service_check_unlink":"服务器不通",
+		"message_run_failure":"任务\"%s\"执行失败",
+		"Verify_Service_Start":"程序已启动",
+		"Verify_Service_Local":"程序已启动",
+		
+		"tips_service":"【服务器】",
+		"tips_local":"【本地】",
+		"tips_run_as_admin":"以管理员权限运行",
+		
+		"flow_name":"流程名：",
+		"flow_time":"发布时间：",
+		"flow_version":"版本："
+		
+	},
+	"license":{
+		"title":"产品注册",
+		"LabelUI_User":"客户：",
+		"LabelUI_Code":"机器码：",
+		"LabelUI_Regist":"注册文件：",
+		"LabelUI_Status":"状态：",
+		"LabelUI_Date":"到期日期：",
+		"Button_Register":"注册",
+		"Button_Cancel":"取消",
+		"statues_unregister":"未注册",
+		"statues_register":"已注册",
+		"message_select_license_file":"请选择License文件",
+		"message_license_not_exist":"License文件不存在",
+		"message_success_content":"注册成功",
+		"message_license_check_failure":"注册检测失败",
+		"service_unstart":"服务未启动"
+	},
+	"PyNoticyUI":{
+		"label_title":"错误提示",
+		"MB_LOG":"查看详情",
+		"MB_COPY":"复制",
+		"MB_OK":"确认",
+		"Failure_tip":"[%s]任务执行失败,详情查看运行日志!",
+		"Success_tip":"[%s]任务执行成功,详情查看运行日志!"
+	},
+	"helper":{"oper":"操作",
+		"warn":"提示"
+	},
+	"usersetting":{
+		"title":"设置",
+		"checkSendSession":"是否初始化桌面",
+		"checkShowTip":"是否显示提示",
+		"label_logSetting":"日志级别",
+		"label_takttime":"初始化检测间隔",
+		"label_server_ip":"服务器地址",
+		"server_restart_tip":"服务器已更改，保存将重启机器人，是否保存？",
+		"btn_ok":"确定"
+	}
+}
