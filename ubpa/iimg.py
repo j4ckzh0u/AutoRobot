@@ -1,11 +1,14 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''
-Created on 2018。3.29
 
-@author: Wu.Xin
+################################################################################
+#
+# Author            : 乔帮主
+# Generate Date     : 2019-01-17
+# Description       : 图片相关处理
+#
+################################################################################
 
-图片相关处理
-'''
 from ctypes import *
 import datetime
 import json
@@ -14,13 +17,13 @@ import string
 import time
 import traceback
 from ubpa.iconstant import *
-from ubpa.ilog import ILog 
+from ubpa.ilog import ILog
 
 from PIL import Image, ImageGrab
 
 import aircv as ac
 import ubpa.base_native_ait as nit
-import ubpa.ics as ics 
+import ubpa.ics as ics
 import ubpa.ierror as error
 import ubpa.iwin as iwin
 
@@ -36,7 +39,7 @@ __logger = ILog(__file__)
 def get_scale():
     '''
     获取屏幕缩放比例
-    '''    
+    '''
     return dll.GetScreenScaling()
 
 
@@ -45,13 +48,13 @@ def screen_capture(img_path):
     截取屏幕
     '''
     capture_dll.ScreenshotsToFile(img_path)
-    
- 
 
-def get_cv_confidence_percent(confidence): 
+
+
+def get_cv_confidence_percent(confidence):
     '''
      获取识别信心百分比   [5, 9]
-    '''  
+    '''
     if confidence[1] < 8 :
         __logger.debug(u"Confidence is lower than reference point:"+str(confidence))
     return confidence[0]/confidence[1]
@@ -59,7 +62,7 @@ def get_cv_confidence_percent(confidence):
 
 
 
-    
+
 def cal_position(centerpos,rectangle,pos_curson="Center",pos_offsetY=0,pos_offsetX=0):
     '''
     根据传入的值计算位置
@@ -70,50 +73,50 @@ def cal_position(centerpos,rectangle,pos_curson="Center",pos_offsetY=0,pos_offse
     if pos_curson == 'Center':
         pos = centerpos
     elif pos_curson == 'TopLeft':
-        pos = rectangle[0]    
+        pos = rectangle[0]
     elif pos_curson == 'TopRight':
         pos = rectangle[3]
     elif pos_curson == 'BottomLeft':
         pos = rectangle[1]
     elif pos_curson == 'BottomRight':
         pos = rectangle[2]
-    
-    if pos != None: 
+
+    if pos != None:
         pos[0] = pos[0]
         pos[1] = pos[1]
         __logger.debug(u"position before compute:"+str(pos))
         pos[0] = pos[0]/sc+pos_offsetX
-        pos[1] = pos[1]/sc+pos_offsetY 
+        pos[1] = pos[1]/sc+pos_offsetY
         __logger.debug(u"position after compute:"+str(pos))
-        
-    return pos 
+
+    return pos
 
 
 def get_image_cv_pos(img_res_path=None,image=None,pos_curson="Center",pos_offsetY=0,pos_offsetX=0,confidence_df=0.85,waitfor=WAIT_FOR_IMG):
     '''
     截屏并根据图片计算其位置
-    '''  
-    __logger.debug(r'ready OpenCV Recognition operation') 
-    pos = None  
+    '''
+    __logger.debug(r'ready OpenCV Recognition operation')
+    pos = None
     try:
         starttime = time.time()
         image = img_res_path + '\\res\\' + image
         while True:
-            try: 
+            try:
                 pic = TEMP_PATH+'ScreenCapture.png'
                 screen_capture(pic)
                 imsrc = ac.imread(pic) # 原始图像
                 imsch = ac.imread(image)
-#                 imsch = ac.imread('d:/1.png') # 带查找的部分 
+#                 imsch = ac.imread('d:/1.png') # 带查找的部分
 #                 print(str(ac.sift_count(r'd:\1.png')))
-                sift_json = ac.find_sift(imsrc, imsch)  
-                if sift_json==None: 
+                sift_json = ac.find_sift(imsrc, imsch)
+                if sift_json==None:
                     print(u'sift_json return null，OpenCV cannot recognize picture')
-                else : 
-                    sift_dict = json.loads(json.dumps(sift_json)) 
+                else :
+                    sift_dict = json.loads(json.dumps(sift_json))
                     __logger.warning(u'OpenCV Identifying return information  :'+str(sift_dict))
                     #误取信心度
-                    confidence = get_cv_confidence_percent(sift_dict['confidence']) 
+                    confidence = get_cv_confidence_percent(sift_dict['confidence'])
                     if confidence >= confidence_df:
                         #根据相关信息计算真正位置
                         pos = cal_position(sift_dict['result'],sift_dict['rectangle'],pos_curson,pos_offsetY,pos_offsetX)
@@ -128,7 +131,7 @@ def get_image_cv_pos(img_res_path=None,image=None,pos_curson="Center",pos_offset
             except Exception as ex:
                 print(str(ex),traceback.format_exc())
                 pass
-         
+
             runtime = time.time() - starttime
             if runtime >= waitfor:
                 break
@@ -206,32 +209,32 @@ def img_click(win_title=None,img_res_path=None,image=None,mouse_button="left",po
     '''
     图片单击,支持全图片，opencv
     '''
-    __logger.debug(r'Prepare to click Recognition Picture') 
+    __logger.debug(r'Prepare to click Recognition Picture')
     try:
-        starttime = time.time() 
+        starttime = time.time()
         while True:
             ''' 先使用ImageSearch查找  '''
             flg = img_click_au3(win_title,img_res_path,image,mouse_button,pos_curson,pos_offsetY,pos_offsetX,1,image_size,waitfor=1)
 
             if not flg :
-                ''' 使用OpenCv查找点击''' 
+                ''' 使用OpenCv查找点击'''
                 __logger.debug(r'ImageSearch Unmistakable, OpenCV Recognition ')
                 flg =  img_click_cv(win_title,img_res_path,image,mouse_button,pos_curson,pos_offsetY,pos_offsetX,1,waitfor=1)
-            
+
             if flg :
                 break
-            
+
             runtime = time.time() - starttime
             if runtime >= waitfor:
                 raise error.ImageNotFoundError('Image Not Found')
-            
+
             __logger.debug(r'Picture Failure, Waiting for Next Recognition ')
             time.sleep(TRY_INTERVAL)
     except Exception as e:
         raise e
     finally:
         __logger.debug(u"end execute[img_dbclick]")
-    
+
 
 def img_dbclick(win_title=None,img_res_path=None,image=None,mouse_button="left",pos_curson="Center",pos_offsetY=0,pos_offsetX=0,
                 image_size=None,waitfor=WAIT_FOR_IMG):
@@ -240,23 +243,23 @@ def img_dbclick(win_title=None,img_res_path=None,image=None,mouse_button="left",
     '''
     __logger.debug(r'Prepare double-click recognition picture')
     try:
-        starttime = time.time() 
+        starttime = time.time()
         while True:
             ''' 先使用ImageSearch查找  '''
             flg = img_click_au3(win_title,img_res_path,image,mouse_button,pos_curson,pos_offsetY,pos_offsetX,2,image_size,waitfor=1)
-            
+
             if not flg :
-                ''' 使用OpenCv查找点击''' 
+                ''' 使用OpenCv查找点击'''
                 __logger.debug(r'ImageSearch Unmistakable, OpenCV Recognition ')
                 flg =  img_click_cv(win_title,img_res_path,image,mouse_button,pos_curson,pos_offsetY,pos_offsetX,2,waitfor=1)
-            
+
             if flg :
                 break
-            
+
             runtime = time.time() - starttime
             if runtime >= waitfor:
                 raise error.ImageNotFoundError('Image Not Found')
-            
+
             __logger.debug(r'Picture Failure, Waiting for Next Recognition ')
             time.sleep(TRY_INTERVAL)
     except Exception as e:
@@ -266,7 +269,7 @@ def img_dbclick(win_title=None,img_res_path=None,image=None,mouse_button="left",
 
 
 '''
-图片点击 单击和双击的共用 比img_click，img_dbclick多了一个参数times  
+图片点击 单击和双击的共用 比img_click，img_dbclick多了一个参数times
 '''
 def do_click_pos(win_title=None, img_res_path=None, image=None, button="left", curson="Center", offsetX=0, offsetY=0,
              times=1, image_size=None,fuzzy=True, confidence=0.85,waitfor=WAIT_FOR_IMG):
@@ -302,26 +305,26 @@ def do_click_pos(win_title=None, img_res_path=None, image=None, button="left", c
 
 def img_exists(win_title=None,img_res_path=None,image=None,fuzzy=True,confidence=0.85,waitfor=WAIT_FOR_IMG):
     '''图片是否存在'''
-    is_exists = True 
+    is_exists = True
     __logger.debug(r'Ready img_exists ')
     try:
-        starttime = time.time() 
+        starttime = time.time()
         while True:
             ''' 先使用ImageSearch查找  '''
-            is_exists = img_exists_au3(win_title,img_res_path,image,waitfor=1) 
+            is_exists = img_exists_au3(win_title,img_res_path,image,waitfor=1)
             if (not is_exists) and fuzzy:
-                ''' 使用OpenCv查找点击''' 
-                __logger.debug(r'ImageSearch Unmistakable, OpenCV Recognition ') 
-                
+                ''' 使用OpenCv查找点击'''
+                __logger.debug(r'ImageSearch Unmistakable, OpenCV Recognition ')
+
                 is_exists =  img_exists_cv(win_title=win_title,img_res_path=img_res_path,image=image,confidence=confidence,waitfor=1)
-            
+
             if is_exists :
                 break
-            
+
             runtime = time.time() - starttime
             if runtime >= waitfor:
                 raise error.ImageNotFoundError('Image Not Found')
-            
+
             __logger.debug(r'Picture Failure, Waiting for Next Recognition ')
             time.sleep(TRY_INTERVAL)
     except Exception as e:
@@ -329,7 +332,7 @@ def img_exists(win_title=None,img_res_path=None,image=None,fuzzy=True,confidence
     finally:
         __logger.debug(u"end execute[img_exists]" + str(is_exists))
         return is_exists
-    
+
 
 def img_exists_au3(win_title=None,img_res_path=None,image=None,waitfor=WAIT_FOR_IMG):
 
@@ -352,14 +355,14 @@ def img_exists_au3(win_title=None,img_res_path=None,image=None,waitfor=WAIT_FOR_
         if status:
             '''program execution error'''
             __logger.error("aitprogram execution error")
-            return False 
+            return False
         elif str(nit.get_cmd_message(stdout_string)) == "NO":
             '''autoit 执行返回结果为未找到'''
-            __logger.error("ImageSearch image not found") 
+            __logger.error("ImageSearch image not found")
             return False
 
         return True
-    except Exception as e: 
+    except Exception as e:
         print(str(e),traceback.format_exc())
     finally:
         __logger.debug(u"au3end execute[img_exists]" + str(is_exists))
@@ -378,7 +381,7 @@ def img_exists_cv(win_title=None,img_res_path=None,image=None,mouse_button="left
            return True
     except Exception as e:
         print(str(e),traceback.format_exc())
-    
+
 
 
 def img_moveto(win_title=None,img_res_path=None,image=None,mouse_button="left",pos_curson="Center",pos_offsetY=0,pos_offsetX=0,
@@ -388,30 +391,30 @@ def img_moveto(win_title=None,img_res_path=None,image=None,mouse_button="left",p
     '''
     __logger.debug(r'Ready to move to the picture')
     try:
-        starttime = time.time() 
+        starttime = time.time()
         while True:
             ''' 先使用ImageSearch查找  '''
             flg = img_moveto_au3(win_title,img_res_path,image,mouse_button,pos_curson,pos_offsetY,pos_offsetX,image_size,waitfor=1)
-            
+
             if not flg :
-                ''' 使用OpenCv查找点击''' 
+                ''' 使用OpenCv查找点击'''
                 __logger.debug(r'ImageSearch Unmistakable, OpenCV Recognition ')
                 flg =  img_moveto_cv(win_title,img_res_path,image,mouse_button,pos_curson,pos_offsetY,pos_offsetX,waitfor=1)
-            
+
             if flg :
                 break
-            
+
             runtime = time.time() - starttime
             if runtime >= waitfor:
                 raise error.ImageNotFoundError('Image Not Found')
-            
+
             __logger.debug(r'Picture Failure, Waiting for Next Recognition ')
             time.sleep(TRY_INTERVAL)
     except Exception as e:
         raise e
     finally:
         __logger.debug(u"end execute[img_moveto]")
-        
+
 def do_moveto_pos(win_title=None,img_res_path=None,image=None,curson='center',offsetX=0,offsetY=0,image_size=None,fuzzy=True, confidence=0.85,waitfor=30):
     '''
         图片移动,支持全图片，opencv
@@ -441,7 +444,7 @@ def do_moveto_pos(win_title=None,img_res_path=None,image=None,curson='center',of
         raise e
     finally:
         __logger.debug(u"end execute[do_moveto_pos]")
-    
+
 
 def img_moveto_au3(win_title=None,img_res_path=None,image=None,mouse_button="left",pos_curson="Center",pos_offsetY=0,pos_offsetX=0,
                    image_size=None,waitfor=WAIT_FOR_IMG):
@@ -472,7 +475,7 @@ def img_moveto_au3(win_title=None,img_res_path=None,image=None,mouse_button="lef
         elif str(nit.get_cmd_message(stdout_string)) == "NO":
             '''autoit 执行返回结果为未找到'''
             __logger.error("image not found")
-            return False 
+            return False
         return True
     except Exception as e:
         print(str(e),traceback.format_exc())
@@ -496,8 +499,8 @@ def img_moveto_cv(win_title=None,img_res_path=None,image=None,mouse_button="left
            return True
     except Exception as e:
         print(str(e),traceback.format_exc())
-    
-    
+
+
 
 def capture_image(win_title = "", win_text = "", in_img_path = None, left_indent = 0, top_indent = 0, width = 0, height = 0,waitfor=WAIT_FOR_IMG):
     __logger.echo_msg(u"Ready to execute[capture_image]")
@@ -523,7 +526,7 @@ def capture_image(win_title = "", win_text = "", in_img_path = None, left_indent
 
         right_indent = left_indent + width
         bottom_indent = top_indent + height
-        
+
         bbox = (left_indent,top_indent,right_indent,bottom_indent)
         im = ImageGrab.grab(bbox)
         im.save(in_img_path)

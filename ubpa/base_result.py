@@ -1,9 +1,15 @@
-# -*- coding:utf-8 -*- 
-'''
-Created on 2018.2.2
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-@author: Wu.Xin
-'''
+################################################################################
+#
+# Author            : 乔帮主
+# Generate Date     : 2019-01-17
+# Description       :
+#
+################################################################################
+
+
 from _overlapped import NULL
 
 class IResult(object):
@@ -16,17 +22,16 @@ class IResult(object):
         '''
         Constructor
         '''
-      
+
     '''
         返回状态
-    ''' 
-    
+    '''
+
     status = 0
-    
+
     err = "ok"
-    
-    druation = 0 
-    
-     
-     
-        
+
+    druation = 0
+
+
+

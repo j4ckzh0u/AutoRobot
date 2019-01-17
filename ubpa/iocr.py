@@ -1,25 +1,29 @@
-# -*- coding:utf-8 -*-
-'''
-Created on 2018-2-3
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-@author: Wu.Xin
-使用百度ocr
-'''
-from aip import AipOcr 
+################################################################################
+#
+# Author            : 乔帮主
+# Generate Date     : 2019-01-17
+# Description       : 使用百度ocr接口
+#
+################################################################################
+
+from aip import AipOcr
 from ctypes import c_char_p, windll
 import json
 from ubpa import encrypt
-from ubpa.ilog import ILog 
+from ubpa.ilog import ILog
 from ubpa.iip.ocr import IipOcr
 from PIL import Image
 import pytesseract
-import requests 
+import requests
 
 
 __logger = ILog(__file__)
 
 
-    
+
 #通用文字识别
 def general_recognize(image_path=""):
     __logger.info(u"Ready to execute [general_recognize]")
@@ -411,11 +415,11 @@ def _request(self, url, data, headers=None):
                 return result
 
             authObj = self._auth()
-            params = self._getParams(authObj)            
+            params = self._getParams(authObj)
 
             data = self._proccessRequest(url, params, data, headers)
             headers = self._getAuthHeaders('POST', url, params, headers)
-            response = self.__client.post(url, data=data, params=params, 
+            response = self.__client.post(url, data=data, params=params,
                             headers=headers, verify=False, timeout=(
                                 self.__connectTimeout,
                                 self.__socketTimeout,
@@ -426,7 +430,7 @@ def _request(self, url, data, headers=None):
             if not self._isCloudUser and obj.get('error_code', '') == 110:
                 authObj = self._auth(True)
                 params = self._getParams(authObj)
-                response = self.__client.post(url, data=data, params=params, 
+                response = self.__client.post(url, data=data, params=params,
                                 headers=headers, verify=False, timeout=(
                                     self.__connectTimeout,
                                     self.__socketTimeout,
@@ -438,18 +442,18 @@ def _request(self, url, data, headers=None):
                 'error_code': 'SDK108',
                 'error_msg': 'connection or read data timeout',
             }
- 
+
         return obj
 
 def get_tesseract_ocr(img_path,lang=None):
     txt = None
-    try:              
-        image = Image.open(img_path) 
+    try:
+        image = Image.open(img_path)
         txt = pytesseract.image_to_string(image,lang=lang)
         if txt != None:
             txt = txt.replace(' ','')
         #print(txt)
-        
+
     except Exception as e:
         raise e
     finally:
@@ -460,20 +464,20 @@ def get_ydm_code(filename, codetype=5001, timeout=30):
     '''
 #     YDMApi = windll.LoadLibrary(r'd:\svn\isa\branches\ueba_5.0\makesetup\CdaSetupDate\bin\yundamaAPI.dll')
     YDMApi = windll.LoadLibrary("../../bin/yundamaAPI.dll")
-    result = c_char_p(b"                              ") 
+    result = c_char_p(b"                              ")
     username = b"isearch"
-    password = "hcmNoKiMIyppc2V=" 
+    password = "hcmNoKiMIyppc2V="
     password = encrypt.decrypt(password)
     password = bytes(password,encoding='utf-8')
     appId = 5364
-    appKey = b"54b9ebb03b894bad4f52e4f3553edffb" 
+    appKey = b"54b9ebb03b894bad4f52e4f3553edffb"
 #     filename = b"C:\Users\ibm\Desktop\dynamicPassword.jpg"
     filename = filename.encode(encoding="utf-8")
     captchaId = YDMApi.YDM_EasyDecodeByPath(username, password, appId, appKey, filename, codetype, timeout, result)
-    
+
     __logger.debug("recognize:ID:%d，result:%s" % (captchaId, result.value))
     return str(result.value, encoding="utf-8")
- 
+
 
 # print(encrypt.decrypt(APP_ID))
 # print(encrypt.decrypt(API_KEY))
@@ -481,6 +485,6 @@ def get_ydm_code(filename, codetype=5001, timeout=30):
 # abc = get_ydm_code("C:/Users/ibm/Desktop/1.PNG")
 # print(abc)
 # print(abc,'dddd',code)
-# get_ydm_code(b"C:/Users/ibm/Desktop/33.png")  
+# get_ydm_code(b"C:/Users/ibm/Desktop/33.png")
 # APP_ID = "115"   API_KEY = "vSgCNWz6SINlsy5gID0yl7OF"   SECRET_KEY = "jgavHUmfLOH24vNCEGU1h8wZOsMugqqS"
 

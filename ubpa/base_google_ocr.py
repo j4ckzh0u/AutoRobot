@@ -1,17 +1,21 @@
-# -*- coding:utf-8 -*-
-'''
-Created on 2018-2-3
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-@author: Wu.Xin
-使用 google 的  Tesseract
-'''
+################################################################################
+#
+# Author            : 乔帮主
+# Generate Date     : 2019-01-17
+# Description       : 使用 google 的  Tesseract
+#
+################################################################################
+
 
 
 from PIL import Image
 import pytesseract
 
 #设置tesseract的路径
-#pytesseract.pytesseract= "" 
+#pytesseract.pytesseract= ""
 
 image = Image.open('C:/Users/ibm/Desktop/test.png')
-code = pytesseract.image_to_string(image) 
+code = pytesseract.image_to_string(image)

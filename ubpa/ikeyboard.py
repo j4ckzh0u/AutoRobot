@@ -1,16 +1,19 @@
-﻿# -*- coding: utf-8 -*-
-'''
-Created on 2018。3.29
+﻿#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-@author: Wu.Xin
+################################################################################
+#
+# Author            : 乔帮主
+# Generate Date     : 2019-01-17
+# Description       : 主要用于键盘类的操作
+#
+################################################################################
 
-主要用于键盘类的操作
-'''
 
-from ctypes import * 
+from ctypes import *
 from ubpa.ierror import *
 from ubpa.iconstant import *
-from ubpa.ilog import ILog 
+from ubpa.ilog import ILog
 import ubpa.iwin as iwin
 import ubpa.encrypt as encrypt
 import time
@@ -26,11 +29,11 @@ win_title   :窗口标题
 '''
 def key_send_cs(win_title=None,text=None,waitfor=WAIT_FOR):
     __logger.debug('keyboard send key:[win:'+str(win_title)+']'+str(text))
-    try:        
+    try:
         ''''如果指定窗口'''
         if(win_title != None ):
             ''''如果窗口不活跃状态'''
-            if not iwin.do_win_is_active(win_title) : 
+            if not iwin.do_win_is_active(win_title) :
                 iwin.do_win_activate(win_title=win_title, waitfor = waitfor)
         text = encrypt.decrypt(text)
         dll.AU3_Send(str(text), 0)

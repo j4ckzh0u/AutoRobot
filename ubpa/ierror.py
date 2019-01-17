@@ -1,30 +1,34 @@
-# -*- coding:utf-8 -*-
-'''
-Created on 2018年3月27日
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-@author: Wu.Xin
-'''
+################################################################################
+#
+# Author            : ???
+# Generate Date     : 2019-01-17
+# Description       :
+#
+################################################################################
 
 
-class WinNotFoundError(Exception):   
+class WinNotFoundError(Exception):
     def __init__(self, err="WinNotFoundError"):
         Exception.__init__(self,err)
-        
+
 class ImageNotFoundError(Exception):
-    def __init__(self, err="ImageNotFoundError"): 
+    def __init__(self, err="ImageNotFoundError"):
         Exception.__init__(self,err)
-        
-class WaitTimeoutError(Exception):     
-    def __init__(self, err="WaitTimeoutError"): 
-        Exception.__init__(self,err)        
-        
-class AppOpenError(Exception):     
-    def __init__(self, err="AppOpenError"): 
-        Exception.__init__(self,err)    
-        
-class Au3ExecError(Exception): 
-    def __init__(self, err="AppOpenError"): 
-        Exception.__init__(self,err)  
+
+class WaitTimeoutError(Exception):
+    def __init__(self, err="WaitTimeoutError"):
+        Exception.__init__(self,err)
+
+class AppOpenError(Exception):
+    def __init__(self, err="AppOpenError"):
+        Exception.__init__(self,err)
+
+class Au3ExecError(Exception):
+    def __init__(self, err="AppOpenError"):
+        Exception.__init__(self,err)
 
 class ScalingScreenError(Exception):
     def __init__(self, err="Scaling screen not 100%"):
