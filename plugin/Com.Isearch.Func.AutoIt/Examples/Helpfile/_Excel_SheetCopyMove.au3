@@ -12,9 +12,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Copy Sheet 1 after Sheet 3. Set the name of the new Sheet
-; *****************************************************************************
 Local $oCopiedSheet = _Excel_SheetCopyMove($oWorkbook1, 1, Default, 3, False)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_SheetCopyMove Example 1", "Error copying sheet." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 ; Set the name of the new sheet

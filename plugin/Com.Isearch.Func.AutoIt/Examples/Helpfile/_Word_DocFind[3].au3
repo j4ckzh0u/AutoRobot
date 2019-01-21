@@ -10,10 +10,8 @@ Local $oDoc = _Word_DocOpen($oWord, @ScriptDir & "\Extras\Test.doc", Default, De
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocFind Example", _
 		"Error opening '.\Extras\Test.doc'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Search for text "line" in lines 2-4 and mark the following number as bold.
 ; If the number is "3" insert text before text "line".
-; *****************************************************************************
 Local $oRangeFound, $oSearchRange, $oRangeText
 $oSearchRange = _Word_DocRangeSet($oDoc, -1, $wdParagraph, 1, $wdParagraph, 3)
 $oRangeFound = _Word_DocFind($oDoc, "line", $oSearchRange)

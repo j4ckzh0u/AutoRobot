@@ -10,9 +10,7 @@ Local $oDoc = _Word_DocOpen($oWord, @ScriptDir & "\Extras\Test.doc", Default, De
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocLinkAdd Example", _
 		"Error opening '.\Extras\Test.doc'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Make the fourth word of the document a link to the AutoIt homepage
-; *****************************************************************************
 Local $oRange = _Word_DocRangeSet($oDoc, -1, $wdWord, 3, $wdWord, 1)
 _Word_DocLinkAdd($oDoc, $oRange, "http://www.autoitscript.com")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocLinkAdd Example", _

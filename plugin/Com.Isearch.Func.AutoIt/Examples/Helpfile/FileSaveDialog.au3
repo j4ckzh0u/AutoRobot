@@ -15,10 +15,10 @@ Func Example()
 		MsgBox($MB_SYSTEMMODAL, "", "No file was saved.")
 	Else
 		; Retrieve the filename from the filepath e.g. Example.au3.
-		Local $sFileName = StringTrimLeft($sFileSaveDialog, StringInStr($sFileSaveDialog, "\", $STR_NOCASESENSE, -1))
+		Local $sFileName = StringTrimLeft($sFileSaveDialog, StringInStr($sFileSaveDialog, "\", $STR_NOCASESENSEBASIC, -1))
 
 		; Check if the extension .au3 is appended to the end of the filename.
-		Local $iExtension = StringInStr($sFileName, ".", $STR_NOCASESENSE)
+		Local $iExtension = StringInStr($sFileName, ".", $STR_NOCASESENSEBASIC)
 
 		; If a period (dot) is found then check whether or not the extension is equal to .au3.
 		If $iExtension Then

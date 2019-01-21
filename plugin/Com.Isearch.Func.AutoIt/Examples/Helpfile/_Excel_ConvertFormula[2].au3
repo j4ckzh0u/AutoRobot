@@ -11,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Translate an formula from A1 to R1C1 style and use a relative reference
-; *****************************************************************************
 Local $sFormula = "=SUM(C4:G12)", $sReference = "B2"
 Local $sConverted = _Excel_ConvertFormula($oExcel, $sFormula, $xlA1, $xlR1C1, $xlRelative, $oExcel.Range($sReference))
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_ConvertFormula Example 2", "Error converting formula." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

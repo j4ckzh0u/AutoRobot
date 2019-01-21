@@ -11,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Custom validation. Sum of all cells in column 'E' has to be < 100
-; *****************************************************************************
-_Excel_RangeValidate($oWorkbook, Default, "E:E", $xlValidateCustom, "=SUMME(E:E)<=100", Default, Default, Default, Default, "Sum of all cells in column 'E' > 100.")
+_Excel_RangeValidate($oWorkbook, Default, "E:E", $xlValidateCustom, "=SUM(E:E)<=100", Default, Default, Default, Default, "Sum of all cells in column 'E' > 100.")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeValidate Example 4", "Error setting range validation." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeValidate Example 4", "Sum of all cells in column 'E' has to be < 100.")

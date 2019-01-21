@@ -1,7 +1,6 @@
 #include <APILocaleConstants.au3>
 #include <APIResConstants.au3>
 #include <MsgBoxConstants.au3>
-#include <WinAPI.au3>
 #include <WinAPILocale.au3>
 #include <WinAPIRes.au3>
 #include <WinAPISys.au3>
@@ -14,7 +13,7 @@ EndIf
 
 ; Get the language (locale) identifier for the current process
 Local $iPrev
-If _WinAPI_GetVersion() >= '6.0' Then
+If Number(_WinAPI_GetVersion()) >= 6.0 Then
 	$iPrev = _WinAPI_GetThreadUILanguage()
 Else
 	$iPrev = _WinAPI_GetThreadLocale()
@@ -24,7 +23,7 @@ EndIf
 Local $aData = _WinAPI_EnumResourceLanguages($hInstance, $RT_STRING, 376)
 If Not @error Then
 	For $i = 1 To $aData[0]
-		If _WinAPI_GetVersion() >= '6.0' Then
+		If _WinAPI_GetVersion() >= 6.0 Then
 			_WinAPI_SetThreadUILanguage($aData[$i])
 		Else
 			_WinAPI_SetThreadLocale($aData[$i])
@@ -34,7 +33,7 @@ If Not @error Then
 EndIf
 
 ; Restore the previous language for the current process
-If _WinAPI_GetVersion() >= '6.0' Then
+If _WinAPI_GetVersion() >= 6.0 Then
 	_WinAPI_SetThreadUILanguage($iPrev)
 Else
 	_WinAPI_SetThreadLocale($iPrev)

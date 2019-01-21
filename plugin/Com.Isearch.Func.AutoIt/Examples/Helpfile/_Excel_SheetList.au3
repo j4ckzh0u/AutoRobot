@@ -12,9 +12,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Display a list of all worksheets for a specific Workbook
-; *****************************************************************************
 Local $aWorkSheets = _Excel_SheetList($oWorkbook)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_SheetList Example 1", "Error listing Worksheets." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 _ArrayDisplay($aWorkSheets, "Excel UDF: _Excel_SheetList Example 1")

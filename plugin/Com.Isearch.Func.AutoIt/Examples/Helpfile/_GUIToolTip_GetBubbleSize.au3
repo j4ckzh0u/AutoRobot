@@ -1,6 +1,7 @@
 #include <GUIConstantsEx.au3>
-#include <GUIToolTip.au3>
+#include <GuiToolTip.au3>
 #include <MsgBoxConstants.au3>
+#include <WinAPIConv.au3>
 
 Example()
 

@@ -24,6 +24,8 @@ Func Example()
 	; Get parts height/width
 	MemoWrite("Height of parts .: " & _GUICtrlStatusBar_GetHeight($hStatus))
 	MemoWrite("Width of part 1 .: " & _GUICtrlStatusBar_GetWidth($hStatus, 0))
+	MemoWrite("Width of part 2 .: " & _GUICtrlStatusBar_GetWidth($hStatus, 1))
+	MemoWrite("Width of part 3 .: " & _GUICtrlStatusBar_GetWidth($hStatus, 2))
 
 	; Loop until the user exits.
 	Do

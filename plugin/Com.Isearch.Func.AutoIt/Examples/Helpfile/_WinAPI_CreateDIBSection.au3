@@ -1,7 +1,9 @@
 #include <APIGdiConstants.au3>
 #include <GUIConstantsEx.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIHObj.au3>
 
 ; Create 32 bits-per-pixel device-independent bitmap (DIB) that use a mask
 Local $tBIV5HDR = DllStructCreate($tagBITMAPV5HEADER)

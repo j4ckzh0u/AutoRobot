@@ -1,7 +1,10 @@
 #include <APIGdiConstants.au3>
 #include <MsgBoxConstants.au3>
+#include <WinAPIFiles.au3>
 #include <WinAPIGdi.au3>
-#include <WinAPISys.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPIMem.au3>
+#include <WinAPIRes.au3>
 
 ; Load image
 Local $hSource = _WinAPI_LoadImage(0, @ScriptDir & '\Extras\AutoIt.bmp', $IMAGE_BITMAP, 0, 0, BitOR($LR_LOADFROMFILE, $LR_CREATEDIBSECTION))
@@ -11,7 +14,7 @@ Local $hBitmap = _WinAPI_AdjustBitmap($hSource, 256, 256, $HALFTONE)
 
 ; Create compressed PNG data
 Local $pData = 0
-Local $iLength = _WinAPI_CompressBitmapBits($hBitmap, $pData, 2)
+Local $iLength = _WinAPI_CompressBitmapBits($hBitmap, $pData, 2);$COMPRESSION_BITMAP_PNG)
 
 ; Create .ico file
 If Not @error Then

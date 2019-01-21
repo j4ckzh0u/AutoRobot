@@ -30,14 +30,14 @@ Func Example()
 					Case 1
 						Report("1. Initial setting")
 					Case 2
+						_GUICtrlRichEdit_SetSel($g_hRichEdit, 0, -1)
 						_GUICtrlRichEdit_SetCharColor($g_hRichEdit, "304050")
 						Report("2. Setting is now")
 					Case 3
 						_GUICtrlRichEdit_SetSel($g_hRichEdit, 1, 5)
 						_GUICtrlRichEdit_SetCharColor($g_hRichEdit)
-						Report("3. Background of a few characters changed")
+						Report("3. Colors of a few characters changed")
 					Case 4
-						_GUICtrlRichEdit_SetSel($g_hRichEdit, 6, -1)
 						; Stream all text to the Desktop so you can look at settings in Word
 						_GUICtrlRichEdit_Deselect($g_hRichEdit)
 						_GUICtrlRichEdit_StreamToFile($g_hRichEdit, @DesktopDir & "\gcre.rtf")

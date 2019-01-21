@@ -1,6 +1,5 @@
 #include <GUIConstantsEx.au3>
 #include <GuiStatusBar.au3>
-#include <WinAPI.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo
@@ -24,6 +23,8 @@ Func Example()
 	_GUICtrlStatusBar_SetParts($hStatus, $aParts)
 	_GUICtrlStatusBar_SetText($hStatus, "Part 1")
 	_GUICtrlStatusBar_SetText($hStatus, "Part 2", 1)
+	_GUICtrlStatusBar_SetText($hStatus, "Part 3", 2)
+	_GUICtrlStatusBar_SetText($hStatus, "Part 4", 3)
 
 	; Set icons
 	_GUICtrlStatusBar_SetIcon($hStatus, 0, 23, "shell32.dll")

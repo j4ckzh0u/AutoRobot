@@ -3,9 +3,9 @@
 #include <GuiMenu.au3>
 #include <WindowsConstants.au3>
 
-Global $g_idBtn, $g_idMemo, $g_idBtn2
+Global $g_hBtn, $g_idMemo, $g_hBtn2
 
-; Note the controlID from these buttons can NOT be read with GUICtrlRead
+; Note: The handle from these buttons can NOT be read with GUICtrlRead
 
 Example()
 
@@ -16,16 +16,16 @@ Func Example()
 	$g_idMemo = GUICtrlCreateEdit("", 10, 100, 390, 284, $WS_VSCROLL)
 	GUICtrlSetFont($g_idMemo, 9, 400, 0, "Courier New")
 
-	$g_idBtn = _GUICtrlButton_Create($hGUI, "Split Button", 10, 10, 120, 30, $BS_SPLITBUTTON)
-	_GUICtrlButton_SetSplitInfo($g_idBtn)
-	$g_idBtn2 = _GUICtrlButton_Create($hGUI, "Split Button 2", 10, 50, 120, 30, $BS_SPLITBUTTON)
+	$g_hBtn = _GUICtrlButton_Create($hGUI, "Split Button", 10, 10, 120, 30, $BS_SPLITBUTTON)
+	_GUICtrlButton_SetSplitInfo($g_hBtn)
+	$g_hBtn2 = _GUICtrlButton_Create($hGUI, "Split Button 2", 10, 50, 120, 30, $BS_SPLITBUTTON)
 
 	GUIRegisterMsg($WM_COMMAND, "WM_COMMAND")
 	GUIRegisterMsg($WM_NOTIFY, "WM_NOTIFY")
 
 	GUISetState(@SW_SHOW)
 
-	$aInfo = _GUICtrlButton_GetSplitInfo($g_idBtn)
+	$aInfo = _GUICtrlButton_GetSplitInfo($g_hBtn)
 	MemoWrite("Split Info" & @CRLF & "----------------")
 	For $x = 0 To 3
 		MemoWrite("$ainfo[" & $x & "] = " & $aInfo[$x])
@@ -108,7 +108,7 @@ Func WM_COMMAND($hWnd, $iMsg, $wParam, $lParam)
 	Local $sText = ""
 
 	Switch $hCtrl
-		Case $g_idBtn, $g_idBtn2
+		Case $g_hBtn, $g_hBtn2
 			Switch $nNotifyCode
 				Case $BN_CLICKED
 					$sText = "$BN_CLICKED" & @CRLF

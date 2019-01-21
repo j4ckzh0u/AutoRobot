@@ -306,9 +306,9 @@
 		<KeyWord name='Call' func='yes' >
 			<Overload retVal='' descr='Calls a user-defined or built-in function contained in first parameter.' >
 				<Param name='&quot;function&quot; [' />
-				<Param name='param1 [' />
-				<Param name='param2 [' />
-				<Param name='paramN]]]' />
+				<Param name='param_1 [' />
+				<Param name='param_2 [' />
+				<Param name='param_N]]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='CDTray' func='yes' >
@@ -2175,9 +2175,9 @@
 		</KeyWord>
 		<KeyWord name='StringFormat' func='yes' >
 			<Overload retVal='' descr='Returns a formatted string (similar to the C sprintf() function).' >
-				<Param name='&quot;format control&quot;' />
+				<Param name='&quot;format control&quot; [' />
 				<Param name='var1 [' />
-				<Param name='... var32]' />
+				<Param name='... var32]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='StringFromASCIIArray' func='yes' >
@@ -2794,8 +2794,8 @@
 		</KeyWord>
 		<KeyWord name='_ArrayConcatenate' func='yes' >
 			<Overload retVal='' descr='Concatenate two arrays - either 1D or 2D with the same number of columns (Requires: #include &lt;Array.au3&gt;)' >
-				<Param name='Const ByRef $aArrayTarget' />
-				<Param name='ByRef $aArraySource [' />
+				<Param name='ByRef $aArrayTarget' />
+				<Param name='Const ByRef $aArraySource [' />
 				<Param name='$iStart = 0]' />
 			</Overload>
 		</KeyWord>
@@ -2806,16 +2806,14 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_ArrayDisplay' func='yes' >
-			<Overload retVal='' descr='Displays a 1D or 2D array in a ListView (Requires: #include &lt;Array.au3&gt;)' >
+			<Overload retVal='' descr='Displays a 1D or 2D array as a ListView (Requires: #include &lt;Array.au3&gt;)' >
 				<Param name='Const ByRef $aArray [' />
 				<Param name='$sTitle = &quot;ArrayDisplay&quot; [' />
 				<Param name='$sArrayRange = &quot;&quot; [' />
 				<Param name='$iFlags = 0 [' />
 				<Param name='$vUser_Separator = Default [' />
 				<Param name='$sHeader = Default [' />
-				<Param name='$iMax_ColWidth = Default [' />
-				<Param name='$iAlt_Color = Default [' />
-				<Param name='$hUser_Function = &quot;&quot;]]]]]]]]' />
+				<Param name='$iMax_ColWidth = Default]]]]]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_ArrayExtract' func='yes' >
@@ -3187,7 +3185,7 @@
 			<Overload retVal='' descr='Creates a key from algorithm and password (Requires: #include &lt;Crypt.au3&gt;)' >
 				<Param name='$vPassword' />
 				<Param name='$iAlgID [' />
-				<Param name='$iHashAlgID = $CALG_MD5]' />
+				<Param name='$iHashPasswordID = $CALG_MD5]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_Crypt_DestroyKey' func='yes' >
@@ -3226,7 +3224,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_Crypt_HashFile' func='yes' >
-			<Overload retVal='' descr='Hash a string with specified algorithm (Requires: #include &lt;Crypt.au3&gt;)' >
+			<Overload retVal='' descr='Hash the contents of a file using a specified algorithm (Requires: #include &lt;Crypt.au3&gt;)' >
 				<Param name='$sFilePath' />
 				<Param name='$iAlgID' />
 			</Overload>
@@ -3516,6 +3514,18 @@
 				<Param name='ByRef $iYear' />
 				<Param name='ByRef $iMonth' />
 				<Param name='ByRef $iDay' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_DebugArrayDisplay' func='yes' >
+			<Overload retVal='' descr='Displays a 1D or 2D array in a ListView to aid debugging (Requires: #include &lt;Debug.au3&gt;)' >
+				<Param name='Const ByRef $aArray [' />
+				<Param name='$sTitle = &quot;DebugArray&quot; [' />
+				<Param name='$sArrayRange = &quot;&quot; [' />
+				<Param name='$iFlags = 0 [' />
+				<Param name='$vUser_Separator = Default [' />
+				<Param name='$sHeader = Default [' />
+				<Param name='$iMax_ColWidth = Default [' />
+				<Param name='$hUser_Function = &quot;&quot;]]]]]]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_DebugBugReportEnv' func='yes' >
@@ -4012,7 +4022,8 @@
 				<Param name='$sFilePath' />
 				<Param name='$iLine' />
 				<Param name='$sText [' />
-				<Param name='$bOverWrite = False]' />
+				<Param name='$bOverWrite = False [' />
+				<Param name='$bFill = False]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_FTP_Close' func='yes' >
@@ -4038,7 +4049,7 @@
 				<Param name='$iPassive = 0 [' />
 				<Param name='$iServerPort = 0 [' />
 				<Param name='$iService = $INTERNET_SERVICE_FTP [' />
-				<Param name='$iFlags = 0 [' />
+				<Param name='$iFlags = $INTERNET_FLAG_DEFAULT [' />
 				<Param name='$fuContext = 0]]]]]' />
 			</Overload>
 		</KeyWord>
@@ -4142,7 +4153,7 @@
 			<Overload retVal='' descr='Converts filetime Loword and Hiword to a string (Requires: #include &lt;FTPEx.au3&gt;)' >
 				<Param name='$iLoDWORD' />
 				<Param name='$iHiDWORD [' />
-				<Param name='$bFmt = 0]' />
+				<Param name='$iFmt = 0]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_FTP_FindFileClose' func='yes' >
@@ -4452,6 +4463,13 @@
 				<Param name='$iX' />
 				<Param name='$iY' />
 				<Param name='$iARGB' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_BitmapSetResolution' func='yes' >
+			<Overload retVal='' descr='Sets the resolution of this Bitmap object (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hBitmap' />
+				<Param name='$fDpiX' />
+				<Param name='$fDpiY' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GDIPlus_BitmapUnlockBits' func='yes' >
@@ -5281,6 +5299,27 @@
 				<Param name='$iColorMatrixFlags = 0]]]]]' />
 			</Overload>
 		</KeyWord>
+		<KeyWord name='_GDIPlus_ImageAttributesSetRemapTable' func='yes' >
+			<Overload retVal='' descr='Sets or clears the color-remap table for a specified category (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hImageAttributes [' />
+				<Param name='$aColorMap = 0 [' />
+				<Param name='$iColorAdjustType = 0 [' />
+				<Param name='$bEnable = True]]]' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_ImageAttributesSetThreshold' func='yes' >
+			<Overload retVal='' descr='Sets the threshold (transparency range) for a specified category (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hImageAttributes' />
+				<Param name='$fThreshold [' />
+				<Param name='$iColorAdjustType = $GDIP_COLORADJUSTTYPE_DEFAULT [' />
+				<Param name='$bEnable = True]]' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_ImageClone' func='yes' >
+			<Overload retVal='' descr='Creates a new image object by cloning from source image (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hImage' />
+			</Overload>
+		</KeyWord>
 		<KeyWord name='_GDIPlus_ImageDispose' func='yes' >
 			<Overload retVal='' descr='Release an image object (Requires: #include &lt;GDIPlus.au3&gt;)' >
 				<Param name='$hImage' />
@@ -5294,6 +5333,12 @@
 		<KeyWord name='_GDIPlus_ImageGetFlags' func='yes' >
 			<Overload retVal='' descr='Returns enumeration of pixel data attributes contained in an image (Requires: #include &lt;GDIPlus.au3&gt;)' >
 				<Param name='$hImage' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_ImageGetFrameCount' func='yes' >
+			<Overload retVal='' descr='Gets the number of frames in a specified dimension of an Image object (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hImage' />
+				<Param name='$sDimensionID' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GDIPlus_ImageGetGraphicsContext' func='yes' >
@@ -5314,6 +5359,17 @@
 		<KeyWord name='_GDIPlus_ImageGetPixelFormat' func='yes' >
 			<Overload retVal='' descr='Returns pixel format of an image: Bits per pixel, Alpha channels, RGB, Grayscale, Indexed etc (Requires: &#x0a; #include &lt;GDIPlus.au3&gt;)' >
 				<Param name='$hImage' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_ImageGetPropertyIdList' func='yes' >
+			<Overload retVal='' descr='Gets a list of the property identifiers used in the meta data of an image object (Requires: #include &#x0a; &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hImage' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_ImageGetPropertyItem' func='yes' >
+			<Overload retVal='' descr='Gets a specified property item (piece of meta data) from an Image object (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hImage' />
+				<Param name='$iPropID' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GDIPlus_ImageGetRawFormat' func='yes' >
@@ -5370,6 +5426,19 @@
 				<Param name='$iRotateFlipType' />
 			</Overload>
 		</KeyWord>
+		<KeyWord name='_GDIPlus_ImageSaveAdd' func='yes' >
+			<Overload retVal='' descr='Adds a frame to a file or stream specified in a previous call to the _GDIPlus_ImageSaveToFileEx or _GDIPlus_ImageSaveToStream &#x0a; functions (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hImage' />
+				<Param name='$tParams' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_ImageSaveAddImage' func='yes' >
+			<Overload retVal='' descr='Adds a frame to a file or stream specified in a previous call to the _GDIPlus_ImageSaveToFileEx or _GDIPlus_ImageSaveToStream &#x0a; functions (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hImage' />
+				<Param name='$hImageNew' />
+				<Param name='$tParams' />
+			</Overload>
+		</KeyWord>
 		<KeyWord name='_GDIPlus_ImageSaveToFile' func='yes' >
 			<Overload retVal='' descr='Save an image to file (Requires: #include &lt;GDIPlus.au3&gt;)' >
 				<Param name='$hImage' />
@@ -5398,6 +5467,13 @@
 				<Param name='$iScaleW' />
 				<Param name='$iScaleH [' />
 				<Param name='$iInterpolationMode = $GDIP_INTERPOLATIONMODE_HIGHQUALITYBICUBIC]' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_ImageSelectActiveFrame' func='yes' >
+			<Overload retVal='' descr='Selects a frame in an image object specified by a dimension and an index (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hImage' />
+				<Param name='$sDimensionID' />
+				<Param name='$iFrameIndex' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GDIPlus_LineBrushCreate' func='yes' >
@@ -5504,6 +5580,16 @@
 		</KeyWord>
 		<KeyWord name='_GDIPlus_MatrixCreate' func='yes' >
 			<Overload retVal='' descr='Creates and initializes a Matrix object that represents the identity matrix (Requires: #include &lt;GDIPlus.au3&gt;)' />
+		</KeyWord>
+		<KeyWord name='_GDIPlus_MatrixCreate2' func='yes' >
+			<Overload retVal='' descr='Creates and initializes a Matrix object based on six numbers that define an affine transformation (Requires: &#x0a; #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='[$nM11 = 1 [' />
+				<Param name='$nM12 = 1 [' />
+				<Param name='$nM21 = 1 [' />
+				<Param name='$nM22 = 1 [' />
+				<Param name='$nDX = 0 [' />
+				<Param name='$nDY = 0]]]]]]' />
+			</Overload>
 		</KeyWord>
 		<KeyWord name='_GDIPlus_MatrixDispose' func='yes' >
 			<Overload retVal='' descr='Release a matrix object (Requires: #include &lt;GDIPlus.au3&gt;)' >
@@ -6085,6 +6171,26 @@
 				<Param name='$hPen' />
 			</Overload>
 		</KeyWord>
+		<KeyWord name='_GDIPlus_PenResetTransform' func='yes' >
+			<Overload retVal='' descr='Resets the world transformation matrix of a Pen object to the identity matrix (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hPen' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_PenRotateTransform' func='yes' >
+			<Overload retVal='' descr='Updates the world transformation matrix of a Pen object with the product of itself and a rotation matrix &#x0a; (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hPen' />
+				<Param name='$fAngle [' />
+				<Param name='$iOrder = 0]' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_PenScaleTransform' func='yes' >
+			<Overload retVal='' descr='Updates the world transformation matrix of a pen object with the product of itself and a scaling matrix &#x0a; (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hPen' />
+				<Param name='$fScaleX' />
+				<Param name='$fScaleY [' />
+				<Param name='$iOrder = 0]' />
+			</Overload>
+		</KeyWord>
 		<KeyWord name='_GDIPlus_PenSetAlignment' func='yes' >
 			<Overload retVal='' descr='Sets the pen alignment (Requires: #include &lt;GDIPlus.au3&gt;)' >
 				<Param name='$hPen [' />
@@ -6095,6 +6201,12 @@
 			<Overload retVal='' descr='Sets the pen color (Requires: #include &lt;GDIPlus.au3&gt;)' >
 				<Param name='$hPen' />
 				<Param name='$iARGB' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_PenSetCompound' func='yes' >
+			<Overload retVal='' descr='Sets the compound array for a Pen object (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hPen' />
+				<Param name='$aCompounds' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GDIPlus_PenSetCustomEndCap' func='yes' >
@@ -6145,6 +6257,12 @@
 			<Overload retVal='' descr='Sets the start cap for a Pen object (Requires: #include &lt;GDIPlus.au3&gt;)' >
 				<Param name='$hPen' />
 				<Param name='$iLineCap' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_PenSetTransform' func='yes' >
+			<Overload retVal='' descr='Sets the world transformation of a pen object (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hPen' />
+				<Param name='$hMatrix' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GDIPlus_PenSetWidth' func='yes' >
@@ -6221,6 +6339,16 @@
 			<Overload retVal='' descr='Creates a GDI region from a GDI+ Region object (Requires: #include &lt;GDIPlus.au3&gt;)' >
 				<Param name='$hRegion [' />
 				<Param name='$hGraphics = 0]' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_RegionSetEmpty' func='yes' >
+			<Overload retVal='' descr='Updates a region to an empty region. In other words, the region occupies no space on the display device &#x0a; (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hRegion' />
+			</Overload>
+		</KeyWord>
+		<KeyWord name='_GDIPlus_RegionSetInfinite' func='yes' >
+			<Overload retVal='' descr='Updates a region to an infinite region (Requires: #include &lt;GDIPlus.au3&gt;)' >
+				<Param name='$hRegion' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GDIPlus_RegionTransform' func='yes' >
@@ -9057,8 +9185,9 @@
 		<KeyWord name='_GUICtrlListView_RegisterSortCallBack' func='yes' >
 			<Overload retVal='' descr='Register the Simple Sort callback function (Requires: #include &lt;GuiListView.au3&gt;)' >
 				<Param name='$hWnd [' />
-				<Param name='$bNumbers = True [' />
-				<Param name='$bArrows = True]]' />
+				<Param name='$vCompareType = 1 [' />
+				<Param name='$bArrows = True [' />
+				<Param name='$sPrivateCallBack = &quot;__GUICtrlListView_Sort&quot;]]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GUICtrlListView_RemoveAllGroups' func='yes' >
@@ -11088,7 +11217,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GUICtrlRichEdit_SetCharColor' func='yes' >
-			<Overload retVal='' descr='Sets the color of selected text or, if none selected, sets the background color of text inserted at &#x0a; the insertion point (Requires: #include &lt;GuiRichEdit.au3&gt;)' >
+			<Overload retVal='' descr='Sets the color of selected text or, if none selected, sets the color of text inserted at the insertion &#x0a; point (Requires: #include &lt;GuiRichEdit.au3&gt;)' >
 				<Param name='$hWnd [' />
 				<Param name='$iColor = Default]' />
 			</Overload>
@@ -11250,7 +11379,8 @@
 		<KeyWord name='_GUICtrlRichEdit_StreamFromFile' func='yes' >
 			<Overload retVal='' descr='Sets text in a control from a file (Requires: #include &lt;GuiRichEdit.au3&gt;)' >
 				<Param name='$hWnd' />
-				<Param name='$sFileSpec' />
+				<Param name='$sFileSpec [' />
+				<Param name='$iFileEncoding = Default]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GUICtrlRichEdit_StreamFromVar' func='yes' >
@@ -11265,7 +11395,8 @@
 				<Param name='$sFileSpec [' />
 				<Param name='$bIncludeCOM = True [' />
 				<Param name='$iOpts = 0 [' />
-				<Param name='$iCodePage = 0]]]' />
+				<Param name='$iCodePage = 0 [' />
+				<Param name='$iFileEncoding = Default]]]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GUICtrlRichEdit_StreamToVar' func='yes' >
@@ -11664,8 +11795,8 @@
 		<KeyWord name='_GUICtrlStatusBar_SetParts' func='yes' >
 			<Overload retVal='' descr='Sets the number of parts and the part edges (Requires: #include &lt;GuiStatusBar.au3&gt;)' >
 				<Param name='$hWnd [' />
-				<Param name='$aParts = -1 [' />
-				<Param name='$aPartWidth = 25]]' />
+				<Param name='$vPartEdge = -1 [' />
+				<Param name='$vPartWidth = 25]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_GUICtrlStatusBar_SetSimple' func='yes' >
@@ -14365,7 +14496,7 @@
 		<KeyWord name='_IsPressed' func='yes' >
 			<Overload retVal='' descr='Check if key has been pressed (Requires: #include &lt;Misc.au3&gt;)' >
 				<Param name='$sHexKey [' />
-				<Param name='$vDLL = &apos;user32.dll&apos;]' />
+				<Param name='$vDLL = &quot;user32.dll&quot;]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_MathCheckDiv' func='yes' >
@@ -15185,7 +15316,7 @@
 		<KeyWord name='_StringInsert' func='yes' >
 			<Overload retVal='' descr='Inserts a string within another string (Requires: #include &lt;String.au3&gt;)' >
 				<Param name='$sString' />
-				<Param name='$sInsertString' />
+				<Param name='$sInsertion' />
 				<Param name='$iPosition' />
 			</Overload>
 		</KeyWord>
@@ -15376,7 +15507,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_AddIconTransparency' func='yes' >
-			<Overload retVal='' descr='Adds a transparency to the specified 32 bits-per-pixel icon (Requires: #include &lt;WinAPIRes.au3&gt;)' >
+			<Overload retVal='' descr='Adds a transparency to the specified 32 bits-per-pixel icon (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hIcon [' />
 				<Param name='$iPercent = 50 [' />
 				<Param name='$bDelete = False]]' />
@@ -15406,7 +15537,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_AdjustWindowRectEx' func='yes' >
-			<Overload retVal='' descr='Calculates the required size of the window rectangle, based on the desired size of the client rectangle &#x0a; (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Calculates the required size of the window rectangle, based on the desired size of the client rectangle &#x0a; (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='ByRef $tRECT' />
 				<Param name='$iStyle [' />
 				<Param name='$iExStyle = 0 [' />
@@ -15440,7 +15571,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_AnimateWindow' func='yes' >
-			<Overload retVal='' descr='Enables you to produce special effects when showing or hiding windows (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Enables you to produce special effects when showing or hiding windows (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iFlags [' />
 				<Param name='$iDuration = 1000]' />
@@ -15493,12 +15624,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_AttachConsole' func='yes' >
-			<Overload retVal='' descr='Attaches the calling process to the console of the specified process (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Attaches the calling process to the console of the specified process (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='[$iPID = -1]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_AttachThreadInput' func='yes' >
-			<Overload retVal='' descr='Attaches the input processing mechanism of one thread to that of another thread (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Attaches the input processing mechanism of one thread to that of another thread (Requires: #include &#x0a; &lt;WinAPIProc.au3&gt;)' >
 				<Param name='$iAttach' />
 				<Param name='$iAttachTo' />
 				<Param name='$bAttach' />
@@ -15543,7 +15674,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_Beep' func='yes' >
-			<Overload retVal='' descr='Generates simple tones on the speaker (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Generates simple tones on the speaker (Requires: #include &lt;WinAPIError.au3&gt;)' >
 				<Param name='[$iFreq = 500 [' />
 				<Param name='$iDuration = 1000]]' />
 			</Overload>
@@ -15560,7 +15691,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_BeginDeferWindowPos' func='yes' >
-			<Overload retVal='' descr='Allocates memory for a multiple-window-position structure (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Allocates memory for a multiple-window-position structure (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='[$iAmount = 1]' />
 			</Overload>
 		</KeyWord>
@@ -15582,7 +15713,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_BitBlt' func='yes' >
-			<Overload retVal='' descr='Performs a bit-block transfer of color data (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Performs a bit-block transfer of color data (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hDestDC' />
 				<Param name='$iXDest' />
 				<Param name='$iYDest' />
@@ -15595,12 +15726,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_BringWindowToTop' func='yes' >
-			<Overload retVal='' descr='Brings the specified window to the top of the Z order (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Brings the specified window to the top of the Z order (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_BroadcastSystemMessage' func='yes' >
-			<Overload retVal='' descr='Sends a message to the specified recipients (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Sends a message to the specified recipients (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$iMsg [' />
 				<Param name='$wParam = 0 [' />
 				<Param name='$lParam = 0 [' />
@@ -15638,7 +15769,7 @@
 			<Overload retVal='' descr='Closes down buffered painting for the current thread (Requires: #include &lt;WinAPITheme.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_CallNextHookEx' func='yes' >
-			<Overload retVal='' descr='Passes the hook information to the next hook procedure in the current hook chain (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Passes the hook information to the next hook procedure in the current hook chain (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
 				<Param name='$hHook' />
 				<Param name='$iCode' />
 				<Param name='$wParam' />
@@ -15646,7 +15777,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CallWindowProc' func='yes' >
-			<Overload retVal='' descr='Passes the hook information to the next hook procedure in the current hook chain (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Passes the hook information to the next hook procedure in the current hook chain (Requires: #include &#x0a; &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$pPrevWndFunc' />
 				<Param name='$hWnd' />
 				<Param name='$iMsg' />
@@ -15655,7 +15786,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CallWindowProcW' func='yes' >
-			<Overload retVal='' descr='Passes message information to the specified window procedure (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Passes message information to the specified window procedure (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$pPrevWndProc' />
 				<Param name='$hWnd' />
 				<Param name='$iMsg' />
@@ -15664,7 +15795,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CascadeWindows' func='yes' >
-			<Overload retVal='' descr='Cascades the specified child windows of the specified parent window (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Cascades the specified child windows of the specified parent window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$aWnds [' />
 				<Param name='$tRECT = 0 [' />
 				<Param name='$hParent = 0 [' />
@@ -15674,26 +15805,26 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ChangeWindowMessageFilterEx' func='yes' >
-			<Overload retVal='' descr='Modifies the User Interface Privilege Isolation (UIPI) message filter for a specified window (Requires: &#x0a; #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Modifies the User Interface Privilege Isolation (UIPI) message filter for a specified window (Requires: &#x0a; #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iMsg' />
 				<Param name='$iAction' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CharToOem' func='yes' >
-			<Overload retVal='' descr='Converts a string into the OEM-defined character set (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a string into the OEM-defined character set (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$sStr' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ChildWindowFromPointEx' func='yes' >
-			<Overload retVal='' descr='Determines which, if any, of the child windows belonging to the specified parent window contains the &#x0a; specified point (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Determines which, if any, of the child windows belonging to the specified parent window contains the &#x0a; specified point (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$tPOINT [' />
 				<Param name='$iFlags = 0]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ClientToScreen' func='yes' >
-			<Overload retVal='' descr='Converts the client coordinates of a specified point to screen coordinates (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Converts the client coordinates of a specified point to screen coordinates (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='ByRef $tPoint' />
 			</Overload>
@@ -15719,7 +15850,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CloseHandle' func='yes' >
-			<Overload retVal='' descr='Closes an open object handle (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Closes an open object handle (Requires: #include &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$hObject' />
 			</Overload>
 		</KeyWord>
@@ -15729,7 +15860,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CloseWindow' func='yes' >
-			<Overload retVal='' descr='Minimizes (but does not destroy) the specified window (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Minimizes (but does not destroy) the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -15771,7 +15902,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CombineRgn' func='yes' >
-			<Overload retVal='' descr='Combines two regions and stores the result in a third region (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Combines two regions and stores the result in a third region (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hRgnDest' />
 				<Param name='$hRgnSrc1' />
 				<Param name='$hRgnSrc2' />
@@ -15790,7 +15921,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CommDlgExtendedError' func='yes' >
-			<Overload retVal='' descr='Returns a common dialog box error string. This string indicates the most recent error to occur during &#x0a; the execution of one of the common dialog box functions (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Returns a common dialog box error string. This string indicates the most recent error to occur during &#x0a; the execution of one of the common dialog box functions (Requires: #include &lt;WinAPIDlg.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_CommDlgExtendedErrorEx' func='yes' >
 			<Overload retVal='' descr='Returns a common dialog box error code (Requires: #include &lt;WinAPIDlg.au3&gt;)' />
@@ -15858,7 +15989,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CopyIcon' func='yes' >
-			<Overload retVal='' descr='Copies the specified icon from another module (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Copies the specified icon from another module (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hIcon' />
 			</Overload>
 		</KeyWord>
@@ -15909,7 +16040,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_Create32BitHICON' func='yes' >
-			<Overload retVal='' descr='Converts an icon to a 32 bits-per-pixel format and copies to the new icon (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
+			<Overload retVal='' descr='Converts an icon to a 32 bits-per-pixel format and copies to the new icon (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hIcon [' />
 				<Param name='$bDelete = False]' />
 			</Overload>
@@ -15920,7 +16051,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateBitmap' func='yes' >
-			<Overload retVal='' descr='Creates a bitmap with the specified width, height, and color format (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a bitmap with the specified width, height, and color format (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$iWidth' />
 				<Param name='$iHeight [' />
 				<Param name='$iPlanes = 1 [' />
@@ -15941,14 +16072,14 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateBuffer' func='yes' >
-			<Overload retVal='' descr='Allocates a block of memory from the internal library heap (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Allocates a block of memory from the internal library heap (Requires: #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$iLength [' />
 				<Param name='$pBuffer = 0 [' />
 				<Param name='$bAbort = True]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateBufferFromStruct' func='yes' >
-			<Overload retVal='' descr='Allocates a block of memory from the internal library heap and initializes it with the structure&apos;s &#x0a; data (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Allocates a block of memory from the internal library heap and initializes it with the structure&apos;s &#x0a; data (Requires: #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$tStruct [' />
 				<Param name='$pBuffer = 0 [' />
 				<Param name='$bAbort = True]]' />
@@ -15978,7 +16109,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateCompatibleBitmap' func='yes' >
-			<Overload retVal='' descr='Creates a bitmap compatible with the specified device context (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a bitmap compatible with the specified device context (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iWidth' />
 				<Param name='$iHeight' />
@@ -15993,7 +16124,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateCompatibleDC' func='yes' >
-			<Overload retVal='' descr='Creates a memory device context compatible with the specified device (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a memory device context compatible with the specified device (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 			</Overload>
 		</KeyWord>
@@ -16059,7 +16190,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateEmptyIcon' func='yes' >
-			<Overload retVal='' descr='Creates a fully transparent icon with the specified width, height, and color depth (Requires: #include &#x0a; &lt;WinAPIGdi.au3&gt;)' >
+			<Overload retVal='' descr='Creates a fully transparent icon with the specified width, height, and color depth (Requires: #include &#x0a; &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$iWidth' />
 				<Param name='$iHeight [' />
 				<Param name='$iBitsPerPel = 32]' />
@@ -16075,7 +16206,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateEvent' func='yes' >
-			<Overload retVal='' descr='Creates or opens a named or unnamed event object (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates or opens a named or unnamed event object (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='[$tAttributes = 0 [' />
 				<Param name='$bManualReset = True [' />
 				<Param name='$bInitialState = True [' />
@@ -16083,7 +16214,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateFile' func='yes' >
-			<Overload retVal='' descr='Creates or opens a file or other device (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates or opens a file or other device (Requires: #include &lt;WinAPIFiles.au3&gt;)' >
 				<Param name='$sFileName' />
 				<Param name='$iCreation [' />
 				<Param name='$iAccess = 4 [' />
@@ -16113,7 +16244,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateFont' func='yes' >
-			<Overload retVal='' descr='Creates a logical font with the specified characteristics (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a logical font with the specified characteristics (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$iHeight' />
 				<Param name='$iWidth [' />
 				<Param name='$iEscape = 0 [' />
@@ -16150,7 +16281,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateFontIndirect' func='yes' >
-			<Overload retVal='' descr='Creates a logical font that has specific characteristics (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a logical font that has specific characteristics (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$tLogFont' />
 			</Overload>
 		</KeyWord>
@@ -16164,7 +16295,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateIcon' func='yes' >
-			<Overload retVal='' descr='Creates an icon that has the specified size, colors, and bit patterns (Requires: #include &lt;WinAPIRes.au3&gt;)' >
+			<Overload retVal='' descr='Creates an icon that has the specified size, colors, and bit patterns (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hInstance' />
 				<Param name='$iWidth' />
 				<Param name='$iHeight' />
@@ -16175,7 +16306,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateIconFromResourceEx' func='yes' >
-			<Overload retVal='' descr='Creates an icon or cursor from resource bits describing the icon (Requires: #include &lt;WinAPIRes.au3&gt;)' >
+			<Overload retVal='' descr='Creates an icon or cursor from resource bits describing the icon (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$pData' />
 				<Param name='$iSize [' />
 				<Param name='$bIcon = True [' />
@@ -16185,7 +16316,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateIconIndirect' func='yes' >
-			<Overload retVal='' descr='Creates an icon or cursor that has the specified size, colors, and bit patterns (Requires: #include &#x0a; &lt;WinAPIGdi.au3&gt;)' >
+			<Overload retVal='' descr='Creates an icon or cursor that has the specified size, colors, and bit patterns (Requires: #include &#x0a; &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hBitmap' />
 				<Param name='$hMask [' />
 				<Param name='$iXHotspot = 0 [' />
@@ -16240,7 +16371,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreatePen' func='yes' >
-			<Overload retVal='' descr='Creates a logical pen that has the specified style, width, and color (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a logical pen that has the specified style, width, and color (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$iPenStyle' />
 				<Param name='$iWidth' />
 				<Param name='$iColor' />
@@ -16261,7 +16392,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateProcess' func='yes' >
-			<Overload retVal='' descr='Creates a new process and its primary thread (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a new process and its primary thread (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='$sAppName' />
 				<Param name='$sCommand' />
 				<Param name='$tSecurity' />
@@ -16304,7 +16435,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateRectRgn' func='yes' >
-			<Overload retVal='' descr='Creates a rectangular region (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a rectangular region (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$iLeftRect' />
 				<Param name='$iTopRect' />
 				<Param name='$iRightRect' />
@@ -16317,7 +16448,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateRoundRectRgn' func='yes' >
-			<Overload retVal='' descr='Creates a rectangular region with rounded corners (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a rectangular region with rounded corners (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$iLeftRect' />
 				<Param name='$iTopRect' />
 				<Param name='$iRightRect' />
@@ -16341,7 +16472,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateSolidBitmap' func='yes' >
-			<Overload retVal='' descr='Creates a solid color bitmap (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a solid color bitmap (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iColor' />
 				<Param name='$iWidth' />
@@ -16350,7 +16481,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateSolidBrush' func='yes' >
-			<Overload retVal='' descr='Creates a logical brush that has the specified solid color (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a logical brush that has the specified solid color (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$iColor' />
 			</Overload>
 		</KeyWord>
@@ -16361,7 +16492,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateString' func='yes' >
-			<Overload retVal='' descr='Copies a specified string to the newly allocated memory block and returns its pointer (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Copies a specified string to the newly allocated memory block and returns its pointer (Requires: #include &#x0a; &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$sString [' />
 				<Param name='$pString = 0 [' />
 				<Param name='$iLength = -1 [' />
@@ -16387,7 +16518,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_CreateWindowEx' func='yes' >
-			<Overload retVal='' descr='Creates an overlapped, pop-up, or child window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates an overlapped, pop-up, or child window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$iExStyle' />
 				<Param name='$sClass' />
 				<Param name='$sName' />
@@ -16425,7 +16556,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DeferWindowPos' func='yes' >
-			<Overload retVal='' descr='Updates the specified multiple-window-position structure for the specified window (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Updates the specified multiple-window-position structure for the specified window (Requires: #include &#x0a; &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hInfo' />
 				<Param name='$hWnd' />
 				<Param name='$hAfter' />
@@ -16458,7 +16589,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DefWindowProc' func='yes' >
-			<Overload retVal='' descr='Call the default window procedure to provide default processing (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Call the default window procedure to provide default processing (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iMsg' />
 				<Param name='$wParam' />
@@ -16466,7 +16597,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DefWindowProcW' func='yes' >
-			<Overload retVal='' descr='Calls the default window procedure to provide default processing for any window messages (Requires: &#x0a; #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Calls the default window procedure to provide default processing for any window messages (Requires: &#x0a; #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iMsg' />
 				<Param name='$wParam' />
@@ -16474,7 +16605,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DeleteDC' func='yes' >
-			<Overload retVal='' descr='Deletes the specified device context (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Deletes the specified device context (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 			</Overload>
 		</KeyWord>
@@ -16489,7 +16620,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DeleteObject' func='yes' >
-			<Overload retVal='' descr='Deletes a logical pen, brush, font, bitmap, region, or palette (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Deletes a logical pen, brush, font, bitmap, region, or palette (Requires: #include &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$hObject' />
 			</Overload>
 		</KeyWord>
@@ -16504,7 +16635,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DeregisterShellHookWindow' func='yes' >
-			<Overload retVal='' descr='Unregisters a specified Shell window that is registered to receive Shell hook messages (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Unregisters a specified Shell window that is registered to receive Shell hook messages (Requires: #include &#x0a; &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -16517,12 +16648,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DestroyIcon' func='yes' >
-			<Overload retVal='' descr='Destroys an icon and frees any memory the icon occupied (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Destroys an icon and frees any memory the icon occupied (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hIcon' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DestroyWindow' func='yes' >
-			<Overload retVal='' descr='Destroys the specified window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Destroys the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -16571,24 +16702,24 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DragAcceptFiles' func='yes' >
-			<Overload retVal='' descr='Registers whether a window accepts dropped files (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Registers whether a window accepts dropped files (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd [' />
 				<Param name='$bAccept = True]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DragFinish' func='yes' >
-			<Overload retVal='' descr='Releases memory that the system allocated for use in transferring file names to the application (Requires: &#x0a; #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Releases memory that the system allocated for use in transferring file names to the application (Requires: &#x0a; #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hDrop' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DragQueryFileEx' func='yes' >
-			<Overload retVal='' descr='Retrieves the names of dropped files that result from a successful drag-and-drop operation (Requires: &#x0a; #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the names of dropped files that result from a successful drag-and-drop operation (Requires: &#x0a; #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hDrop [' />
 				<Param name='$iFlag = 0]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DragQueryPoint' func='yes' >
-			<Overload retVal='' descr='Retrieves the position of the mouse pointer at the time a file was dropped during a drag-and-drop operation &#x0a; (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the position of the mouse pointer at the time a file was dropped during a drag-and-drop operation &#x0a; (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hDrop' />
 			</Overload>
 		</KeyWord>
@@ -16609,7 +16740,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DrawEdge' func='yes' >
-			<Overload retVal='' descr='Draws one or more edges of rectangle (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Draws one or more edges of rectangle (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$tRECT' />
 				<Param name='$iEdgeType' />
@@ -16623,7 +16754,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DrawFrameControl' func='yes' >
-			<Overload retVal='' descr='Draws a frame control of the specified type and style (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Draws a frame control of the specified type and style (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$tRECT' />
 				<Param name='$iType' />
@@ -16631,7 +16762,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DrawIcon' func='yes' >
-			<Overload retVal='' descr='Draws an icon or cursor into the specified device context (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Draws an icon or cursor into the specified device context (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iX' />
 				<Param name='$iY' />
@@ -16639,7 +16770,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DrawIconEx' func='yes' >
-			<Overload retVal='' descr='Draws an icon or cursor into the specified device context (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Draws an icon or cursor into the specified device context (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iX' />
 				<Param name='$iY' />
@@ -16652,7 +16783,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DrawLine' func='yes' >
-			<Overload retVal='' descr='Draws a line (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Draws a line (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iX1' />
 				<Param name='$iY1' />
@@ -16673,7 +16804,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DrawText' func='yes' >
-			<Overload retVal='' descr='Draws formatted text in the specified rectangle (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Draws formatted text in the specified rectangle (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$sText' />
 				<Param name='ByRef $tRECT' />
@@ -16753,7 +16884,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DuplicateHandle' func='yes' >
-			<Overload retVal='' descr='Duplicates an object handle (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Duplicates an object handle (Requires: #include &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$hSourceProcessHandle' />
 				<Param name='$hSourceHandle' />
 				<Param name='$hTargetProcessHandle' />
@@ -16872,12 +17003,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DWordToFloat' func='yes' >
-			<Overload retVal='' descr='Converts a value of type DWORD to a value of type FLOAT (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a value of type DWORD to a value of type FLOAT (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_DWordToInt' func='yes' >
-			<Overload retVal='' descr='Converts a value of type DWORD to a value of type INT (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a value of type DWORD to a value of type INT (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
@@ -16898,7 +17029,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_EnableWindow' func='yes' >
-			<Overload retVal='' descr='Enables or disables mouse and keyboard input to the specified window or control (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Enables or disables mouse and keyboard input to the specified window or control (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
 				<Param name='$hWnd [' />
 				<Param name='$bEnable = True]' />
 			</Overload>
@@ -16921,7 +17052,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_EndDeferWindowPos' func='yes' >
-			<Overload retVal='' descr='Simultaneously updates the position and size of one or more windows in a single screen-refreshing cycle &#x0a; (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Simultaneously updates the position and size of one or more windows in a single screen-refreshing cycle &#x0a; (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hInfo' />
 			</Overload>
 		</KeyWord>
@@ -16948,7 +17079,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_EnumChildWindows' func='yes' >
-			<Overload retVal='' descr='Enumerates a child windows that belong to the specified parent window (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Enumerates a child windows that belong to the specified parent window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd [' />
 				<Param name='$bVisible = True]' />
 			</Overload>
@@ -16968,7 +17099,7 @@
 			<Overload retVal='' descr='Retrieves the load address for each device driver in the system (Requires: #include &lt;WinAPIProc.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_EnumDisplayDevices' func='yes' >
-			<Overload retVal='' descr='Obtains information about the display devices in a system (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Obtains information about the display devices in a system (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$sDevice' />
 				<Param name='$iDevNum' />
 			</Overload>
@@ -17087,22 +17218,22 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_EnumWindows' func='yes' >
-			<Overload retVal='' descr='Enumerates all windows (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Enumerates all windows (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='[$bVisible = True [' />
 				<Param name='$hWnd = Default]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_EnumWindowsPopup' func='yes' >
-			<Overload retVal='' descr='Enumerates popup windows (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Enumerates popup windows (Requires: #include &lt;WinAPISysWin.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_EnumWindowStations' func='yes' >
 			<Overload retVal='' descr='Enumerates all window stations in the current session (Requires: #include &lt;WinAPISys.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_EnumWindowsTop' func='yes' >
-			<Overload retVal='' descr='Enumerates all top level windows (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Enumerates all top level windows (Requires: #include &lt;WinAPISysWin.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_EqualMemory' func='yes' >
-			<Overload retVal='' descr='Compares two blocks of memory to determine whether the specified number of bytes are identical (Requires: &#x0a; #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Compares two blocks of memory to determine whether the specified number of bytes are identical (Requires: &#x0a; #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$pSource1' />
 				<Param name='$pSource2' />
 				<Param name='$iLength' />
@@ -17127,7 +17258,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ExpandEnvironmentStrings' func='yes' >
-			<Overload retVal='' descr='Expands environment variable strings and replaces them with their defined values (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Expands environment variable strings and replaces them with their defined values (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
 				<Param name='$sString' />
 			</Overload>
 		</KeyWord>
@@ -17159,14 +17290,14 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ExtractIcon' func='yes' >
-			<Overload retVal='' descr='Extracts an icon from the specified executable file, DLL, or icon file (Requires: #include &lt;WinAPIRes.au3&gt;)' >
+			<Overload retVal='' descr='Extracts an icon from the specified executable file, DLL, or icon file (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$sIcon' />
 				<Param name='$iIndex [' />
 				<Param name='$bSmall = False]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ExtractIconEx' func='yes' >
-			<Overload retVal='' descr='Creates an array of handles to large or small icons extracted from a file (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates an array of handles to large or small icons extracted from a file (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$sFilePath' />
 				<Param name='$iIndex' />
 				<Param name='$paLarge' />
@@ -17182,7 +17313,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FatalAppExit' func='yes' >
-			<Overload retVal='' descr='Displays a message box and terminates the application (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Displays a message box and terminates the application (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='$sMessage' />
 			</Overload>
 		</KeyWord>
@@ -17202,7 +17333,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FileIconInit' func='yes' >
-			<Overload retVal='' descr='Initializes or reinitializes the system image list (Requires: #include &lt;WinAPIRes.au3&gt;)' >
+			<Overload retVal='' descr='Initializes or reinitializes the system image list (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='[$bRestore = True]' />
 			</Overload>
 		</KeyWord>
@@ -17212,7 +17343,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FillMemory' func='yes' >
-			<Overload retVal='' descr='Fills a block of memory with the given value (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Fills a block of memory with the given value (Requires: #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$pMemory' />
 				<Param name='$iLength [' />
 				<Param name='$iValue = 0]' />
@@ -17224,7 +17355,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FillRect' func='yes' >
-			<Overload retVal='' descr='Fills a rectangle by using the specified brush (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Fills a rectangle by using the specified brush (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$tRECT' />
 				<Param name='$hBrush' />
@@ -17248,7 +17379,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FindExecutable' func='yes' >
-			<Overload retVal='' descr='Retrieves the name of the executable file associated with the specified file name (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the name of the executable file associated with the specified file name (Requires: #include &#x0a; &lt;WinAPIShellEx.au3&gt;)' >
 				<Param name='$sFileName [' />
 				<Param name='$sDirectory = &quot;&quot;]' />
 			</Overload>
@@ -17326,19 +17457,19 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FindWindow' func='yes' >
-			<Overload retVal='' descr='Retrieves the handle to the top-level window whose class name and window name match (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the handle to the top-level window whose class name and window name match (Requires: #include &#x0a; &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$sClassName' />
 				<Param name='$sWindowName' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FlashWindow' func='yes' >
-			<Overload retVal='' descr='Flashes the specified window one time (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Flashes the specified window one time (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd [' />
 				<Param name='$bInvert = True]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FlashWindowEx' func='yes' >
-			<Overload retVal='' descr='Flashes the specified window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Flashes the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd [' />
 				<Param name='$iFlags = 3 [' />
 				<Param name='$iCount = 3 [' />
@@ -17351,17 +17482,17 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FloatToDWord' func='yes' >
-			<Overload retVal='' descr='Converts a value of type FLOAT to a value of type DWORD (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a value of type FLOAT to a value of type DWORD (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FloatToInt' func='yes' >
-			<Overload retVal='' descr='Returns a 4 byte float as an integer value (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns a 4 byte float as an integer value (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$nFloat' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FlushFileBuffers' func='yes' >
-			<Overload retVal='' descr='Flushes the buffers of a specified file and causes all buffered data to be written (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Flushes the buffers of a specified file and causes all buffered data to be written (Requires: #include &#x0a; &lt;WinAPIFiles.au3&gt;)' >
 				<Param name='$hFile' />
 			</Overload>
 		</KeyWord>
@@ -17382,7 +17513,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FormatMessage' func='yes' >
-			<Overload retVal='' descr='Formats a message string (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Formats a message string (Requires: #include &lt;WinAPIError.au3&gt;)' >
 				<Param name='$iFlags' />
 				<Param name='$pSource' />
 				<Param name='$iMessageID' />
@@ -17393,7 +17524,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FrameRect' func='yes' >
-			<Overload retVal='' descr='Draws a border around the specified rectangle by using the specified brush (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Draws a border around the specified rectangle by using the specified brush (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$tRECT' />
 				<Param name='$hBrush' />
@@ -17409,12 +17540,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FreeLibrary' func='yes' >
-			<Overload retVal='' descr='Decrements the reference count of the loaded dynamic-link library (DLL) module (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Decrements the reference count of the loaded dynamic-link library (DLL) module (Requires: #include &lt;WinAPIRes.au3&gt;)' >
 				<Param name='$hModule' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_FreeMemory' func='yes' >
-			<Overload retVal='' descr='Frees a memory block in the internal library heap (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Frees a memory block in the internal library heap (Requires: #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$pMemory' />
 			</Overload>
 		</KeyWord>
@@ -17442,7 +17573,7 @@
 			<Overload retVal='' descr='Retrieves the path to the root of the directory that contains program data shared by all users (Requires: &#x0a; #include &lt;WinAPIShellEx.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetAncestor' func='yes' >
-			<Overload retVal='' descr='Retrieves the handle to the ancestor of the specified window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the handle to the ancestor of the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd [' />
 				<Param name='$iFlags = 1]' />
 			</Overload>
@@ -17458,7 +17589,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetAsyncKeyState' func='yes' >
-			<Overload retVal='' descr='Determines whether a key is up or down at the time the function is called (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Determines whether a key is up or down at the time the function is called (Requires: #include &lt;WinAPISys.au3&gt;)' >
 				<Param name='$iKey' />
 			</Overload>
 		</KeyWord>
@@ -17490,7 +17621,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetBkMode' func='yes' >
-			<Overload retVal='' descr='Returns the current background mix mode for a specified device context (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns the current background mix mode for a specified device context (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 			</Overload>
 		</KeyWord>
@@ -17542,34 +17673,34 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetClassInfoEx' func='yes' >
-			<Overload retVal='' descr='Retrieves information about a window class (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves information about a window class (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$sClass [' />
 				<Param name='$hInstance = 0]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetClassLongEx' func='yes' >
-			<Overload retVal='' descr='Retrieves the specified value associated with the specified window (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the specified value associated with the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iIndex' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetClassName' func='yes' >
-			<Overload retVal='' descr='Retrieves the name of the class to which the specified window belongs (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the name of the class to which the specified window belongs (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetClientHeight' func='yes' >
-			<Overload retVal='' descr='Retrieves the height of a window&apos;s client area (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the height of a window&apos;s client area (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetClientRect' func='yes' >
-			<Overload retVal='' descr='Retrieves the coordinates of a window&apos;s client area (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the coordinates of a window&apos;s client area (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetClientWidth' func='yes' >
-			<Overload retVal='' descr='Retrieves the width of a window&apos;s client area (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the width of a window&apos;s client area (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -17619,7 +17750,7 @@
 			<Overload retVal='' descr='Retrieves information about the current hardware profile for the local computer (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetCurrentObject' func='yes' >
-			<Overload retVal='' descr='Retrieves a handle to an object of the specified type that has been selected into the specified device &#x0a; context (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves a handle to an object of the specified type that has been selected into the specified device &#x0a; context (Requires: #include &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iType' />
 			</Overload>
@@ -17630,28 +17761,28 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetCurrentProcess' func='yes' >
-			<Overload retVal='' descr='Returns the process handle of the calling process (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Returns the process handle of the calling process (Requires: #include &lt;WinAPIHObj.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetCurrentProcessExplicitAppUserModelID' func='yes' >
 			<Overload retVal='' descr='Retrieves the application-defined, explicit Application User Model ID for the current process (Requires: &#x0a; #include &lt;WinAPIProc.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetCurrentProcessID' func='yes' >
-			<Overload retVal='' descr='Returns the process identifier of the calling process (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Returns the process identifier of the calling process (Requires: #include &lt;WinAPIProc.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetCurrentThemeName' func='yes' >
 			<Overload retVal='' descr='Retrieves the name of the current visual styles, color scheme name, and size name (Requires: #include &#x0a; &lt;WinAPITheme.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetCurrentThread' func='yes' >
-			<Overload retVal='' descr='Retrieves a pseudo handle for the calling thread (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Retrieves a pseudo handle for the calling thread (Requires: #include &lt;WinAPIProc.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetCurrentThreadId' func='yes' >
-			<Overload retVal='' descr='Returns the thread identifier of the calling thread (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Returns the thread identifier of the calling thread (Requires: #include &lt;WinAPIProc.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetCursor' func='yes' >
 			<Overload retVal='' descr='Retrieves a handle to the current cursor (Requires: #include &lt;WinAPIRes.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetCursorInfo' func='yes' >
-			<Overload retVal='' descr='Retrieves information about the global cursor (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Retrieves information about the global cursor (Requires: #include &lt;WinAPIRes.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetDateFormat' func='yes' >
 			<Overload retVal='' descr='Formats a date as a date string for a locale specified by the locale identifier (Requires: #include &#x0a; &lt;WinAPILocale.au3&gt;)' >
@@ -17662,12 +17793,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetDC' func='yes' >
-			<Overload retVal='' descr='Retrieves a handle of a display device context for the client area a window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves a handle of a display device context for the client area a window (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetDCEx' func='yes' >
-			<Overload retVal='' descr='Retrieves a handle to a device context (DC) for the client area of a specified window (Requires: #include &#x0a; &lt;WinAPIGdi.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves a handle to a device context (DC) for the client area of a specified window (Requires: #include &#x0a; &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$hRgn' />
 				<Param name='$iFlags' />
@@ -17680,10 +17811,10 @@
 			<Overload retVal='' descr='Retrieves the path to the root of the default user&apos;s profile (Requires: #include &lt;WinAPIShellEx.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetDesktopWindow' func='yes' >
-			<Overload retVal='' descr='Returns the handle of the Windows desktop window (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Returns the handle of the Windows desktop window (Requires: #include &lt;WinAPISysWin.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetDeviceCaps' func='yes' >
-			<Overload retVal='' descr='Retrieves device specific information about a specified device (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves device specific information about a specified device (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iIndex' />
 			</Overload>
@@ -17710,7 +17841,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetDIBits' func='yes' >
-			<Overload retVal='' descr='Retrieves the bits of the specified bitmap and copies them into a buffer as a DIB (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the bits of the specified bitmap and copies them into a buffer as a DIB (Requires: #include &#x0a; &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$hBitmap' />
 				<Param name='$iStartScan' />
@@ -17726,12 +17857,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetDlgCtrlID' func='yes' >
-			<Overload retVal='' descr='Returns the identifier of the specified control (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns the identifier of the specified control (Requires: #include &lt;WinAPIDlg.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetDlgItem' func='yes' >
-			<Overload retVal='' descr='Retrieves the handle of a control in the specified dialog box (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the handle of a control in the specified dialog box (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iItemID' />
 			</Overload>
@@ -17801,7 +17932,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetErrorMessage' func='yes' >
-			<Overload retVal='' descr='Retrieves a text error message for the specified system error code (Requires: #include &lt;WinAPIDiag.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves a text error message for the specified system error code (Requires: #include &lt;WinAPIError.au3&gt;)' >
 				<Param name='$iCode [' />
 				<Param name='$iLanguage = 0]' />
 			</Overload>
@@ -17843,7 +17974,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetFileSizeEx' func='yes' >
-			<Overload retVal='' descr='Retrieves the size of the specified file (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the size of the specified file (Requires: #include &lt;WinAPIFiles.au3&gt;)' >
 				<Param name='$hFile' />
 			</Overload>
 		</KeyWord>
@@ -17881,10 +18012,10 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetFocus' func='yes' >
-			<Overload retVal='' descr='Retrieves the handle of the window that has the keyboard focus (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Retrieves the handle of the window that has the keyboard focus (Requires: #include &lt;WinAPISysWin.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetFontMemoryResourceInfo' func='yes' >
-			<Overload retVal='' descr='Reads out font information from a TTF loaded into the memory (Requires: #include &lt;GDIPlus.au3&gt;)' >
+			<Overload retVal='' descr='Reads out font information from a TTF loaded into the memory (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$pMemory [' />
 				<Param name='$iFlag = 1]' />
 			</Overload>
@@ -17904,7 +18035,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetForegroundWindow' func='yes' >
-			<Overload retVal='' descr='Returns the handle of the foreground window (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Returns the handle of the foreground window (Requires: #include &lt;WinAPISysWin.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetFRBuffer' func='yes' >
 			<Overload retVal='' descr='Retrieves the current size of the internal buffer that used the _WinAPI_FindTextDlg() and _WinAPI_ReplaceTextDlg() &#x0a; functions (Requires: #include &lt;WinAPIDlg.au3&gt;)' />
@@ -17936,13 +18067,13 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetGuiResources' func='yes' >
-			<Overload retVal='' descr='Retrieves the count of handles to graphical user interface (GUI) objects in use by the specified process &#x0a; (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the count of handles to graphical user interface (GUI) objects in use by the specified process &#x0a; (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='[$iFlag = 0 [' />
 				<Param name='$hProcess = -1]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetGUIThreadInfo' func='yes' >
-			<Overload retVal='' descr='Retrieves information about the active window or a specified GUI thread (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves information about the active window or a specified GUI thread (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$iThreadId' />
 			</Overload>
 		</KeyWord>
@@ -17962,17 +18093,17 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetIconDimension' func='yes' >
-			<Overload retVal='' descr='Retrieves a dimension of the specified icon (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves a dimension of the specified icon (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hIcon' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetIconInfo' func='yes' >
-			<Overload retVal='' descr='Retrieves information about the specified icon or cursor (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves information about the specified icon or cursor (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hIcon' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetIconInfoEx' func='yes' >
-			<Overload retVal='' descr='Retrieves information about the specified icon or cursor (Requires: #include &lt;WinAPIRes.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves information about the specified icon or cursor (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hIcon' />
 			</Overload>
 		</KeyWord>
@@ -18006,18 +18137,18 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetLastActivePopup' func='yes' >
-			<Overload retVal='' descr='Determines which pop-up window owned by the specified window was most recently active (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Determines which pop-up window owned by the specified window was most recently active (Requires: #include &#x0a; &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetLastError' func='yes' >
-			<Overload retVal='' descr='Returns the calling thread&apos;s lasterror code value (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Returns the calling thread&apos;s lasterror code value (Requires: #include &lt;WinAPIError.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetLastErrorMessage' func='yes' >
-			<Overload retVal='' descr='Returns the calling threads last error message (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Returns the calling threads last error message (Requires: #include &lt;WinAPIError.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetLayeredWindowAttributes' func='yes' >
-			<Overload retVal='' descr='Gets Layered Window Attributes (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Gets Layered Window Attributes (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='ByRef $iTransColor' />
 				<Param name='ByRef $iTransGUI [' />
@@ -18039,12 +18170,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetMemorySize' func='yes' >
-			<Overload retVal='' descr='Retrieves the size of a memory block allocated from the internal library heap (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the size of a memory block allocated from the internal library heap (Requires: #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$pMemory' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetMessageExtraInfo' func='yes' >
-			<Overload retVal='' descr='Retrieves the extra message information for the current thread (Requires: #include &lt;WinAPISys.au3&gt;)' />
+			<Overload retVal='' descr='Retrieves the extra message information for the current thread (Requires: #include &lt;WinAPISysWin.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetModuleFileNameEx' func='yes' >
 			<Overload retVal='' descr='Retrieves the fully-qualified path for the file containing the specified module (Requires: #include &#x0a; &lt;WinAPIProc.au3&gt;)' >
@@ -18053,7 +18184,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetModuleHandle' func='yes' >
-			<Overload retVal='' descr='Returns a module handle for the specified module (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns a module handle for the specified module (Requires: #include &lt;WinAPISys.au3&gt;)' >
 				<Param name='$sModuleName' />
 			</Overload>
 		</KeyWord>
@@ -18070,24 +18201,24 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetMonitorInfo' func='yes' >
-			<Overload retVal='' descr='Retrieves information about a display monitor (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves information about a display monitor (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hMonitor' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetMousePos' func='yes' >
-			<Overload retVal='' descr='Returns the current mouse position (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns the current mouse position (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
 				<Param name='[$bToClient = False [' />
 				<Param name='$hWnd = 0]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetMousePosX' func='yes' >
-			<Overload retVal='' descr='Returns the current mouse X position (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns the current mouse X position (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
 				<Param name='[$bToClient = False [' />
 				<Param name='$hWnd = 0]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetMousePosY' func='yes' >
-			<Overload retVal='' descr='Returns the current mouse Y position (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns the current mouse Y position (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
 				<Param name='[$bToClient = False [' />
 				<Param name='$hWnd = 0]]' />
 			</Overload>
@@ -18103,7 +18234,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetObject' func='yes' >
-			<Overload retVal='' descr='Retrieves information for the specified graphics object (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves information for the specified graphics object (Requires: #include &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$hObject' />
 				<Param name='$iSize' />
 				<Param name='$pObject' />
@@ -18115,22 +18246,22 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetObjectInfoByHandle' func='yes' >
-			<Overload retVal='' descr='Retrieves information about a specified object (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves information about a specified object (Requires: #include &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$hObject' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetObjectNameByHandle' func='yes' >
-			<Overload retVal='' descr='Retrieves a name of the specified object (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves a name of the specified object (Requires: #include &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$hObject' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetObjectType' func='yes' >
-			<Overload retVal='' descr='Retrieves the type of the specified object (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the type of the specified object (Requires: #include &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$hObject' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetOpenFileName' func='yes' >
-			<Overload retVal='' descr='Creates an Open dialog box that lets the user specify the drive, directory, and the name of a file or &#x0a; set of files to open (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates an Open dialog box that lets the user specify the drive, directory, and the name of a file or &#x0a; set of files to open (Requires: #include &lt;WinAPIDlg.au3&gt;)' >
 				<Param name='[$sTitle = &quot;&quot; [' />
 				<Param name='$sFilter = &quot;All files (*.*' />
 			</Overload>
@@ -18141,7 +18272,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetOverlappedResult' func='yes' >
-			<Overload retVal='' descr='Retrieves the results of an overlapped operation (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the results of an overlapped operation (Requires: #include &lt;WinAPIFiles.au3&gt;)' >
 				<Param name='$hFile' />
 				<Param name='$tOverlapped' />
 				<Param name='ByRef $iBytes [' />
@@ -18149,7 +18280,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetParent' func='yes' >
-			<Overload retVal='' descr='Retrieves the handle of the specified child window&apos;s parent window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the handle of the specified child window&apos;s parent window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -18192,13 +18323,13 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetProcAddress' func='yes' >
-			<Overload retVal='' descr='Retrieves the address of an exported function or variable from the specified module (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the address of an exported function or variable from the specified module (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
 				<Param name='$hModule' />
 				<Param name='$vName' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetProcessAffinityMask' func='yes' >
-			<Overload retVal='' descr='Obtains the affinity masks for the process and the system (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Obtains the affinity masks for the process and the system (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='$hProcess' />
 			</Overload>
 		</KeyWord>
@@ -18323,24 +18454,24 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetSaveFileName' func='yes' >
-			<Overload retVal='' descr='Creates a Save dialog box that lets the user specify the drive, directory, and name of a file to save &#x0a; (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Creates a Save dialog box that lets the user specify the drive, directory, and name of a file to save &#x0a; (Requires: #include &lt;WinAPIDlg.au3&gt;)' >
 				<Param name='[$sTitle = &quot;&quot; [' />
 				<Param name='$sFilter = &quot;All files (*.*' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetShellWindow' func='yes' >
-			<Overload retVal='' descr='Retrieves a handle to the Shell&apos;s desktop window (Requires: #include &lt;WinAPISys.au3&gt;)' />
+			<Overload retVal='' descr='Retrieves a handle to the Shell&apos;s desktop window (Requires: #include &lt;WinAPISysWin.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetStartupInfo' func='yes' >
 			<Overload retVal='' descr='Retrieves the contents of the STARTUPINFO structure that was specified when the calling process was &#x0a; created (Requires: #include &lt;WinAPISys.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetStdHandle' func='yes' >
-			<Overload retVal='' descr='Retrieves a handle for the standard input, standard output, or standard error device (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves a handle for the standard input, standard output, or standard error device (Requires: #include &#x0a; &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$iStdHandle' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetStockObject' func='yes' >
-			<Overload retVal='' descr='Retrieves a handle to one of the predefined stock pens, brushes, fonts, or palettes (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves a handle to one of the predefined stock pens, brushes, fonts, or palettes (Requires: #include &#x0a; &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$iObject' />
 			</Overload>
 		</KeyWord>
@@ -18356,12 +18487,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetSysColor' func='yes' >
-			<Overload retVal='' descr='Retrieves the current color of the specified display element (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the current color of the specified display element (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$iIndex' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetSysColorBrush' func='yes' >
-			<Overload retVal='' descr='Retrieves a handle identifying a logical brush that corresponds to the specified color index (Requires: &#x0a; #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves a handle identifying a logical brush that corresponds to the specified color index (Requires: &#x0a; #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$iIndex' />
 			</Overload>
 		</KeyWord>
@@ -18381,7 +18512,7 @@
 			<Overload retVal='' descr='Retrieves information about the current system (Requires: #include &lt;WinAPISys.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetSystemMetrics' func='yes' >
-			<Overload retVal='' descr='Retrieves the specified system metric or system configuration setting (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the specified system metric or system configuration setting (Requires: #include &lt;WinAPISys.au3&gt;)' >
 				<Param name='$iIndex' />
 			</Overload>
 		</KeyWord>
@@ -18420,12 +18551,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetTextColor' func='yes' >
-			<Overload retVal='' descr='Retrieves the current text color for the specified device context (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the current text color for the specified device context (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetTextExtentPoint32' func='yes' >
-			<Overload retVal='' descr='Computes the width and height of the specified string of text (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Computes the width and height of the specified string of text (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$sText' />
 			</Overload>
@@ -18436,7 +18567,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetTextMetrics' func='yes' >
-			<Overload retVal='' descr='Retrieves basic information for the currently selected font (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves basic information for the currently selected font (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hDC' />
 			</Overload>
 		</KeyWord>
@@ -18694,7 +18825,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetTopWindow' func='yes' >
-			<Overload retVal='' descr='Retrieves a handle to the child window at the top of the Z order (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves a handle to the child window at the top of the Z order (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -18754,18 +18885,18 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindow' func='yes' >
-			<Overload retVal='' descr='Retrieves the handle of a window that has a specified relationship to the specified window (Requires: &#x0a; #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the handle of a window that has a specified relationship to the specified window (Requires: &#x0a; #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iCmd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindowDC' func='yes' >
-			<Overload retVal='' descr='Retrieves the device context (DC) for the entire window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the device context (DC) for the entire window (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindowDisplayAffinity' func='yes' >
-			<Overload retVal='' descr='Retrieves the current display affinity setting, from any process, for a given window (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the current display affinity setting, from any process, for a given window (Requires: #include &#x0a; &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -18780,17 +18911,17 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindowHeight' func='yes' >
-			<Overload retVal='' descr='Returns the height of the window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns the height of the window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindowInfo' func='yes' >
-			<Overload retVal='' descr='Retrieves information about the specified window (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves information about the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindowLong' func='yes' >
-			<Overload retVal='' descr='Retrieves information about the specified window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves information about the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iIndex' />
 			</Overload>
@@ -18801,17 +18932,17 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindowPlacement' func='yes' >
-			<Overload retVal='' descr='Retrieves the placement of the window for Min, Max, and normal positions (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the placement of the window for Min, Max, and normal positions (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindowRect' func='yes' >
-			<Overload retVal='' descr='Retrieves the dimensions of the bounding rectangle of the specified window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the dimensions of the bounding rectangle of the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindowRgn' func='yes' >
-			<Overload retVal='' descr='Obtains a copy of the window region of a window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Obtains a copy of the window region of a window (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$hRgn' />
 			</Overload>
@@ -18830,7 +18961,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindowText' func='yes' >
-			<Overload retVal='' descr='Retrieves the text of the specified window&apos;s title bar (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the text of the specified window&apos;s title bar (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -18840,13 +18971,13 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindowThreadProcessId' func='yes' >
-			<Overload retVal='' descr='Retrieves the identifier of the thread that created the specified window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the identifier of the thread that created the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='ByRef $iPID' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetWindowWidth' func='yes' >
-			<Overload retVal='' descr='Returns the width of the window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns the width of the window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -18859,14 +18990,14 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GetXYFromPoint' func='yes' >
-			<Overload retVal='' descr='Returns the X/Y values from a $tagPOINT structure (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns the X/Y values from a $tagPOINT structure (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='ByRef $tPoint' />
 				<Param name='ByRef $iX' />
 				<Param name='ByRef $iY' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GlobalMemoryStatus' func='yes' >
-			<Overload retVal='' descr='Retrieves information about current available memory (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Retrieves information about current available memory (Requires: #include &lt;WinAPIMem.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_GradientFill' func='yes' >
 			<Overload retVal='' descr='Fills rectangle or triangle gradient (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
@@ -18878,32 +19009,32 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GUIDFromString' func='yes' >
-			<Overload retVal='' descr='Converts a string GUID to binary form (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Converts a string GUID to binary form (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$sGUID' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_GUIDFromStringEx' func='yes' >
-			<Overload retVal='' descr='Converts a string GUID to binary form (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Converts a string GUID to binary form (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$sGUID' />
 				<Param name='$tGUID' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_HashData' func='yes' >
-			<Overload retVal='' descr='Hashes a memory block (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Hashes a memory block (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$pMemory' />
 				<Param name='$iSize [' />
 				<Param name='$iLength = 32]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_HashString' func='yes' >
-			<Overload retVal='' descr='Hashes a string (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Hashes a string (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$sString [' />
 				<Param name='$bCaseSensitive = True [' />
 				<Param name='$iLength = 32]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_HiByte' func='yes' >
-			<Overload retVal='' descr='Returns the high BYTE of a 16-bit (2 bytes) value (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Returns the high BYTE of a 16-bit (2 bytes) value (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
@@ -18913,12 +19044,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_HiDWord' func='yes' >
-			<Overload retVal='' descr='Returns the high DWORD of a 64-bit (8 bytes) value (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Returns the high DWORD of a 64-bit (8 bytes) value (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_HiWord' func='yes' >
-			<Overload retVal='' descr='Returns the high word of a longword value (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns the high word of a longword value (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iLong' />
 			</Overload>
 		</KeyWord>
@@ -18935,7 +19066,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_InProcess' func='yes' >
-			<Overload retVal='' descr='Determines whether a window belongs to the current process (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Determines whether a window belongs to the current process (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='ByRef $hLastWnd' />
 			</Overload>
@@ -18953,17 +19084,17 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IntToDWord' func='yes' >
-			<Overload retVal='' descr='Converts a value of type INT to a value of type DWORD (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a value of type INT to a value of type DWORD (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IntToFloat' func='yes' >
-			<Overload retVal='' descr='Returns a 4 byte integer as a float value (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns a 4 byte integer as a float value (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iInt' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_InvalidateRect' func='yes' >
-			<Overload retVal='' descr='Adds a rectangle to the specified window&apos;s update region (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Adds a rectangle to the specified window&apos;s update region (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd [' />
 				<Param name='$tRECT = 0 [' />
 				<Param name='$bErase = True]]' />
@@ -19013,36 +19144,36 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsBadCodePtr' func='yes' >
-			<Overload retVal='' descr='Determines whether the calling process has read access to the memory at the specified address (Requires: &#x0a; #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Determines whether the calling process has read access to the memory at the specified address (Requires: &#x0a; #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$pAddress' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsBadReadPtr' func='yes' >
-			<Overload retVal='' descr='Verifies that the calling process has read access to the specified range of memory (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Verifies that the calling process has read access to the specified range of memory (Requires: #include &#x0a; &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$pAddress' />
 				<Param name='$iLength' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsBadStringPtr' func='yes' >
-			<Overload retVal='' descr='Verifies that the calling process has read access to the specified range of memory (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Verifies that the calling process has read access to the specified range of memory (Requires: #include &#x0a; &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$pAddress' />
 				<Param name='$iLength' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsBadWritePtr' func='yes' >
-			<Overload retVal='' descr='Verifies that the calling process has write access to the specified range of memory (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Verifies that the calling process has write access to the specified range of memory (Requires: #include &#x0a; &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$pAddress' />
 				<Param name='$iLength' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsChild' func='yes' >
-			<Overload retVal='' descr='Tests whether a window is a child window of a specified parent window (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Tests whether a window is a child window of a specified parent window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$hWndParent' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsClassName' func='yes' >
-			<Overload retVal='' descr='Wrapper to check ClassName of the control (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Wrapper to check ClassName of the control (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$sClassName' />
 			</Overload>
@@ -19056,12 +19187,12 @@
 			<Overload retVal='' descr='Determines whether the current process is elevated (Requires: #include &lt;WinAPIProc.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsHungAppWindow' func='yes' >
-			<Overload retVal='' descr='Determines whether the specified application is not responding (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Determines whether the specified application is not responding (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsIconic' func='yes' >
-			<Overload retVal='' descr='Determines whether the specified window is minimized (iconic) (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Determines whether the specified window is minimized (iconic) (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -19074,7 +19205,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsMemory' func='yes' >
-			<Overload retVal='' descr='Determines whether the specified pointer points to the memory block in the internal library heap (Requires: &#x0a; #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Determines whether the specified pointer points to the memory block in the internal library heap (Requires: &#x0a; #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$pMemory' />
 			</Overload>
 		</KeyWord>
@@ -19132,7 +19263,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsWindow' func='yes' >
-			<Overload retVal='' descr='Determines whether the specified window handle identifies an existing window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Determines whether the specified window handle identifies an existing window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -19142,12 +19273,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsWindowUnicode' func='yes' >
-			<Overload retVal='' descr='Determines whether the specified window is a native Unicode window (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Determines whether the specified window is a native Unicode window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsWindowVisible' func='yes' >
-			<Overload retVal='' descr='Retrieves the visibility state of the specified window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the visibility state of the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -19162,7 +19293,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_IsZoomed' func='yes' >
-			<Overload retVal='' descr='Determines whether a window is maximized (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Determines whether a window is maximized (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -19175,7 +19306,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_KillTimer' func='yes' >
-			<Overload retVal='' descr='Destroys the specified timer (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Destroys the specified timer (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iTimerID' />
 			</Overload>
@@ -19191,14 +19322,14 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LineTo' func='yes' >
-			<Overload retVal='' descr='Draws a line from the current position up to, but not including, the specified point (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Draws a line from the current position up to, but not including, the specified point (Requires: #include &#x0a; &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iX' />
 				<Param name='$iY' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoadBitmap' func='yes' >
-			<Overload retVal='' descr='Loads the specified bitmap resource from a module&apos;s executable file (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Loads the specified bitmap resource from a module&apos;s executable file (Requires: #include &lt;WinAPIRes.au3&gt;)' >
 				<Param name='$hInstance' />
 				<Param name='$sBitmap' />
 			</Overload>
@@ -19215,20 +19346,20 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoadIcon' func='yes' >
-			<Overload retVal='' descr='Loads the specified icon resource from the executable (.exe) file associated with an application instance &#x0a; (Requires: #include &lt;WinAPIRes.au3&gt;)' >
+			<Overload retVal='' descr='Loads the specified icon resource from the executable (.exe) file associated with an application instance &#x0a; (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hInstance' />
 				<Param name='$sName' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoadIconMetric' func='yes' >
-			<Overload retVal='' descr='Loads a specified icon resource with a client-specified system metric (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Loads a specified icon resource with a client-specified system metric (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hInstance' />
 				<Param name='$sName' />
 				<Param name='$iMetric' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoadIconWithScaleDown' func='yes' >
-			<Overload retVal='' descr='Loads an icon and scales down a larger image instead of scaling up a smaller image (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Loads an icon and scales down a larger image instead of scaling up a smaller image (Requires: #include &#x0a; &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hInstance' />
 				<Param name='$sName' />
 				<Param name='$iWidth' />
@@ -19236,7 +19367,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoadImage' func='yes' >
-			<Overload retVal='' descr='Loads an icon, cursor, or bitmap (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Loads an icon, cursor, or bitmap (Requires: #include &lt;WinAPIRes.au3&gt;)' >
 				<Param name='$hInstance' />
 				<Param name='$sImage' />
 				<Param name='$iType' />
@@ -19257,12 +19388,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoadLibrary' func='yes' >
-			<Overload retVal='' descr='Maps a specified executable module into the address space of the calling process (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Maps a specified executable module into the address space of the calling process (Requires: #include &#x0a; &lt;WinAPIRes.au3&gt;)' >
 				<Param name='$sFileName' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoadLibraryEx' func='yes' >
-			<Overload retVal='' descr='Maps a specified executable module into the address space of the calling process (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Maps a specified executable module into the address space of the calling process (Requires: #include &#x0a; &lt;WinAPIRes.au3&gt;)' >
 				<Param name='$sFileName [' />
 				<Param name='$iFlags = 0]' />
 			</Overload>
@@ -19279,12 +19410,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoadShell32Icon' func='yes' >
-			<Overload retVal='' descr='Extracts an icon from the shell32.dll file (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Extracts an icon from the shell32.dll file (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$iIconID' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoadString' func='yes' >
-			<Overload retVal='' descr='loads a string resource from the executable file associated with a specified module (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='loads a string resource from the executable file associated with a specified module (Requires: #include &#x0a; &lt;WinAPIRes.au3&gt;)' >
 				<Param name='$hInstance' />
 				<Param name='$iStringID' />
 			</Overload>
@@ -19297,12 +19428,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoByte' func='yes' >
-			<Overload retVal='' descr='Returns the low BYTE of a 16-bit (2 bytes) value (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Returns the low BYTE of a 16-bit (2 bytes) value (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LocalFree' func='yes' >
-			<Overload retVal='' descr='Frees the specified local memory object and invalidates its handle (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Frees the specified local memory object and invalidates its handle (Requires: #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$hMemory' />
 			</Overload>
 		</KeyWord>
@@ -19333,19 +19464,19 @@
 			<Overload retVal='' descr='Locks the workstation&apos;s display (Requires: #include &lt;WinAPISys.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoDWord' func='yes' >
-			<Overload retVal='' descr='Returns the low DWORD of a 64-bit (8 bytes) value (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Returns the low DWORD of a 64-bit (8 bytes) value (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LongMid' func='yes' >
-			<Overload retVal='' descr='Extracts a number of bits from a DWORD (32-bit) value (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Extracts a number of bits from a DWORD (32-bit) value (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 				<Param name='$iStart' />
 				<Param name='$iCount' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LookupIconIdFromDirectoryEx' func='yes' >
-			<Overload retVal='' descr='Searches through icon or cursor data for the icon or cursor that best fits the current display device &#x0a; (Requires: #include &lt;WinAPIRes.au3&gt;)' >
+			<Overload retVal='' descr='Searches through icon or cursor data for the icon or cursor that best fits the current display device &#x0a; (Requires: #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$pData [' />
 				<Param name='$bIcon = True [' />
 				<Param name='$iXDesiredPixels = 0 [' />
@@ -19354,7 +19485,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_LoWord' func='yes' >
-			<Overload retVal='' descr='Returns the low word of a longword (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns the low word of a longword (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iLong' />
 			</Overload>
 		</KeyWord>
@@ -19366,31 +19497,31 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MAKELANGID' func='yes' >
-			<Overload retVal='' descr='Construct language id from a primary language id and a sublanguage id (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Construct language id from a primary language id and a sublanguage id (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iLngIDPrimary' />
 				<Param name='$iLngIDSub' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MAKELCID' func='yes' >
-			<Overload retVal='' descr='Construct locale id from a language id and a sort id (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Construct locale id from a language id and a sort id (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iLngID' />
 				<Param name='$iSortID' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MakeLong' func='yes' >
-			<Overload retVal='' descr='Returns a long int value from two int values (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns a long int value from two int values (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iLo' />
 				<Param name='$iHi' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MakeQWord' func='yes' >
-			<Overload retVal='' descr='Returns a QWORD value from two int values (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns a QWORD value from two int values (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iLoDWORD' />
 				<Param name='$iHiDWORD' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MakeWord' func='yes' >
-			<Overload retVal='' descr='Returns a WORD (16-bit) value from two BYTE (8-bit) values (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Returns a WORD (16-bit) value from two BYTE (8-bit) values (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iLo' />
 				<Param name='$iHi' />
 			</Overload>
@@ -19427,7 +19558,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MessageBeep' func='yes' >
-			<Overload retVal='' descr='Plays a waveform sound (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Plays a waveform sound (Requires: #include &lt;WinAPIError.au3&gt;)' >
 				<Param name='[$iType = 1]' />
 			</Overload>
 		</KeyWord>
@@ -19447,7 +19578,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MirrorIcon' func='yes' >
-			<Overload retVal='' descr='Reverses (mirrors) icons so that they are displayed correctly on a mirrored device context (Requires: &#x0a; #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Reverses (mirrors) icons so that they are displayed correctly on a mirrored device context (Requires: &#x0a; #include &lt;WinAPIIcons.au3&gt;)' >
 				<Param name='$hIcon [' />
 				<Param name='$bDelete = False]' />
 			</Overload>
@@ -19478,7 +19609,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_Mouse_Event' func='yes' >
-			<Overload retVal='' descr='Synthesizes mouse motion and button clicks (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Synthesizes mouse motion and button clicks (Requires: #include &lt;WinAPISys.au3&gt;)' >
 				<Param name='$iFlags [' />
 				<Param name='$iX = 0 [' />
 				<Param name='$iY = 0 [' />
@@ -19496,14 +19627,14 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MoveMemory' func='yes' >
-			<Overload retVal='' descr='Moves a block of memory from one location to another (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Moves a block of memory from one location to another (Requires: #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$pDestination' />
 				<Param name='$pSource' />
 				<Param name='$iLength' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MoveTo' func='yes' >
-			<Overload retVal='' descr='Updates the current position to the specified point (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Updates the current position to the specified point (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iX' />
 				<Param name='$iY' />
@@ -19517,7 +19648,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MoveWindow' func='yes' >
-			<Overload retVal='' descr='Changes the position and dimensions of the specified window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Changes the position and dimensions of the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iX' />
 				<Param name='$iY' />
@@ -19527,21 +19658,21 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MsgBox' func='yes' >
-			<Overload retVal='' descr='Displays a message box with wider margin than original (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Displays a message box with wider margin than original (Requires: #include &lt;WinAPIError.au3&gt;)' >
 				<Param name='$iFlags' />
 				<Param name='$sTitle' />
 				<Param name='$sText' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MulDiv' func='yes' >
-			<Overload retVal='' descr='Multiplies two 32-bit values and then divides the 64-bit result by a third 32-bit value (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Multiplies two 32-bit values and then divides the 64-bit result by a third 32-bit value (Requires: #include &#x0a; &lt;WinAPIMisc.au3&gt;)' >
 				<Param name='$iNumber' />
 				<Param name='$iNumerator' />
 				<Param name='$iDenominator' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MultiByteToWideChar' func='yes' >
-			<Overload retVal='' descr='Maps a character string to a wide-character (Unicode) string (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Maps a character string to a wide-character (Unicode) string (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$vText [' />
 				<Param name='$iCodePage = 0 [' />
 				<Param name='$iFlags = 0 [' />
@@ -19549,7 +19680,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_MultiByteToWideCharEx' func='yes' >
-			<Overload retVal='' descr='Maps a character string to a wide-character (Unicode) string (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Maps a character string to a wide-character (Unicode) string (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$sText' />
 				<Param name='$pText [' />
 				<Param name='$iCodePage = 0 [' />
@@ -19562,7 +19693,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_OemToChar' func='yes' >
-			<Overload retVal='' descr='Converts a string from the OEM-defined character set into either an ANSI string (Requires: #include &#x0a; &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a string from the OEM-defined character set into either an ANSI string (Requires: #include &#x0a; &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$sStr' />
 			</Overload>
 		</KeyWord>
@@ -19643,7 +19774,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_OpenIcon' func='yes' >
-			<Overload retVal='' descr='Restores a minimized (iconic) window to its previous size and position and activates the window (Requires: &#x0a; #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Restores a minimized (iconic) window to its previous size and position and activates the window (Requires: &#x0a; #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -19669,7 +19800,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_OpenProcess' func='yes' >
-			<Overload retVal='' descr='Returns a handle of an existing process object (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns a handle of an existing process object (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='$iAccess' />
 				<Param name='$bInherit' />
 				<Param name='$iPID [' />
@@ -19805,7 +19936,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_PathFindOnPath' func='yes' >
-			<Overload retVal='' descr='Searchs for a file in the default system paths (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Searchs for a file in the default system paths (Requires: #include &lt;WinAPIShPath.au3&gt;)' >
 				<Param name='$sFilePath [' />
 				<Param name='$aExtraPaths = &quot;&quot; [' />
 				<Param name='$sPathDelimiter = @LF]]' />
@@ -20030,7 +20161,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_PointFromRect' func='yes' >
-			<Overload retVal='' descr='Returns the top/left coordinates of a $tagRECT as a $tagPOINT structure (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Returns the top/left coordinates of a $tagRECT as a $tagPOINT structure (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='ByRef $tRECT [' />
 				<Param name='$bCenter = True]' />
 			</Overload>
@@ -20068,7 +20199,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_PostMessage' func='yes' >
-			<Overload retVal='' descr='Places a message in the message queue and then returns (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Places a message in the message queue and then returns (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iMsg' />
 				<Param name='$wParam' />
@@ -20076,7 +20207,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_PrimaryLangId' func='yes' >
-			<Overload retVal='' descr='Extract primary language id from a language id (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Extract primary language id from a language id (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iLngID' />
 			</Overload>
 		</KeyWord>
@@ -20091,7 +20222,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_PrintWindow' func='yes' >
-			<Overload retVal='' descr='Copies a visual window into the specified device context (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
+			<Overload retVal='' descr='Copies a visual window into the specified device context (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$hDC [' />
 				<Param name='$bClient = False]' />
@@ -20103,7 +20234,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_PtInRect' func='yes' >
-			<Overload retVal='' descr='Determines whether the specified point lies within the specified rectangle (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Determines whether the specified point lies within the specified rectangle (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='ByRef $tRECT' />
 				<Param name='ByRef $tPoint' />
 			</Overload>
@@ -20173,7 +20304,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ReadFile' func='yes' >
-			<Overload retVal='' descr='Reads data from a file (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Reads data from a file (Requires: #include &lt;WinAPIFiles.au3&gt;)' >
 				<Param name='$hFile' />
 				<Param name='$pBuffer' />
 				<Param name='$iToRead' />
@@ -20182,7 +20313,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ReadProcessMemory' func='yes' >
-			<Overload retVal='' descr='Reads memory in a specified process (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Reads memory in a specified process (Requires: #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$hProcess' />
 				<Param name='$pBaseAddress' />
 				<Param name='$pBuffer' />
@@ -20203,7 +20334,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_RectIsEmpty' func='yes' >
-			<Overload retVal='' descr='Determins whether a rectangle is empty (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Determins whether a rectangle is empty (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='ByRef $tRECT' />
 			</Overload>
 		</KeyWord>
@@ -20214,7 +20345,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_RedrawWindow' func='yes' >
-			<Overload retVal='' descr='Updates the specified rectangle or region in a window&apos;s client area (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Updates the specified rectangle or region in a window&apos;s client area (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hWnd [' />
 				<Param name='$tRECT = 0 [' />
 				<Param name='$hRegion = 0 [' />
@@ -20332,12 +20463,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_RegisterClass' func='yes' >
-			<Overload retVal='' descr='Registers a window class (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Registers a window class (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$tWNDCLASS' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_RegisterClassEx' func='yes' >
-			<Overload retVal='' descr='Registers a window class (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Registers a window class (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$tWNDCLASSEX' />
 			</Overload>
 		</KeyWord>
@@ -20362,12 +20493,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_RegisterShellHookWindow' func='yes' >
-			<Overload retVal='' descr='Registers a specified Shell window to receive certain messages for events or notifications (Requires: &#x0a; #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Registers a specified Shell window to receive certain messages for events or notifications (Requires: &#x0a; #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_RegisterWindowMessage' func='yes' >
-			<Overload retVal='' descr='Defines a new window message that is guaranteed to be unique throughout the system (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Defines a new window message that is guaranteed to be unique throughout the system (Requires: #include &#x0a; &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$sMessage' />
 			</Overload>
 		</KeyWord>
@@ -20449,10 +20580,10 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ReleaseCapture' func='yes' >
-			<Overload retVal='' descr='Releases the mouse capture from a window in the current thread and restores normal mouse input processing &#x0a; (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Releases the mouse capture from a window in the current thread and restores normal mouse input processing &#x0a; (Requires: #include &lt;WinAPISys.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_ReleaseDC' func='yes' >
-			<Overload retVal='' descr='Releases a device context (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Releases a device context (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$hDC' />
 			</Overload>
@@ -20541,7 +20672,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_RestoreDC' func='yes' >
-			<Overload retVal='' descr='Restores a device context (DC) to the specified state (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
+			<Overload retVal='' descr='Restores a device context (DC) to the specified state (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iID' />
 			</Overload>
@@ -20572,7 +20703,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SaveDC' func='yes' >
-			<Overload retVal='' descr='Saves the current state of the specified device context (DC) by copying data describing selected objects &#x0a; and graphic modes to a context stack (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
+			<Overload retVal='' descr='Saves the current state of the specified device context (DC) by copying data describing selected objects &#x0a; and graphic modes to a context stack (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 			</Overload>
 		</KeyWord>
@@ -20618,7 +20749,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ScreenToClient' func='yes' >
-			<Overload retVal='' descr='Converts screen coordinates of a specified point on the screen to client coordinates (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Converts screen coordinates of a specified point on the screen to client coordinates (Requires: #include &#x0a; &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='ByRef $tPoint' />
 			</Overload>
@@ -20642,13 +20773,13 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SelectObject' func='yes' >
-			<Overload retVal='' descr='Selects an object into the specified device context (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Selects an object into the specified device context (Requires: #include &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$hGDIObj' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SendMessageTimeout' func='yes' >
-			<Overload retVal='' descr='Sends the specified message to one of more windows (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Sends the specified message to one of more windows (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iMsg [' />
 				<Param name='$wParam = 0 [' />
@@ -20683,13 +20814,13 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetBkColor' func='yes' >
-			<Overload retVal='' descr='Sets the current background color to the specified color value (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the current background color to the specified color value (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iColor' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetBkMode' func='yes' >
-			<Overload retVal='' descr='Sets the background mix mode of the specified device context (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the background mix mode of the specified device context (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iBkMode' />
 			</Overload>
@@ -20709,7 +20840,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetCapture' func='yes' >
-			<Overload retVal='' descr='Sets the mouse capture to the specified window belonging to the current thread (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the mouse capture to the specified window belonging to the current thread (Requires: #include &lt;WinAPISys.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -20725,7 +20856,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetClassLongEx' func='yes' >
-			<Overload retVal='' descr='Replaces the specified value into the specified window belongs (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Replaces the specified value into the specified window belongs (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iIndex' />
 				<Param name='$iNewLong' />
@@ -20754,7 +20885,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetCursor' func='yes' >
-			<Overload retVal='' descr='Establishes the cursor shape (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Establishes the cursor shape (Requires: #include &lt;WinAPIRes.au3&gt;)' >
 				<Param name='$hCursor' />
 			</Overload>
 		</KeyWord>
@@ -20771,7 +20902,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetDefaultPrinter' func='yes' >
-			<Overload retVal='' descr='Sets the default printer for the current user on the local computer (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the default printer for the current user on the local computer (Requires: #include &lt;WinAPISys.au3&gt;)' >
 				<Param name='$sPrinter' />
 			</Overload>
 		</KeyWord>
@@ -20789,7 +20920,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetDIBits' func='yes' >
-			<Overload retVal='' descr='Sets the pixels in a compatible bitmap using the color data found in a DIB (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the pixels in a compatible bitmap using the color data found in a DIB (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$hBitmap' />
 				<Param name='$iStartScan' />
@@ -20821,7 +20952,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetEndOfFile' func='yes' >
-			<Overload retVal='' descr='Sets the physical file size for the specified file to the current position of the file pointer (Requires: &#x0a; #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the physical file size for the specified file to the current position of the file pointer (Requires: &#x0a; #include &lt;WinAPIFiles.au3&gt;)' >
 				<Param name='$hFile' />
 			</Overload>
 		</KeyWord>
@@ -20837,7 +20968,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetEvent' func='yes' >
-			<Overload retVal='' descr='Sets the specified event object to the signaled state (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the specified event object to the signaled state (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='$hEvent' />
 			</Overload>
 		</KeyWord>
@@ -20854,7 +20985,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetFilePointer' func='yes' >
-			<Overload retVal='' descr='Moves the file pointer of the specified file (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Moves the file pointer of the specified file (Requires: #include &lt;WinAPIFiles.au3&gt;)' >
 				<Param name='$hFile' />
 				<Param name='$iPos [' />
 				<Param name='$iMethod = 0]' />
@@ -20880,19 +21011,19 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetFocus' func='yes' >
-			<Overload retVal='' descr='Sets the keyboard focus to the specified window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the keyboard focus to the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetFont' func='yes' >
-			<Overload retVal='' descr='Sets a window font (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets a window font (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$hFont [' />
 				<Param name='$bRedraw = True]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetForegroundWindow' func='yes' >
-			<Overload retVal='' descr='Puts the specified window into the foreground and activates its (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Puts the specified window into the foreground and activates its (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -20908,7 +21039,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetHandleInformation' func='yes' >
-			<Overload retVal='' descr='Sets certain properties of an object handle (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets certain properties of an object handle (Requires: #include &lt;WinAPIHObj.au3&gt;)' >
 				<Param name='$hObject' />
 				<Param name='$iMask' />
 				<Param name='$iFlags' />
@@ -20934,12 +21065,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetLastError' func='yes' >
-			<Overload retVal='' descr='Sets the last-error code for the calling thread (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the last-error code for the calling thread (Requires: #include &lt;WinAPIError.au3&gt;)' >
 				<Param name='$iErrorCode' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetLayeredWindowAttributes' func='yes' >
-			<Overload retVal='' descr='Sets Layered Window Attributes (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets Layered Window Attributes (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iTransColor [' />
 				<Param name='$iTransGUI = 255 [' />
@@ -20961,12 +21092,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetMessageExtraInfo' func='yes' >
-			<Overload retVal='' descr='Sets the extra message information for the current thread (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Sets the extra message information for the current thread (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$lParam' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetParent' func='yes' >
-			<Overload retVal='' descr='Changes the parent window of the specified child window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Changes the parent window of the specified child window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWndChild' />
 				<Param name='$hWndParent' />
 			</Overload>
@@ -20992,7 +21123,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetProcessAffinityMask' func='yes' >
-			<Overload retVal='' descr='Sets a processor affinity mask for the threads of a specified process (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets a processor affinity mask for the threads of a specified process (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='$hProcess' />
 				<Param name='$iMask' />
 			</Overload>
@@ -21032,7 +21163,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetSysColors' func='yes' >
-			<Overload retVal='' descr='Obtains information about the display devices in a system (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Obtains information about the display devices in a system (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$vElements' />
 				<Param name='$vColors' />
 			</Overload>
@@ -21057,7 +21188,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetTextColor' func='yes' >
-			<Overload retVal='' descr='Sets the current text color to the specified color value (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the current text color to the specified color value (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' >
 				<Param name='$hDC' />
 				<Param name='$iColor' />
 			</Overload>
@@ -21100,7 +21231,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetTimer' func='yes' >
-			<Overload retVal='' descr='Creates a timer with the specified time-out value (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Creates a timer with the specified time-out value (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iTimerID' />
 				<Param name='$iElapse' />
@@ -21131,7 +21262,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetWindowDisplayAffinity' func='yes' >
-			<Overload retVal='' descr='Stores the display affinity setting in kernel mode on the specified window (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Stores the display affinity setting in kernel mode on the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iAffinity' />
 			</Overload>
@@ -21144,7 +21275,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetWindowLong' func='yes' >
-			<Overload retVal='' descr='Sets information about the specified window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets information about the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iIndex' />
 				<Param name='$iValue' />
@@ -21158,13 +21289,13 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetWindowPlacement' func='yes' >
-			<Overload retVal='' descr='Sets the placement of the window for Min, Max, and normal positions (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the placement of the window for Min, Max, and normal positions (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$tWindowPlacement' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetWindowPos' func='yes' >
-			<Overload retVal='' descr='Changes the size, position, and Z order of a child, pop-up, or top-level window (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Changes the size, position, and Z order of a child, pop-up, or top-level window (Requires: #include &#x0a; &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$hAfter' />
 				<Param name='$iX' />
@@ -21175,14 +21306,14 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetWindowRgn' func='yes' >
-			<Overload retVal='' descr='Sets the window region of a window (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the window region of a window (Requires: #include &lt;WinAPIGdi.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$hRgn [' />
 				<Param name='$bRedraw = True]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetWindowsHookEx' func='yes' >
-			<Overload retVal='' descr='Installs an application-defined hook procedure into a hook chain (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Installs an application-defined hook procedure into a hook chain (Requires: #include &lt;WinAPISys.au3&gt;)' >
 				<Param name='$iHook' />
 				<Param name='$pProc' />
 				<Param name='$hDll [' />
@@ -21198,7 +21329,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetWindowText' func='yes' >
-			<Overload retVal='' descr='Changes the text of the specified window&apos;s title bar (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Changes the text of the specified window&apos;s title bar (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$sText' />
 			</Overload>
@@ -21206,8 +21337,8 @@
 		<KeyWord name='_WinAPI_SetWindowTheme' func='yes' >
 			<Overload retVal='' descr='Causes a window to use a different set of visual style information than its class normally uses (Requires: &#x0a; #include &lt;WinAPITheme.au3&gt;)' >
 				<Param name='$hWnd [' />
-				<Param name='$sName = 0 [' />
-				<Param name='$sList = 0]]' />
+				<Param name='$sName = Default [' />
+				<Param name='$sList = Default]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SetWinEventHook' func='yes' >
@@ -21527,7 +21658,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ShortToWord' func='yes' >
-			<Overload retVal='' descr='Converts a value of type SHORT to a value of type WORD (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a value of type SHORT to a value of type WORD (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
@@ -21537,36 +21668,36 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ShowCursor' func='yes' >
-			<Overload retVal='' descr='Displays or hides the cursor (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Displays or hides the cursor (Requires: #include &lt;WinAPIRes.au3&gt;)' >
 				<Param name='$bShow' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ShowError' func='yes' >
-			<Overload retVal='' descr='Displays an error message box with an optional exit (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Displays an error message box with an optional exit (Requires: #include &lt;WinAPIError.au3&gt;)' >
 				<Param name='$sText [' />
 				<Param name='$bExit = True]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ShowLastError' func='yes' >
-			<Overload retVal='' descr='Shows the last error code and message (Requires: #include &lt;WinAPIDiag.au3&gt;)' >
+			<Overload retVal='' descr='Shows the last error code and message (Requires: #include &lt;WinAPIError.au3&gt;)' >
 				<Param name='[$sText = &apos;&apos; [' />
 				<Param name='$bAbort = False [' />
 				<Param name='$iLanguage = 0]]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ShowMsg' func='yes' >
-			<Overload retVal='' descr='Displays an &quot;Information&quot; message box (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Displays an &quot;Information&quot; message box (Requires: #include &lt;WinAPIError.au3&gt;)' >
 				<Param name='$sText' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ShowOwnedPopups' func='yes' >
-			<Overload retVal='' descr='Shows or hides all pop-up windows owned by the specified window (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Shows or hides all pop-up windows owned by the specified window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$bShow' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ShowWindow' func='yes' >
-			<Overload retVal='' descr='Sets the specified window&apos;s show state (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Sets the specified window&apos;s show state (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd [' />
 				<Param name='$iCmdShow = 5]' />
 			</Overload>
@@ -21626,38 +21757,38 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_StrFormatByteSize' func='yes' >
-			<Overload retVal='' descr='Converts a numeric value into a string that represents the number expressed as a size value in bytes, &#x0a; kilobytes, megabytes, or gigabytes (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a numeric value into a string that represents the number expressed as a size value in bytes, &#x0a; kilobytes, megabytes, or gigabytes (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iSize' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_StrFormatByteSizeEx' func='yes' >
-			<Overload retVal='' descr='Converts a numeric value into a string that represents the number expressed as separated groups of digits &#x0a; to the left of the decimal (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a numeric value into a string that represents the number expressed as separated groups of digits &#x0a; to the left of the decimal (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iSize' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_StrFormatKBSize' func='yes' >
-			<Overload retVal='' descr='Converts a numeric value into a string that represents the number expressed as a size value in kilobytes &#x0a; (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a numeric value into a string that represents the number expressed as a size value in kilobytes &#x0a; (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iSize' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_StrFromTimeInterval' func='yes' >
-			<Overload retVal='' descr='Converts a time interval to a string (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a time interval to a string (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iTime [' />
 				<Param name='$iDigits = 7]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_StringFromGUID' func='yes' >
-			<Overload retVal='' descr='Converts a binary GUID to string form (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Converts a binary GUID to string form (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$tGUID' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_StringLenA' func='yes' >
-			<Overload retVal='' descr='Calculates the size of ANSI string (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Calculates the size of ANSI string (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
 				<Param name='Const ByRef $tString' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_StringLenW' func='yes' >
-			<Overload retVal='' descr='Calculates the size of wide string (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Calculates the size of wide string (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
 				<Param name='Const ByRef $tString' />
 			</Overload>
 		</KeyWord>
@@ -21684,7 +21815,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SubLangId' func='yes' >
-			<Overload retVal='' descr='Extract sublanguage id from a language id (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Extract sublanguage id from a language id (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iLngID' />
 			</Overload>
 		</KeyWord>
@@ -21695,17 +21826,17 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SwapDWord' func='yes' >
-			<Overload retVal='' descr='Converts a ULONG from little-endian to big-endian, and vice versa (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a ULONG from little-endian to big-endian, and vice versa (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SwapQWord' func='yes' >
-			<Overload retVal='' descr='Converts a ULONGLONG from little-endian to big-endian, and vice versa (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a ULONGLONG from little-endian to big-endian, and vice versa (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SwapWord' func='yes' >
-			<Overload retVal='' descr='Converts a USHORT from little-endian to big-endian, and vice versa (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a USHORT from little-endian to big-endian, and vice versa (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
@@ -21720,13 +21851,13 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SwitchToThisWindow' func='yes' >
-			<Overload retVal='' descr='Switches the focus to a specified window and bring it to the foreground (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Switches the focus to a specified window and bring it to the foreground (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd [' />
 				<Param name='$bAltTab = False]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_SystemParametersInfo' func='yes' >
-			<Overload retVal='' descr='Retrieves or sets the value of one of the system-wide parameters (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves or sets the value of one of the system-wide parameters (Requires: #include &lt;WinAPISys.au3&gt;)' >
 				<Param name='$iAction [' />
 				<Param name='$iParam = 0 [' />
 				<Param name='$vParam = 0 [' />
@@ -21766,7 +21897,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_TileWindows' func='yes' >
-			<Overload retVal='' descr='Tiles the specified child windows of the specified parent window (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Tiles the specified child windows of the specified parent window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$aWnds [' />
 				<Param name='$tRECT = 0 [' />
 				<Param name='$hParent = 0 [' />
@@ -21798,13 +21929,13 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_TwipsPerPixelX' func='yes' >
-			<Overload retVal='' descr='Returns the width of a pixel, in twips (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Returns the width of a pixel, in twips (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_TwipsPerPixelY' func='yes' >
-			<Overload retVal='' descr='Returns the height of a pixel, in twips (Requires: #include &lt;WinAPI.au3&gt;)' />
+			<Overload retVal='' descr='Returns the height of a pixel, in twips (Requires: #include &lt;WinAPIGdiDC.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_UnhookWindowsHookEx' func='yes' >
-			<Overload retVal='' descr='Removes a hook procedure installed in a hook chain by the _WinAPI_SetWindowsHookEx function (Requires: &#x0a; #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Removes a hook procedure installed in a hook chain by the _WinAPI_SetWindowsHookEx function (Requires: &#x0a; #include &lt;WinAPISys.au3&gt;)' >
 				<Param name='$hHook' />
 			</Overload>
 		</KeyWord>
@@ -21852,7 +21983,7 @@
 			<Overload retVal='' descr='Removes the active instance of an application from the restart list (Requires: #include &lt;WinAPIDiag.au3&gt;)' />
 		</KeyWord>
 		<KeyWord name='_WinAPI_UnregisterClass' func='yes' >
-			<Overload retVal='' descr='Unregisters a window class, freeing the memory required for the class (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Unregisters a window class, freeing the memory required for the class (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$sClass [' />
 				<Param name='$hInstance = 0]' />
 			</Overload>
@@ -21869,7 +22000,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_UpdateLayeredWindow' func='yes' >
-			<Overload retVal='' descr='Updates the position, size, shape, content, and translucency of a layered window (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Updates the position, size, shape, content, and translucency of a layered window (Requires: #include &#x0a; &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$hDestDC' />
 				<Param name='$tPTDest' />
@@ -21882,7 +22013,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_UpdateLayeredWindowEx' func='yes' >
-			<Overload retVal='' descr='Updates a bitmap translucency of a layered window (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Updates a bitmap translucency of a layered window (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$iX' />
 				<Param name='$iY' />
@@ -21892,7 +22023,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_UpdateLayeredWindowIndirect' func='yes' >
-			<Overload retVal='' descr='Updates the position, size, shape, content, and translucency of a layered window (Requires: #include &#x0a; &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Updates the position, size, shape, content, and translucency of a layered window (Requires: #include &#x0a; &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 				<Param name='$tULWINFO' />
 			</Overload>
@@ -21908,7 +22039,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_UpdateWindow' func='yes' >
-			<Overload retVal='' descr='Updates the client area of a window by sending a WM_PAINT message to the window (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Updates the client area of a window by sending a WM_PAINT message to the window (Requires: #include &#x0a; &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='$hWnd' />
 			</Overload>
 		</KeyWord>
@@ -22004,13 +22135,13 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_WaitForInputIdle' func='yes' >
-			<Overload retVal='' descr='Waits until a process is waiting for user input with no input pending, or a time out (Requires: #include &#x0a; &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Waits until a process is waiting for user input with no input pending, or a time out (Requires: #include &#x0a; &lt;WinAPIProc.au3&gt;)' >
 				<Param name='$hProcess [' />
 				<Param name='$iTimeout = -1]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_WaitForMultipleObjects' func='yes' >
-			<Overload retVal='' descr='Waits until one or all of the specified objects are in the signaled state (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Waits until one or all of the specified objects are in the signaled state (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='$iCount' />
 				<Param name='$paHandles [' />
 				<Param name='$bWaitAll = False [' />
@@ -22018,16 +22149,17 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_WaitForSingleObject' func='yes' >
-			<Overload retVal='' descr='Waits until the specified object is in the signaled state (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Waits until the specified object is in the signaled state (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='$hHandle [' />
 				<Param name='$iTimeout = -1]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_WideCharToMultiByte' func='yes' >
-			<Overload retVal='' descr='Converts a Unicode string to a multibyte string (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Converts a UTF-16 (wide character) string to a multibyte string (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$vUnicode [' />
 				<Param name='$iCodePage = 0 [' />
-				<Param name='$bRetString = True]]' />
+				<Param name='$bRetNoStruct = True [' />
+				<Param name='$bRetBinary = False]]]' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_WidenPath' func='yes' >
@@ -22041,12 +22173,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_WindowFromPoint' func='yes' >
-			<Overload retVal='' descr='Retrieves the handle of the window that contains the specified point (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Retrieves the handle of the window that contains the specified point (Requires: #include &lt;WinAPISysWin.au3&gt;)' >
 				<Param name='ByRef $tPoint' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_WordToShort' func='yes' >
-			<Overload retVal='' descr='Converts a value of type WORD to a value of type SHORT (Requires: #include &lt;WinAPIMisc.au3&gt;)' >
+			<Overload retVal='' descr='Converts a value of type WORD to a value of type SHORT (Requires: #include &lt;WinAPIConv.au3&gt;)' >
 				<Param name='$iValue' />
 			</Overload>
 		</KeyWord>
@@ -22056,13 +22188,13 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_WriteConsole' func='yes' >
-			<Overload retVal='' descr='Writes a character string to a console screen buffer (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Writes a character string to a console screen buffer (Requires: #include &lt;WinAPIProc.au3&gt;)' >
 				<Param name='$hConsole' />
 				<Param name='$sText' />
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_WriteFile' func='yes' >
-			<Overload retVal='' descr='Writes data to a file at the position specified by the file pointer (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Writes data to a file at the position specified by the file pointer (Requires: #include &lt;WinAPIFiles.au3&gt;)' >
 				<Param name='$hFile' />
 				<Param name='$pBuffer' />
 				<Param name='$iToWrite' />
@@ -22071,7 +22203,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_WriteProcessMemory' func='yes' >
-			<Overload retVal='' descr='Writes memory in a specified process (Requires: #include &lt;WinAPI.au3&gt;)' >
+			<Overload retVal='' descr='Writes memory in a specified process (Requires: #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$hProcess' />
 				<Param name='$pBaseAddress' />
 				<Param name='$pBuffer' />
@@ -22081,7 +22213,7 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name='_WinAPI_ZeroMemory' func='yes' >
-			<Overload retVal='' descr='Fills a block of memory with zeros (Requires: #include &lt;WinAPISys.au3&gt;)' >
+			<Overload retVal='' descr='Fills a block of memory with zeros (Requires: #include &lt;WinAPIMem.au3&gt;)' >
 				<Param name='$pMemory' />
 				<Param name='$iLength' />
 			</Overload>

@@ -2,8 +2,11 @@
 #include <Array.au3>
 #include <GUIConstantsEx.au3>
 #include <MsgBoxConstants.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
 
 Local $aRamp, $iRgb = 0xFF0000
 

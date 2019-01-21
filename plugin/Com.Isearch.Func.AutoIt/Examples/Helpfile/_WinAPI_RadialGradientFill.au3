@@ -1,6 +1,9 @@
 #include <GUIConstantsEx.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
 
 ; Create GUI
 Local $hForm = GUICreate('Test ' & StringReplace(@ScriptName, '.au3', '()'), 400, 400)

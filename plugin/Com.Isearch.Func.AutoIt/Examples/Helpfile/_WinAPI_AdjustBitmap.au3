@@ -1,6 +1,9 @@
 #include <GUIConstantsEx.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPIRes.au3>
 
 ; Load and resize (x2) image
 Local $hBitmap = _WinAPI_LoadImage(0, @ScriptDir & '\Extras\AutoIt.bmp', $IMAGE_BITMAP, 0, 0, $LR_LOADFROMFILE)

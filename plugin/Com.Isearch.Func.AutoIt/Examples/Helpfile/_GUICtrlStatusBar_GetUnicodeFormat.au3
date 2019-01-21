@@ -1,6 +1,5 @@
 #include <GUIConstantsEx.au3>
 #include <GuiStatusBar.au3>
-#include <WinAPI.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo

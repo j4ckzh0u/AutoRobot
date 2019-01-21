@@ -1,5 +1,4 @@
 #include <GUIConstantsEx.au3>
-#include <GUIConstantsEx.au3>
 #include <GuiDateTimePicker.au3>
 #include <WindowsConstants.au3>
 

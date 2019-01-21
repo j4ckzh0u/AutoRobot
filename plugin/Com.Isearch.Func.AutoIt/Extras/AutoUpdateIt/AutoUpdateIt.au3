@@ -54,7 +54,10 @@
 ;
 ; =======================================================================
 #include <GUIConstantsEx.au3>
+#include <InetConstants.au3>
 #include <StaticConstants.au3>
+#include <StringConstants.au3>
+#include <WinAPITheme.au3>
 #include <WindowsConstants.au3>
 
 ; ========================================
@@ -112,7 +115,7 @@ If _StringInArray($CmdLine, '/noproxy') Then HttpSetProxy(1)
 If _StringInArray($CmdLine, '/release') Or _StringInArray($CmdLine, '/beta') Or _StringInArray($CmdLine, '/prebeta') Then
 	Opt('TrayIconHide', 0)
 	_Status('Checking for updates')
-	InetGet($s_DatFile, $g_sDatFile_Local, 1)
+	InetGet($s_DatFile, $g_sDatFile_Local, $INET_FORCERELOAD)
 	If @error <> 0 Then
 		_Status('Could not connect to site', 'Please check your connection and try again')
 		Sleep(4000)
@@ -133,7 +136,7 @@ If _StringInArray($CmdLine, '/release') Or _StringInArray($CmdLine, '/beta') Or 
 		$i_DownSize = $g_iPreBetaSize
 	EndIf
 	If $s_AutoUpdate Then
-		$g_hInetGet = InetGet($s_AutoUpdate, $g_sDownTemp, 1, 1)
+		$g_hInetGet = InetGet($s_AutoUpdate, $g_sDownTemp, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 		$s_DownSize = Round($i_DownSize / 1024) & ' KB'
 		Do
 			_Status('Downloading update', '', InetGetInfo($g_hInetGet, 0), $i_DownSize)
@@ -157,6 +160,7 @@ EndIf
 ; GUI - Main Application
 ; ========================================
 Opt("GuiResizeMode", $GUI_DOCKALL)
+_WinAPI_SetThemeAppProperties(0) ; to allow CtrlGroup coloring
 Local $hGui_Main = GUICreate($g_sTitle, 350, 310 + 20)
 Local $idMn_Help = GUICtrlCreateMenu('&Help')
 Local $idMn_Proxy = GUICtrlCreateMenuItem('Disable IE''s &proxy server', $idMn_Help)
@@ -273,7 +277,7 @@ If _StringInArray($CmdLine, '/noproxy') Then GUICtrlSetState($idMn_Proxy, $GUI_C
 GUISetState(@SW_SHOW, $hGui_Main)
 ; Download update data file
 If $b_Download_UpdateDat Then
-	$g_hInetGet = InetGet($s_DatFile, $g_sDatFile_Local, 1, 1)
+	$g_hInetGet = InetGet($s_DatFile, $g_sDatFile_Local, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 Else
 	FileCopy(@ScriptDir & '\update.dat', $g_sDatFile_Local) ; to test locally
 EndIf
@@ -288,7 +292,7 @@ While 1
 					' - You can access the site https://www.autoitscript.com' & @LF & _
 					' - Your firewall is not blocking internet access to this program')
 			If $i_Res = 4 Then
-				$g_hInetGet = InetGet($s_DatFile, $g_sDatFile_Local, 1, 1)
+				$g_hInetGet = InetGet($s_DatFile, $g_sDatFile_Local, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 			Else
 				Exit
 			EndIf
@@ -389,18 +393,18 @@ While 1
 				RegWrite($g_sAu3UpReg, 'DoneOption', 'REG_SZ', 'Notify')
 				; Download buttons
 			Case $a_Msg[0] = $idBt_Mn_ReleaseDl
-				$s_Tmp = StringInStr($g_sReleaseFile, '/', 0, -1)
+				$s_Tmp = StringInStr($g_sReleaseFile, '/', $STR_NOCASESENSEBASIC, -1)
 				$s_DefFileName = StringTrimLeft($g_sReleaseFile, $s_Tmp)
 				$i_DownSize = $g_iReleaseSize
 				ShellExecute("https://www.autoitscript.com/autoit3/docs/history.htm")
 				_DownloadFile($g_sReleaseFile, 'autoit-v3-setup.exe')
 			Case $a_Msg[0] = $idBt_Mn_BetaDl
-				$s_Tmp = StringInStr($g_sBetaFile, '/', 0, -1)
+				$s_Tmp = StringInStr($g_sBetaFile, '/', $STR_NOCASESENSEBASIC, -1)
 				$s_DefFileName = StringTrimLeft($g_sBetaFile, $s_Tmp)
 				$i_DownSize = $g_iBetaSize
 				_DownloadFile($g_sBetaFile, 'autoit-v' & $g_sLatestBetaVer & '.exe')
 			Case $a_Msg[0] = $idBt_Mn_PreBetaDl
-				$s_Tmp = StringInStr($g_sPreBetaFile, '/', 0, -1)
+				$s_Tmp = StringInStr($g_sPreBetaFile, '/', $STR_NOCASESENSEBASIC, -1)
 				$s_DefFileName = StringTrimLeft($g_sPreBetaFile, $s_Tmp)
 				$i_DownSize = $g_iPreBetaSize
 				_DownloadFile($g_sPreBetaFile, 'autoit-v' & $g_sPreBetaVer & '.exe')
@@ -462,13 +466,13 @@ Func _DownloadFile($s_DownUrl, $s_DownName)
 		Return
 	EndIf
 
-	$g_hInetGet = InetGet($s_DownUrl, $g_sDownTemp, 1, 1)
+	$g_hInetGet = InetGet($s_DownUrl, $g_sDownTemp, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 	$g_sDownPath = FileSaveDialog('Save As', $g_sDefDownDir, 'Executables (*.exe)', 16, $s_DownName)
 	If Not @error Then
 		If Not (StringRight($g_sDownPath, 4) = '.exe') Then
 			$g_sDownPath = $g_sDownPath & '.exe'
 		EndIf
-		Local $s_Tmp = StringInStr($g_sDownPath, '\', 0, -1)
+		Local $s_Tmp = StringInStr($g_sDownPath, '\', $STR_NOCASESENSEBASIC, -1)
 		Local $s_DownFolder = StringLeft($g_sDownPath, $s_Tmp)
 		RegWrite($g_sAu3UpReg, 'DownloadDir', 'REG_SZ', $s_DownFolder)
 		GUICtrlSetData($g_idLb_Mn_DwnToTxt, _ClipPath($g_sDownPath, 55))

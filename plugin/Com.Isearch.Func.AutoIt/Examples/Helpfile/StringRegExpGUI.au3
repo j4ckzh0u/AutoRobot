@@ -12,8 +12,10 @@
 ; Different separator charactor used in GUICtrlSetData (thanks FichteFoll)
 ; Display formating fixed when number of results from StringRegExp = 9, or 99, or 999 etc (thanks FichteFoll)
 ; =======================================================================
+#include <AutoItConstants.au3>
 #include <ButtonConstants.au3>
 #include <EditConstants.au3>
+#include <FileConstants.au3>
 #include <GuiConstantsEx.au3>
 #include <MsgBoxConstants.au3>
 #include <StaticConstants.au3>
@@ -79,12 +81,12 @@ $g_idStringToTest = $idInputEditBox ; default - read the string to be tested fro
 ; setup tool tips
 ; GUICtrlSetTip required IE version 5+
 If Number(StringLeft(RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer", "Version"), 1)) > 4 Then
-	GUICtrlSetTip($g_idRadio_0, "Returns 1 (matched) or 0 (no match)", "Return Flag= 0", 1, 1)
-	GUICtrlSetTip($g_idRadio_1, "Returns an array containing the matches.", "Return Flag = 1", 1, 1)
-	GUICtrlSetTip($g_idRadio_2, "Returns the full matched string AND an array containing the matches (Perl / PHP style).", "Return Flag = 2", 1, 1)
-	GUICtrlSetTip($g_idRadio_3, "Returns an array containing the global matches.", "Return Flag = 3", 1, 1)
-	GUICtrlSetTip($g_idRadio_4, "Returns an array of arrays containing the full matched strings AND global matches. (Perl / PHP style).", "Return Flag = 4", 1, 1)
-	GUICtrlSetTip($g_idOffset, "[optional] The string position to start the match (starts at 1) The default is 1.", "Offset option", 1, 1)
+	GUICtrlSetTip($g_idRadio_0, "Returns 1 (matched) or 0 (no match)", "Return Flag= 0", $TIP_INFOICON, $TIP_BALLOON)
+	GUICtrlSetTip($g_idRadio_1, "Returns an array containing the matches.", "Return Flag = 1", $TIP_INFOICON, $TIP_BALLOON)
+	GUICtrlSetTip($g_idRadio_2, "Returns the full matched string AND an array containing the matches (Perl / PHP style).", "Return Flag = 2", $TIP_INFOICON, $TIP_BALLOON)
+	GUICtrlSetTip($g_idRadio_3, "Returns an array containing the global matches.", "Return Flag = 3", $TIP_INFOICON, $TIP_BALLOON)
+	GUICtrlSetTip($g_idRadio_4, "Returns an array of arrays containing the full matched strings AND global matches. (Perl / PHP style).", "Return Flag = 4", $TIP_INFOICON, $TIP_BALLOON)
+	GUICtrlSetTip($g_idOffset, "[optional] The string position to start the match (starts at 1) The default is 1.", "Offset option", $TIP_INFOICON, $TIP_BALLOON)
 Else
 	GUICtrlSetTip($g_idRadio_0, "Returns 1 (matched) or 0 (no match)")
 	GUICtrlSetTip($g_idRadio_1, "Returns an array containing the matches.")
@@ -224,7 +226,7 @@ EndFunc   ;==>getOffset
 
 Func doBrowseForFile()
 	Local $sFilePath, $sFileTxt
-	$sFilePath = FileOpenDialog("Select text file to test", $g_sInitialDir, "Text files (*.*)", 1)
+	$sFilePath = FileOpenDialog("Select text file to test", $g_sInitialDir, "Text files (*.*)", $FD_FILEMUSTEXIST)
 	$g_sInitialDir = StringTrimRight($sFilePath, StringInStr($sFilePath, "\", "-1"))
 	GUICtrlSetData($g_idStatusBar, "Loading file..")
 	GUICtrlSetBkColor($g_idStatusBar, $GREEN)
@@ -304,7 +306,7 @@ EndFunc   ;==>doPtnAdd
 Func doDisplayHelp()
 	Local $iErr = 0
 	If @Compiled = 0 Then
-		Local $sPathToHelpFile = StringLeft(@AutoItExe, StringInStr(@AutoItExe, "\", 0, -1))
+		Local $sPathToHelpFile = StringLeft(@AutoItExe, StringInStr(@AutoItExe, "\", $STR_NOCASESENSEBASIC, -1))
 		Run($sPathToHelpFile & "AutoIt3Help.exe StringRegExp")
 		$iErr = @error
 	Else

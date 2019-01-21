@@ -1,6 +1,6 @@
 #include <GUIConstantsEx.au3>
-#include <WinAPI.au3> ; used for Lo/Hi word
 #include <GuiEdit.au3>
+#include <WinAPIConv.au3>
 #include <WindowsConstants.au3>
 
 Global $g_hEdit

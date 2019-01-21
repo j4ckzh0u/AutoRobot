@@ -8,13 +8,13 @@ Example()
 Func Example()
 	Local $iAlgorithm = $CALG_SHA1
 
-	Local $hGUI = GUICreate("Hash File", 425, 70)
+	Local $hGUI = GUICreate("Hash File", 500, 100)
 	Local $idInput = GUICtrlCreateInput(@ScriptFullPath, 5, 5, 200, 20)
 	Local $idBrowse = GUICtrlCreateButton("...", 210, 5, 35, 20)
 	Local $idCombo = GUICtrlCreateCombo("", 250, 5, 100, 20, $CBS_DROPDOWNLIST)
-	GUICtrlSetData($idCombo, "MD2|MD4|MD5|SHA1", "SHA1")
-	Local $idCalculate = GUICtrlCreateButton("Calculate", 355, 40, 65, 25)
-	Local $idHashLabel = GUICtrlCreateLabel("Hash Digest", 5, 50, 350, 25)
+	GUICtrlSetData($idCombo, "MD2 (128bit)|MD4 (128bit)|MD5 (128bit)|SHA1 (160bit)|SHA_256 (256bit)|SHA_384 (384bit)|SHA_512 (512bit)", "SHA1 (160bit)")
+	Local $idCalculate = GUICtrlCreateButton("Calculate", 400, 40, 65, 25)
+	Local $idHashLabel = GUICtrlCreateEdit("Hash Digest", 5, 45, 350, 40)
 	GUISetState(@SW_SHOW, $hGUI)
 
 	_Crypt_Startup() ; To optimize performance start the crypt library.
@@ -36,17 +36,26 @@ Func Example()
 
 			Case $idCombo ; Check when the combobox is selected and retrieve the correct algorithm.
 				Switch GUICtrlRead($idCombo) ; Read the combobox selection.
-					Case "MD2"
+					Case "MD2 (128bit)"
 						$iAlgorithm = $CALG_MD2
 
-					Case "MD4"
+					Case "MD4 (128bit)"
 						$iAlgorithm = $CALG_MD4
 
-					Case "MD5"
+					Case "MD5 (128bit)"
 						$iAlgorithm = $CALG_MD5
 
-					Case "SHA1"
+					Case "SHA1 (160bit)"
 						$iAlgorithm = $CALG_SHA1
+
+                    Case  "SHA_256 (256bit)"
+                        $iAlgorithm = $CALG_SHA_256
+
+                    Case "SHA_384 (384bit)"
+                        $iAlgorithm = $CALG_SHA_384
+
+                    Case "SHA_512 (512bit)"
+                        $iAlgorithm = $CALG_SHA_512
 
 				EndSwitch
 

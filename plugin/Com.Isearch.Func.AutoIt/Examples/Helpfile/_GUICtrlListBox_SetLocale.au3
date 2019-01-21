@@ -1,7 +1,7 @@
 #include <GUIConstantsEx.au3>
 #include <GuiListBox.au3>
 #include <MsgBoxConstants.au3>
-#include <WinAPI.au3>
+#include <WinAPIConv.au3>
 #include <WinAPILangConstants.au3>
 
 Example()

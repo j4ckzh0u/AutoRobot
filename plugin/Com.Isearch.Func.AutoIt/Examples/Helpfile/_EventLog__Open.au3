@@ -1,4 +1,5 @@
 #include <EventLog.au3>
+#include <FontConstants.au3>
 #include <GUIConstantsEx.au3>
 
 Global $g_idMemo
@@ -9,9 +10,9 @@ Func Example()
 	Local $hEventLog
 
 	; Create GUI
-	GUICreate("EventLog", 400, 300)
-	$g_idMemo = GUICtrlCreateEdit("", 2, 2, 396, 300, 0)
-	GUICtrlSetFont($g_idMemo, 9, 400, 0, "Courier New")
+	GUICreate("EventLog", 600, 300)
+	$g_idMemo = GUICtrlCreateEdit("", 2, 2, 596, 294, 0)
+	GUICtrlSetFont($g_idMemo, 9, $FW_NORMAL, $GUI_FONTNORMAL, "Courier New")
 	GUISetState(@SW_SHOW)
 
 	$hEventLog = _EventLog__Open("", "Application")

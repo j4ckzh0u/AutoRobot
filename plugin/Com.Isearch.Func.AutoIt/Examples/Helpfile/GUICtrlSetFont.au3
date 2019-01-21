@@ -1,5 +1,5 @@
-#include <GUIConstantsEx.au3>
 #include <FontConstants.au3>
+#include <GUIConstantsEx.au3>
 
 Example()
 
@@ -20,7 +20,7 @@ Func Example()
 	Local $idLabel3 = GUICtrlCreateLabel("A string of text with a strike through", 10, 50, 290, 17)
 	GUICtrlSetFont($idLabel3, 9, $FW_NORMAL, $GUI_FONTSTRIKE, $sFont) ; Set the font of the controlID stored in $iLabel3.
 
-	Local $idClose = GUICtrlCreateButton("Close", 210, 170, 85, 25)
+	Local $idButton_Close = GUICtrlCreateButton("Close", 210, 170, 85, 25)
 
 	; Display the GUI.
 	GUISetState(@SW_SHOW, $hGUI)
@@ -28,7 +28,7 @@ Func Example()
 	; Loop until the user exits.
 	While 1
 		Switch GUIGetMsg()
-			Case $GUI_EVENT_CLOSE, $idClose
+			Case $GUI_EVENT_CLOSE, $idButton_Close
 				ExitLoop
 
 		EndSwitch

@@ -1,4 +1,3 @@
-#include <Array.au3>
 #include <Excel.au3>
 #include <MsgBoxConstants.au3>
 
@@ -12,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Delete 2 rows (1 and 2) on worksheet 3
-; *****************************************************************************
 $oWorkbook.Worksheets(3).Activate
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeDelete Example 2", "Deleting rows 1 and 2 on worksheet 3.")
 _Excel_RangeDelete($oWorkbook.Worksheets(3), "1:2")

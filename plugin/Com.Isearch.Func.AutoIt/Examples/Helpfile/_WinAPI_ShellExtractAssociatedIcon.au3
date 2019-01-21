@@ -1,6 +1,7 @@
 #include <GUIConstantsEx.au3>
-#include <GUIImageList.au3>
-#include <GUIListView.au3>
+#include <GuiImageList.au3>
+#include <GuiListView.au3>
+#include <WinAPIIcons.au3>
 #include <WinAPIShellEx.au3>
 #include <WindowsConstants.au3>
 

@@ -13,6 +13,9 @@ Func Example()
 	If WinExists("[CLASS:Notepad]") Then
 		MsgBox($MB_SYSTEMMODAL, "", "Window exists")
 	Else
-		MsgBox($MB_SYSTEMMODAL, "", "Window does not exist")
+		MsgBox($MB_SYSTEMMODAL + $MB_ICONERROR, "Error", "Window does not exist")
 	EndIf
+
+	; Close the Notepad window.
+	WinClose("[CLASS:Notepad]", "")
 EndFunc   ;==>Example

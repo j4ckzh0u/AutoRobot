@@ -19,9 +19,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Copy Sheet 3 of Workbook 1 after Sheet 3 of Workbook 2
-; *****************************************************************************
 _Excel_SheetCopyMove($oWorkbook1, 3, $oWorkbook2, 3, False)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_SheetCopyMove Example 3", "Error copying sheet." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_SheetCopyMove Example 3", "Workbook 1 Sheet 3 copied to Workbook2 after sheet 3")

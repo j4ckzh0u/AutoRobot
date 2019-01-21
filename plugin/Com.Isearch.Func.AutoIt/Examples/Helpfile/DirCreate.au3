@@ -1,29 +1,30 @@
+#include <AutoItConstants.au3>
 #include <MsgBoxConstants.au3>
 
 Example()
 
 Func Example()
-	Local $sFldr1 = "C:\Test1\"
-	Local $sFldr2 = "C:\Test1\Folder1\"
-	Local $sFldr3 = "C:\Test1\Folder1\Folder2\"
+	; Create a constant variable in Local scope of the directory.
+	Local Const $sFilePath = @TempDir & "\DirCreateFolder"
 
-	If DirGetSize($sFldr1) <> -1 Then
-		MsgBox($MB_SYSTEMMODAL, "", "Directory already exists!")
+	; If the directory exists the don't continue.
+	If FileExists($sFilePath) Then
+		MsgBox($MB_SYSTEMMODAL, "", "An error occurred. The directory already exists.")
 		Return False
 	EndIf
 
-	DirCreate($sFldr3)
+	; Open the temporary directory.
+	ShellExecute(@TempDir)
 
-	RunWait("explorer /root, C:\Test1\Folder1")
-	Local $hWnd = WinGetHandle("[TITLE:Folder1;CLASS:CabinetWClass]")
+	; Create the directory.
+	DirCreate($sFilePath)
 
-	MsgBox($MB_SYSTEMMODAL, "", "Explorer is opened with Folder2 displayed.")
+	; Display a message of the directory creation.
+	MsgBox($MB_SYSTEMMODAL, "", "The directory has been created.")
 
-	DirRemove($sFldr3, 1)
+	; Remove the directory and all sub-directories.
+	DirRemove($sFilePath, $DIR_REMOVE)
+
+	; Display a message of the directory removal.
 	MsgBox($MB_SYSTEMMODAL, "", "The sub folder: Folder2 has been deleted.")
-
-	WinClose($hWnd)
-
-	DirRemove($sFldr2) ;clean up test folders
-	DirRemove($sFldr1) ;clean up test folders
 EndFunc   ;==>Example

@@ -9,7 +9,7 @@ Func Example()
 
 	; Create a label control.
 	Local $idLabel = GUICtrlCreateLabel("A string of text", 10, 10, 185, 17)
-	Local $idClose = GUICtrlCreateButton("Close", 210, 170, 85, 25)
+	Local $idButton_Close = GUICtrlCreateButton("Close", 210, 170, 85, 25)
 
 	; Set the background color of the label control.
 	GUICtrlSetBkColor($idLabel, $COLOR_RED)
@@ -20,7 +20,7 @@ Func Example()
 	; Loop until the user exits.
 	While 1
 		Switch GUIGetMsg()
-			Case $GUI_EVENT_CLOSE, $idClose
+			Case $GUI_EVENT_CLOSE, $idButton_Close
 				ExitLoop
 
 		EndSwitch

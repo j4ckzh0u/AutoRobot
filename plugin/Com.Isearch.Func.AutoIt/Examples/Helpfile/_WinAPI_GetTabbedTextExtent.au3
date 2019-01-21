@@ -1,5 +1,8 @@
 #include <GUIConstantsEx.au3>
+#include <SendMessage.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
 #include <WindowsConstants.au3>
 
 Local Const $sTxt = 'String' & @TAB & 'with' & @TAB & 'tab' & @TAB & 'characters'

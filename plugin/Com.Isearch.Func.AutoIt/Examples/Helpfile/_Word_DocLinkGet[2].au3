@@ -10,9 +10,7 @@ Local $oDoc = _Word_DocOpen($oWord, @ScriptDir & "\Extras\Test.doc", Default, De
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocLinkGet Example", "Error opening '.\Extras\Test.doc'. @error = " & _
 		@error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Return hyperlink number 2 and display some properties
-; *****************************************************************************
 Local $oLink = _Word_DocLinkGet($oDoc, 2)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocLinkGet Example", _
 		"Error accessing link collection of the document." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

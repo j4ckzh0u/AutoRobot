@@ -11,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; ****************************************************************************
 ; Translate an A1 range to a R1C1 range and vice versa
-; ****************************************************************************
 Local $sFormula = "C4:G12"
 ; Relative: A1 to R1C1
 Local $sR1C1 = _Excel_ConvertFormula($oExcel, $sFormula, $xlA1, $xlR1C1, $xlRelative)

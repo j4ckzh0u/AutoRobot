@@ -1,7 +1,11 @@
 #include <GUIConstantsEx.au3>
-#include <GUIImageList.au3>
+#include <GuiImageList.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
-#include <WinAPIRes.au3>
+#include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPIIcons.au3>
 #include <WinAPIShPath.au3>
 
 ; Initialize system image list

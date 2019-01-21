@@ -1,7 +1,7 @@
 #include <GDIPlus.au3>
 #include <GUIConstantsEx.au3>
-#include <GUIMenu.au3>
-#include <WinAPIShellEx.au3>
+#include <GuiMenu.au3>
+#include <WinAPIGdi.au3>
 
 #NoTrayIcon
 Opt('TrayMenuMode', 3)

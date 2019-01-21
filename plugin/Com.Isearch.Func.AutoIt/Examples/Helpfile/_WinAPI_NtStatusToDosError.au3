@@ -1,4 +1,5 @@
 #include <WinAPIDiag.au3>
+#include <WinAPIError.au3>
 
 Local $iError = _WinAPI_NtStatusToDosError(0xC0000023) ; STATUS_BUFFER_TOO_SMALL
 

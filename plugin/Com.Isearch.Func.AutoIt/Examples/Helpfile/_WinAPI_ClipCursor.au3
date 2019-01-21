@@ -1,3 +1,4 @@
+#include <WinAPIMisc.au3>
 #include <WinAPIRes.au3>
 
 _WinAPI_ClipCursor(_WinAPI_CreateRectEx(0, 0, 400, 400))

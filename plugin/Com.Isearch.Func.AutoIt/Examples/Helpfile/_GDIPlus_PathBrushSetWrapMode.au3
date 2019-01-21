@@ -1,5 +1,6 @@
 #include <GDIPlus.au3>
 #include <GUIConstantsEx.au3>
+#include <MsgBoxConstants.au3>
 
 Example()
 
@@ -31,6 +32,22 @@ Func Example()
 	_GDIPlus_PathBrushSetSurroundColorsWithCount($hBrush, $aColors)
 
 	_GDIPlus_GraphicsFillRect($hGraphics, 0, 0, 600, 400, $hBrush)
+
+	Local $iWrapMode = _GDIPlus_PathBrushGetWrapMode($hBrush), $sWarpMode
+	Switch $iWrapMode
+		Case 0
+			$sWarpMode = "Tiling without flipping"
+		Case 1
+			$sWarpMode = "Tiles are flipped horizontally as you move from one tile to the next in a row"
+		Case 2
+			$sWarpMode = "Tiles are flipped vertically as you move from one tile to the next in a column"
+		Case 3
+			$sWarpMode = "Tiles are flipped horizontally as you move along a row and flipped vertically as you move along a column"
+		Case 4
+			$sWarpMode = "No tiling takes place"
+	EndSwitch
+
+	MsgBox($MB_SYSTEMMODAL, "", "Wrap mode: " & $sWarpMode)
 
 	; Loop until the user exits.
 	Do

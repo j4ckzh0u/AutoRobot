@@ -1,7 +1,7 @@
 #include <APIRegConstants.au3>
 #include <Array.au3>
 #include <MsgBoxConstants.au3>
-#include <WinAPIDiag.au3>
+#include <WinAPIError.au3>
 #include <WinAPIReg.au3>
 
 Local $hKey = _WinAPI_RegOpenKey($HKEY_CLASSES_ROOT, 'CLSID', $KEY_READ)

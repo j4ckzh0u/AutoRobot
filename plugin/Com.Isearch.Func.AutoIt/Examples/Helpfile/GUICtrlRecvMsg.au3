@@ -8,7 +8,7 @@ Func Example()
 	; Create a GUI with an edit control.
 	Local $hGUI = GUICreate("Example")
 	Local $idEdit = GUICtrlCreateEdit("Line 0" & @CRLF, 0, 0, 400, 350)
-	Local $idOK = GUICtrlCreateButton("OK", 310, 370, 85, 25)
+	Local $idButton_Ok = GUICtrlCreateButton("OK", 310, 370, 85, 25)
 
 	; Set data of the edit control.
 	For $i = 1 To 25
@@ -30,7 +30,7 @@ Func Example()
 			Case $GUI_EVENT_CLOSE
 				ExitLoop
 
-			Case $idOK
+			Case $idButton_Ok
 				; Send the message EM_GETSEL, to retrieve the current selection of the edit control.
 				$aCtrlRecvMsg = GUICtrlRecvMsg($idEdit, $EM_GETSEL)
 

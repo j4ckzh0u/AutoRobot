@@ -1,8 +1,12 @@
 #include <FontConstants.au3>
 #include <GUIConstantsEx.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
-#include <WinAPI.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPIMisc.au3>
+#include <WinAPISysWin.au3>
 #include <WinAPITheme.au3>
 #include <WindowsConstants.au3>
 

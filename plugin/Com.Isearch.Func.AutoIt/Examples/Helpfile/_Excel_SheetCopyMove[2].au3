@@ -12,9 +12,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Move Sheet 2 before Sheet 1. Set the name of the moved Sheet
-; *****************************************************************************
 Local $oMovedSheet = _Excel_SheetCopyMove($oWorkbook1, 2, Default, 1, Default, False)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_SheetCopyMove Example 2", "Error moving sheet." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 ; Set the name of the new sheet

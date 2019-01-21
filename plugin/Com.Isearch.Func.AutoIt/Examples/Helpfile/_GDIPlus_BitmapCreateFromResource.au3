@@ -1,5 +1,6 @@
 #include <GDIPlus.au3>
 #include <GUIConstantsEx.au3>
+#include <WinAPIRes.au3>
 
 Example()
 

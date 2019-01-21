@@ -1,5 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <GuiToolbar.au3>
+#include <WinAPIConstants.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo
@@ -34,11 +35,11 @@ Func Example()
 
 	; Show Unicode format
 	$bUnicode = _GUICtrlToolbar_GetUnicodeFormat($hToolbar)
-	MemoWrite("Unicode format .:" & $bUnicode)
+	MemoWrite("Unicode format .: " & $bUnicode)
 
 	; Change Unicode format
 	_GUICtrlToolbar_SetUnicodeFormat($hToolbar, Not $bUnicode)
-	MemoWrite("Unicode format .:" & _GUICtrlToolbar_GetUnicodeFormat($hToolbar))
+	MemoWrite("Unicode format .: " & _GUICtrlToolbar_GetUnicodeFormat($hToolbar))
 
 	; Loop until the user exits.
 	Do

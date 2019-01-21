@@ -11,11 +11,9 @@ _Word_DocOpen($oWord, @ScriptDir & "\Extras\Test.doc", Default, Default, True)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocQuit Example", _
 		"Error opening '.\Extras\Test.doc'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; If Word was running when this script is started only the reference to the
 ; object will be removed.
 ; If Word was started by this example all documents and Word will be closed.
-; *****************************************************************************
 Local $iResult
 If $bWordClose Then
 	$iResult = MsgBox(BitOR($MB_OKCANCEL, $MB_SYSTEMMODAL), "Word UDF: _Word_Quit Example", _

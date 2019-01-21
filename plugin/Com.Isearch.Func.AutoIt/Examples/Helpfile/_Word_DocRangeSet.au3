@@ -10,11 +10,9 @@ Local $oDoc = _Word_DocOpen($oWord, @ScriptDir & "\Extras\Test.doc", Default, De
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocRangeSet Example", _
 		"Error opening '.\Extras\Test.doc'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Scene 1
 ; Move the start of the range to the next paragraph and extend the end by 2
 ; words. Insert text before and after the range and display some statistics
-; *****************************************************************************
 ; Move the start of the range to the next paragraph and extend the end by 2 words
 $oRange = _Word_DocRangeSet($oDoc, -1, $wdParagraph, 1, Default, 2)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocRangeSet Example", _
@@ -39,11 +37,9 @@ Local $iCharacters = $oRange.ComputeStatistics(3)
 MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocRangeSet Example", "The selected range has:" & @CRLF & _
 		$iWords & " words " & @CRLF & $iCharacters & " characters.")
 
-; *****************************************************************************
 ; Scene 2
 ; Move the end of the range one character to the left so the space to the next
 ; word isn't formatted and format the text bold, italic and underlined
-; *****************************************************************************
 $oRange = _Word_DocRangeSet($oDoc, $oRange, Default, Default, $wdCharacter, -1)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocRangeSet Example", _
 		"Error setting/expanding range." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
@@ -53,20 +49,16 @@ $oRange.Italic = True
 $oRange.Underline = True
 MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocRangeSet Example", "Added some formatting.")
 
-; *****************************************************************************
 ; Scene 3
 ; Collapse the range to 0 length (insert mark) and insert a line break
-; *****************************************************************************
 $oRange = _Word_DocRangeSet($oDoc, $oRange, Default, Default, -1, Default)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocRangeSet Example", _
 		"Error setting/expanding range." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 $oRange.InsertBreak($wdLineBreak)
 MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocRangeSet Example", "Inserted a break.")
 
-; *****************************************************************************
 ; Scene 4
 ; Move the range to the first character in the next line (space) and remove it
-; *****************************************************************************
 $oRange = _Word_DocRangeSet($oDoc, $oRange, Default, Default, $wdCharacter, 1)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocRangeSet Example", _
 		"Error setting/expanding range." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

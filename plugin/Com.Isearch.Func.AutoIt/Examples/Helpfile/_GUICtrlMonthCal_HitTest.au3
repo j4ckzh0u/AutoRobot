@@ -1,5 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <GuiMonthCal.au3>
+#include <WinAPIMisc.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMonthCal, $g_idMemo, $g_hGUI

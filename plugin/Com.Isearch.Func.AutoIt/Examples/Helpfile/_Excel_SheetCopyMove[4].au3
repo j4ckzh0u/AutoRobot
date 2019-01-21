@@ -19,9 +19,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Move Sheet 1 of Workbook 1 before Sheet 1 of Workbook 2
-; *****************************************************************************
 _Excel_SheetCopyMove($oWorkbook1, 1, $oWorkbook2, 1, Default, False)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_SheetCopyMove Example 4", "Error moving sheet." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_SheetCopyMove Example 4", "Workbook 1 Sheet 1 moved to Workbook2 before sheet 1")

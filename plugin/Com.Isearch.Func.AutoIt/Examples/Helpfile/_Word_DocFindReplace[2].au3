@@ -10,10 +10,8 @@ Local $oDoc = _Word_DocOpen($oWord, @ScriptDir & "\Extras\Test.doc", Default, De
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocFindReplace Example", _
 		"Error opening '.\Extras\Test.doc'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Replace paragraph control character with paragraph + text + paragraph.
 ; Only change first occurrence.
-; *****************************************************************************
 _Word_DocFindReplace($oDoc, "^p", "^pInserted Line^p", $wdReplaceOne)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocFindReplace Example", _
 		"Error replacing text in the document." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

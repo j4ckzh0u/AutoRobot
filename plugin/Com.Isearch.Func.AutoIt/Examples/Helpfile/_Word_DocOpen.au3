@@ -6,9 +6,7 @@ Local $oWord = _Word_Create()
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocOpen Example", _
 		"Error creating a new Word application object." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Open a document read-only
-; *****************************************************************************
 Local $sDocument = @ScriptDir & "\Extras\Test.doc"
 _Word_DocOpen($oWord, $sDocument, Default, Default, True)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocOpen Example 1", "Error opening '.\Extras\Test.doc'." & _

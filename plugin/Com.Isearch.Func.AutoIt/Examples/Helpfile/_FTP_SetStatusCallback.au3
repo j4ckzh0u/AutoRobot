@@ -1,5 +1,7 @@
 #include <Debug.au3>
 #include <FTPEx.au3>
+#include <WinAPIHOBj.au3>
+#include <WinAPIMem.au3>
 
 _DebugSetup(StringTrimRight(@ScriptName, StringLen(".exe")) & ' example', True)
 

@@ -1,7 +1,6 @@
 #include <EditConstants.au3>
 #include <GUIConstantsEx.au3>
-#include <WinAPI.au3>
-#include <WinAPIMisc.au3>
+#include <WinAPIConv.au3>
 #include <WindowsConstants.au3>
 
 Global $g_hForm = GUICreate('Test ' & StringReplace(@ScriptName, '.au3', '()'), 400, 96)

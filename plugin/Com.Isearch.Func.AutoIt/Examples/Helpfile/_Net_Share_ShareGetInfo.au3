@@ -3,6 +3,8 @@
 #include <NetShare.au3>
 #include <WindowsConstants.au3>
 
+#RequireAdmin ; needed for _Net_Share_ShareAdd()
+
 Global $g_idMemo
 
 Example()

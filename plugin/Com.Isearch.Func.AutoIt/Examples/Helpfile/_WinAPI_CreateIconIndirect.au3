@@ -1,6 +1,10 @@
 #include <GUIConstantsEx.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPIIcons.au3>
+#include <WinAPIMisc.au3>
 
 ; Create XOR bitmap
 Local $hDC = _WinAPI_GetDC(0)

@@ -3,4 +3,4 @@
 #include <IE.au3>
 
 Local $oIE = _IE_Example("basic")
-_IEImgClick($oIE, "http://www.autoitscript.com/images/autoit_6_240x100.jpg")
+_IEImgClick($oIE, "http://www.autoitscript.com/images/logo_autoit_210x72.png")

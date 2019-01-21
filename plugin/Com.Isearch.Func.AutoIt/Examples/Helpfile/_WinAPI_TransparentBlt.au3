@@ -1,6 +1,10 @@
 #include <GUIConstantsEx.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Local $a_idPic[2], $a_hPic[2], $a_hBitmap[2]

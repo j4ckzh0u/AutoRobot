@@ -11,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Only numeric values are valid
-; *****************************************************************************
 _Excel_RangeValidate($oWorkbook, Default, "B:B", $xlValidateDecimal, 0, $xlGreater, Default, Default, $xlValidAlertStop, "You entered a non numeric value!", "Only numeric values are valid.")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeValidate Example 3", "Error setting range validation." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeValidate Example 3", "Only numeric values are valid in column 'B'.")

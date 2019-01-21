@@ -12,9 +12,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Find all occurrences of string "test" in the comments
-; *****************************************************************************
 Local $aResult = _Excel_RangeFind($oWorkbook, "test", Default, $xlComments)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeFind Example 3", "Error searching the range." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeFind Example 3", "Find all occurrences of string 'test' in the comments." & @CRLF & "Data successfully searched.")

@@ -16,14 +16,14 @@ Func Example()
 	Local $idInput = GUICtrlCreateInput("", 10, 60, 400, 22)
 	GUICtrlSetState($idInput, $GUI_DROPACCEPTED)
 
-	Local $idOK = GUICtrlCreateButton("OK", 310, 170, 85, 25)
+	Local $idButton_OK = GUICtrlCreateButton("OK", 310, 170, 85, 25)
 
 	; Display the GUI.
 	GUISetState(@SW_SHOW, $hGUI)
 
 	While 1
 		Switch GUIGetMsg()
-			Case $GUI_EVENT_CLOSE, $idOK
+			Case $GUI_EVENT_CLOSE, $idButton_OK
 				ExitLoop
 
 			Case $GUI_EVENT_DROPPED

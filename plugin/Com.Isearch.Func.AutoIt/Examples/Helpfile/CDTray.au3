@@ -12,4 +12,3 @@ EndIf
 CDTray($aCDRom[1], $CDTRAY_OPEN)
 Sleep(2000)
 CDTray($aCDRom[1], $CDTRAY_CLOSED) ; does not work on laptop-style cd trays that can only be closed manually.
-

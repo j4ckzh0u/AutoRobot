@@ -1,5 +1,5 @@
+#include <WinAPIMem.au3>
 #include <WinAPIMisc.au3>
-#include <WinAPISys.au3>
 
 Local $tStruct1 = DllStructCreate('byte[4]')
 _WinAPI_FillMemory($tStruct1, 4, 0xAA)

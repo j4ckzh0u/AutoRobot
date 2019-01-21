@@ -1,4 +1,5 @@
 #include <WinAPIGdi.au3>
+#include <WinAPIMisc.au3>
 
 Local $aPos = _WinAPI_GetPosFromRect(_WinAPI_CreateRectEx(10, 10, 100, 100))
 

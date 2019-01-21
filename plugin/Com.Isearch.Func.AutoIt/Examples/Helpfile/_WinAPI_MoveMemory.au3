@@ -1,4 +1,4 @@
-#include <WinAPISys.au3>
+#include <WinAPIMem.au3>
 
 Local $tStruct1 = DllStructCreate('int')
 Local $tStruct2 = DllStructCreate('byte[4]')

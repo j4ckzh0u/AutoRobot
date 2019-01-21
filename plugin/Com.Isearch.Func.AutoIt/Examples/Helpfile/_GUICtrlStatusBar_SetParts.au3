@@ -19,11 +19,14 @@ Func Example()
 	GUICtrlSetFont($g_idMemo, 9, 400, 0, "Courier New")
 	GUISetState(@SW_SHOW)
 
-	; Set/Get parts
+	; Set parts
 	_GUICtrlStatusBar_SetParts($hStatus, $aParts)
-	$aParts = _GUICtrlStatusBar_GetParts($hStatus)
-	For $iI = 1 To $aParts[0]
-		MemoWrite("Part " & $iI & " width .: " & $aParts[$iI])
+
+	;Set Text/ Get Width
+	Local $iParts = _GUICtrlStatusBar_GetCount($hStatus)
+	For $iI = 1 To $iParts
+		_GUICtrlStatusBar_SetText($hStatus, "Text " & $iI, $iI - 1)
+		MemoWrite("Part " & $iI & " width .: " & _GUICtrlStatusBar_GetWidth($hStatus, $iI - 1))
 	Next
 
 	; Loop until the user exits.

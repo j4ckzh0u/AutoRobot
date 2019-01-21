@@ -3,12 +3,16 @@
 #include <GUIConstantsEx.au3>
 #include <MsgBoxConstants.au3>
 #include <ScreenCapture.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
 #include <WinAPISys.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
-If (_WinAPI_GetVersion() < '6.1') Or (Not _WinAPI_DwmIsCompositionEnabled()) Then
+If (Number(_WinAPI_GetVersion()) < 6.1) Or (Not _WinAPI_DwmIsCompositionEnabled()) Then
 	MsgBox(BitOR($MB_ICONERROR, $MB_SYSTEMMODAL), 'Error', 'Require Windows 7 or later with enabled Aero theme.')
 	Exit
 EndIf

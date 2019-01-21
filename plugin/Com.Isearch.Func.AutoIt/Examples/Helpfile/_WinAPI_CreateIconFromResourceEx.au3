@@ -2,6 +2,7 @@
 #include <GUIConstantsEx.au3>
 #include <MsgBoxConstants.au3>
 #include <StaticConstants.au3>
+#include <WinAPIIcons.au3>
 #include <WinAPIRes.au3>
 
 ; Load Resources.dll to memory

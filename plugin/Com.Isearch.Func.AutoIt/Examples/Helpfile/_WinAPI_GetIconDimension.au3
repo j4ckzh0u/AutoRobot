@@ -1,4 +1,4 @@
-#include <WinAPIGdi.au3>
+#include <WinAPIIcons.au3>
 #include <WinAPIShellEx.au3>
 
 Local $hIcon = _WinAPI_ShellExtractIcon(@SystemDir & '\shell32.dll', 130, 48, 48)

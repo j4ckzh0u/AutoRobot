@@ -1,9 +1,9 @@
 ; PNG work around by UEZ
 
 #include <GDIPlus.au3>
-
 #include <GUIConstantsEx.au3>
 #include <StaticConstants.au3>
+#include <WinAPIHObj.au3>
 
 ; Create GUI
 Local $hMainGUI = GUICreate("Show PNG", 210, 210)

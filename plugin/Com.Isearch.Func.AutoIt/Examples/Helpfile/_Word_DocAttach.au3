@@ -10,9 +10,7 @@ _Word_DocOpen($oWord, @ScriptDir & "\Extras\Test.doc", Default, Default, True)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocAttach Example", "Error opening '.\Extras\Test.doc'." & _
 		@CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Attach to the test document by "FileName" and set focus to the window
-; *****************************************************************************
 Local $oDoc = _Word_DocAttach($oWord, "Test.doc", "Filename")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocAttach Example", _
 		"Error attaching to '.\Extras\Test.doc' by 'FileName'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

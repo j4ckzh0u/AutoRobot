@@ -1,4 +1,3 @@
-#include <Array.au3>
 #include <Excel.au3>
 #include <MsgBoxConstants.au3>
 
@@ -12,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Sort a range with headers descending on row 1 (column headers)
-; *****************************************************************************
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeSort Example 3", "Press OK to sort range I1:K7. Key is row 1.")
 _Excel_RangeSort($oWorkbook, Default, "I1:K7", "1:1", $xlDescending, Default, $xlYes, Default, $xlSortRows)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeSort Example 3", "Error sorting data." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

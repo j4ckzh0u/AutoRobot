@@ -3,7 +3,7 @@
 
 ; Add 5 days to today
 Local $sNewDate = _DateAdd('d', 5, _NowCalcDate())
-MsgBox($MB_SYSTEMMODAL, "", "Today + 5 days:" & $sNewDate)
+MsgBox($MB_SYSTEMMODAL, "", "Today + 5 days: " & $sNewDate)
 
 ; Subtract 2 weeks from today
 $sNewDate = _DateAdd('w', -2, _NowCalcDate())

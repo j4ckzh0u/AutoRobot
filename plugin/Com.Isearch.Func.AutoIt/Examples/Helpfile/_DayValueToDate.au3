@@ -8,4 +8,4 @@ MsgBox($MB_SYSTEMMODAL, "", "Todays Julian date is: " & $sJulDate)
 ; 14 days ago calculation.
 Local $Y, $M, $D
 $sJulDate = _DayValueToDate($sJulDate - 14, $Y, $M, $D)
-MsgBox($MB_SYSTEMMODAL, "", "14 days ago:" & $M & "/" & $D & "/" & $Y & "  (" & $sJulDate & ")")
+MsgBox($MB_SYSTEMMODAL, "", "14 days ago: " & $M & "/" & $D & "/" & $Y & "  (" & $sJulDate & ")")

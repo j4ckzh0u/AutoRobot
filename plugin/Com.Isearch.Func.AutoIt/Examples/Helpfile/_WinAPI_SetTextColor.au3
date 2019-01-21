@@ -1,5 +1,8 @@
 #include <FontConstants.au3>
-#include <WinAPI.au3>
+#include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Global $g_tRECT, $g_hFont, $g_hOldFont, $g_hDC

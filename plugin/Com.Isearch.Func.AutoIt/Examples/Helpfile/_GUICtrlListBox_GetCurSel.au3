@@ -1,5 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <GuiListBox.au3>
+#include <WinAPIError.au3>
 
 Example()
 

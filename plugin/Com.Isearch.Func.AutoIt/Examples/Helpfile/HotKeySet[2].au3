@@ -1,3 +1,5 @@
+; == Example 2, @HotKeyPressed usage
+
 #include <MsgBoxConstants.au3>
 
 ; Press Esc to terminate script, Pause/Break to "pause"

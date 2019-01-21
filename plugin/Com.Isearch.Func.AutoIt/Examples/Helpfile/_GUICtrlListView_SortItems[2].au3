@@ -12,9 +12,9 @@ Func Example()
 	Local $iExWindowStyle = BitOR($WS_EX_DLGMODALFRAME, $WS_EX_CLIENTEDGE)
 	Local $iExListViewStyle = BitOR($LVS_EX_FULLROWSELECT, $LVS_EX_SUBITEMIMAGES, $LVS_EX_GRIDLINES, $LVS_EX_CHECKBOXES, $LVS_EX_DOUBLEBUFFER)
 
-	GUICreate("ListView Sort Treat Numbers as Strings", 300, 200, 100)
+	GUICreate("ListView Sort Treat Numbers as Strings", 400, 200, 100)
 
-	$g_idListView = GUICtrlCreateListView("Column1|Col2|Col3", 10, 10, 280, 180, -1, $iExWindowStyle)
+	$g_idListView = GUICtrlCreateListView("Column1|Col2|Col3", 10, 10, 380, 180, -1, $iExWindowStyle)
 	_GUICtrlListView_SetExtendedListViewStyle($g_idListView, $iExListViewStyle)
 
 	; Load images
@@ -36,9 +36,9 @@ Func Example()
 
 	GUISetState(@SW_SHOW)
 
-	GUICreate("ListView Sort Treat Numbers as Numbers", 300, 200, 400)
+	GUICreate("ListView Sort Treat Numbers as Numbers", 400, 200, 500)
 
-	$g_idListView2 = GUICtrlCreateListView("Column1|Col2|Col3", 10, 10, 280, 180, -1, $iExWindowStyle)
+	$g_idListView2 = GUICtrlCreateListView("Column1|Col2|Col3", 10, 10, 380, 180, -1, $iExWindowStyle)
 	_GUICtrlListView_SetExtendedListViewStyle($g_idListView2, $iExListViewStyle)
 	_GUICtrlListView_SetImageList($g_idListView2, $hImage, 1)
 
@@ -48,7 +48,7 @@ Func Example()
 
 	GUISetState(@SW_SHOW)
 
-	_GUICtrlListView_RegisterSortCallBack($g_idListView, False)
+	_GUICtrlListView_RegisterSortCallBack($g_idListView, 0)
 	_GUICtrlListView_RegisterSortCallBack($g_idListView2)
 	GUIRegisterMsg($WM_NOTIFY, "_WM_NOTIFY")
 

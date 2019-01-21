@@ -17,6 +17,12 @@ Func Example()
 
 	GUISetState(@SW_SHOW)
 
+	; Set parts
+	_GUICtrlStatusBar_SetParts($hStatus, $aParts)
+	_GUICtrlStatusBar_SetText($hStatus, "Part 1")
+	_GUICtrlStatusBar_SetText($hStatus, "Part 2", 1)
+	_GUICtrlStatusBar_SetText($hStatus, "Part 3", 2)
+
 	_GUICtrlStatusBar_ShowHide($hStatus, @SW_HIDE)
 	MsgBox($MB_SYSTEMMODAL, "Information", "Hide StatusBar")
 	Sleep(1000)

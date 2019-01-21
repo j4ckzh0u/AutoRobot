@@ -12,9 +12,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Find all occurrences of string "=C10*10" in the formulas, exact match
-; *****************************************************************************
 Local $aResult = _Excel_RangeFind($oWorkbook, "=C10*10", "A1:G15", $xlFormulas, $xlWhole)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeFind Example 2", "Error searching the range." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeFind Example 2", "Find all occurrences of string '=C10*10' in the formulas, exact match." & @CRLF & "Data successfully searched.")

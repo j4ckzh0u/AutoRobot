@@ -1,7 +1,9 @@
 #include <GUIConstantsEx.au3>
 #include <GuiImageList.au3>
 #include <GuiTreeView.au3>
-#include <WinAPI.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIMisc.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Example()

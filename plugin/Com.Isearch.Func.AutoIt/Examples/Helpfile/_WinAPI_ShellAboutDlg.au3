@@ -1,5 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <WinAPIDlg.au3>
+#include <WinAPIShellEx.au3>
 
 Local $hForm = GUICreate('Test ' & StringReplace(@ScriptName, '.au3', '()'), 400, 400)
 Local $idButton = GUICtrlCreateButton('About', 165, 366, 70, 23)

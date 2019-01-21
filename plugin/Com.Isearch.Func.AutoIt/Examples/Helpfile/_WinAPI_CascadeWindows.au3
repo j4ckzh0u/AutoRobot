@@ -1,6 +1,7 @@
 #include <APISysConstants.au3>
 #include <GUIConstantsEx.au3>
-#include <WinAPISys.au3>
+#include <WinAPIMisc.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Local $aWnds[4]

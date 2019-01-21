@@ -17,7 +17,7 @@ Func Example()
 
 	; Compare FAT Dates/Times
 	$tFileTime1 = _Date_Time_DOSDateTimeToFileTime(0x3621, 0x11EF) ; 01/01/2007 02:15:30
-	$tFileTime2 = _Date_Time_DOSDateTimeToFileTime(0x379F, 0x944A) ; 12/31/2007 18:34:20
+	$tFileTime2 = _Date_Time_DOSDateTimeToFileTime(0x379F, 0x944A) ; 31/12/2007 18:34:20
 
 	MemoWrite("Result 1: " & _Date_Time_CompareFileTime($tFileTime1, $tFileTime2))
 	MemoWrite("Result 2: " & _Date_Time_CompareFileTime($tFileTime1, $tFileTime1))

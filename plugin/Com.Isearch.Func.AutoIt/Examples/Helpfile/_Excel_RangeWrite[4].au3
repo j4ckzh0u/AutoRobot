@@ -1,4 +1,3 @@
-#include <Array.au3>
 #include <Excel.au3>
 #include <MsgBoxConstants.au3>
 
@@ -12,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Fill a range in the active sheet in the active workbook with a formula
-; *****************************************************************************
 _Excel_RangeWrite($oWorkbook, $oWorkbook.Activesheet, "=B1+3", "B5:F6", False)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeWrite Example 4", "Error writing to worksheet." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeWrite Example 4", "Range successfully filled with a formula.")

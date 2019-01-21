@@ -8,7 +8,7 @@ Func Example()
 	Local Const $sMessage = "Hold down Ctrl or Shift to choose multiple files."
 
 	; Display an open dialog to select a list of file(s).
-	Local $sFileOpenDialog = FileOpenDialog($sMessage, @WindowsDir & "\", "Images (*.jpg;*.bmp)|Videos (*.avi;*.mpg)", $FD_FILEMUSTEXIST + $FD_MULTISELECT)
+	Local $sFileOpenDialog = FileOpenDialog($sMessage, @WindowsDir & "\", "Images (*.jpg;*.bmp)|Videos (*.avi;*.mpg)", BitOR($FD_FILEMUSTEXIST, $FD_MULTISELECT))
 	If @error Then
 		; Display the error message.
 		MsgBox($MB_SYSTEMMODAL, "", "No file(s) were selected.")

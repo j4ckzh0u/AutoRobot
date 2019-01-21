@@ -1,6 +1,7 @@
 #include <GUIConstantsEx.au3>
 #include <GuiReBar.au3>
 #include <GuiToolbar.au3>
+#include <WinAPIConstants.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo
@@ -63,7 +64,7 @@ Func Example()
 		MemoWrite("$RBBS_HIDDEN........: " & _GUICtrlRebar_GetBandStyleHidden($hReBar, $x))
 		MemoWrite("$RBBS_HIDETITLE.....: " & _GUICtrlRebar_GetBandStyleHideTitle($hReBar, $x))
 		MemoWrite("$RBBS_NOGRIPPER.....: " & _GUICtrlRebar_GetBandStyleNoGripper($hReBar, $x))
-		MemoWrite("$RBBS_NOVERT........: " & _GUICtrlRebar_GetBandStyleNoVert($hReBar, $x))
+		MemoWrite("$RBBS_NOVERT........: " & (BitAND(_GUICtrlRebar_GetBandStyle($hReBar, $x), $RBBS_NOVERT) = $RBBS_NOVERT))
 		MemoWrite("$RBBS_TOPALIGN......: " & _GUICtrlRebar_GetBandStyleTopAlign($hReBar, $x))
 		MemoWrite("$RBBS_USECHEVRON....: " & _GUICtrlRebar_GetBandStyleUseChevron($hReBar, $x))
 		MemoWrite("$RBBS_VARIABLEHEIGHT: " & _GUICtrlRebar_GetBandStyleVariableHeight($hReBar, $x))

@@ -1,5 +1,5 @@
-#include <GUIConstantsEx.au3>
 #include <FontConstants.au3>
+#include <GUIConstantsEx.au3>
 
 Example()
 

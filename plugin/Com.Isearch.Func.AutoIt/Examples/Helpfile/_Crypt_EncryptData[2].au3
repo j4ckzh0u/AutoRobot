@@ -5,26 +5,26 @@ Example()
 
 Func Example()
 	; Encrypt text using a generic password.
-	Local $sEncrypted = StringEncrypt(True, 'Encrypt this data.', 'securepassword')
+	Local $dEncrypted = StringEncrypt(True, 'Encrypt this data.', 'securepassword')
 
 	; Display the encrypted text.
-	MsgBox($MB_SYSTEMMODAL, '', $sEncrypted)
+	MsgBox($MB_SYSTEMMODAL, 'Encrypted', $dEncrypted)
 
 	; Decrypt the encrypted text using the generic password.
-	Local $sDecrypted = StringEncrypt(False, $sEncrypted, 'securepassword')
+	Local $sDecrypted = StringEncrypt(False, $dEncrypted, 'securepassword')
 
 	; Display the decrypted text.
-	MsgBox($MB_SYSTEMMODAL, '', $sDecrypted)
+	MsgBox($MB_SYSTEMMODAL, 'Decrypted', $sDecrypted)
 EndFunc   ;==>Example
 
 Func StringEncrypt($bEncrypt, $sData, $sPassword)
 	_Crypt_Startup() ; Start the Crypt library.
-	Local $sReturn = ''
+	Local $vReturn = ''
 	If $bEncrypt Then ; If the flag is set to True then encrypt, otherwise decrypt.
-		$sReturn = _Crypt_EncryptData($sData, $sPassword, $CALG_RC4)
+		$vReturn = _Crypt_EncryptData($sData, $sPassword, $CALG_RC4)
 	Else
-		$sReturn = BinaryToString(_Crypt_DecryptData($sData, $sPassword, $CALG_RC4))
+		$vReturn = BinaryToString(_Crypt_DecryptData($sData, $sPassword, $CALG_RC4))
 	EndIf
 	_Crypt_Shutdown() ; Shutdown the Crypt library.
-	Return $sReturn
+	Return $vReturn
 EndFunc   ;==>StringEncrypt

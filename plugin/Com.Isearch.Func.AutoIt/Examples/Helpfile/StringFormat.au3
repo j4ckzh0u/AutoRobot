@@ -35,8 +35,10 @@ Func Example()
 	PrintFormat($sString, "[%010s]", "10 chars with leading zero") ; [0000string]
 
 	ConsoleWrite(@CRLF & "Date Format - each % uses a new parameter" & @CRLF)
+	ConsoleWrite('"%02i\%02i\%04i" 0n (1, 9, 2013) => ' & StringFormat("%02i\%02i\%04i", 1, 9, 2013) & @CRLF)
 
-	ConsoleWrite('"%02i\%02i\%04i" 0n (1, 9, 2013) => ' & StringFormat("%02i\%02i\%04i", 1, 9, 2013) & @CRLF & @CRLF)
+	ConsoleWrite(@CRLF & "Just string to format  without Vars" & @CRLF)
+	ConsoleWrite('"Some \texample text\n" => ' & StringFormat('Some \texample text\n'))
 EndFunc   ;==>Example
 
 Func PrintFormat($vVar, $sFormat, $sExplan, $iTab = 0)

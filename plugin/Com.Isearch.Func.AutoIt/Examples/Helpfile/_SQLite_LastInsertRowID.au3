@@ -24,7 +24,6 @@ EndIf
 ; 	Bob         | 28
 ; 	Cindy       | 21
 
-; _SQLite_Exec() and _SQLite_Execute() are quite similar
 If Not _SQLite_Exec(-1, "CREATE TEMP TABLE persons (Name, Age);") = $SQLITE_OK Then _
 		MsgBox($MB_SYSTEMMODAL, "SQLite Error", _SQLite_ErrMsg())
 If Not _SQLite_Exec(-1, "INSERT INTO persons VALUES ('Alice','43');") = $SQLITE_OK Then _

@@ -3,13 +3,16 @@
 #include <GUIConstantsEx.au3>
 #include <MsgBoxConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
 #include <WinAPISys.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Global $g_hFont = _WinAPI_CreateFont(16, 0, 0, 0, $FW_BOLD, 0, 0, 0, $DEFAULT_CHARSET, $OUT_DEFAULT_PRECIS, $CLIP_DEFAULT_PRECIS, $DEFAULT_PITCH, $ANTIALIASED_QUALITY, 'Arial')
 
 Global $g_bDwm = False
-If (_WinAPI_GetVersion() > '5.2') And (_WinAPI_DwmIsCompositionEnabled()) Then
+If (Number(_WinAPI_GetVersion()) > 5.2) And (_WinAPI_DwmIsCompositionEnabled()) Then
 	If MsgBox(BitOR($MB_YESNOCANCEL, $MB_ICONQUESTION, $MB_SYSTEMMODAL), 'DWM', 'This example works only if a Desktop Window Manager (DWM) composition is disabled.' & @CRLF & @CRLF & 'Do you want to disable DWM?') = 6 Then
 		_WinAPI_DwmEnableComposition(0)
 		$g_bDwm = True

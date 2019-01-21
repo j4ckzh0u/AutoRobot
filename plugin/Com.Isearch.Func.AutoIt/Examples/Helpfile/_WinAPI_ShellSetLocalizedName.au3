@@ -1,8 +1,9 @@
 #include <MsgBoxConstants.au3>
 #include <WinAPIShellEx.au3>
+#include <WinAPIShPath.au3>
 #include <WinAPISys.au3>
 
-If _WinAPI_GetVersion() < '6.0' Then
+If Number(_WinAPI_GetVersion()) < 6.0 Then
 	MsgBox(BitOR($MB_ICONERROR, $MB_SYSTEMMODAL), 'Error', 'Require Windows Vista or later.')
 	Exit
 EndIf
@@ -27,4 +28,4 @@ MsgBox(BitOR($MB_ICONINFORMATION, $MB_SYSTEMMODAL), '', 'Press OK to remove loca
 _WinAPI_ShellRemoveLocalizedName($sDir)
 MsgBox(BitOR($MB_ICONINFORMATION, $MB_SYSTEMMODAL), '', 'Press OK to exit.')
 
-DirRemove($sDir, 1)
+DirRemove($sDir, $DIR_REMOVE)

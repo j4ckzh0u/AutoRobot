@@ -1,5 +1,6 @@
 #include <APISysConstants.au3>
 #include <MsgBoxConstants.au3>
+#include <WinAPIConv.au3>
 #include <WinAPISys.au3>
 #include <WindowsConstants.au3>
 

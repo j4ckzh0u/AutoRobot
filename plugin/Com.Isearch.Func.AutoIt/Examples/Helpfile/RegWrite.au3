@@ -1,18 +1,29 @@
-; Write a single REG_SZ value
-RegWrite("HKEY_CURRENT_USER\Software\Test", "TestKey", "REG_SZ", "Hello this is a test")
+#include <MsgBoxConstants.au3>
 
-; Write the REG_MULTI_SZ value of "line1" and "line2"
-RegWrite("HKEY_CURRENT_USER\Software\Test", "TestKey1", "REG_MULTI_SZ", "line1" & @CRLF & "line2")
+Example()
 
-; Write the REG_MULTI_SZ value of "line1"
-RegWrite("HKEY_CURRENT_USER\Software\Test", "TestKey2", "REG_MULTI_SZ", "line1")
+Func Example()
+	; Check if the registry key is already existing, so as not to damage the user's system.
+	RegRead("HKEY_CURRENT_USER\Software\AutoIt_Example", "Key1")
 
-; always add and extra null string
-RegWrite("HKEY_CURRENT_USER\Software\Test", "TestKey3", "REG_MULTI_SZ", "line1" & @CRLF & "line2" & @CRLF)
-RegWrite("HKEY_CURRENT_USER\Software\Test", "TestKey4", "REG_MULTI_SZ", "line1" & @CRLF & @CRLF & "line2" & @CRLF)
+	; @error is set to non-zero when reading a registry key that doesn't exist.
+	If Not @error Then
+		MsgBox($MB_SYSTEMMODAL, "", "An error occurred whilst the temporary registry key. ""AutoIt_Example"" appears to already exist.")
+		Return False
+	EndIf
 
-; empty REG_MULTI_SZ
-RegWrite("HKEY_CURRENT_USER\Software\Test", "TestKey5", "REG_MULTI_SZ", "")
+	; Write a single REG_SZ value to the key "Key1".
+	RegWrite("HKEY_CURRENT_USER\Software\AutoIt_Example", "Key1", "REG_SZ", "This is an example of RegWrite")
 
-; create just the key
-RegWrite("HKEY_CURRENT_USER\Software\Test1")
+	; Write the REG_MULTI_SZ value of "Line 1" and "Line 2". Always append an extra line-feed character when writing a REG_MULTI_SZ value.
+	RegWrite("HKEY_CURRENT_USER\Software\AutoIt_Example", "Key2", "REG_MULTI_SZ", "Line 1" & @LF & "Line 2" & @LF)
+
+	; Write the REG_MULTI_SZ value of "Line 1". Always append an extra line-feed character when writing a REG_MULTI_SZ value.
+	RegWrite("HKEY_CURRENT_USER\Software\AutoIt_Example", "Key3", "REG_MULTI_SZ", "Line 1" & @LF)
+
+	; Display a message to navigate to RegEdit.exe manually.
+	MsgBox($MB_SYSTEMMODAL, "", "Open RegEdit.exe and navigate the the registry key ""HKEY_CURRENT_USER\Software\AutoIt_Example"".")
+
+	; Delete the temporary registry key.
+	RegDelete("HKEY_CURRENT_USER\Software\AutoIt_Example")
+EndFunc   ;==>Example

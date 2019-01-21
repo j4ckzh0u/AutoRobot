@@ -1,7 +1,7 @@
 #RequireAdmin
 
 #include <Array.au3>
-#include <WinAPI.au3>
+#include <WinAPIHObj.au3>
 #include <WinAPIProc.au3>
 
 Local $aAdjust, $aList = 0

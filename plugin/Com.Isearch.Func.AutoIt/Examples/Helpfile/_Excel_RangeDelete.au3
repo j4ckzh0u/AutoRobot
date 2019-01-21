@@ -1,4 +1,3 @@
-#include <Array.au3>
 #include <Excel.au3>
 #include <MsgBoxConstants.au3>
 
@@ -12,10 +11,8 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Delete a range with 3 rows and 2 columns on the active worksheet
 ; and shift the cells up.
-; *****************************************************************************
 Local $sRange = "J5:K7"
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeDelete Example 1", "Deleting cells " & $sRange & ".")
 _Excel_RangeDelete($oWorkbook.ActiveSheet, $sRange, $xlShiftUp)

@@ -1,6 +1,5 @@
 #include <GuiButton.au3>
 #include <GUIConstantsEx.au3>
-#include <GuiMenu.au3>
 #include <WindowsConstants.au3>
 
 ; Note the controlID from these buttons can NOT be read with GUICtrlRead

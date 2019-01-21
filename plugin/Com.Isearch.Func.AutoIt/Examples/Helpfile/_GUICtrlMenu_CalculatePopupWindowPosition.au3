@@ -1,6 +1,8 @@
 #include <GUIConstantsEx.au3>
 #include <GuiMenu.au3>
 #include <MsgBoxConstants.au3>
+#include <WinAPIConv.au3>
+#include <WinAPISysWin.au3>
 
 Local $hForm = GUICreate('Test ' & StringReplace(@ScriptName, '.au3', '()'), 400, 400)
 Local $idButton = GUICtrlCreateButton('New Window', 145, 366, 110, 23)

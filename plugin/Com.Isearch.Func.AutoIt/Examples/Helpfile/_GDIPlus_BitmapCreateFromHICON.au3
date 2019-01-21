@@ -1,5 +1,6 @@
 #include <GDIPlus.au3>
 #include <GUIConstantsEx.au3>
+#include <WinAPIIcons.au3>
 #include <WinAPIShellEx.au3>
 
 Example()

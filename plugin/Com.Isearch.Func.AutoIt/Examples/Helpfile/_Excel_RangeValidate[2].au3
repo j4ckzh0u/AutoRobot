@@ -11,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Only values from a list defined in a cell range (column 'D') are valid
-; *****************************************************************************
 ; Write values to a range
 Local $aValidation[] = ["10", "20", "30", "40", "50"]
 _Excel_RangeWrite($oWorkbook, Default, $aValidation, "D1")

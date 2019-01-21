@@ -12,9 +12,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Find all occurrences of value "37000" (partial match)
-; *****************************************************************************
 Local $aResult = _Excel_RangeFind($oWorkbook, "37000")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeFind Example 1", "Error searching the range." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeFind Example 1", "Find all occurrences of value '37000' (partial match)." & @CRLF & "Data successfully searched.")

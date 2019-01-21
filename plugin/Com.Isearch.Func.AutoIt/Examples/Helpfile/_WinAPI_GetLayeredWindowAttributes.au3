@@ -1,6 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <MsgBoxConstants.au3>
-#include <WinAPI.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Local $hGui = GUICreate("trans", 300, 400, -1, -1, -1, $WS_EX_LAYERED)

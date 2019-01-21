@@ -11,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Delete sheet number 1 of the specified workbook
-; *****************************************************************************
 _Excel_SheetDelete($oWorkbook, 1)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_SheetDelete Example 1", "Error deleting sheet." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_SheetDelete Example 1", "First sheet has been deleted.")

@@ -1,9 +1,13 @@
 #include <APIDlgConstants.au3>
 #include <FontConstants.au3>
 #include <GUIConstantsEx.au3>
-#include <GUIRichEdit.au3>
+#include <GuiRichEdit.au3>
 #include <MsgBoxConstants.au3>
+#include <SendMessage.au3>
 #include <WinAPIDlg.au3>
+#include <WinAPIGdi.au3>
+#include <WinAPIMisc.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Local Const $sTxt = 'AutoIt v3 is a freeware BASIC-like scripting language designed for automating the Windows GUI and general scripting. It uses a combination of simulated keystrokes, mouse movement and window/control manipulation in order to automate tasks in a way not possible or reliable with other languages (e.g. VBScript and SendKeys). AutoIt is also very small, self-contained and will run on all versions of Windows out-of-the-box with no annoying "runtimes" required!' & @CRLF & @CRLF & _

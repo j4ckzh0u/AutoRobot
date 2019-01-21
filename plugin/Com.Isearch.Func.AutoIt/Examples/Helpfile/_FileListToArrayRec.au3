@@ -1,4 +1,4 @@
-#include <Array.au3> ; Only required to display the arrays
+#include <Array.au3>
 #include <File.au3>
 #include <MsgBoxConstants.au3>
 

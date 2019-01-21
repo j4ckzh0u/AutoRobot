@@ -9,7 +9,7 @@ Func Example()
 
 	; Create a checkbox control.
 	Local $idCheckbox = GUICtrlCreateCheckbox("Standard Checkbox", 10, 10, 185, 25)
-	Local $idClose = GUICtrlCreateButton("Close", 210, 170, 85, 25)
+	Local $idButton_Close = GUICtrlCreateButton("Close", 210, 170, 85, 25)
 
 	; Display the GUI.
 	GUISetState(@SW_SHOW, $hGUI)
@@ -17,7 +17,7 @@ Func Example()
 	; Loop until the user exits.
 	While 1
 		Switch GUIGetMsg()
-			Case $GUI_EVENT_CLOSE, $idClose
+			Case $GUI_EVENT_CLOSE, $idButton_Close
 				ExitLoop
 
 			Case $idCheckbox

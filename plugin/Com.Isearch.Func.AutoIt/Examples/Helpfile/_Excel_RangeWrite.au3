@@ -1,4 +1,3 @@
-#include <Array.au3>
 #include <Excel.au3>
 #include <MsgBoxConstants.au3>
 
@@ -12,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Write a string with a line break to the active sheet in the active workbook
-; *****************************************************************************
 _Excel_RangeWrite($oWorkbook, $oWorkbook.Activesheet, "Test" & @CRLF & "String")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeWrite Example 1", "Error writing to worksheet." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeWrite Example 1", "String successfully written.")

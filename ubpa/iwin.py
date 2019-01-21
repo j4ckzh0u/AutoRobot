@@ -31,7 +31,7 @@ __logger = ILog(__file__)
 
 print("*************************************************")
 curfilePath=os.path.abspath(__file__)
-dll_path=os.path.join(curfilePath, r"../../plugin/Com.Isearch.Func.AutoIt/AutoItX3.dll")
+dll_path=os.path.join(curfilePath, r"../../plugin/Com.Isearch.Func.AutoIt/AutoItX/AutoItX3.dll")
 print(dll_path)
 print("*************************************************")
 dll = windll.LoadLibrary(dll_path)  # 调AutoItX3动态库

@@ -1,5 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <GuiRichEdit.au3>
+#include <SendMessage.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idLblMsg

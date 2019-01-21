@@ -13,15 +13,15 @@ Func Example()
 	GUICtrlCreateLabel("Prompt", 8, 7) ; add prompt info
 	GUICtrlSetResizing(-1, $GUI_DOCKLEFT + $GUI_DOCKTOP)
 
-	Local $idEdit = GUICtrlCreateInput("Default", -1, 3, 175, 20, $ES_PASSWORD) ; add the input area
-	GUICtrlSetState($idEdit, $GUI_FOCUS)
-	GUICtrlSetResizing($idEdit, $GUI_DOCKBOTTOM + $GUI_DOCKHEIGHT)
+	Local $idButton_Edit = GUICtrlCreateInput("Default", -1, 3, 175, 20, $ES_PASSWORD) ; add the input area
+	GUICtrlSetState($idButton_Edit, $GUI_FOCUS)
+	GUICtrlSetResizing($idButton_Edit, $GUI_DOCKBOTTOM + $GUI_DOCKHEIGHT)
 
-	Local $idOK = GUICtrlCreateButton("OK", -1, 3, 75, 24) ; add the button that will close the GUI
-	GUICtrlSetResizing($idOK, $GUI_DOCKBOTTOM + $GUI_DOCKSIZE + $GUI_DOCKHCENTER)
+	Local $idButton_OK = GUICtrlCreateButton("OK", -1, 3, 75, 24) ; add the button that will close the GUI
+	GUICtrlSetResizing($idButton_OK, $GUI_DOCKBOTTOM + $GUI_DOCKSIZE + $GUI_DOCKHCENTER)
 
-	Local $idCancel = GUICtrlCreateButton("Annuler", 25, -1) ; add the button that will close the GUI
-	GUICtrlSetResizing($idCancel, $GUI_DOCKBOTTOM + $GUI_DOCKSIZE + $GUI_DOCKHCENTER)
+	Local $idButton_Cancel = GUICtrlCreateButton("Cancel", 25, -1) ; add the button that will close the GUI
+	GUICtrlSetResizing($idButton_Cancel, $GUI_DOCKBOTTOM + $GUI_DOCKSIZE + $GUI_DOCKHCENTER)
 
 	GUISetState(@SW_SHOW) ; to display the GUI
 

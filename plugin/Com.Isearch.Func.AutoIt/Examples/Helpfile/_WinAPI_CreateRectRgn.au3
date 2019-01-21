@@ -1,5 +1,7 @@
 #include <GUIConstantsEx.au3>
-#include <WinAPI.au3>
+#include <WinAPIGdi.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPISys.au3>
 #include <WindowsConstants.au3>
 
 ; get height of window title and width of window frame - may be different when XP theme is ON/OFF

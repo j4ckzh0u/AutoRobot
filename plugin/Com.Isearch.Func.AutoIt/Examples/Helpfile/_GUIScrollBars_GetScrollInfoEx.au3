@@ -8,10 +8,10 @@ Global $g_idMemo
 Example()
 
 Func Example()
-	Local $hGUIMsg, $hGUI, $tSCROLLBARINFO
+	Local $hGUIMsg, $hGUI, $tSCROLLINFO = DllStructCreate($tagSCROLLINFO)
 
 	$hGUI = GUICreate("ScrollBar Example", 400, 400, -1, -1, BitOR($WS_MINIMIZEBOX, $WS_CAPTION, $WS_POPUP, $WS_SYSMENU, $WS_SIZEBOX))
-	$g_idMemo = GUICtrlCreateEdit("", 2, 32, 380, 226, BitOR($WS_HSCROLL, $WS_VSCROLL))
+	$g_idMemo = GUICtrlCreateEdit("", 2, 2, 380, 360, BitOR($WS_HSCROLL, $WS_VSCROLL))
 	GUICtrlSetResizing($g_idMemo, $GUI_DOCKALL)
 	GUICtrlSetFont($g_idMemo, 9, 400, 0, "Courier New")
 	GUISetBkColor(0x88AABB)
@@ -20,18 +20,21 @@ Func Example()
 
 	_GUIScrollBars_Init($hGUI)
 
-	$tSCROLLBARINFO = _GUIScrollBars_GetScrollBarInfoEx($hGUI, $OBJID_HSCROLL)
+	$tSCROLLINFO = _GUIScrollBars_GetScrollInfoEx($hGUI, $SB_VERT)
 	MemoWrite("Horizontal" & @CRLF & "--------------------------------------")
-	MemoWrite("Left.........: " & DllStructGetData($tSCROLLBARINFO, "Left"))
-	MemoWrite("Top..........: " & DllStructGetData($tSCROLLBARINFO, "Top"))
-	MemoWrite("Right........: " & DllStructGetData($tSCROLLBARINFO, "Right"))
-	MemoWrite("Bottom.......: " & DllStructGetData($tSCROLLBARINFO, "Bottom"))
-	MemoWrite("dxyLineButton: " & DllStructGetData($tSCROLLBARINFO, "dxyLineButton"))
-	MemoWrite("xyThumbTop...: " & DllStructGetData($tSCROLLBARINFO, "xyThumbTop"))
-	MemoWrite("xyThumbBottom: " & DllStructGetData($tSCROLLBARINFO, "xyThumbBottom"))
-	For $x = 0 To 5
-		MemoWrite("rgstate[" & $x & "]...: " & DllStructGetData($tSCROLLBARINFO, "rgstate", $x + 1))
-	Next
+	MemoWrite("nPage....: " & DllStructGetData($tSCROLLINFO, "nPage"))
+	MemoWrite("nPos.....: " & DllStructGetData($tSCROLLINFO, "nPos"))
+	MemoWrite("nMin.....: " & DllStructGetData($tSCROLLINFO, "nMin"))
+	MemoWrite("nMax.....: " & DllStructGetData($tSCROLLINFO, "nMax"))
+	MemoWrite("nTrackPos: " & DllStructGetData($tSCROLLINFO, "nTrackPos"))
+
+	$tSCROLLINFO = _GUIScrollBars_GetScrollInfoEx($hGUI, $SB_VERT)
+	MemoWrite(@CRLF & "Vertical" & @CRLF & "--------------------------------------")
+	MemoWrite("nPage....: " & DllStructGetData($tSCROLLINFO, "nPage"))
+	MemoWrite("nPos.....: " & DllStructGetData($tSCROLLINFO, "nPos"))
+	MemoWrite("nMin.....: " & DllStructGetData($tSCROLLINFO, "nMin"))
+	MemoWrite("nMax.....: " & DllStructGetData($tSCROLLINFO, "nMax"))
+	MemoWrite("nTrackPos: " & DllStructGetData($tSCROLLINFO, "nTrackPos"))
 
 	While 1
 		$hGUIMsg = GUIGetMsg()

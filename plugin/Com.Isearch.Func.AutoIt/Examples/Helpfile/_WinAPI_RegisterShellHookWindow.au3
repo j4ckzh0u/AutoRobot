@@ -1,5 +1,5 @@
 #include <APISysConstants.au3>
-#include <WinAPISys.au3>
+#include <WinAPISysWin.au3>
 
 Opt('TrayAutoPause', 0)
 

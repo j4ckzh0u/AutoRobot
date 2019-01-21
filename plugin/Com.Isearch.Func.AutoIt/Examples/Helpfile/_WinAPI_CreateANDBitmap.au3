@@ -2,6 +2,7 @@
 #include <GUIConstantsEx.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIIcons.au3>
 #include <WinAPIShPath.au3>
 
 Local Const $sPng = @ScriptDir & '\Extras\Silverlight.png'
@@ -46,21 +47,3 @@ EndIf
 
 Do
 Until GUIGetMsg() = $GUI_EVENT_CLOSE
-
-; Unlike _GDIPlus_BitmapCreateHBITMAPFromBitmap() that creates a device-dependent bitmap (DDB), this function creates a device-independent bitmap (DIB) which may be used for semi-transparent images
-
-Func _GDIPlus_BitmapCreateDIBFromBitmap($hBitmap)
-	Local $aSize = DllCall($g_hDll, 'uint', 'GdipGetImageDimension', 'ptr', $hBitmap, 'float*', 0, 'float*', 0)
-	If @error Or $aSize[0] Then Return 0
-
-	Local $tData = _GDIPlus_BitmapLockBits($hBitmap, 0, 0, $aSize[2], $aSize[3], $GDIP_ILMREAD, $GDIP_PXF32ARGB)
-	Local $pBits = DllStructGetData($tData, 'Scan0')
-	If Not $pBits Then Return 0
-
-	Local $hDIB = _WinAPI_CreateDIB($aSize[2], $aSize[3])
-	If Not @error Then
-		_WinAPI_SetBitmapBits($hDIB, $aSize[2] * $aSize[3] * 4, $pBits)
-	EndIf
-	_GDIPlus_BitmapUnlockBits($a_hBitmap, $tData)
-	Return $hDIB
-EndFunc   ;==>_GDIPlus_BitmapCreateDIBFromBitmap

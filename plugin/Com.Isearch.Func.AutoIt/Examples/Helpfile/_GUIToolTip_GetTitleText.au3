@@ -1,6 +1,8 @@
 #include <GUIConstantsEx.au3>
 #include <GUIToolTip.au3>
 #include <MsgBoxConstants.au3>
+#include <WinAPIIcons.au3>
+
 Example()
 
 Func Example()

@@ -9,42 +9,37 @@ Func Example()
 	Local $aArray_1D[5] = ["Item 0", "Item 1", "A longer Item 2 to show column expansion", "Item 3", "Item 4"]
 
 	_ArrayDisplay($aArray_1D, "1D display")
-	_ArrayDisplay($aArray_1D, "1D display transposed - 'Copy' buttons only", Default, 1 + 16) ; No buttons displayed
 
 	; Create 2D array to display
-	Local $aArray_2D[75][255]
+	Local $aArray_2D[20][15]
 	For $i = 0 To UBound($aArray_2D) - 1
 		For $j = 0 To UBound($aArray_2D, 2) - 1
 			$aArray_2D[$i][$j] = "Item " & StringFormat("%02i", $i) & StringFormat("%02i", $j)
 		Next
 	Next
 
-	_ArrayDisplay($aArray_2D, "2D display") ; Note columns truncated
-	_ArrayDisplay($aArray_2D, "2D display transposed", Default, 1) ; Note all array elements displayed
+	_ArrayDisplay($aArray_2D, "2D display")
+	_ArrayDisplay($aArray_2D, "2D display transposed", Default, 1)
 
 	ReDim $aArray_2D[20][10]
 	$aArray_2D[5][5] = "A longer item to show column expansion"
-	_ArrayDisplay($aArray_2D, "Expanded column - custom titles - alternate line color - no buttons or 'Row' column", Default, 32 + 64, Default, "AA|BB|CC|DD|EE|FF|GG|HH|II|JJ", Default, 0xDDFFDD)
-
-	; Assign the user function to a variable to pass as a parameter
-	Local $hUserFunction = _UserFunc
+	_ArrayDisplay($aArray_2D, "Expanded column - custom titles - no row/column", Default, 64, Default, "AA|BB|CC|DD|EE|FF|GG|HH|II|JJ")
 
 	$aArray_2D[5][5] = "Column alignment set to right"
-	_ArrayDisplay($aArray_2D, "Range set - right align - copy column width - user function", "3:7|4:9", 2, 15, "AA|BB|CC|DD|EE|FF", Default, Default, $hUserFunction)
-	_ArrayDisplay($aArray_2D, "Range set - right align - copy column width - transposed", "3:7|4:9", 3, 15, "AA|BB|CC|DD|EE|FF") ; Note no col names as transposed
+	_ArrayDisplay($aArray_2D, "Range set - right align", "3:7|4:9", 2, Default, "AA|BB|CC|DD|EE|FF")
+
+	$aArray_2D[5][5] = "Column alignment set to left"
+	Opt("GUIDataSeparatorChar", "!")
+	_ArrayDisplay($aArray_2D, "! Header separator", "3:7|4:9", Default, Default, "AA!BB!CC!DD!EE!FF")
 
 	; Create non-array variable to force error - MsgBox displayed as $iFlags set
-	Local $vVar = 0
-	_ArrayDisplay($vVar, "MsgBox on Error", Default, 8)
+	Local $vVar = 0, $iRet, $iError
+	$iRet = _ArrayDisplay($vVar, "No MsgBox on Error")
+	$iError = @error
+	MsgBox(0, "_ArrayDisplay() Error", "return without internal Msgbox $iret =" & $iRet & " @error=" & $iError)
 
-EndFunc   ;==>Example
+	$iRet = _ArrayDisplay($vVar, "MsgBox on Error", Default, 8)
+	$iError = @error
+	MsgBox(0, "_ArrayDisplay() Error", "return internal Msgbox with no force Exit $iret =" & $iRet & " @error=" & $iError)
 
-; Note that the user function MUST have TWO parameters even if you do not intend to use both of them
-Func _UserFunc($aArray_2D, $aSelected)
-
-	; But if a parameter is not used do this to prevent an Au3Check warning
-	#forceref $aArray_2D
-
-	_ArrayDisplay($aSelected, "Selected cols")
-
-EndFunc   ;==>_UserFunc
+EndFunc    ;==>Example

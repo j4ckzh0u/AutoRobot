@@ -11,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Export cells A1:E10 of the active worksheet as PDF and display the file.
-; *****************************************************************************
 Local $sOutput = @TempDir & "\_Excel1_1.pdf"
 _Excel_Export($oExcel, "A1:E10", $sOutput, Default, Default, Default, Default, Default, True)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_Export Example 1", "Error saving range to '" & $sOutput & "'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

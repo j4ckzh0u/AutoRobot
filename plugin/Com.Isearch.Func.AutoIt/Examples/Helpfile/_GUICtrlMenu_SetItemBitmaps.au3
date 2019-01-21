@@ -1,6 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <GuiMenu.au3>
-#include <WinAPI.au3>
+#include <WinAPIGdi.au3>
 
 Global $g_idMemo
 

@@ -1,3 +1,4 @@
+#include <WinAPIMem.au3>
 #include <WinAPISys.au3>
 
 Local $tData = DllStructCreate('byte[4096]')

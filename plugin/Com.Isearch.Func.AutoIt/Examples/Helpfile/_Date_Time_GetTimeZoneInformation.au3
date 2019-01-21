@@ -1,9 +1,11 @@
+;~ #RequireAdmin
+; the Windows API "SetTimeZoneInformation" need "SeTimeZonePrivilege" so you have to use #RequireAdmin
+
 #include <Date.au3>
 #include <GUIConstantsEx.au3>
 #include <MsgBoxConstants.au3>
+#include <WinAPIError.au3>
 #include <WindowsConstants.au3>
-
-; Under Vista the Windows API "SetTimeZoneInformation" may be rejected due to system security
 
 Global $g_idMemo
 
@@ -13,8 +15,8 @@ Func Example()
 	Local $aOld, $aNew
 
 	; Create GUI
-	GUICreate("Time", 400, 300)
-	$g_idMemo = GUICtrlCreateEdit("", 2, 2, 396, 296, $WS_VSCROLL)
+	GUICreate("Time", 400, 460)
+	$g_idMemo = GUICtrlCreateEdit("", 2, 2, 396, 456, $WS_VSCROLL)
 	GUICtrlSetFont($g_idMemo, 9, 400, 0, "Courier New")
 	GUISetState(@SW_SHOW)
 
@@ -22,9 +24,9 @@ Func Example()
 	$aOld = _Date_Time_GetTimeZoneInformation()
 	ShowTimeZoneInformation($aOld, "Current")
 
-	; Set new time zone information
+	; Set new time zone information , just name's updates
 	If Not _Date_Time_SetTimeZoneInformation($aOld[1], "A3L CST", $aOld[3], $aOld[4], "A3L CDT", $aOld[6], $aOld[7]) Then
-		MsgBox($MB_SYSTEMMODAL, "Error", "System timezone cannot be SET" & @CRLF & @CRLF & _WinAPI_GetLastErrorMessage())
+		MsgBox($MB_SYSTEMMODAL, "Error", "System timezone cannot be SET @error=" & @error & @CRLF & @CRLF & _WinAPI_GetErrorMessage(@extended))
 		Exit
 	EndIf
 

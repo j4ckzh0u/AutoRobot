@@ -18,7 +18,7 @@ Func Example()
 		Return False
 	Else
 		; Display the IP address.
-		MsgBox($MB_SYSTEMMODAL, "", "Domain name to IP :" & $sIPAddress)
+		MsgBox($MB_SYSTEMMODAL, "", "Domain name to IP : " & $sIPAddress)
 	EndIf
 EndFunc   ;==>Example
 

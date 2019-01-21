@@ -1,5 +1,6 @@
 #NoTrayIcon
 #include <MsgBoxConstants.au3>
+#include <StringConstants.au3>
 #include <TrayConstants.au3> ; Required for the $TRAY_ICONSTATE_SHOW, $TRAY_ITEM_EXIT and $TRAY_ITEM_PAUSE constants.
 
 Opt("TrayAutoPause", 0) ; The script will not pause when selecting the tray icon.
@@ -23,7 +24,7 @@ Func Example()
 			Case $idAbout ; Display a message box about the AutoIt version and installation path of the AutoIt executable.
 				MsgBox($MB_SYSTEMMODAL, "", "AutoIt tray menu example." & @CRLF & @CRLF & _
 						"Version: " & @AutoItVersion & @CRLF & _
-						"Install Path: " & StringLeft(@AutoItExe, StringInStr(@AutoItExe, "\", 0, -1) - 1)) ; Find the folder of a full path.
+						"Install Path: " & StringLeft(@AutoItExe, StringInStr(@AutoItExe, "\", $STR_NOCASESENSEBASIC, -1) - 1)) ; Find the folder of a full path.
 
 			Case $idRandom
 				; Set the text of the 'Random' item with a random integer.

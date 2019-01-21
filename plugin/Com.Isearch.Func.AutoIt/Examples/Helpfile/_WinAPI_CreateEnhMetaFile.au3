@@ -1,5 +1,7 @@
 #include <MsgBoxConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPIMisc.au3>
 
 Local Const $sEmf = @TempDir & '\Test.emf'
 

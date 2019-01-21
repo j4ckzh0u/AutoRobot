@@ -1,6 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <GuiMenu.au3>
-#include <WinAPI.au3>
+#include <WinAPIError.au3>
 #include <WindowsConstants.au3>
 
 Global Enum $e_idOpen = 1000, $e_idSave, $e_idInfo

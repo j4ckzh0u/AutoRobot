@@ -1,3 +1,4 @@
+#include <Array.au3>
 #include <Excel.au3>
 #include <MsgBoxConstants.au3>
 
@@ -19,9 +20,7 @@ _Excel_FilterSet($oWorkbook, Default, "A:E", 2, $aShow, $xlFilterValues)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_FilterGet Example", "Error filtering data." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_FilterGet Example", "Filters set:" & @CRLF & "  Column B: values = 20, 40 or 60." & @CRLF & "  Column C: values <610.")
 
-; *****************************************************************************
 ; Display information about the filters on the active worksheet.
-; *****************************************************************************
 Local $aFilters = _Excel_FilterGet($oWorkbook)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_FilterGet Example 1", "Error filtering data." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 _ArrayDisplay($aFilters, "Excel UDF: _Excel_FilterGet Example 1", Default, Default, Default, "Filter on|#areas|Criteria1|Criteria2|Operator|Range|#Records")

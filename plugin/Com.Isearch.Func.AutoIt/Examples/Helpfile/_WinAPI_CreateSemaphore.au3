@@ -1,6 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <MsgBoxConstants.au3>
-#include <WinAPI.au3>
+#include <WinAPIHObj.au3>
 #include <WinAPIProc.au3>
 
 If Not @Compiled Then

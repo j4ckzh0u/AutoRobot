@@ -9,7 +9,7 @@ Func Example()
 	Local $aidItem[6], $idTreeView
 	Local $iStyle = BitOR($TVS_EDITLABELS, $TVS_HASBUTTONS, $TVS_HASLINES, $TVS_LINESATROOT, $TVS_DISABLEDRAGDROP, $TVS_SHOWSELALWAYS, $TVS_CHECKBOXES)
 
-	GUICreate("TreeView Set Height", 400, 300)
+	GUICreate("TreeView Set/Get Height", 400, 300)
 
 	$idTreeView = GUICtrlCreateTreeView(2, 2, 396, 268, $iStyle, $WS_EX_CLIENTEDGE)
 	GUISetState(@SW_SHOW)
@@ -19,6 +19,8 @@ Func Example()
 		$aidItem[$x] = GUICtrlCreateTreeViewItem(StringFormat("[%02d] New Item", $x + 1), $idTreeView)
 	Next
 	_GUICtrlTreeView_EndUpdate($idTreeView)
+
+	_GUICtrlTreeView_SetHeight($idTreeView, 30)
 
 	MsgBox($MB_SYSTEMMODAL, "Information", StringFormat("Item Height? %s", _GUICtrlTreeView_GetHeight($idTreeView)))
 

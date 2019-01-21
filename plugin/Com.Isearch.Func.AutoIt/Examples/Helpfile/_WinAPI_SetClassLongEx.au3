@@ -2,7 +2,7 @@
 
 #include <APISysConstants.au3>
 #include <GUIConstantsEx.au3>
-#include <WinAPISys.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Local $hParent = GUICreate('', 0, 0, 0, 0, 0, $WS_EX_TOOLWINDOW)

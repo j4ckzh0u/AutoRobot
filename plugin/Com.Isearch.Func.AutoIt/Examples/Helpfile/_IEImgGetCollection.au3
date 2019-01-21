@@ -6,7 +6,7 @@
 #include <MsgBoxConstants.au3>
 
 Local $oIE = _IECreate("http://www.autoitscript.com/")
-Local $oImg = _IEImgGetCollection($oIE, 5)
+Local $oImg = _IEImgGetCollection($oIE, 4)
 Local $sInfo = "Src: " & $oImg.src & @CRLF
 $sInfo &= "FileName: " & $oImg.nameProp & @CRLF
 $sInfo &= "Height: " & $oImg.height & @CRLF

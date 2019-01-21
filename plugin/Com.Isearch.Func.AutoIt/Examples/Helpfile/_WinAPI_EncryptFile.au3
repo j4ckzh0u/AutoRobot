@@ -2,7 +2,7 @@
 #include <MsgBoxConstants.au3>
 #include <WinAPIFiles.au3>
 
-Local $sFile = FileOpenDialog('Select File', @ScriptDir, 'All Files (*.*)', 1 + 2)
+Local $sFile = FileOpenDialog('Select File', @ScriptDir, 'All Files (*.*)', BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
 If @error Then Exit
 
 Switch _WinAPI_FileEncryptionStatus($sFile)

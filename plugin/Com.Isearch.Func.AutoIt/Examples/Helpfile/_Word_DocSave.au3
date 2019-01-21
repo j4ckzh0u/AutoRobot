@@ -14,9 +14,7 @@ Local $oDoc = _Word_DocOpen($oWord, @TempDir & "\_Word_Test.doc")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocSave Example", _
 		"Error opening '_Word_Test.doc'." & @CRLF & "error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Save the document
-; *****************************************************************************
 ; Insert text at the beginning
 Local $oRange = _Word_DocRangeSet($oDoc, -1)
 $oRange.Text = "Bold text at the beginning. "

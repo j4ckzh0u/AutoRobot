@@ -1,4 +1,4 @@
-#include <WinAPISys.au3>
+#include <WinAPIMem.au3>
 
 Local $tStruct = DllStructCreate('byte[8]')
 ConsoleWrite(DllStructGetData($tStruct, 1) & @CRLF)

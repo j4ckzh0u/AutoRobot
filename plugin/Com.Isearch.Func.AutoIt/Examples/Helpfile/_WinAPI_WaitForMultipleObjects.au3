@@ -1,5 +1,5 @@
-#include <WinAPI.au3>
-#include <WinAPIProc.au3> ;needed for _WinAPI_ResetEvent()
+#include <WinAPIHObj.au3>
+#include <WinAPIProc.au3>
 
 Global $g_tEvents = DllStructCreate("handle Event[3];")
 $g_tEvents.Event(1) = _WinAPI_CreateEvent(0, True, False)

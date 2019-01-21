@@ -5,7 +5,8 @@
 #include <Security.au3>
 #include <SecurityConstants.au3>
 #include <StructureConstants.au3>
-#include <WinAPI.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPIProc.au3>
 
 Example_ProcessWithTok()
 

@@ -1,6 +1,5 @@
 #include <GUIConstantsEx.au3>
 #include <GuiStatusBar.au3>
-#include <WinAPI.au3>
 
 Example()
 
@@ -17,6 +16,7 @@ Func Example()
 	_GUICtrlStatusBar_SetParts($hStatus, $aParts)
 	_GUICtrlStatusBar_SetText($hStatus, "Part 1")
 	_GUICtrlStatusBar_SetText($hStatus, "Part 2", 1)
+	_GUICtrlStatusBar_SetText($hStatus, "Part 3", 2)
 
 	; Set minimum height
 	_GUICtrlStatusBar_SetMinHeight($hStatus, 30)

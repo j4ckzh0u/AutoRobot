@@ -1,9 +1,7 @@
 #include <Excel.au3>
 #include <MsgBoxConstants.au3>
 
-; *****************************************************************************
 ; Force the creation of a new Excel application and display alerts
-; *****************************************************************************
 _Excel_Open(Default, Default, Default, Default, True)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_Open Example 2", "Error creating a new Excel application object." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 Local $aProcesses = ProcessList("Excel.exe")

@@ -1,8 +1,8 @@
 #NoTrayIcon
 
 #include <MsgBoxConstants.au3>
-#include <WinAPI.au3>
 #include <WinAPIFiles.au3>
+#include <WinAPIHObj.au3>
 
 Opt('WinWaitDelay', 0)
 
@@ -62,7 +62,7 @@ Func _Sender()
 	Local $tData = DllStructCreate('wchar[1024]', $pAddress)
 	Local $sText
 	While WinWaitClose($g_sTitle)
-		$sText = StringStripWS(InputBox($g_sTitle & " (sender)", 'Type some text message.', '', '', -1, 171), 3)
+		$sText = StringStripWS(InputBox($g_sTitle & " (sender)", 'Type some text message.', '', '', -1, 171), BitOR($STR_STRIPLEADING, $STR_STRIPTRAILING))
 		If Not $sText Then
 			ExitLoop
 		EndIf

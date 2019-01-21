@@ -9,8 +9,8 @@ Func Example()
 
 	Local $hKey = _Crypt_DeriveKey("CryptPassword", $CALG_RC4) ; Declare a password string and algorithm to create a cryptographic key.
 
-	For $iWord In $aStringsToEncrypt
-		$sOutput &= $iWord & @TAB & " = " & _Crypt_EncryptData($iWord, $hKey, $CALG_USERKEY) & @CRLF ; Encrypt the text with the cryptographic key.
+	For $vText In $aStringsToEncrypt
+		$sOutput &= $vText & @TAB & " = " & _Crypt_EncryptData($vText, $hKey, $CALG_USERKEY) & @CRLF ; Encrypt the text with the cryptographic key.
 	Next
 
 	MsgBox($MB_SYSTEMMODAL, "Encrypted data", $sOutput)

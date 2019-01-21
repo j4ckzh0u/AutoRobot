@@ -1,13 +1,14 @@
 #include <GUIConstantsEx.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIIcons.au3>
 #include <WinAPIShellEx.au3>
 #include <WinAPISys.au3>
 
 ; Create icon with overlay mask (48x48)
 Local $hIcon = _WinAPI_ShellExtractIcon(@SystemDir & '\shell32.dll', 1, 32, 32)
 Local $hOverlay
-If _WinAPI_GetVersion() >= '6.0' Then
+If Number(_WinAPI_GetVersion()) >= 6.0 Then
 	$hOverlay = _WinAPI_ShellExtractIcon(@SystemDir & '\imageres.dll', 154, 32, 32)
 Else
 	$hOverlay = _WinAPI_ShellExtractIcon(@SystemDir & '\shell32.dll', 29, 32, 32)

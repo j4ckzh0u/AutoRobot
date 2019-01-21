@@ -1,6 +1,8 @@
 #include <GDIPlus.au3>
 #include <GUIConstantsEx.au3>
-#include <WinAPI.au3>
+#include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
 #include <WindowsConstants.au3>
 
 Global $g_hGUI, $g_hHBITMAP, $g_hDC, $g_hDC_Backbuffer, $g_oDC_Obj, $g_hGfxCtxt, $g_hPen

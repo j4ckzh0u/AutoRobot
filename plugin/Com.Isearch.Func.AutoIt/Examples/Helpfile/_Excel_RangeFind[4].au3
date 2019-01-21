@@ -12,9 +12,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Find all values with "Story" at the end using wildcards and exact match
-; *****************************************************************************
 Local $aResult = _Excel_RangeFind($oWorkbook, "* Story", Default, Default, $xlWhole)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeFind Example 4", "Error searching the range." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeFind Example 4", "Find all values with 'Story' at the end using wildcards and exact match." & @CRLF & "Data successfully searched.")

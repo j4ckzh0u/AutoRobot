@@ -1,7 +1,10 @@
 #include <MsgBoxConstants.au3>
-#include <WinAPIDiag.au3>
+#include <WinAPIError.au3>
 #include <WinAPIFiles.au3>
-#include <WinAPISys.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPIMem.au3>
+#include <WinAPIMisc.au3>
+#include <WinAPIShPath.au3>
 
 Local Const $sTempFile = @TempDir & '\Test.txt'
 

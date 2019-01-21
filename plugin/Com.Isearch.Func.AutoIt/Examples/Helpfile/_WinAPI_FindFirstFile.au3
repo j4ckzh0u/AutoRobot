@@ -1,7 +1,7 @@
 #include <Array.au3>
 #include <MsgBoxConstants.au3>
-#include <WinAPI.au3>
-#include <WinAPIDiag.au3>
+#include <WinAPIConv.au3>
+#include <WinAPIError.au3>
 #include <WinAPIFiles.au3>
 
 Local $aList[101][2] = [[0]]

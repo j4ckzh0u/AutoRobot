@@ -1,6 +1,7 @@
 #include <GDIPlus.au3>
 #include <GUIConstantsEx.au3>
-#include <Screencapture.au3>
+#include <ScreenCapture.au3>
+#include <WinAPIHObj.au3>
 
 Global $g_hHBitmap, $g_hGfxCtxt, $g_hBMP, $g_hGfx
 Global $g_iTiles = 24, $g_a_hBmp_Tiles[$g_iTiles][$g_iTiles]

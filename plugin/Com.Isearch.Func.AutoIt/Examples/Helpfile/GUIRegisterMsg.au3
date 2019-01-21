@@ -1,27 +1,29 @@
 ; Create an ownerdrawn/colored button
 
 #include <ButtonConstants.au3>
+#include <FrameConstants.au3>
+#include <GDIPlus.au3>
 #include <GUIConstantsEx.au3>
 #include <MsgBoxConstants.au3>
+#include <WinAPI.au3>
 #include <WindowsConstants.au3>
 
 Example()
 
 Func Example()
-	Local Const $BS_OWNERDRAW = 0x0000000B
-
-	GUICreate("My Ownerdrawn Created Button", 300, 200)
+	Local $hGUI = GUICreate("Ownerdrawn Created Button", 300, 200)
 
 	Local $idButton = GUICtrlCreateButton("", 90, 50, 120, 30)
 	GUICtrlSetStyle($idButton, BitOR($WS_TABSTOP, $BS_NOTIFY, $BS_OWNERDRAW)) ; Set the ownerdrawn flag
 
 	Local $idButton2 = GUICtrlCreateButton("Normal Button", 90, 110, 120, 30)
 
-	GUIRegisterMsg($WM_COMMAND, "MY_WM_COMMAND")
-	; WM_DRAWITEM has to registered before showing GUI otherwise the initial drawing isn't done
-	GUIRegisterMsg($WM_DRAWITEM, "MY_WM_DRAWITEM")
+	GUIRegisterMsg($WM_COMMAND, "WM_COMMAND")
 
-	GUISetState(@SW_SHOW)
+	; WM_DRAWITEM has to be registered before showing GUI otherwise the initial drawing is not done
+	GUIRegisterMsg($WM_DRAWITEM, "WM_DRAWITEM")
+
+	GUISetState(@SW_SHOW, $hGUI)
 
 	Local $iMsg
 	While 1
@@ -32,12 +34,13 @@ Func Example()
 				ExitLoop
 
 			Case $idButton
-				; Normally should not run through cause of our MY_WM_COMMAND function
+				; Normally should not fire because of our WM_COMMAND function
 				MsgBox($MB_SYSTEMMODAL, "Info", "Button pressed")
 
 			Case $idButton2
-				; Normally should not run through cause of our MY_WM_COMMAND function
+				; Normally should not fire because of our WM_COMMAND function
 				MsgBox($MB_SYSTEMMODAL, "Info", "Button2 pressed")
+
 		EndSwitch
 	WEnd
 
@@ -45,142 +48,137 @@ Func Example()
 EndFunc   ;==>Example
 
 ; React on a button click
-Func MY_WM_COMMAND($hWnd, $iMsg, $wParam, $lParam)
-	Local $nNotifyCode = BitShift($wParam, 16)
-	Local $nID = BitAND($wParam, 0x0000FFFF)
+Func WM_COMMAND($hWnd, $iMsg, $wParam, $lParam)
+	Local $nNotifyCode = _WinAPI_HiWord($wParam)
+	Local $iId = _WinAPI_LoWord($wParam)
 	Local $hCtrl = $lParam
 
-	If $nID <> 2 And $nNotifyCode = 0 Then ; Check for IDCANCEL - 2
-		; Ownerdrawn buttons don't send something by pressing ENTER
-		; So IDOK - 1 comes up, now check for the control that has the current focus
-		If $nID = 1 Then
-			Local $hFocus = DllCall("user32.dll", "hwnd", "GetFocus")
-			Local $nCtrlID = DllCall("user32.dll", "int", "GetDlgCtrlID", "hwnd", $hFocus[0])
-			PostButtonClick($hWnd, $nCtrlID[0])
+	If $iId <> 2 And $nNotifyCode = 0 Then ; Check for IDCANCEL - 2
+		; Ownerdrawn buttons do not send a message when pressing ENTER
+		; So if IDOK - 1 comes up, now check for the control that has the current focus
+		If $iId = 1 Then
+			Local $hFocus = _WinAPI_GetFocus()
+			Local $idControl = _WinAPI_GetDlgCtrlId($hFocus)
+			PostButtonClick($hWnd, $idControl)
 		Else
-			MsgBox($MB_SYSTEMMODAL, "MY_WM_COMMAND", "GUIHWnd" & @TAB & ":" & $hWnd & @CRLF & _
-					"MsgID" & @TAB & ":" & $iMsg & @CRLF & _
+			MsgBox($MB_SYSTEMMODAL, "WM_COMMAND", "GUIHWnd" & @TAB & ":" & $hWnd & @CRLF & _
+					"MsgId" & @TAB & ":" & $iMsg & @CRLF & _
 					"wParam" & @TAB & ":" & $wParam & @CRLF & _
 					"lParam" & @TAB & ":" & $lParam & @CRLF & @CRLF & _
 					"WM_COMMAND - Infos:" & @CRLF & _
 					"-----------------------------" & @CRLF & _
 					"Code" & @TAB & ":" & $nNotifyCode & @CRLF & _
-					"CtrlID" & @TAB & ":" & $nID & @CRLF & _
+					"CtrlId" & @TAB & ":" & $iId & @CRLF & _
 					"CtrlHWnd" & @TAB & ":" & $hCtrl)
 		EndIf
 		Return 0 ; Only workout clicking on the button
 	EndIf
-	; Proceed the default AutoIt3 internal message commands.
-	; You also can complete let the line out.
-	; !!! But only 'Return' (without any value) will not proceed
-	; the default AutoIt3-message in the future !!!
+
+	; On exit the default AutoIt3 internal message handler will run
+	; It will also run if "Return" returns $GUI_RUNDEFMSG as below
+	; Using "Return" with any other value (or no value at all) means the AutoIt handler
+	; will not run
 	Return $GUI_RUNDEFMSG
-EndFunc   ;==>MY_WM_COMMAND
+EndFunc   ;==>WM_COMMAND
 
 ; RePost a WM_COMMAND message to a ctrl in a gui window
-Func PostButtonClick($hWnd, $nCtrlID)
+Func PostButtonClick($hWnd, $idControl)
 	DllCall("user32.dll", "int", "PostMessage", _
 			"hwnd", $hWnd, _
 			"int", $WM_COMMAND, _
-			"int", BitAND($nCtrlID, 0x0000FFFF), _
-			"hwnd", GUICtrlGetHandle($nCtrlID))
+			"int", _WinAPI_LoWord($idControl), _
+			"hwnd", GUICtrlGetHandle($idControl))
 EndFunc   ;==>PostButtonClick
 
 ; Draw the button
-Func MY_WM_DRAWITEM($hWnd, $iMsg, $wParam, $lParam)
+Func WM_DRAWITEM($hWnd, $iMsg, $wParam, $lParam)
 	#forceref $iMsg, $wParam, $lParam
-	Local $tDrawItem = DllStructCreate("uint;uint;uint;uint;uint;uint;uint;int[4];dword", $lParam)
+	Local Const $tagDRAWITEMSTRUCT = "uint;uint;uint;uint;uint;hwnd;handle;long[4];ulong_ptr"
+	Local $tDrawItem = DllStructCreate($tagDRAWITEMSTRUCT, $lParam)
+
 	Local Const $ODT_BUTTON = 4
 
 	Local $nCtlType = DllStructGetData($tDrawItem, 1)
 	If $nCtlType = $ODT_BUTTON Then
-		; Local $nCtrlID = DllStructGetData($tDrawItem, 2)
+		; Local $idControl = DllStructGetData($tDrawItem, 2)
 		Local $nItemState = DllStructGetData($tDrawItem, 5)
 		Local $hCtrl = DllStructGetData($tDrawItem, 6)
 		Local $hDC = DllStructGetData($tDrawItem, 7)
-		Local $nLeft = DllStructGetData($tDrawItem, 8, 1)
-		Local $nTop = DllStructGetData($tDrawItem, 8, 2)
-		Local $nRight = DllStructGetData($tDrawItem, 8, 3)
-		Local $nBottom = DllStructGetData($tDrawItem, 8, 4)
+		Local $iLeft = DllStructGetData($tDrawItem, 8, 1)
+		Local $iTop = DllStructGetData($tDrawItem, 8, 2)
+		Local $iRight = DllStructGetData($tDrawItem, 8, 3)
+		Local $iBottom = DllStructGetData($tDrawItem, 8, 4)
 		Local $sText = "Ownerdrawn Button"
 		Local $nTextColor = 0x5555DD
 		Local $nBackColor = 0xFFEEDD
-		DrawButton($hWnd, $hCtrl, $hDC, $nLeft, $nTop, $nRight, $nBottom, $nItemState, $sText, $nTextColor, $nBackColor)
+		DrawButton($hWnd, $hCtrl, $hDC, $iLeft, $iTop, $iRight, $iBottom, $nItemState, $sText, $nTextColor, $nBackColor)
 		$tDrawItem = 0
-		Return 1
+		Return 1 ; The internal AutoIt message handler will not run
 	EndIf
 
 	$tDrawItem = 0
-	Return $GUI_RUNDEFMSG ; Proceed the default AutoIt3 internal message commands
-EndFunc   ;==>MY_WM_DRAWITEM
+	Return $GUI_RUNDEFMSG ; Run the default AutoIt internal message handler
+EndFunc   ;==>WM_DRAWITEM
 
 ; The main drawing procedure
-Func DrawButton($hWnd, $hCtrl, $hDC, $nLeft, $nTop, $nRight, $nBottom, $nItemState, $sText, $nTextColor, $nBackColor)
+Func DrawButton($hWnd, $hCtrl, $hDC, $iLeft, $iTop, $iRight, $iBottom, $nItemState, $sText, $nTextColor, $nBackColor)
 	#forceref $hWnd
-	;Local $bDefault	= FALSE
-	Local Const $GWL_STYLE = -16
+
 	Local Const $ODS_SELECTED = 0x0001
 	Local Const $ODS_GRAYED = 0x0002
 	Local Const $ODS_DISABLED = 0x0004
-	; Local Const $ODS_CHECKED = 0x0008
 	Local Const $ODS_FOCUS = 0x0010
-	; Local Const $ODS_HOTLIGHT = 0x0040
-	; Local Const $ODS_INACTIVE = 0x0080
-	; Local Const $ODS_NOACCEL = 0x0100
-	; Local Const $ODS_NOFOCUSRECT = 0x0200
-	Local Const $DFC_BUTTON = 4
-	Local Const $DFCS_BUTTONPUSH = 0x0010
-	; Local $bChecked = BitAND($nItemState, $ODS_CHECKED)
+
 	Local $bFocused = BitAND($nItemState, $ODS_FOCUS)
 	Local $bGrayed = BitAND($nItemState, BitOR($ODS_GRAYED, $ODS_DISABLED))
 	Local $bSelected = BitAND($nItemState, $ODS_SELECTED)
 
-	Local $tRECT = DllStructCreate("int;int;int;int")
-	DllStructSetData($tRECT, 1, $nLeft)
-	DllStructSetData($tRECT, 2, $nTop)
-	DllStructSetData($tRECT, 3, $nRight)
-	DllStructSetData($tRECT, 4, $nBottom)
+	Local $tRECT = DllStructCreate($tagRECT)
+	DllStructSetData($tRECT, 'Left', $iLeft)
+	DllStructSetData($tRECT, 'Top', $iTop)
+	DllStructSetData($tRECT, 'Right', $iRight)
+	DllStructSetData($tRECT, 'Bottom', $iBottom)
 
-	Local $nClrTxt
+	Local $nClrTxt = 0
 	If $bGrayed Then
-		$nClrTxt = SetTextColor($hDC, GetSysColor($COLOR_HIGHLIGHTTEXT))
+		$nClrTxt = _WinAPI_SetTextColor($hDC, _WinAPI_GetSysColor($COLOR_HIGHLIGHTTEXT))
 	ElseIf $nTextColor = -1 Then
-		$nClrTxt = SetTextColor($hDC, GetSysColor($COLOR_BTNTEXT))
+		$nClrTxt = _WinAPI_SetTextColor($hDC, _WinAPI_GetSysColor($COLOR_BTNTEXT))
 	Else
-		$nClrTxt = SetTextColor($hDC, $nTextColor)
+		$nClrTxt = _WinAPI_SetTextColor($hDC, $nTextColor)
 	EndIf
 
 	Local $hBrush, $nClrSel
 	If $nBackColor = -1 Then
-		$hBrush = GetSysColorBrush($COLOR_BTNFACE)
-		$nClrSel = GetSysColor($COLOR_BTNFACE)
+		$hBrush = _WinAPI_GetSysColorBrush($COLOR_BTNFACE)
+		$nClrSel = _WinAPI_GetSysColor($COLOR_BTNFACE)
 	Else
-		$hBrush = CreateSolidBrush($nBackColor)
+		$hBrush = _WinAPI_CreateSolidBrush($nBackColor)
 		$nClrSel = $nBackColor;
 	EndIf
 
-	Local $nClrBk = SetBkColor($hDC, $nClrSel)
-	Local $hOldBrush = SelectObject($hDC, $hBrush)
+	Local $nClrBk = _WinAPI_SetBkColor($hDC, $nClrSel)
+	Local $hOldBrush = _WinAPI_SelectObject($hDC, $hBrush)
 
-	Local $nTmpLeft = $nLeft
-	Local $nTmpTop = $nTop
-	Local $nTmpRight = $nRight
-	Local $nTmpBottom = $nBottom
+	Local $nTmpLeft = $iLeft
+	Local $nTmpTop = $iTop
+	Local $nTmpRight = $iRight
+	Local $nTmpBottom = $iBottom
 
 	If $bSelected Then
 		InflateRect($nTmpLeft, $nTmpTop, $nTmpRight, $nTmpBottom, -1, -1)
-		Local $hBrushSel = CreateSolidBrush(GetSysColor($COLOR_BTNSHADOW))
+		Local $hBrushSel = _WinAPI_CreateSolidBrush(_WinAPI_GetSysColor($COLOR_BTNSHADOW))
 		FrameRect($hDC, $nTmpLeft, $nTmpTop, $nTmpRight, $nTmpBottom, $hBrushSel)
-		DeleteObject($hBrushSel)
+		_WinAPI_DeleteObject($hBrushSel)
 	Else
 		If $bFocused And Not $bSelected Then InflateRect($nTmpLeft, $nTmpTop, $nTmpRight, $nTmpBottom, -1, -1)
 		DrawFrameControl($hDC, $nTmpLeft, $nTmpTop, $nTmpRight, $nTmpBottom, $DFC_BUTTON, $DFCS_BUTTONPUSH)
 	EndIf
 
-	$nTmpLeft = $nLeft
-	$nTmpTop = $nTop
-	$nTmpRight = $nRight
-	$nTmpBottom = $nBottom
+	$nTmpLeft = $iLeft
+	$nTmpTop = $iTop
+	$nTmpRight = $iRight
+	$nTmpBottom = $iBottom
 
 	If $bSelected Then
 		InflateRect($nTmpLeft, $nTmpTop, $nTmpRight, $nTmpBottom, -2, -2)
@@ -205,172 +203,115 @@ Func DrawButton($hWnd, $hCtrl, $hDC, $nLeft, $nTop, $nRight, $nBottom, $nItemSta
 
 	Local $iFlags = BitOR($DT_NOCLIP, $DT_CENTER, $DT_VCENTER)
 
-	If Not BitAND(GetWindowLong($hCtrl, $GWL_STYLE), $BS_MULTILINE) Then $iFlags = BitOR($iFlags, $DT_SINGLELINE)
+	If Not BitAND(_WinAPI_GetWindowLong($hCtrl, $GWL_STYLE), $BS_MULTILINE) Then $iFlags = BitOR($iFlags, $DT_SINGLELINE)
 
 	DrawText($hDC, $sText, $nTmpLeft, $nTmpTop, $nTmpRight, $nTmpBottom, $iFlags)
 
 	If $bGrayed Then
-		$nTmpLeft = $nLeft
-		$nTmpTop = $nTop
-		$nTmpRight = $nRight
-		$nTmpBottom = $nBottom
+		$nTmpLeft = $iLeft
+		$nTmpTop = $iTop
+		$nTmpRight = $iRight
+		$nTmpBottom = $iBottom
 
 		$nTmpLeft -= 1
 
-		$nClrTxt = SetTextColor($hDC, GetSysColor($COLOR_GRAYTEXT))
+		$nClrTxt = _WinAPI_SetTextColor($hDC, _WinAPI_GetSysColor($COLOR_GRAYTEXT))
 		DrawText($hDC, $sText, $nTmpLeft, $nTmpTop, $nTmpRight, $nTmpBottom, BitOR($DT_NOCLIP, $DT_CENTER, $DT_VCENTER, $DT_SINGLELINE))
 	EndIf
 
-	$nTmpLeft = $nLeft
-	$nTmpTop = $nTop
-	$nTmpRight = $nRight
-	$nTmpBottom = $nBottom
+	$nTmpLeft = $iLeft
+	$nTmpTop = $iTop
+	$nTmpRight = $iRight
+	$nTmpBottom = $iBottom
 
 	If $bFocused Then
-		$hBrush = CreateSolidBrush(0)
+		$hBrush = _WinAPI_CreateSolidBrush(0)
 		FrameRect($hDC, $nTmpLeft, $nTmpTop, $nTmpRight, $nTmpBottom, $hBrush)
 
-		$nTmpLeft = $nLeft
-		$nTmpTop = $nTop
-		$nTmpRight = $nRight
-		$nTmpBottom = $nBottom
+		$nTmpLeft = $iLeft
+		$nTmpTop = $iTop
+		$nTmpRight = $iRight
+		$nTmpBottom = $iBottom
 
 		InflateRect($nTmpLeft, $nTmpTop, $nTmpRight, $nTmpBottom, -4, -4)
 		DrawFocusRect($hDC, $nTmpLeft, $nTmpTop, $nTmpRight, $nTmpBottom)
 	EndIf
 
-	SelectObject($hDC, $hOldBrush)
-	DeleteObject($hBrush)
-	SetTextColor($hDC, $nClrTxt)
-	SetBkColor($hDC, $nClrBk)
+	_WinAPI_SelectObject($hDC, $hOldBrush)
+	_WinAPI_DeleteObject($hBrush)
+	_WinAPI_SetTextColor($hDC, $nClrTxt)
+	_WinAPI_SetBkColor($hDC, $nClrBk)
 
-	Return 1
+	Return 1 ; The internal AutoIt message handler will not run
 EndFunc   ;==>DrawButton
 
-; Some graphic / windows functions
-Func CreateSolidBrush($nColor)
-	Local $hBrush = DllCall("gdi32.dll", "hwnd", "CreateSolidBrush", "int", $nColor)
-	Return $hBrush[0]
-EndFunc   ;==>CreateSolidBrush
+Func DrawFrameControl($hDC, $iLeft, $iTop, $iRight, $iBottom, $iType, $iState)
+	Local $tRECT = DllStructCreate($tagRECT)
 
-Func GetSysColor($nIndex)
-	Local $nColor = DllCall("user32.dll", "int", "GetSysColor", "int", $nIndex)
-	Return $nColor[0]
-EndFunc   ;==>GetSysColor
+	DllStructSetData($tRECT, 'Left', $iLeft)
+	DllStructSetData($tRECT, 'Top', $iTop)
+	DllStructSetData($tRECT, 'Right', $iRight)
+	DllStructSetData($tRECT, 'Bottom', $iBottom)
 
-Func GetSysColorBrush($nIndex)
-	Local $hBrush = DllCall("user32.dll", "hwnd", "GetSysColorBrush", "int", $nIndex)
-	Return $hBrush[0]
-EndFunc   ;==>GetSysColorBrush
-
-Func DrawFrameControl($hDC, $nLeft, $nTop, $nRight, $nBottom, $nType, $nState)
-	Local $tRECT = DllStructCreate("int;int;int;int")
-
-	DllStructSetData($tRECT, 1, $nLeft)
-	DllStructSetData($tRECT, 2, $nTop)
-	DllStructSetData($tRECT, 3, $nRight)
-	DllStructSetData($tRECT, 4, $nBottom)
-
-	DllCall("user32.dll", "int", "DrawFrameControl", "hwnd", $hDC, "struct*", $tRECT, "int", $nType, "int", $nState)
-
-	$tRECT = 0
+	_WinAPI_DrawFrameControl($hDC, $tRECT, $iType, $iState)
 EndFunc   ;==>DrawFrameControl
 
-Func DrawFocusRect($hDC, $nLeft, $nTop, $nRight, $nBottom)
-	Local $tRECT = DllStructCreate("int;int;int;int")
+Func DrawFocusRect($hDC, $iLeft, $iTop, $iRight, $iBottom)
+	Local $tRECT = DllStructCreate($tagRECT)
 
-	DllStructSetData($tRECT, 1, $nLeft)
-	DllStructSetData($tRECT, 2, $nTop)
-	DllStructSetData($tRECT, 3, $nRight)
-	DllStructSetData($tRECT, 4, $nBottom)
+	DllStructSetData($tRECT, 'Left', $iLeft)
+	DllStructSetData($tRECT, 'Top', $iTop)
+	DllStructSetData($tRECT, 'Right', $iRight)
+	DllStructSetData($tRECT, 'Bottom', $iBottom)
 
-	DllCall("user32.dll", "int", "DrawFocusRect", "hwnd", $hDC, "struct*", $tRECT)
-
-	$tRECT = 0
+	_WinAPI_DrawFocusRect($hDC, $tRECT)
 EndFunc   ;==>DrawFocusRect
 
-Func DrawText($hDC, $sText, $nLeft, $nTop, $nRight, $nBottom, $nFormat)
-	Local $nLen = StringLen($sText)
+Func DrawText($hDC, $sText, $iLeft, $iTop, $iRight, $iBottom, $iFlags)
+	Local $tRECT = DllStructCreate($tagRECT)
 
-	Local $tRECT = DllStructCreate("int;int;int;int")
-	DllStructSetData($tRECT, 1, $nLeft)
-	DllStructSetData($tRECT, 2, $nTop)
-	DllStructSetData($tRECT, 3, $nRight)
-	DllStructSetData($tRECT, 4, $nBottom)
+	DllStructSetData($tRECT, 'Left', $iLeft)
+	DllStructSetData($tRECT, 'Top', $iTop)
+	DllStructSetData($tRECT, 'Right', $iRight)
+	DllStructSetData($tRECT, 'Bottom', $iBottom)
 
-	Local $tText = DllStructCreate("char[260]")
-	DllStructSetData($tText, 1, $sText)
-
-	DllCall("user32.dll", "int", "DrawText", "hwnd", $hDC, "struct*", $tText, "int", $nLen, "struct*", $tRECT, "int", $nFormat)
-
-	$tRECT = 0
-	$tText = 0
+	_WinAPI_DrawText($hDC, $sText, $tRECT, $iFlags)
 EndFunc   ;==>DrawText
 
-Func FillRect($hDC, $nLeft, $nTop, $nRight, $nBottom, $hBrush)
-	Local $tRECT = DllStructCreate("int;int;int;int")
+Func FillRect($hDC, $iLeft, $iTop, $iRight, $iBottom, $hBrush)
+	Local $tRECT = DllStructCreate($tagRECT)
 
-	DllStructSetData($tRECT, 1, $nLeft)
-	DllStructSetData($tRECT, 2, $nTop)
-	DllStructSetData($tRECT, 3, $nRight)
-	DllStructSetData($tRECT, 4, $nBottom)
+	DllStructSetData($tRECT, 'Left', $iLeft)
+	DllStructSetData($tRECT, 'Top', $iTop)
+	DllStructSetData($tRECT, 'Right', $iRight)
+	DllStructSetData($tRECT, 'Bottom', $iBottom)
 
-	DllCall("user32.dll", "int", "FillRect", "hwnd", $hDC, "struct*", $tRECT, "hwnd", $hBrush)
-
-	$tRECT = 0
+	_WinAPI_FillRect($hDC, $tRECT, $hBrush)
 EndFunc   ;==>FillRect
 
-Func FrameRect($hDC, $nLeft, $nTop, $nRight, $nBottom, $hBrush)
-	Local $tRECT = DllStructCreate("int;int;int;int")
+Func FrameRect($hDC, $iLeft, $iTop, $iRight, $iBottom, $hBrush)
+	Local $tRECT = DllStructCreate($tagRECT)
 
-	DllStructSetData($tRECT, 1, $nLeft)
-	DllStructSetData($tRECT, 2, $nTop)
-	DllStructSetData($tRECT, 3, $nRight)
-	DllStructSetData($tRECT, 4, $nBottom)
+	DllStructSetData($tRECT, 'Left', $iLeft)
+	DllStructSetData($tRECT, 'Top', $iTop)
+	DllStructSetData($tRECT, 'Right', $iRight)
+	DllStructSetData($tRECT, 'Bottom', $iBottom)
 
-	DllCall("user32.dll", "int", "FrameRect", "hwnd", $hDC, "struct*", $tRECT, "hwnd", $hBrush)
-
-	$tRECT = 0
+	_WinAPI_FrameRect($hDC, $tRECT, $hBrush)
 EndFunc   ;==>FrameRect
 
-Func InflateRect(ByRef $nLeft, ByRef $nTop, ByRef $nRight, ByRef $nBottom, $nX, $nY)
-	Local $tRECT = DllStructCreate("int;int;int;int")
+Func InflateRect(ByRef $iLeft, ByRef $iTop, ByRef $iRight, ByRef $iBottom, $iDX, $iDY)
+	Local $tRECT = DllStructCreate($tagRECT)
 
-	DllStructSetData($tRECT, 1, $nLeft)
-	DllStructSetData($tRECT, 2, $nTop)
-	DllStructSetData($tRECT, 3, $nRight)
-	DllStructSetData($tRECT, 4, $nBottom)
+	DllStructSetData($tRECT, 'Left', $iLeft)
+	DllStructSetData($tRECT, 'Top', $iTop)
+	DllStructSetData($tRECT, 'Right', $iRight)
+	DllStructSetData($tRECT, 'Bottom', $iBottom)
 
-	DllCall("user32.dll", "int", "InflateRect", "struct*", $tRECT, "int", $nX, "int", $nY)
+	_WinAPI_InflateRect($tRECT, $iDX, $iDY)
 
-	$nLeft = DllStructGetData($tRECT, 1)
-	$nTop = DllStructGetData($tRECT, 2)
-	$nRight = DllStructGetData($tRECT, 3)
-	$nBottom = DllStructGetData($tRECT, 4)
-
-	$tRECT = 0
+	$iLeft = DllStructGetData($tRECT, 'Left')
+	$iTop = DllStructGetData($tRECT, 'Top')
+	$iRight = DllStructGetData($tRECT, 'Right')
+	$iBottom = DllStructGetData($tRECT, 'Bottom')
 EndFunc   ;==>InflateRect
-
-Func SetBkColor($hDC, $nColor)
-	Local $nOldColor = DllCall("gdi32.dll", "int", "SetBkColor", "hwnd", $hDC, "int", $nColor)
-	Return $nOldColor[0]
-EndFunc   ;==>SetBkColor
-
-Func SetTextColor($hDC, $nColor)
-	Local $nOldColor = DllCall("gdi32.dll", "int", "SetTextColor", "hwnd", $hDC, "int", $nColor)
-	Return $nOldColor[0]
-EndFunc   ;==>SetTextColor
-
-Func SelectObject($hDC, $hObj)
-	Local $hOldObj = DllCall("gdi32.dll", "hwnd", "SelectObject", "hwnd", $hDC, "hwnd", $hObj)
-	Return $hOldObj[0]
-EndFunc   ;==>SelectObject
-
-Func DeleteObject($hObj)
-	DllCall("gdi32.dll", "hwnd", "DeleteObject", "hwnd", $hObj)
-EndFunc   ;==>DeleteObject
-
-Func GetWindowLong($hWnd, $nIndex)
-	Local $nVal = DllCall("user32.dll", "int", "GetWindowLong", "hwnd", $hWnd, "int", $nIndex)
-	Return $nVal[0]
-EndFunc   ;==>GetWindowLong

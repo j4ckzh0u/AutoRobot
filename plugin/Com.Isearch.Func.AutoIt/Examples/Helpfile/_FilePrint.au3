@@ -1,7 +1,7 @@
 #include <File.au3>
 #include <MsgBoxConstants.au3>
 
-Local $sFilePath = FileOpenDialog("Print File", "", "Text Documents (*.txt)", 1)
+Local $sFilePath = FileOpenDialog("Print File", "", "Text Documents (*.txt)", $FD_FILEMUSTEXIST)
 If @error Then Exit
 
 Local $iIsPrinted = _FilePrint($sFilePath)

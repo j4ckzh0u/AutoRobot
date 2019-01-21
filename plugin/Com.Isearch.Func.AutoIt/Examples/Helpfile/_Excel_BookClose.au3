@@ -5,9 +5,7 @@
 Local $oExcel = _Excel_Open()
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_BookOpen Example", "Error creating the Excel application object." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Create a new workbook, write some data and close it without saving
-; *****************************************************************************
 ; Create the new workbook
 Local $oWorkbook = _Excel_BookNew($oExcel)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_BookClose Example 1", "Error creating new workbook." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

@@ -19,9 +19,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Copy a single cell from another workbook. Pass the source range as object.
-; *****************************************************************************
 Local $oRange = $oWorkbook2.Worksheets(1).Range("A1")
 _Excel_RangeCopyPaste($oWorkbook1.Worksheets(1), $oRange, "G15")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeCopy Example 2", "Error copying cells." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

@@ -1,4 +1,4 @@
-#include <WinAPIMisc.au3>
+#include <WinAPIConv.au3>
 
 Local $iValue = 4294967295
 

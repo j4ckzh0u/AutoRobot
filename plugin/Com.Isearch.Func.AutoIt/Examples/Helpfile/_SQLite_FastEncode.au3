@@ -3,7 +3,7 @@
 #include <SQLite.dll.au3>
 
 Local $hFile, $vData, $sFileName, $sData, $hQuery, $aRow, $sMsg
-_SQLite_Startup()
+ConsoleWrite("_SQLite_Startup=" & _SQLite_Startup() & @CRLF)
 ConsoleWrite("_SQLite_LibVersion=" & _SQLite_LibVersion() & @CRLF)
 _SQLite_Open()
 _SQLite_Exec(-1, "CREATE TABLE IF NOT EXISTS Test (data blob);")

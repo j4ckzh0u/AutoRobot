@@ -3,7 +3,7 @@
 Example()
 
 Func Example()
-	; Sample scriptusing @NumParams macro
+	; Sample script using @NumParams macro
 	Test_Numparams(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
 EndFunc   ;==>Example
 

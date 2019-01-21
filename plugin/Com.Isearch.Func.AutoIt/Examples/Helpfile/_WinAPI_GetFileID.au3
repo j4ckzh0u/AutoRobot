@@ -1,5 +1,5 @@
-#include <WinAPI.au3>
 #include <WinAPIFiles.au3>
+#include <WinAPIHObj.au3>
 
 Local $hFile = _WinAPI_CreateFile(@ScriptFullPath, 2, 0, 6)
 

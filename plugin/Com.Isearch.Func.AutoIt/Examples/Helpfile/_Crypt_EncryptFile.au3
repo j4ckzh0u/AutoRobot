@@ -20,7 +20,7 @@ Func Example()
 	Local $idPasswordInput = GUICtrlCreateInput("", 5, 75, 200, 20)
 
 	Local $idCombo = GUICtrlCreateCombo("", 210, 75, 100, 20, $CBS_DROPDOWNLIST)
-	GUICtrlSetData($idCombo, "3DES|AES (128bit)|AES (192bit)|AES (256bit)|DES|RC2|RC4", "RC4")
+	GUICtrlSetData($idCombo, "3DES (168bit)|AES (128bit)|AES (192bit)|AES (256bit)|DES (56bit)|RC2 (128bit)|RC4 (128bit)", "RC4 (128bit)")
 	Local $idEncrypt = GUICtrlCreateButton("Encrypt", 355, 70, 65, 25)
 	GUISetState(@SW_SHOW, $hGUI)
 
@@ -46,7 +46,7 @@ Func Example()
 
 			Case $idCombo ; Check when the combobox is selected and retrieve the correct algorithm.
 				Switch GUICtrlRead($idCombo) ; Read the combobox selection.
-					Case "3DES"
+					Case "3DES (168bit)"
 						$iAlgorithm = $CALG_3DES
 
 					Case "AES (128bit)"
@@ -58,13 +58,13 @@ Func Example()
 					Case "AES (256bit)"
 						$iAlgorithm = $CALG_AES_256
 
-					Case "DES"
+					Case "DES (56bit)"
 						$iAlgorithm = $CALG_DES
 
-					Case "RC2"
+					Case "RC2 (128bit)"
 						$iAlgorithm = $CALG_RC2
 
-					Case "RC4"
+					Case "RC4 (128bit)"
 						$iAlgorithm = $CALG_RC4
 
 				EndSwitch
@@ -78,14 +78,16 @@ Func Example()
 						MsgBox($MB_SYSTEMMODAL, "Success", "Operation succeeded.")
 					Else
 						Switch @error
-							Case 1
+							Case 30
 								MsgBox($MB_SYSTEMMODAL, "Error", "Failed to create the key.")
 							Case 2
 								MsgBox($MB_SYSTEMMODAL, "Error", "Couldn't open the source file.")
 							Case 3
 								MsgBox($MB_SYSTEMMODAL, "Error", "Couldn't open the destination file.")
-							Case 4 Or 5
+							Case 400 Or 500
 								MsgBox($MB_SYSTEMMODAL, "Error", "Encryption error.")
+							Case Else
+								MsgBox($MB_SYSTEMMODAL, "Error", "Unexpected @error = " & @error)
 						EndSwitch
 					EndIf
 				Else

@@ -10,10 +10,8 @@ Local $oDoc = _Word_DocOpen($oWord, @ScriptDir & "\Extras\Test.doc", Default, De
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocLinkAdd Example", _
 		"Error opening '.\Extras\Test.doc'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Add a link to the end of the document and set parameters
 ; ScreenTip and TextToDisplay
-; *****************************************************************************
 Local $oRange = _Word_DocRangeSet($oDoc, -2) ; Go to end of document
 $oRange.Text = " " ; Add a space at the end of the document
 $oRange = _Word_DocRangeSet($oDoc, -2)

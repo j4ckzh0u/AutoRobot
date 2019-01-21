@@ -11,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Only values from a list are valid
-; *****************************************************************************
 _Excel_RangeValidate($oWorkbook, Default, "A1:A10", $xlValidateList, "Yes;No;Don't know")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeValidate Example 1", "Error setting range validation." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeValidate Example 1", "Validation against a list of values successfully set for range 'A1:A10'.")

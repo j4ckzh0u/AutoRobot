@@ -1,5 +1,8 @@
 #include <FontConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPIMisc.au3>
 
 ; Select "Arial" font to DC and retrieve $tagOUTLINETEXTMETRIC structure
 Local $hDC = _WinAPI_GetDC(0)

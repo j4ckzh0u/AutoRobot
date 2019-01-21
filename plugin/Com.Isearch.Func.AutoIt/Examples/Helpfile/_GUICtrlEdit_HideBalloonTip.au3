@@ -16,8 +16,8 @@ Func Example()
 
 	_GUICtrlEdit_ShowBalloonTip($hEdit, $sTitle, $sText, $TTI_INFO)
 	Sleep(1000)
-	Local $idBalloon = _GUICtrlEdit_HideBalloonTip($hEdit)
-	_GUICtrlEdit_AppendText($hEdit, "HideBalloonTip = " & $idBalloon & @CRLF)
+	Local $bBalloon = _GUICtrlEdit_HideBalloonTip($hEdit)
+	_GUICtrlEdit_AppendText($hEdit, "HideBalloonTip = " & $bBalloon & @CRLF)
 
 	; Loop until the user exits.
 	Do

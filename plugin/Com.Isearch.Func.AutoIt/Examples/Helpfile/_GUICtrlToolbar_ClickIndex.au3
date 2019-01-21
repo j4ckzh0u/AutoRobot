@@ -1,5 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <GuiToolbar.au3>
+#include <WinAPIConstants.au3>
 #include <WindowsConstants.au3>
 
 Global $g_hToolbar, $g_idMemo

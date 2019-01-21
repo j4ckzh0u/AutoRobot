@@ -1,8 +1,11 @@
 #include <GUIConstantsEx.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPIMem.au3>
 #include <WinAPIMisc.au3>
-#include <WinAPISys.au3>
 
 ; Create array of colors of 256 entries required for 8 bits-per-pixel bitmap
 Local $aColorTable[256]

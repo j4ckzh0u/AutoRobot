@@ -1,6 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <StaticConstants.au3>
-#include <WinAPIRes.au3>
+#include <WinAPIIcons.au3>
 
 Local Const $sANDBits = _
 		'FF FF FF FF' & _

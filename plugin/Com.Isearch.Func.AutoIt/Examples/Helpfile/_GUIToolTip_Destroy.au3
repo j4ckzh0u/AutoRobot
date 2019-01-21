@@ -1,5 +1,6 @@
 #include <GUIConstantsEx.au3>
-#include <GUIToolTip.au3>
+#include <GuiToolTip.au3>
+
 ; Click the button to destroy the tooltip control
 Example()
 

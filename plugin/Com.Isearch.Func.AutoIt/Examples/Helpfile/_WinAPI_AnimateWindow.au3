@@ -5,7 +5,7 @@
 #include <MenuConstants.au3>
 #include <TrayConstants.au3>
 #include <WinAPIGdi.au3>
-#include <WinAPISys.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Opt('TrayMenuMode', 1)

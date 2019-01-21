@@ -1,6 +1,5 @@
 #include <GUIConstantsEx.au3>
 #include <GuiStatusBar.au3>
-#include <WinAPI.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo
@@ -28,9 +27,9 @@ Func Example()
 
 	; Get text information
 	For $iI = 0 To _GUICtrlStatusBar_GetCount($hStatus) - 1
-		MemoWrite("Part " & $iI & " text flags .: " & _GUICtrlStatusBar_GetTextFlags($hStatus, $iI))
-		MemoWrite("Part " & $iI & " text length : " & _GUICtrlStatusBar_GetTextLength($hStatus, $iI))
-		MemoWrite("Part " & $iI & " text length : 0x" & Hex(_GUICtrlStatusBar_GetTextLengthEx($hStatus, $iI)))
+		MemoWrite("Part " & $iI & " text flags ..: 0x" & Hex(_GUICtrlStatusBar_GetTextFlags($hStatus, $iI)))
+		MemoWrite("Part " & $iI & " text length .: " & _GUICtrlStatusBar_GetTextLength($hStatus, $iI))
+		MemoWrite("Part " & $iI & " drawing type : 0x" & Hex(_GUICtrlStatusBar_GetTextLengthEx($hStatus, $iI)))
 		MemoWrite()
 	Next
 

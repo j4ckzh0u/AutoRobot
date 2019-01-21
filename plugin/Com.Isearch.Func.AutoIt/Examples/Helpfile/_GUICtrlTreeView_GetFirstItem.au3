@@ -23,8 +23,8 @@ Func Example()
 	Next
 	_GUICtrlTreeView_EndUpdate($idTreeView)
 
-	Local $hFirst = _GUICtrlTreeView_GetFirstVisible($idTreeView)
-	MsgBox($MB_SYSTEMMODAL, "Information", "The handle of the first visible item: " & $hFirst)
+	Local $hFirst = _GUICtrlTreeView_GetFirstItem($idTreeView)
+	MsgBox($MB_SYSTEMMODAL, "Information", "The handle of the first item: " & $hFirst)
 
 	; Loop until the user exits.
 	Do

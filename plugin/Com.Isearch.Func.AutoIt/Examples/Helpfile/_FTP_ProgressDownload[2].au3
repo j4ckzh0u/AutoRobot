@@ -1,6 +1,5 @@
 #include <FTPEx.au3>
 #include <GUIConstantsEx.au3>
-#include <Misc.au3>
 #include <ProgressConstants.au3>
 
 Global $g_sRemoteFile = "/pub/software/databases/rt/SRPMS/ucs-local-modperl-2.0.3-1.src.rpm"

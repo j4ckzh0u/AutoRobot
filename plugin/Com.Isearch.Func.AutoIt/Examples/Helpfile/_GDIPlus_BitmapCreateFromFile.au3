@@ -1,6 +1,7 @@
 #include <GDIPlus.au3>
 #include <GUIConstantsEx.au3>
 #include <ScreenCapture.au3>
+#include <WinAPIHObj.au3>
 
 Example()
 

@@ -1,13 +1,17 @@
 #include <FontConstants.au3>
 #include <MsgBoxConstants.au3>
-#include <WinAPI.au3>
+#include <StructureConstants.au3>
+#include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Global $g_tRECT, $g_hFont, $g_hOldFont, $g_hDC
 
 HotKeySet("{ESC}", "_Exit")
 
-$g_tRECT = DllStructCreate($tagRect)
+$g_tRECT = DllStructCreate($tagRECT)
 DllStructSetData($g_tRECT, "Left", 5)
 DllStructSetData($g_tRECT, "Top", 5)
 DllStructSetData($g_tRECT, "Right", 250)

@@ -11,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Attach to the first Workbook where the file name matches
-; *****************************************************************************
 Local $sWorkbook = "_Excel1.xls"
 $oWorkbook = _Excel_BookAttach($sWorkbook, "filename")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_BookAttach Example 2", "Error attaching to '" & $sWorkbook & "'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

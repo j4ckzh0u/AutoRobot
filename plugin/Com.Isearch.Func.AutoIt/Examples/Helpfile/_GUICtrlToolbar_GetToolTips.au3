@@ -2,6 +2,7 @@
 #include <GuiToolbar.au3>
 #include <GuiToolTip.au3>
 #include <MsgBoxConstants.au3>
+#include <WinAPIConstants.au3>
 #include <WindowsConstants.au3>
 
 Global Enum $e_idNew = 1000, $e_idOpen, $e_idSave, $e_idHelp

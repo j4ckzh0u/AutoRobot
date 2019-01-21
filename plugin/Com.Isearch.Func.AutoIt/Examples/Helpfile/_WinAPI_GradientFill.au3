@@ -1,6 +1,9 @@
 #include <GUIConstantsEx.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIGdiDC.au3>
+#include <WinAPIHObj.au3>
 
 Local $aVertex[6][3] = [[0, 0, 0xFF0000], [400, 400, 0x00FF00], [0, 400, 0x0000FF], [0, 0, 0xFF0000], [400, 0, 0xFFFF00], [400, 400, 0x00FF00]]
 

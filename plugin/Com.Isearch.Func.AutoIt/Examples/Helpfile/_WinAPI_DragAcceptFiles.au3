@@ -1,4 +1,5 @@
 #include <GUIConstantsEx.au3>
+#include <WinAPI.au3>
 #include <WinAPISys.au3>
 #include <WindowsConstants.au3>
 
@@ -40,11 +41,11 @@ WEnd
 Func _WinProc($hWnd, $iMsg, $wParam, $lParam)
 	Switch $iMsg
 		Case $WM_DROPFILES
-			Local $sFileList = _WinAPI_DragQueryFileEx($wParam)
+			Local $aFileList = _WinAPI_DragQueryFileEx($wParam)
 			If Not @error Then
 				ConsoleWrite('--------------------------------------------------' & @CRLF)
-				For $i = 1 To $sFileList[0]
-					ConsoleWrite($sFileList[$i] & @CRLF)
+				For $i = 1 To $aFileList[0]
+					ConsoleWrite($aFileList[$i] & @CRLF)
 				Next
 			EndIf
 			_WinAPI_DragFinish($wParam)

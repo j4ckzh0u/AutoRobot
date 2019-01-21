@@ -1,5 +1,8 @@
 #include <EditConstants.au3>
 #include <GUIConstantsEx.au3>
+#include <WinAPIConv.au3>
+#include <WinAPIGdi.au3>
+#include <WinAPIHObj.au3>
 #include <WinAPIRes.au3>
 #include <WindowsConstants.au3>
 

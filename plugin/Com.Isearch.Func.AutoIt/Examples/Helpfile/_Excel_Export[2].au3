@@ -11,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Export the whole workbook as PDF.
-; *****************************************************************************
 Local $sOutput = @TempDir & "\_Excel1_2.pdf"
 _Excel_Export($oExcel, $oWorkbook, $sOutput)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_Export Example 2", "Error saving the workbook to '" & $sOutput & "'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

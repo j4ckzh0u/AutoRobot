@@ -1,7 +1,8 @@
 #include <GUIConstantsEx.au3>
-#include <WinAPI.au3>
+#include <SendMessage.au3>
+#include <WinAPIMem.au3>
 #include <WinAPIMisc.au3>
-#include <WinAPISys.au3>
+#include <WinAPISysWin.au3>
 
 Global Const $WM_MYMESSAGE = _WinAPI_RegisterWindowMessage('MyMessage')
 

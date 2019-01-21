@@ -1,6 +1,8 @@
 #include <GDIPlus.au3>
 #include <GUIConstantsEx.au3>
 #include <ScreenCapture.au3>
+#include <WinAPIConv.au3>
+#include <WinAPIHObj.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo, $g_aCodex, $g_hImage

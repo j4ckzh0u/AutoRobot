@@ -1,6 +1,7 @@
 #include <Date.au3>
 #include <GUIConstantsEx.au3>
 #include <MsgBoxConstants.au3>
+#include <WinAPIError.au3>
 #include <WindowsConstants.au3>
 
 ; Under Vista the Windows API "SetLocalime" may be rejected due to system security

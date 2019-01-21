@@ -1,4 +1,4 @@
-#include <WinAPISys.au3>
+#include <WinAPISysWin.au3>
 
 Local $tWINDOWINFO = _WinAPI_GetWindowInfo(_WinAPI_GetDesktopWindow())
 

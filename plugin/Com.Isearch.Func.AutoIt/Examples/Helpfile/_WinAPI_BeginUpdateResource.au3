@@ -1,5 +1,7 @@
 #include <APIResConstants.au3>
 #include <MsgBoxConstants.au3>
+#include <WinAPIFiles.au3>
+#include <WinAPIHObj.au3>
 #include <WinAPIRes.au3>
 
 Global Const $g_sExe = @TempDir & '\MyProg.exe'
@@ -8,7 +10,7 @@ Global Const $tagICONRESDIR = 'byte Width;byte Height;byte ColorCount;byte Reser
 Global Const $tagNEWHEADER = 'ushort Reserved;ushort ResType;ushort ResCount;' ; & $tagICONRESDIR[ResCount]
 
 ; Select icon to update resource
-Local $sIcon = FileOpenDialog('Select File', @ScriptDir & '\Extras', 'Icon Files (*.ico)', 1 + 2, 'Script.ico')
+Local $sIcon = FileOpenDialog('Select File', @ScriptDir & '\Extras', 'Icon Files (*.ico)', BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST), 'Script.ico')
 If Not $sIcon Then
 	Exit
 EndIf

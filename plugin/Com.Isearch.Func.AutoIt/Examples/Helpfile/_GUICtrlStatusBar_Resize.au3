@@ -13,8 +13,13 @@ Func Example()
 	; Create GUI
 	$hGUI = GUICreate("StatusBar Resize", 400, 300, -1, -1, $WS_OVERLAPPEDWINDOW)
 
+	; Set parts
 	$g_hStatus = _GUICtrlStatusBar_Create($hGUI)
 	_GUICtrlStatusBar_SetParts($g_hStatus, $aParts)
+	_GUICtrlStatusBar_SetText($g_hStatus, "Part 1")
+	_GUICtrlStatusBar_SetText($g_hStatus, "Part 2", 1)
+	_GUICtrlStatusBar_SetText($g_hStatus, "Part 3", 2)
+
 	GUISetState(@SW_SHOW)
 
 	GUIRegisterMsg($WM_SIZE, "WM_SIZE")

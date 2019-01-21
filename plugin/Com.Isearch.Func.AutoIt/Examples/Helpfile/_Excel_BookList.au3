@@ -22,9 +22,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Display a list of all workbooks of all Excel instances
-; *****************************************************************************
 Local $aWorkBooks = _Excel_BookList()
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_BookList Example 2", "Error listing Workbooks." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 _ArrayDisplay($aWorkBooks, "Excel UDF: _Excel_BookList Example 2 - List of workbooks of all instances")

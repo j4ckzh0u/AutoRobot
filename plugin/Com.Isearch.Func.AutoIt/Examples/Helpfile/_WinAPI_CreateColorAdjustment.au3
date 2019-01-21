@@ -1,13 +1,16 @@
 #include <APIGdiConstants.au3>
+#include <APIResConstants.au3>
 #include <ComboConstants.au3>
 #include <EditConstants.au3>
 #include <GDIPlus.au3>
-#include <GUIComboBox.au3>
+#include <GuiComboBox.au3>
 #include <GUIConstantsEx.au3>
 #include <MsgBoxConstants.au3>
+#include <SendMessage.au3>
 #include <SliderConstants.au3>
 #include <StaticConstants.au3>
 #include <WinAPIGdi.au3>
+#include <WinAPIHObj.au3>
 #include <WinAPIShPath.au3>
 #include <WindowsConstants.au3>
 
@@ -21,7 +24,7 @@ _GDIPlus_Startup()
 
 Local $hObj, $hSrc, $W, $H, $sData
 While 1
-	$sData = FileOpenDialog('Load Image', @ScriptDir & '\Extras', 'Image Files (*.bmp;*.dib;*.gif;*.jpg;*.tif)|All Files (*.*)', 1 + 2)
+	$sData = FileOpenDialog('Load Image', @ScriptDir & '\Extras', 'Image Files (*.bmp;*.dib;*.gif;*.jpg;*.tif)|All Files (*.*)', BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
 	If @error Then Exit
 
 	$hObj = _GDIPlus_ImageLoadFromFile($sData)
@@ -96,7 +99,7 @@ While 1
 			_Reset()
 		Case $aidButton[1]
 			GUISetState(@SW_DISABLE, $hForm)
-			$sData = FileSaveDialog('Save Image', @WorkingDir, 'Image Files (*.bmp;*.dib;*.gif;*.jpg;*.tif)|All Files (*.*)', 2 + 16, @ScriptDir & '\MyImage.jpg', $g_hTool)
+			$sData = FileSaveDialog('Save Image', @TempDir, 'Image Files (*.bmp;*.dib;*.gif;*.jpg;*.tif)|All Files (*.*)', 2 + 16, 'MyImage.jpg', $g_hTool)
 			GUICtrlSetState($aidButton[1], $GUI_FOCUS)
 			GUISetState(@SW_ENABLE, $hForm)
 			If Not $sData Then

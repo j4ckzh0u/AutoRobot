@@ -1,8 +1,10 @@
 #include <GDIPlus.au3>
 #include <GUIConstantsEx.au3>
 #include <Memory.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
 #include <WinAPICom.au3>
+#include <WinAPIHObj.au3>
 
 ; Create bitmap (MSDNLogo.png)
 Local $dData = _Image_MSDNLogo()

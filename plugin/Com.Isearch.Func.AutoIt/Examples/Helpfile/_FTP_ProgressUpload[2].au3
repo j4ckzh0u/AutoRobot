@@ -1,6 +1,5 @@
 #include <FTPEx.au3>
 #include <GUIConstantsEx.au3>
-#include <Misc.au3>
 #include <ProgressConstants.au3>
 
 ; This example NEED TO BE ADAPTED to valid $g_sRemoteFile/$sServer/$sUsername/$sPass

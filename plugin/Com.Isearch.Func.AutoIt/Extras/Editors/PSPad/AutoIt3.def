@@ -119,7 +119,7 @@ BlockInput ( |flag )
 Break ( |mode )
 ;
 [Call | Calls a user-defined or built-in function contained in first parameter.]
-Call ( |"function" [, param1 [, param2 [, paramN]]] )
+Call ( |"function" [, param_1 [, param_2 [, param_N]]] )
 ;
 [CDTray | Opens or closes the CD tray.]
 CDTray ( |"drive", "status" )
@@ -950,7 +950,7 @@ StringAddCR ( |"string" )
 StringCompare ( |"string1", "string2" [, casesense = 0] )
 ;
 [StringFormat | Returns a formatted string (similar to the C sprintf() function).]
-StringFormat ( |"format control", var1 [, ... var32] )
+StringFormat ( |"format control" [, var1 [, ... var32]] )
 ;
 [StringFromASCIIArray | Converts an array of ASCII codes to a string.]
 StringFromASCIIArray ( |array,[start = 0 [, end = -1 [, encoding = 0]]] )
@@ -1253,13 +1253,13 @@ _ArrayColInsert ( |ByRef $aArray, $iColumn )
 _ArrayCombinations ( |Const ByRef $aArray, $iSet [, $sDelimiter = ""] )
 ;
 [_ArrayConcatenate | Concatenate two arrays - either 1D or 2D with the same number of columns (Requires: #include <Array.au3>)]
-_ArrayConcatenate ( |Const ByRef $aArrayTarget, ByRef $aArraySource [, $iStart = 0] )
+_ArrayConcatenate ( |ByRef $aArrayTarget, Const ByRef $aArraySource [, $iStart = 0] )
 ;
 [_ArrayDelete | Deletes the specified element(s) from the specified 1D or 2D array (Requires: #include <Array.au3>)]
 _ArrayDelete ( |ByRef $aArray, $vRange )
 ;
-[_ArrayDisplay | Displays a 1D or 2D array in a ListView (Requires: #include <Array.au3>)]
-_ArrayDisplay ( |Const ByRef $aArray [, $sTitle = "ArrayDisplay" [, $sArrayRange = "" [, $iFlags = 0 [, $vUser_Separator = Default [, $sHeader = Default [, $iMax_ColWidth = Default [, $iAlt_Color = Default [, $hUser_Function = ""]]]]]]]] )
+[_ArrayDisplay | Displays a 1D or 2D array as a ListView (Requires: #include <Array.au3>)]
+_ArrayDisplay ( |Const ByRef $aArray [, $sTitle = "ArrayDisplay" [, $sArrayRange = "" [, $iFlags = 0 [, $vUser_Separator = Default [, $sHeader = Default [, $iMax_ColWidth = Default]]]]]] )
 ;
 [_ArrayExtract | Extracts an array from the specified element(s) of a 1D or 2D array (Requires: #include <Array.au3>)]
 _ArrayExtract ( |Const ByRef $aArray [, $iStart_Row = -1 [, $iEnd_Row = -1 [, $iStart_Col = -1 [, $iEnd_Col = -1]]]] )
@@ -1427,7 +1427,7 @@ _Crypt_DecryptData ( |$vData, $vCryptKey, $iAlgID [, $bFinal = True] )
 _Crypt_DecryptFile ( |$sSourceFile, $sDestinationFile, $vCryptKey, $iAlgID )
 ;
 [_Crypt_DeriveKey | Creates a key from algorithm and password (Requires: #include <Crypt.au3>)]
-_Crypt_DeriveKey ( |$vPassword, $iAlgID [, $iHashAlgID = $CALG_MD5] )
+_Crypt_DeriveKey ( |$vPassword, $iAlgID [, $iHashPasswordID = $CALG_MD5] )
 ;
 [_Crypt_DestroyKey | Frees the resources used by a key (Requires: #include <Crypt.au3>)]
 _Crypt_DestroyKey ( |$hCryptKey )
@@ -1444,7 +1444,7 @@ _Crypt_GenRandom ( |$pBuffer, $iSize )
 [_Crypt_HashData | Hash data with specified algorithm (Requires: #include <Crypt.au3>)]
 _Crypt_HashData ( |$vData, $iAlgID [, $bFinal = True [, $hCryptHash = 0]] )
 ;
-[_Crypt_HashFile | Hash a string with specified algorithm (Requires: #include <Crypt.au3>)]
+[_Crypt_HashFile | Hash the contents of a file using a specified algorithm (Requires: #include <Crypt.au3>)]
 _Crypt_HashFile ( |$sFilePath, $iAlgID )
 ;
 [_Crypt_Shutdown | Uninitialize the Crypt library (Requires: #include <Crypt.au3>)]
@@ -1599,6 +1599,9 @@ _Date_Time_TzSpecificLocalTimeToSystemTime ( |$tLocalTime [, $tTimeZone = 0] )
 ;
 [_DayValueToDate | Add the given days since noon 4713 BC January 1 and returns the Gregorian date (Requires: #include <Date.au3>)]
 _DayValueToDate ( |$iJulianDate, ByRef $iYear, ByRef $iMonth, ByRef $iDay )
+;
+[_DebugArrayDisplay | Displays a 1D or 2D array in a ListView to aid debugging (Requires: #include <Debug.au3>)]
+_DebugArrayDisplay ( |Const ByRef $aArray [, $sTitle = "DebugArray" [, $sArrayRange = "" [, $iFlags = 0 [, $vUser_Separator = Default [, $sHeader = Default [, $iMax_ColWidth = Default [, $hUser_Function = ""]]]]]]] )
 ;
 [_DebugBugReportEnv | Outputs a string containing information for Bug report submission (Requires: #include <Debug.au3>)]
 _DebugBugReportEnv ( | )
@@ -1784,7 +1787,7 @@ _FileWriteFromArray ( |$sFilePath, Const ByRef $aArray [, $iBase = Default [, $i
 _FileWriteLog ( |$sLogPath, $sLogMsg [, $iFlag = -1] )
 ;
 [_FileWriteToLine | Writes text to a specific line in a file (Requires: #include <File.au3>)]
-_FileWriteToLine ( |$sFilePath, $iLine, $sText [, $bOverWrite = False] )
+_FileWriteToLine ( |$sFilePath, $iLine, $sText [, $bOverWrite = False [, $bFill = False]] )
 ;
 [_FTP_Close | Closes the _FTP_Open or _FTP_Connect session (Requires: #include <FTPEx.au3>)]
 _FTP_Close ( |$hSession )
@@ -1793,7 +1796,7 @@ _FTP_Close ( |$hSession )
 _FTP_Command ( |$hFTPSession, $sFTPCommand [, $iFlags = $FTP_TRANSFER_TYPE_ASCII [, $iExpectResponse = 0 [, $iContext = 0]]] )
 ;
 [_FTP_Connect | Connects to an FTP server (Requires: #include <FTPEx.au3>)]
-_FTP_Connect ( |$hInternetSession, $sServerName, $sUsername, $sPassword [, $iPassive = 0 [, $iServerPort = 0 [, $iService = $INTERNET_SERVICE_FTP [, $iFlags = 0 [, $fuContext = 0]]]]] )
+_FTP_Connect ( |$hInternetSession, $sServerName, $sUsername, $sPassword [, $iPassive = 0 [, $iServerPort = 0 [, $iService = $INTERNET_SERVICE_FTP [, $iFlags = $INTERNET_FLAG_DEFAULT [, $fuContext = 0]]]]] )
 ;
 [_FTP_DecodeInternetStatus | Decode a received Internet Status (Requires: #include <FTPEx.au3>)]
 _FTP_DecodeInternetStatus ( |$iInternetStatus )
@@ -1838,7 +1841,7 @@ _FTP_FileRead ( |$hFTPFile, $iNumberOfBytesToRead )
 _FTP_FileRename ( |$hFTPSession, $sExisting, $sNew )
 ;
 [_FTP_FileTimeLoHiToStr | Converts filetime Loword and Hiword to a string (Requires: #include <FTPEx.au3>)]
-_FTP_FileTimeLoHiToStr ( |$iLoDWORD, $iHiDWORD [, $bFmt = 0] )
+_FTP_FileTimeLoHiToStr ( |$iLoDWORD, $iHiDWORD [, $iFmt = 0] )
 ;
 [_FTP_FindFileClose | Delete FindFile Handle (Requires: #include <FTPEx.au3>)]
 _FTP_FindFileClose ( |$hFTPFind )
@@ -1974,6 +1977,9 @@ _GDIPlus_BitmapLockBits ( |$hBitmap, $iLeft, $iTop, $iWidth, $iHeight [, $iFlags
 ;
 [_GDIPlus_BitmapSetPixel | Sets the color of a specified pixel in this bitmap (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_BitmapSetPixel ( |$hBitmap, $iX, $iY, $iARGB )
+;
+[_GDIPlus_BitmapSetResolution | Sets the resolution of this Bitmap object (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_BitmapSetResolution ( |$hBitmap, $fDpiX, $fDpiY )
 ;
 [_GDIPlus_BitmapUnlockBits | Unlocks a portion of a bitmap that was locked by _GDIPlus_BitmapLockBits (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_BitmapUnlockBits ( |$hBitmap, $tBitmapData )
@@ -2341,6 +2347,15 @@ _GDIPlus_ImageAttributesSetColorKeys ( |$hImageAttributes [, $iColorAdjustType =
 [_GDIPlus_ImageAttributesSetColorMatrix | Sets or clears the color- and grayscale-adjustment matrices for a specified category (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_ImageAttributesSetColorMatrix ( |$hImageAttributes [, $iColorAdjustType = 0 [, $bEnable = False [, $tClrMatrix = 0 [, $tGrayMatrix = 0 [, $iColorMatrixFlags = 0]]]]] )
 ;
+[_GDIPlus_ImageAttributesSetRemapTable | Sets or clears the color-remap table for a specified category (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_ImageAttributesSetRemapTable ( |$hImageAttributes [, $aColorMap = 0 [, $iColorAdjustType = 0 [, $bEnable = True]]] )
+;
+[_GDIPlus_ImageAttributesSetThreshold | Sets the threshold (transparency range) for a specified category (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_ImageAttributesSetThreshold ( |$hImageAttributes, $fThreshold [, $iColorAdjustType = $GDIP_COLORADJUSTTYPE_DEFAULT [, $bEnable = True]] )
+;
+[_GDIPlus_ImageClone | Creates a new image object by cloning from source image (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_ImageClone ( |$hImage )
+;
 [_GDIPlus_ImageDispose | Release an image object (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_ImageDispose ( |$hImage )
 ;
@@ -2349,6 +2364,9 @@ _GDIPlus_ImageGetDimension ( |$hImage )
 ;
 [_GDIPlus_ImageGetFlags | Returns enumeration of pixel data attributes contained in an image (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_ImageGetFlags ( |$hImage )
+;
+[_GDIPlus_ImageGetFrameCount | Gets the number of frames in a specified dimension of an Image object (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_ImageGetFrameCount ( |$hImage, $sDimensionID )
 ;
 [_GDIPlus_ImageGetGraphicsContext | Get the graphics context of the image (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_ImageGetGraphicsContext ( |$hImage )
@@ -2361,6 +2379,12 @@ _GDIPlus_ImageGetHorizontalResolution ( |$hImage )
 ;
 [_GDIPlus_ImageGetPixelFormat | Returns pixel format of an image: Bits per pixel, Alpha channels, RGB, Grayscale, Indexed etc (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_ImageGetPixelFormat ( |$hImage )
+;
+[_GDIPlus_ImageGetPropertyIdList | Gets a list of the property identifiers used in the meta data of an image object (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_ImageGetPropertyIdList ( |$hImage )
+;
+[_GDIPlus_ImageGetPropertyItem | Gets a specified property item (piece of meta data) from an Image object (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_ImageGetPropertyItem ( |$hImage, $iPropID )
 ;
 [_GDIPlus_ImageGetRawFormat | Returns file format GUID and image format name of an image (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_ImageGetRawFormat ( |$hImage )
@@ -2389,6 +2413,12 @@ _GDIPlus_ImageResize ( |$hImage, $iNewWidth, $iNewHeight [, $iInterpolationMode 
 [_GDIPlus_ImageRotateFlip | Rotates and flips an image (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_ImageRotateFlip ( |$hImage, $iRotateFlipType )
 ;
+[_GDIPlus_ImageSaveAdd | Adds a frame to a file or stream specified in a previous call to the _GDIPlus_ImageSaveToFileEx or _GDIPlus_ImageSaveToStream functions (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_ImageSaveAdd ( |$hImage, $tParams )
+;
+[_GDIPlus_ImageSaveAddImage | Adds a frame to a file or stream specified in a previous call to the _GDIPlus_ImageSaveToFileEx or _GDIPlus_ImageSaveToStream functions (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_ImageSaveAddImage ( |$hImage, $hImageNew, $tParams )
+;
 [_GDIPlus_ImageSaveToFile | Save an image to file (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_ImageSaveToFile ( |$hImage, $sFileName )
 ;
@@ -2400,6 +2430,9 @@ _GDIPlus_ImageSaveToStream ( |$hImage, $pStream, $tEncoder [, $tParams = 0] )
 ;
 [_GDIPlus_ImageScale | Scales an image by a given factor (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_ImageScale ( |$hImage, $iScaleW, $iScaleH [, $iInterpolationMode = $GDIP_INTERPOLATIONMODE_HIGHQUALITYBICUBIC] )
+;
+[_GDIPlus_ImageSelectActiveFrame | Selects a frame in an image object specified by a dimension and an index (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_ImageSelectActiveFrame ( |$hImage, $sDimensionID, $iFrameIndex )
 ;
 [_GDIPlus_LineBrushCreate | Creates a LinearGradientBrush object from a set of boundary points and boundary colors (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_LineBrushCreate ( |$nX1, $nY1, $nX2, $nY2, $iARGBClr1, $iARGBClr2 [, $iWrapMode = 0] )
@@ -2448,6 +2481,9 @@ _GDIPlus_MatrixClone ( |$hMatrix )
 ;
 [_GDIPlus_MatrixCreate | Creates and initializes a Matrix object that represents the identity matrix (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_MatrixCreate ( | )
+;
+[_GDIPlus_MatrixCreate2 | Creates and initializes a Matrix object based on six numbers that define an affine transformation (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_MatrixCreate2 ( |[$nM11 = 1 [, $nM12 = 1 [, $nM21 = 1 [, $nM22 = 1 [, $nDX = 0 [, $nDY = 0]]]]]] )
 ;
 [_GDIPlus_MatrixDispose | Release a matrix object (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_MatrixDispose ( |$hMatrix )
@@ -2719,11 +2755,23 @@ _GDIPlus_PenGetMiterLimit ( |$hPen )
 [_GDIPlus_PenGetWidth | Retrieve the width of a pen (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_PenGetWidth ( |$hPen )
 ;
+[_GDIPlus_PenResetTransform | Resets the world transformation matrix of a Pen object to the identity matrix (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_PenResetTransform ( |$hPen )
+;
+[_GDIPlus_PenRotateTransform | Updates the world transformation matrix of a Pen object with the product of itself and a rotation matrix (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_PenRotateTransform ( |$hPen, $fAngle [, $iOrder = 0] )
+;
+[_GDIPlus_PenScaleTransform | Updates the world transformation matrix of a pen object with the product of itself and a scaling matrix (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_PenScaleTransform ( |$hPen, $fScaleX, $fScaleY [, $iOrder = 0] )
+;
 [_GDIPlus_PenSetAlignment | Sets the pen alignment (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_PenSetAlignment ( |$hPen [, $iAlignment = 0] )
 ;
 [_GDIPlus_PenSetColor | Sets the pen color (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_PenSetColor ( |$hPen, $iARGB )
+;
+[_GDIPlus_PenSetCompound | Sets the compound array for a Pen object (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_PenSetCompound ( |$hPen, $aCompounds )
 ;
 [_GDIPlus_PenSetCustomEndCap | Sets the custom end cap for the pen (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_PenSetCustomEndCap ( |$hPen, $hEndCap )
@@ -2748,6 +2796,9 @@ _GDIPlus_PenSetMiterLimit ( |$hPen, $fMiterLimit )
 ;
 [_GDIPlus_PenSetStartCap | Sets the start cap for a Pen object (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_PenSetStartCap ( |$hPen, $iLineCap )
+;
+[_GDIPlus_PenSetTransform | Sets the world transformation of a pen object (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_PenSetTransform ( |$hPen, $hMatrix )
 ;
 [_GDIPlus_PenSetWidth | Sets the width of a pen (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_PenSetWidth ( |$hPen, $fWidth )
@@ -2784,6 +2835,12 @@ _GDIPlus_RegionGetBounds ( |$hRegion, $hGraphics )
 ;
 [_GDIPlus_RegionGetHRgn | Creates a GDI region from a GDI+ Region object (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_RegionGetHRgn ( |$hRegion [, $hGraphics = 0] )
+;
+[_GDIPlus_RegionSetEmpty | Updates a region to an empty region. In other words, the region occupies no space on the display device (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_RegionSetEmpty ( |$hRegion )
+;
+[_GDIPlus_RegionSetInfinite | Updates a region to an infinite region (Requires: #include <GDIPlus.au3>)]
+_GDIPlus_RegionSetInfinite ( |$hRegion )
 ;
 [_GDIPlus_RegionTransform | Tansforms a region by multiplying each of its data points by a specified matrix (Requires: #include <GDIPlus.au3>)]
 _GDIPlus_RegionTransform ( |$hRegion, $hMatrix )
@@ -4169,7 +4226,7 @@ _GUICtrlListView_MapIndexToID ( |$hWnd, $iIndex )
 _GUICtrlListView_RedrawItems ( |$hWnd, $iFirst, $iLast )
 ;
 [_GUICtrlListView_RegisterSortCallBack | Register the Simple Sort callback function (Requires: #include <GuiListView.au3>)]
-_GUICtrlListView_RegisterSortCallBack ( |$hWnd [, $bNumbers = True [, $bArrows = True]] )
+_GUICtrlListView_RegisterSortCallBack ( |$hWnd [, $vCompareType = 1 [, $bArrows = True [, $sPrivateCallBack = "__GUICtrlListView_Sort"]]] )
 ;
 [_GUICtrlListView_RemoveAllGroups | Removes all groups from the control (Requires: #include <GuiListView.au3>)]
 _GUICtrlListView_RemoveAllGroups ( |$hWnd )
@@ -5125,7 +5182,7 @@ _GUICtrlRichEdit_SetCharAttributes ( |$hWnd, $sStatesAndEffects [, $bWord = Fals
 [_GUICtrlRichEdit_SetCharBkColor | Sets the background color of selected text or, if none selected, sets the background color of text inserted at the insertion point (Requires: #include <GuiRichEdit.au3>)]
 _GUICtrlRichEdit_SetCharBkColor ( |$hWnd [, $iBkColor = Default] )
 ;
-[_GUICtrlRichEdit_SetCharColor | Sets the color of selected text or, if none selected, sets the background color of text inserted at the insertion point (Requires: #include <GuiRichEdit.au3>)]
+[_GUICtrlRichEdit_SetCharColor | Sets the color of selected text or, if none selected, sets the color of text inserted at the insertion point (Requires: #include <GuiRichEdit.au3>)]
 _GUICtrlRichEdit_SetCharColor ( |$hWnd [, $iColor = Default] )
 ;
 [_GUICtrlRichEdit_SetEventMask | Specifies which notification messages are sent to the parent window (Requires: #include <GuiRichEdit.au3>)]
@@ -5195,13 +5252,13 @@ _GUICtrlRichEdit_SetUndoLimit ( |$hWnd, $iLimit )
 _GUICtrlRichEdit_SetZoom ( |$hWnd, $iPercent )
 ;
 [_GUICtrlRichEdit_StreamFromFile | Sets text in a control from a file (Requires: #include <GuiRichEdit.au3>)]
-_GUICtrlRichEdit_StreamFromFile ( |$hWnd, $sFileSpec )
+_GUICtrlRichEdit_StreamFromFile ( |$hWnd, $sFileSpec [, $iFileEncoding = Default] )
 ;
 [_GUICtrlRichEdit_StreamFromVar | Sets text in a control from a variable (Requires: #include <GuiRichEdit.au3>)]
 _GUICtrlRichEdit_StreamFromVar ( |$hWnd, $sVar )
 ;
 [_GUICtrlRichEdit_StreamToFile | Writes contents of a control to a file (Requires: #include <GuiRichEdit.au3>)]
-_GUICtrlRichEdit_StreamToFile ( |$hWnd, $sFileSpec [, $bIncludeCOM = True [, $iOpts = 0 [, $iCodePage = 0]]] )
+_GUICtrlRichEdit_StreamToFile ( |$hWnd, $sFileSpec [, $bIncludeCOM = True [, $iOpts = 0 [, $iCodePage = 0 [, $iFileEncoding = Default]]]] )
 ;
 [_GUICtrlRichEdit_StreamToVar | Writes contents of a control to a variable (Requires: #include <GuiRichEdit.au3>)]
 _GUICtrlRichEdit_StreamToVar ( |$hWnd [, $bRtf = True [, $bIncludeCOM = True [, $iOpts = 0 [, $iCodePage = 0]]]] )
@@ -5408,7 +5465,7 @@ _GUICtrlStatusBar_SetIcon ( |$hWnd, $iPart [, $hIcon = -1 [, $sIconFile = ""]] )
 _GUICtrlStatusBar_SetMinHeight ( |$hWnd, $iMinHeight )
 ;
 [_GUICtrlStatusBar_SetParts | Sets the number of parts and the part edges (Requires: #include <GuiStatusBar.au3>)]
-_GUICtrlStatusBar_SetParts ( |$hWnd [, $aParts = -1 [, $aPartWidth = 25]] )
+_GUICtrlStatusBar_SetParts ( |$hWnd [, $vPartEdge = -1 [, $vPartWidth = 25]] )
 ;
 [_GUICtrlStatusBar_SetSimple | Specifies whether a status window displays simple text or displays all window parts (Requires: #include <GuiStatusBar.au3>)]
 _GUICtrlStatusBar_SetSimple ( |$hWnd [, $bSimple = True] )
@@ -6677,7 +6734,7 @@ _INetMail ( |$sMailTo, $sMailSubject, $sMailBody )
 _INetSmtpMail ( |$sSMTPServer, $sFromName, $sFromAddress, $sToAddress [, $sSubject = "" [, $aBody = "" [, $sEHLO = "" [, $sFirst = "" [, $bTrace = 0]]]]] )
 ;
 [_IsPressed | Check if key has been pressed (Requires: #include <Misc.au3>)]
-_IsPressed ( |$sHexKey [, $vDLL = 'user32.dll'] )
+_IsPressed ( |$sHexKey [, $vDLL = "user32.dll"] )
 ;
 [_MathCheckDiv | Checks if first number is divisible by the second number (Requires: #include <Math.au3>)]
 _MathCheckDiv ( |$iNum1 [, $iNum2 = 2] )
@@ -7058,7 +7115,7 @@ _StringBetween ( |$sString, $sStart, $sEnd [, $iMode = $STR_ENDISSTART [, $bCase
 _StringExplode ( |$sString, $sDelimiter [, $iLimit = 0] )
 ;
 [_StringInsert | Inserts a string within another string (Requires: #include <String.au3>)]
-_StringInsert ( |$sString, $sInsertString, $iPosition )
+_StringInsert ( |$sString, $sInsertion, $iPosition )
 ;
 [_StringProper | Changes a string to proper case, same as the =Proper function in Excel (Requires: #include <String.au3>)]
 _StringProper ( |$sString )
@@ -7156,7 +7213,7 @@ _WinAPI_AddFontResourceEx ( |$sFont [, $iFlag = 0 [, $bNotify = False]] )
 [_WinAPI_AddIconOverlay | Creates an icon by merging the source icon and overlay mask (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_AddIconOverlay ( |$hIcon, $hOverlay )
 ;
-[_WinAPI_AddIconTransparency | Adds a transparency to the specified 32 bits-per-pixel icon (Requires: #include <WinAPIRes.au3>)]
+[_WinAPI_AddIconTransparency | Adds a transparency to the specified 32 bits-per-pixel icon (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_AddIconTransparency ( |$hIcon [, $iPercent = 50 [, $bDelete = False]] )
 ;
 [_WinAPI_AddMRUString | Adds a string to the top of the most recently used (MRU) list (Requires: #include <WinAPIReg.au3>)]
@@ -7168,7 +7225,7 @@ _WinAPI_AdjustBitmap ( |$hBitmap, $iWidth, $iHeight [, $iMode = 3 [, $tAdjustmen
 [_WinAPI_AdjustTokenPrivileges | Enables or disables privileges in the specified access token (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_AdjustTokenPrivileges ( |$hToken, $aPrivileges, $iAttributes, ByRef $aAdjust )
 ;
-[_WinAPI_AdjustWindowRectEx | Calculates the required size of the window rectangle, based on the desired size of the client rectangle (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_AdjustWindowRectEx | Calculates the required size of the window rectangle, based on the desired size of the client rectangle (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_AdjustWindowRectEx ( |ByRef $tRECT, $iStyle [, $iExStyle = 0 [, $bMenu = False]] )
 ;
 [_WinAPI_AlphaBlend | Displays bitmaps that have transparent or semitransparent pixels (Requires: #include <WinAPIGdi.au3>)]
@@ -7177,7 +7234,7 @@ _WinAPI_AlphaBlend ( |$hDestDC, $iXDest, $iYDest, $iWidthDest, $iHeightDest, $hS
 [_WinAPI_AngleArc | Draws a line segment and an arc (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_AngleArc ( |$hDC, $iX, $iY, $iRadius, $nStartAngle, $nSweepAngle )
 ;
-[_WinAPI_AnimateWindow | Enables you to produce special effects when showing or hiding windows (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_AnimateWindow | Enables you to produce special effects when showing or hiding windows (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_AnimateWindow ( |$hWnd, $iFlags [, $iDuration = 1000] )
 ;
 [_WinAPI_Arc | Draws an elliptical arc (Requires: #include <WinAPIGdi.au3>)]
@@ -7198,10 +7255,10 @@ _WinAPI_AssocGetPerceivedType ( |$sExt )
 [_WinAPI_AssocQueryString | Searches for and retrieves a file or protocol association-related string from the registry (Requires: #include <WinAPIReg.au3>)]
 _WinAPI_AssocQueryString ( |$sAssoc, $iType [, $iFlags = 0 [, $sExtra = '']] )
 ;
-[_WinAPI_AttachConsole | Attaches the calling process to the console of the specified process (Requires: #include <WinAPI.au3>)]
+[_WinAPI_AttachConsole | Attaches the calling process to the console of the specified process (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_AttachConsole ( |[$iPID = -1] )
 ;
-[_WinAPI_AttachThreadInput | Attaches the input processing mechanism of one thread to that of another thread (Requires: #include <WinAPI.au3>)]
+[_WinAPI_AttachThreadInput | Attaches the input processing mechanism of one thread to that of another thread (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_AttachThreadInput ( |$iAttach, $iAttachTo, $bAttach )
 ;
 [_WinAPI_BackupRead | Backs up a file or directory, including the security information (Requires: #include <WinAPIFiles.au3>)]
@@ -7219,13 +7276,13 @@ _WinAPI_BackupWrite ( |$hFile, $pBuffer, $iLength, ByRef $iBytes, ByRef $pContex
 [_WinAPI_BackupWriteAbort | Finishes the use of _WinAPI_BackupWrite() on the handle (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_BackupWriteAbort ( |ByRef $pContext )
 ;
-[_WinAPI_Beep | Generates simple tones on the speaker (Requires: #include <WinAPI.au3>)]
+[_WinAPI_Beep | Generates simple tones on the speaker (Requires: #include <WinAPIError.au3>)]
 _WinAPI_Beep ( |[$iFreq = 500 [, $iDuration = 1000]] )
 ;
 [_WinAPI_BeginBufferedPaint | Begins a buffered paint operation (Requires: #include <WinAPITheme.au3>)]
 _WinAPI_BeginBufferedPaint ( |$hDC, $tTarget, ByRef $hNewDC [, $iFormat = 0 [, $iFlags = 0 [, $tExclude = 0 [, $iAlpha = -1]]]] )
 ;
-[_WinAPI_BeginDeferWindowPos | Allocates memory for a multiple-window-position structure (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_BeginDeferWindowPos | Allocates memory for a multiple-window-position structure (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_BeginDeferWindowPos ( |[$iAmount = 1] )
 ;
 [_WinAPI_BeginPaint | Prepares the specified window for painting (Requires: #include <WinAPIGdi.au3>)]
@@ -7237,13 +7294,13 @@ _WinAPI_BeginPath ( |$hDC )
 [_WinAPI_BeginUpdateResource | Retrieves a handle that can be used to add, delete, or replace resources in a binary module (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_BeginUpdateResource ( |$sFilePath [, $bDelete = False] )
 ;
-[_WinAPI_BitBlt | Performs a bit-block transfer of color data (Requires: #include <WinAPI.au3>)]
+[_WinAPI_BitBlt | Performs a bit-block transfer of color data (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_BitBlt ( |$hDestDC, $iXDest, $iYDest, $iWidth, $iHeight, $hSrcDC, $iXSrc, $iYSrc, $iROP )
 ;
-[_WinAPI_BringWindowToTop | Brings the specified window to the top of the Z order (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_BringWindowToTop | Brings the specified window to the top of the Z order (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_BringWindowToTop ( |$hWnd )
 ;
-[_WinAPI_BroadcastSystemMessage | Sends a message to the specified recipients (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_BroadcastSystemMessage | Sends a message to the specified recipients (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_BroadcastSystemMessage ( |$iMsg [, $wParam = 0 [, $lParam = 0 [, $iFlags = 0 [, $iRecipients = 0]]]] )
 ;
 [_WinAPI_BrowseForFolderDlg | Displays a dialog box that enables the user to select a Shell folder (Requires: #include <WinAPIDlg.au3>)]
@@ -7261,28 +7318,28 @@ _WinAPI_BufferedPaintSetAlpha ( |$hBP [, $iAlpha = 255 [, $tRECT = 0]] )
 [_WinAPI_BufferedPaintUnInit | Closes down buffered painting for the current thread (Requires: #include <WinAPITheme.au3>)]
 _WinAPI_BufferedPaintUnInit ( | )
 ;
-[_WinAPI_CallNextHookEx | Passes the hook information to the next hook procedure in the current hook chain (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CallNextHookEx | Passes the hook information to the next hook procedure in the current hook chain (Requires: #include <WinAPISys.au3>)]
 _WinAPI_CallNextHookEx ( |$hHook, $iCode, $wParam, $lParam )
 ;
-[_WinAPI_CallWindowProc | Passes the hook information to the next hook procedure in the current hook chain (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CallWindowProc | Passes the hook information to the next hook procedure in the current hook chain (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_CallWindowProc ( |$pPrevWndFunc, $hWnd, $iMsg, $wParam, $lParam )
 ;
-[_WinAPI_CallWindowProcW | Passes message information to the specified window procedure (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_CallWindowProcW | Passes message information to the specified window procedure (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_CallWindowProcW ( |$pPrevWndProc, $hWnd, $iMsg, $wParam, $lParam )
 ;
-[_WinAPI_CascadeWindows | Cascades the specified child windows of the specified parent window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_CascadeWindows | Cascades the specified child windows of the specified parent window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_CascadeWindows ( |$aWnds [, $tRECT = 0 [, $hParent = 0 [, $iFlags = 0 [, $iStart = 0 [, $iEnd = -1]]]]] )
 ;
-[_WinAPI_ChangeWindowMessageFilterEx | Modifies the User Interface Privilege Isolation (UIPI) message filter for a specified window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_ChangeWindowMessageFilterEx | Modifies the User Interface Privilege Isolation (UIPI) message filter for a specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_ChangeWindowMessageFilterEx ( |$hWnd, $iMsg, $iAction )
 ;
-[_WinAPI_CharToOem | Converts a string into the OEM-defined character set (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_CharToOem | Converts a string into the OEM-defined character set (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_CharToOem ( |$sStr )
 ;
-[_WinAPI_ChildWindowFromPointEx | Determines which, if any, of the child windows belonging to the specified parent window contains the specified point (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_ChildWindowFromPointEx | Determines which, if any, of the child windows belonging to the specified parent window contains the specified point (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_ChildWindowFromPointEx ( |$hWnd, $tPOINT [, $iFlags = 0] )
 ;
-[_WinAPI_ClientToScreen | Converts the client coordinates of a specified point to screen coordinates (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ClientToScreen | Converts the client coordinates of a specified point to screen coordinates (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_ClientToScreen ( |$hWnd, ByRef $tPoint )
 ;
 [_WinAPI_ClipCursor | Confines the cursor to a rectangular area on the screen (Requires: #include <WinAPIRes.au3>)]
@@ -7297,13 +7354,13 @@ _WinAPI_CloseEnhMetaFile ( |$hDC )
 [_WinAPI_CloseFigure | Closes an open figure in a path (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CloseFigure ( |$hDC )
 ;
-[_WinAPI_CloseHandle | Closes an open object handle (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CloseHandle | Closes an open object handle (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_CloseHandle ( |$hObject )
 ;
 [_WinAPI_CloseThemeData | Closes the theme data handle (Requires: #include <WinAPITheme.au3>)]
 _WinAPI_CloseThemeData ( |$hTheme )
 ;
-[_WinAPI_CloseWindow | Minimizes (but does not destroy) the specified window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_CloseWindow | Minimizes (but does not destroy) the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_CloseWindow ( |$hWnd )
 ;
 [_WinAPI_CloseWindowStation | Closes an open window station handle (Requires: #include <WinAPISys.au3>)]
@@ -7324,7 +7381,7 @@ _WinAPI_ColorHLSToRGB ( |$iHue, $iLuminance, $iSaturation )
 [_WinAPI_ColorRGBToHLS | Converts colors from RGB to hue-luminance-saturation (HLS) format (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_ColorRGBToHLS ( |$iRGB, ByRef $iHue, ByRef $iLuminance, ByRef $iSaturation )
 ;
-[_WinAPI_CombineRgn | Combines two regions and stores the result in a third region (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CombineRgn | Combines two regions and stores the result in a third region (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CombineRgn ( |$hRgnDest, $hRgnSrc1, $hRgnSrc2, $iCombineMode )
 ;
 [_WinAPI_CombineTransform | Concatenates two world-space to page-space transformations (Requires: #include <WinAPIGdi.au3>)]
@@ -7333,7 +7390,7 @@ _WinAPI_CombineTransform ( |$tXFORM1, $tXFORM2 )
 [_WinAPI_CommandLineToArgv | Parses a command-line string and returns an array of the command-line arguments (Requires: #include <WinAPIShPath.au3>)]
 _WinAPI_CommandLineToArgv ( |$sCmd )
 ;
-[_WinAPI_CommDlgExtendedError | Returns a common dialog box error string. This string indicates the most recent error to occur during the execution of one of the common dialog box functions (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CommDlgExtendedError | Returns a common dialog box error string. This string indicates the most recent error to occur during the execution of one of the common dialog box functions (Requires: #include <WinAPIDlg.au3>)]
 _WinAPI_CommDlgExtendedError ( | )
 ;
 [_WinAPI_CommDlgExtendedErrorEx | Returns a common dialog box error code (Requires: #include <WinAPIDlg.au3>)]
@@ -7366,7 +7423,7 @@ _WinAPI_CopyEnhMetaFile ( |$hEmf [, $sFilePath = ''] )
 [_WinAPI_CopyFileEx | Copies an existing file to a new file, notifying the application of its progress through a callback function (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_CopyFileEx ( |$sExistingFile, $sNewFile [, $iFlags = 0 [, $pProgressProc = 0 [, $pData = 0]]] )
 ;
-[_WinAPI_CopyIcon | Copies the specified icon from another module (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CopyIcon | Copies the specified icon from another module (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_CopyIcon ( |$hIcon )
 ;
 [_WinAPI_CopyImage | Creates a new image (icon, cursor, or bitmap) and copies the attributes of the specified image to the new one (Requires: #include <WinAPIGdi.au3>)]
@@ -7393,13 +7450,13 @@ _WinAPI_CoUninitialize ( | )
 [_WinAPI_Create32BitHBITMAP | Creates a 32 bits-per-pixel bitmap from the specified icon (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_Create32BitHBITMAP ( |$hIcon [, $bDib = False [, $bDelete = False]] )
 ;
-[_WinAPI_Create32BitHICON | Converts an icon to a 32 bits-per-pixel format and copies to the new icon (Requires: #include <WinAPIGdi.au3>)]
+[_WinAPI_Create32BitHICON | Converts an icon to a 32 bits-per-pixel format and copies to the new icon (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_Create32BitHICON ( |$hIcon [, $bDelete = False] )
 ;
 [_WinAPI_CreateANDBitmap | Creates AND bitmask device-independent bitmap (DIB) from the specified bitmap (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateANDBitmap ( |$hBitmap )
 ;
-[_WinAPI_CreateBitmap | Creates a bitmap with the specified width, height, and color format (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateBitmap | Creates a bitmap with the specified width, height, and color format (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateBitmap ( |$iWidth, $iHeight [, $iPlanes = 1 [, $iBitsPerPel = 1 [, $pBits = 0]]] )
 ;
 [_WinAPI_CreateBitmapIndirect | Creates a bitmap with the specified width, height, and color format (color planes and bits-per-pixel) (Requires: #include <WinAPIGdi.au3>)]
@@ -7408,10 +7465,10 @@ _WinAPI_CreateBitmapIndirect ( |$tBITMAP )
 [_WinAPI_CreateBrushIndirect | Creates a logical brush that has the specified style, color, and pattern (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateBrushIndirect ( |$iStyle, $iRGB [, $iHatch = 0] )
 ;
-[_WinAPI_CreateBuffer | Allocates a block of memory from the internal library heap (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_CreateBuffer | Allocates a block of memory from the internal library heap (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_CreateBuffer ( |$iLength [, $pBuffer = 0 [, $bAbort = True]] )
 ;
-[_WinAPI_CreateBufferFromStruct | Allocates a block of memory from the internal library heap and initializes it with the structure's data (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_CreateBufferFromStruct | Allocates a block of memory from the internal library heap and initializes it with the structure's data (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_CreateBufferFromStruct ( |$tStruct [, $pBuffer = 0 [, $bAbort = True]] )
 ;
 [_WinAPI_CreateCaret | Creates a new shape for the system caret and assigns ownership of the caret to the specified window (Requires: #include <WinAPIRes.au3>)]
@@ -7420,13 +7477,13 @@ _WinAPI_CreateCaret ( |$hWnd, $hBitmap [, $iWidth = 0 [, $iHeight = 0]] )
 [_WinAPI_CreateColorAdjustment | Creates $tagCOLORADJUSTMENT structure specifies the color adjustment (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateColorAdjustment ( |[$iFlags = 0 [, $iIlluminant = 0 [, $iGammaR = 10000 [, $iGammaG = 10000 [, $iGammaB = 10000 [, $iBlack = 0 [, $iWhite = 10000 [, $iContrast = 0 [, $iBrightness = 0 [, $iColorfulness = 0 [, $iTint = 0]]]]]]]]]]] )
 ;
-[_WinAPI_CreateCompatibleBitmap | Creates a bitmap compatible with the specified device context (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateCompatibleBitmap | Creates a bitmap compatible with the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateCompatibleBitmap ( |$hDC, $iWidth, $iHeight )
 ;
 [_WinAPI_CreateCompatibleBitmapEx | Creates a bitmap compatible with the device and fills it the specified color (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateCompatibleBitmapEx ( |$hDC, $iWidth, $iHeight, $iRGB )
 ;
-[_WinAPI_CreateCompatibleDC | Creates a memory device context compatible with the specified device (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateCompatibleDC | Creates a memory device context compatible with the specified device (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_CreateCompatibleDC ( |$hDC )
 ;
 [_WinAPI_CreateDesktop | Creates a new desktop, associates it with the current window station of the calling process (Requires: #include <WinAPISys.au3>)]
@@ -7453,16 +7510,16 @@ _WinAPI_CreateDirectoryEx ( |$sNewDir, $sTemplateDir [, $tSecurity = 0] )
 [_WinAPI_CreateEllipticRgn | Creates an elliptical region (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateEllipticRgn ( |$tRECT )
 ;
-[_WinAPI_CreateEmptyIcon | Creates a fully transparent icon with the specified width, height, and color depth (Requires: #include <WinAPIGdi.au3>)]
+[_WinAPI_CreateEmptyIcon | Creates a fully transparent icon with the specified width, height, and color depth (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_CreateEmptyIcon ( |$iWidth, $iHeight [, $iBitsPerPel = 32] )
 ;
 [_WinAPI_CreateEnhMetaFile | Creates a device context for an enhanced-format metafile (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateEnhMetaFile ( |[$hDC = 0 [, $tRECT = 0 [, $bPixels = False [, $sFilePath = '' [, $sDescription = '']]]]] )
 ;
-[_WinAPI_CreateEvent | Creates or opens a named or unnamed event object (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateEvent | Creates or opens a named or unnamed event object (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_CreateEvent ( |[$tAttributes = 0 [, $bManualReset = True [, $bInitialState = True [, $sName = ""]]]] )
 ;
-[_WinAPI_CreateFile | Creates or opens a file or other device (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateFile | Creates or opens a file or other device (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_CreateFile ( |$sFileName, $iCreation [, $iAccess = 4 [, $iShare = 0 [, $iAttributes = 0 [, $tSecurity = 0]]]] )
 ;
 [_WinAPI_CreateFileEx | Creates or opens a file or I/O device (Requires: #include <WinAPIFiles.au3>)]
@@ -7471,13 +7528,13 @@ _WinAPI_CreateFileEx ( |$sFilePath, $iCreation [, $iAccess = 0 [, $iShare = 0 [,
 [_WinAPI_CreateFileMapping | Creates or opens a named or unnamed file mapping object for a specified file (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_CreateFileMapping ( |$hFile [, $iSize = 0 [, $sName = '' [, $iProtect = 0x0004 [, $tSecurity = 0]]]] )
 ;
-[_WinAPI_CreateFont | Creates a logical font with the specified characteristics (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateFont | Creates a logical font with the specified characteristics (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateFont ( |$iHeight, $iWidth [, $iEscape = 0 [, $iOrientn = 0 [, $iWeight = $FW_NORMAL [, $bItalic = False [, $bUnderline = False [, $bStrikeout = False [, $iCharset = $DEFAULT_CHARSET [, $iOutputPrec = $OUT_DEFAULT_PRECIS [, $iClipPrec = $CLIP_DEFAULT_PRECIS [, $iQuality = $DEFAULT_QUALITY [, $iPitch = 0 [, $sFace = 'Arial']]]]]]]]]]]] )
 ;
 [_WinAPI_CreateFontEx | Creates a logical font with the specified characteristics (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateFontEx ( |$iHeight [, $iWidth = 0 [, $iEscapement = 0 [, $iOrientation = 0 [, $iWeight = 400 [, $bItalic = False [, $bUnderline = False [, $bStrikeOut = False [, $iCharSet = 1 [, $iOutPrecision = 0 [, $iClipPrecision = 0 [, $iQuality = 0 [, $iPitchAndFamily = 0 [, $sFaceName = '' [, $iStyle = 0]]]]]]]]]]]]]] )
 ;
-[_WinAPI_CreateFontIndirect | Creates a logical font that has specific characteristics (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateFontIndirect | Creates a logical font that has specific characteristics (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateFontIndirect ( |$tLogFont )
 ;
 [_WinAPI_CreateGUID | Creates a globally unique identifier (GUID) (Requires: #include <WinAPICom.au3>)]
@@ -7486,13 +7543,13 @@ _WinAPI_CreateGUID ( | )
 [_WinAPI_CreateHardLink | Establishes a hard link between an existing file and a new file (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_CreateHardLink ( |$sNewFile, $sExistingFile )
 ;
-[_WinAPI_CreateIcon | Creates an icon that has the specified size, colors, and bit patterns (Requires: #include <WinAPIRes.au3>)]
+[_WinAPI_CreateIcon | Creates an icon that has the specified size, colors, and bit patterns (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_CreateIcon ( |$hInstance, $iWidth, $iHeight, $iPlanes, $iBitsPixel, $pANDBits, $pXORBits )
 ;
-[_WinAPI_CreateIconFromResourceEx | Creates an icon or cursor from resource bits describing the icon (Requires: #include <WinAPIRes.au3>)]
+[_WinAPI_CreateIconFromResourceEx | Creates an icon or cursor from resource bits describing the icon (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_CreateIconFromResourceEx ( |$pData, $iSize [, $bIcon = True [, $iXDesiredPixels = 0 [, $iYDesiredPixels = 0 [, $iFlags = 0]]]] )
 ;
-[_WinAPI_CreateIconIndirect | Creates an icon or cursor that has the specified size, colors, and bit patterns (Requires: #include <WinAPIGdi.au3>)]
+[_WinAPI_CreateIconIndirect | Creates an icon or cursor that has the specified size, colors, and bit patterns (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_CreateIconIndirect ( |$hBitmap, $hMask [, $iXHotspot = 0 [, $iYHotspot = 0 [, $bIcon = True]]] )
 ;
 [_WinAPI_CreateJobObject | Creates or opens a job object (Requires: #include <WinAPIProc.au3>)]
@@ -7516,7 +7573,7 @@ _WinAPI_CreateNumberFormatInfo ( |$iNumDigits, $iLeadingZero, $iGrouping, $sDeci
 [_WinAPI_CreateObjectID | Creates or retrieves the object identifier for the specified file or directory (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_CreateObjectID ( |$sFilePath )
 ;
-[_WinAPI_CreatePen | Creates a logical pen that has the specified style, width, and color (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreatePen | Creates a logical pen that has the specified style, width, and color (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreatePen ( |$iPenStyle, $iWidth, $iColor )
 ;
 [_WinAPI_CreatePoint | Creates $tagPOINT structure with the x- and y-coordinates of the specified point (Requires: #include <WinAPIMisc.au3>)]
@@ -7525,7 +7582,7 @@ _WinAPI_CreatePoint ( |$iX, $iY )
 [_WinAPI_CreatePolygonRgn | Creates a polygonal region (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreatePolygonRgn ( |Const ByRef $aPoint [, $iStart = 0 [, $iEnd = -1 [, $iMode = 1]]] )
 ;
-[_WinAPI_CreateProcess | Creates a new process and its primary thread (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateProcess | Creates a new process and its primary thread (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_CreateProcess ( |$sAppName, $sCommand, $tSecurity, $tThread, $bInherit, $iFlags, $pEnviron, $sDir, $tStartupInfo, $tProcess )
 ;
 [_WinAPI_CreateProcessWithToken | Creates a new process and its primary thread in the security context of the specified token (Requires: #include <WinAPIProc.au3>)]
@@ -7537,13 +7594,13 @@ _WinAPI_CreateRect ( |$iLeft, $iTop, $iRight, $iBottom )
 [_WinAPI_CreateRectEx | Creates $tagRECT structure with the coordinates of the specified rectangle (Requires: #include <WinAPIMisc.au3>)]
 _WinAPI_CreateRectEx ( |$iX, $iY, $iWidth, $iHeight )
 ;
-[_WinAPI_CreateRectRgn | Creates a rectangular region (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateRectRgn | Creates a rectangular region (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateRectRgn ( |$iLeftRect, $iTopRect, $iRightRect, $iBottomRect )
 ;
 [_WinAPI_CreateRectRgnIndirect | Creates a rectangular region (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateRectRgnIndirect ( |$tRECT )
 ;
-[_WinAPI_CreateRoundRectRgn | Creates a rectangular region with rounded corners (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateRoundRectRgn | Creates a rectangular region with rounded corners (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateRoundRectRgn ( |$iLeftRect, $iTopRect, $iRightRect, $iBottomRect, $iWidthEllipse, $iHeightEllipse )
 ;
 [_WinAPI_CreateSemaphore | Creates or opens a named or unnamed semaphore object (Requires: #include <WinAPIProc.au3>)]
@@ -7552,16 +7609,16 @@ _WinAPI_CreateSemaphore ( |$sSemaphore, $iInitial, $iMaximum [, $tSecurity = 0] 
 [_WinAPI_CreateSize | Creates $tagSIZE structure with the width and height of the specified rectangle (Requires: #include <WinAPIMisc.au3>)]
 _WinAPI_CreateSize ( |$iWidth, $iHeight )
 ;
-[_WinAPI_CreateSolidBitmap | Creates a solid color bitmap (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateSolidBitmap | Creates a solid color bitmap (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateSolidBitmap ( |$hWnd, $iColor, $iWidth, $iHeight [, $bRGB = 1] )
 ;
-[_WinAPI_CreateSolidBrush | Creates a logical brush that has the specified solid color (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateSolidBrush | Creates a logical brush that has the specified solid color (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateSolidBrush ( |$iColor )
 ;
 [_WinAPI_CreateStreamOnHGlobal | Creates a stream object that uses a memory handle to store the stream contents (Requires: #include <WinAPICom.au3>)]
 _WinAPI_CreateStreamOnHGlobal ( |[$hGlobal = 0 [, $bDeleteOnRelease = True]] )
 ;
-[_WinAPI_CreateString | Copies a specified string to the newly allocated memory block and returns its pointer (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_CreateString | Copies a specified string to the newly allocated memory block and returns its pointer (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_CreateString ( |$sString [, $pString = 0 [, $iLength = -1 [, $bUnicode = True [, $bAbort = True]]]] )
 ;
 [_WinAPI_CreateSymbolicLink | Creates a symbolic link (Requires: #include <WinAPIFiles.au3>)]
@@ -7570,7 +7627,7 @@ _WinAPI_CreateSymbolicLink ( |$sSymlink, $sTarget [, $bDirectory = False] )
 [_WinAPI_CreateTransform | Creates $tagXFORM structure specifies a world-space to page-space transformation (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_CreateTransform ( |[$nM11 = 1 [, $nM12 = 0 [, $nM21 = 0 [, $nM22 = 1 [, $nDX = 0 [, $nDY = 0]]]]]] )
 ;
-[_WinAPI_CreateWindowEx | Creates an overlapped, pop-up, or child window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_CreateWindowEx | Creates an overlapped, pop-up, or child window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_CreateWindowEx ( |$iExStyle, $sClass, $sName, $iStyle, $iX, $iY, $iWidth, $iHeight, $hParent [, $hMenu = 0 [, $hInstance = 0 [, $pParam = 0]]] )
 ;
 [_WinAPI_CreateWindowStation | Creates a window station object, associates it with the calling process, and assigns it to the current session (Requires: #include <WinAPISys.au3>)]
@@ -7582,7 +7639,7 @@ _WinAPI_DecompressBuffer ( |$pUncompressedBuffer, $iUncompressedSize, $pCompress
 [_WinAPI_DecryptFile | Decrypts an encrypted file or directory (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_DecryptFile ( |$sFilePath )
 ;
-[_WinAPI_DeferWindowPos | Updates the specified multiple-window-position structure for the specified window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_DeferWindowPos | Updates the specified multiple-window-position structure for the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_DeferWindowPos ( |$hInfo, $hWnd, $hAfter, $iX, $iY, $iWidth, $iHeight, $iFlags )
 ;
 [_WinAPI_DefineDosDevice | Defines, redefines, or deletes MS-DOS device names (Requires: #include <WinAPIFiles.au3>)]
@@ -7594,13 +7651,13 @@ _WinAPI_DefRawInputProc ( |$paRawInput, $iInput )
 [_WinAPI_DefSubclassProc | Calls the next handler in a window's subclass chain (Requires: #include <WinAPIShellEx.au3>)]
 _WinAPI_DefSubclassProc ( |$hWnd, $iMsg, $wParam, $lParam )
 ;
-[_WinAPI_DefWindowProc | Call the default window procedure to provide default processing (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DefWindowProc | Call the default window procedure to provide default processing (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_DefWindowProc ( |$hWnd, $iMsg, $wParam, $lParam )
 ;
-[_WinAPI_DefWindowProcW | Calls the default window procedure to provide default processing for any window messages (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_DefWindowProcW | Calls the default window procedure to provide default processing for any window messages (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_DefWindowProcW ( |$hWnd, $iMsg, $wParam, $lParam )
 ;
-[_WinAPI_DeleteDC | Deletes the specified device context (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DeleteDC | Deletes the specified device context (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_DeleteDC ( |$hDC )
 ;
 [_WinAPI_DeleteEnhMetaFile | Deletes an enhanced-format metafile or an enhanced-format metafile handle (Requires: #include <WinAPIGdi.au3>)]
@@ -7609,7 +7666,7 @@ _WinAPI_DeleteEnhMetaFile ( |$hEmf )
 [_WinAPI_DeleteFile | Deletes an existing file (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_DeleteFile ( |$sFilePath )
 ;
-[_WinAPI_DeleteObject | Deletes a logical pen, brush, font, bitmap, region, or palette (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DeleteObject | Deletes a logical pen, brush, font, bitmap, region, or palette (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_DeleteObject ( |$hObject )
 ;
 [_WinAPI_DeleteObjectID | Removes the object identifier from a specified file or directory (Requires: #include <WinAPIFiles.au3>)]
@@ -7618,7 +7675,7 @@ _WinAPI_DeleteObjectID ( |$sFilePath )
 [_WinAPI_DeleteVolumeMountPoint | Deletes a drive letter or mounted folder (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_DeleteVolumeMountPoint ( |$sMountedPath )
 ;
-[_WinAPI_DeregisterShellHookWindow | Unregisters a specified Shell window that is registered to receive Shell hook messages (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_DeregisterShellHookWindow | Unregisters a specified Shell window that is registered to receive Shell hook messages (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_DeregisterShellHookWindow ( |$hWnd )
 ;
 [_WinAPI_DestroyCaret | Destroys the caret's current shape, frees the caret from the window, and removes the caret from the screen (Requires: #include <WinAPIRes.au3>)]
@@ -7627,10 +7684,10 @@ _WinAPI_DestroyCaret ( | )
 [_WinAPI_DestroyCursor | Destroys a cursor and frees any memory the cursor occupied (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_DestroyCursor ( |$hCursor )
 ;
-[_WinAPI_DestroyIcon | Destroys an icon and frees any memory the icon occupied (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DestroyIcon | Destroys an icon and frees any memory the icon occupied (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_DestroyIcon ( |$hIcon )
 ;
-[_WinAPI_DestroyWindow | Destroys the specified window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DestroyWindow | Destroys the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_DestroyWindow ( |$hWnd )
 ;
 [_WinAPI_DeviceIoControl | Sends a control code directly to a specified device driver (Requires: #include <WinAPIFiles.au3>)]
@@ -7651,16 +7708,16 @@ _WinAPI_DllUninstall ( |$sFilePath )
 [_WinAPI_DPtoLP | Converts device coordinates into logical coordinates (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_DPtoLP ( |$hDC, ByRef $tPOINT [, $iCount = 1] )
 ;
-[_WinAPI_DragAcceptFiles | Registers whether a window accepts dropped files (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_DragAcceptFiles | Registers whether a window accepts dropped files (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_DragAcceptFiles ( |$hWnd [, $bAccept = True] )
 ;
-[_WinAPI_DragFinish | Releases memory that the system allocated for use in transferring file names to the application (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_DragFinish | Releases memory that the system allocated for use in transferring file names to the application (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_DragFinish ( |$hDrop )
 ;
-[_WinAPI_DragQueryFileEx | Retrieves the names of dropped files that result from a successful drag-and-drop operation (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_DragQueryFileEx | Retrieves the names of dropped files that result from a successful drag-and-drop operation (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_DragQueryFileEx ( |$hDrop [, $iFlag = 0] )
 ;
-[_WinAPI_DragQueryPoint | Retrieves the position of the mouse pointer at the time a file was dropped during a drag-and-drop operation (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_DragQueryPoint | Retrieves the position of the mouse pointer at the time a file was dropped during a drag-and-drop operation (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_DragQueryPoint ( |$hDrop )
 ;
 [_WinAPI_DrawAnimatedRects | Animates the caption of a window to indicate the opening of an icon or the minimizing or maximizing of a window (Requires: #include <WinAPIGdi.au3>)]
@@ -7669,28 +7726,28 @@ _WinAPI_DrawAnimatedRects ( |$hWnd, $tRectFrom, $tRectTo )
 [_WinAPI_DrawBitmap | Draws a bitmap into the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_DrawBitmap ( |$hDC, $iX, $iY, $hBitmap [, $iRop = 0x00CC0020] )
 ;
-[_WinAPI_DrawEdge | Draws one or more edges of rectangle (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DrawEdge | Draws one or more edges of rectangle (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_DrawEdge ( |$hDC, $tRECT, $iEdgeType, $iFlags )
 ;
 [_WinAPI_DrawFocusRect | Draws a rectangle in the style used to indicate that the rectangle has the focus (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_DrawFocusRect ( |$hDC, $tRECT )
 ;
-[_WinAPI_DrawFrameControl | Draws a frame control of the specified type and style (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DrawFrameControl | Draws a frame control of the specified type and style (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_DrawFrameControl ( |$hDC, $tRECT, $iType, $iState )
 ;
-[_WinAPI_DrawIcon | Draws an icon or cursor into the specified device context (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DrawIcon | Draws an icon or cursor into the specified device context (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_DrawIcon ( |$hDC, $iX, $iY, $hIcon )
 ;
-[_WinAPI_DrawIconEx | Draws an icon or cursor into the specified device context (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DrawIconEx | Draws an icon or cursor into the specified device context (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_DrawIconEx ( |$hDC, $iX, $iY, $hIcon [, $iWidth = 0 [, $iHeight = 0 [, $iStep = 0 [, $hBrush = 0 [, $iFlags = 3]]]]] )
 ;
-[_WinAPI_DrawLine | Draws a line (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DrawLine | Draws a line (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_DrawLine ( |$hDC, $iX1, $iY1, $iX2, $iY2 )
 ;
 [_WinAPI_DrawShadowText | Draws formatted text in the specified rectangle with a drop shadow (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_DrawShadowText ( |$hDC, $sText, $iRGBText, $iRGBShadow [, $iXOffset = 0 [, $iYOffset = 0 [, $tRECT = 0 [, $iFlags = 0]]]] )
 ;
-[_WinAPI_DrawText | Draws formatted text in the specified rectangle (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DrawText | Draws formatted text in the specified rectangle (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_DrawText ( |$hDC, $sText, ByRef $tRECT, $iFlags )
 ;
 [_WinAPI_DrawThemeBackground | Draws the border and fill defined by the visual style for the specified control part (Requires: #include <WinAPITheme.au3>)]
@@ -7714,7 +7771,7 @@ _WinAPI_DrawThemeTextEx ( |$hTheme, $iPartID, $iStateID, $hDC, $sText, $tRECT, $
 [_WinAPI_DuplicateEncryptionInfoFile | Copies the EFS metadata from one file or directory to another (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_DuplicateEncryptionInfoFile ( |$sSrcFilePath, $sDestFilePath [, $iCreation = 2 [, $iAttributes = 0 [, $tSecurity = 0]]] )
 ;
-[_WinAPI_DuplicateHandle | Duplicates an object handle (Requires: #include <WinAPI.au3>)]
+[_WinAPI_DuplicateHandle | Duplicates an object handle (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_DuplicateHandle ( |$hSourceProcessHandle, $hSourceHandle, $hTargetProcessHandle, $iDesiredAccess, $iInheritHandle, $iOptions )
 ;
 [_WinAPI_DuplicateTokenEx | Creates a new primary or impersonation access token that duplicates an existing token (Requires: #include <WinAPIProc.au3>)]
@@ -7771,10 +7828,10 @@ _WinAPI_DwmUnregisterThumbnail ( |$hThumbnail )
 [_WinAPI_DwmUpdateThumbnailProperties | Specifies Desktop Window Manager (DWM) thumbnail properties (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_DwmUpdateThumbnailProperties ( |$hThumbnail [, $bVisible = True [, $bClientAreaOnly = False [, $iOpacity = 255 [, $tRectDest = 0 [, $tRectSrc = 0]]]]] )
 ;
-[_WinAPI_DWordToFloat | Converts a value of type DWORD to a value of type FLOAT (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_DWordToFloat | Converts a value of type DWORD to a value of type FLOAT (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_DWordToFloat ( |$iValue )
 ;
-[_WinAPI_DWordToInt | Converts a value of type DWORD to a value of type INT (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_DWordToInt | Converts a value of type DWORD to a value of type INT (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_DWordToInt ( |$iValue )
 ;
 [_WinAPI_EjectMedia | Ejects media from a device (Requires: #include <WinAPIFiles.au3>)]
@@ -7786,7 +7843,7 @@ _WinAPI_Ellipse ( |$hDC, $tRECT )
 [_WinAPI_EmptyWorkingSet | Removes as many pages as possible from the working set of the specified process (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_EmptyWorkingSet ( |[$iPID = 0] )
 ;
-[_WinAPI_EnableWindow | Enables or disables mouse and keyboard input to the specified window or control (Requires: #include <WinAPI.au3>)]
+[_WinAPI_EnableWindow | Enables or disables mouse and keyboard input to the specified window or control (Requires: #include <WinAPISys.au3>)]
 _WinAPI_EnableWindow ( |$hWnd [, $bEnable = True] )
 ;
 [_WinAPI_EncryptFile | Encrypts a file or directory (Requires: #include <WinAPIFiles.au3>)]
@@ -7798,7 +7855,7 @@ _WinAPI_EncryptionDisable ( |$sDir, $bDisable )
 [_WinAPI_EndBufferedPaint | Completes a buffered paint operation and frees the associated buffered paint handle (Requires: #include <WinAPITheme.au3>)]
 _WinAPI_EndBufferedPaint ( |$hBP [, $bUpdate = True] )
 ;
-[_WinAPI_EndDeferWindowPos | Simultaneously updates the position and size of one or more windows in a single screen-refreshing cycle (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_EndDeferWindowPos | Simultaneously updates the position and size of one or more windows in a single screen-refreshing cycle (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_EndDeferWindowPos ( |$hInfo )
 ;
 [_WinAPI_EndPaint | Marks the end of painting in the specified window (Requires: #include <WinAPIGdi.au3>)]
@@ -7813,7 +7870,7 @@ _WinAPI_EndUpdateResource ( |$hUpdate [, $bDiscard = False] )
 [_WinAPI_EnumChildProcess | Enumerates a child processes that belong to the specified process (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_EnumChildProcess ( |[$iPID = 0] )
 ;
-[_WinAPI_EnumChildWindows | Enumerates a child windows that belong to the specified parent window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_EnumChildWindows | Enumerates a child windows that belong to the specified parent window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_EnumChildWindows ( |$hWnd [, $bVisible = True] )
 ;
 [_WinAPI_EnumDesktops | Enumerates all desktops associated with the specified window station of the calling process (Requires: #include <WinAPISys.au3>)]
@@ -7825,7 +7882,7 @@ _WinAPI_EnumDesktopWindows ( |$hDesktop [, $bVisible = True] )
 [_WinAPI_EnumDeviceDrivers | Retrieves the load address for each device driver in the system (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_EnumDeviceDrivers ( | )
 ;
-[_WinAPI_EnumDisplayDevices | Obtains information about the display devices in a system (Requires: #include <WinAPI.au3>)]
+[_WinAPI_EnumDisplayDevices | Obtains information about the display devices in a system (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_EnumDisplayDevices ( |$sDevice, $iDevNum )
 ;
 [_WinAPI_EnumDisplayMonitors | Enumerates display monitors (including invisible pseudo-monitors associated with the mirroring drivers) (Requires: #include <WinAPIGdi.au3>)]
@@ -7888,19 +7945,19 @@ _WinAPI_EnumSystemLocales ( |$iFlag )
 [_WinAPI_EnumUILanguages | Enumerates the user interface languages that are available on the operating system (Requires: #include <WinAPILocale.au3>)]
 _WinAPI_EnumUILanguages ( |[$iFlag = 0] )
 ;
-[_WinAPI_EnumWindows | Enumerates all windows (Requires: #include <WinAPI.au3>)]
+[_WinAPI_EnumWindows | Enumerates all windows (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_EnumWindows ( |[$bVisible = True [, $hWnd = Default]] )
 ;
-[_WinAPI_EnumWindowsPopup | Enumerates popup windows (Requires: #include <WinAPI.au3>)]
+[_WinAPI_EnumWindowsPopup | Enumerates popup windows (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_EnumWindowsPopup ( | )
 ;
 [_WinAPI_EnumWindowStations | Enumerates all window stations in the current session (Requires: #include <WinAPISys.au3>)]
 _WinAPI_EnumWindowStations ( | )
 ;
-[_WinAPI_EnumWindowsTop | Enumerates all top level windows (Requires: #include <WinAPI.au3>)]
+[_WinAPI_EnumWindowsTop | Enumerates all top level windows (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_EnumWindowsTop ( | )
 ;
-[_WinAPI_EqualMemory | Compares two blocks of memory to determine whether the specified number of bytes are identical (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_EqualMemory | Compares two blocks of memory to determine whether the specified number of bytes are identical (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_EqualMemory ( |$pSource1, $pSource2, $iLength )
 ;
 [_WinAPI_EqualRect | Determines whether the two specified rectangles are equal (Requires: #include <WinAPIGdi.au3>)]
@@ -7912,7 +7969,7 @@ _WinAPI_EqualRgn ( |$hRgn1, $hRgn2 )
 [_WinAPI_ExcludeClipRect | Creates a new clipping region that consists of the existing clipping region minus the specified rectangle (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_ExcludeClipRect ( |$hDC, $tRECT )
 ;
-[_WinAPI_ExpandEnvironmentStrings | Expands environment variable strings and replaces them with their defined values (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ExpandEnvironmentStrings | Expands environment variable strings and replaces them with their defined values (Requires: #include <WinAPISys.au3>)]
 _WinAPI_ExpandEnvironmentStrings ( |$sString )
 ;
 [_WinAPI_ExtCreatePen | Creates a logical cosmetic or geometric pen that has the specified style, width, and brush attributes (Requires: #include <WinAPIGdi.au3>)]
@@ -7924,16 +7981,16 @@ _WinAPI_ExtCreateRegion ( |$tRGNDATA [, $tXFORM = 0] )
 [_WinAPI_ExtFloodFill | Fills an area of the display surface with the current brush (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_ExtFloodFill ( |$hDC, $iX, $iY, $iRGB [, $iType = 0] )
 ;
-[_WinAPI_ExtractIcon | Extracts an icon from the specified executable file, DLL, or icon file (Requires: #include <WinAPIRes.au3>)]
+[_WinAPI_ExtractIcon | Extracts an icon from the specified executable file, DLL, or icon file (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_ExtractIcon ( |$sIcon, $iIndex [, $bSmall = False] )
 ;
-[_WinAPI_ExtractIconEx | Creates an array of handles to large or small icons extracted from a file (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ExtractIconEx | Creates an array of handles to large or small icons extracted from a file (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_ExtractIconEx ( |$sFilePath, $iIndex, $paLarge, $paSmall, $iIcons )
 ;
 [_WinAPI_ExtSelectClipRgn | Combines the specified region with the current clipping region (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_ExtSelectClipRgn ( |$hDC, $hRgn [, $iMode = 5] )
 ;
-[_WinAPI_FatalAppExit | Displays a message box and terminates the application (Requires: #include <WinAPI.au3>)]
+[_WinAPI_FatalAppExit | Displays a message box and terminates the application (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_FatalAppExit ( |$sMessage )
 ;
 [_WinAPI_FatalExit | Transfers execution control to the debugger (Requires: #include <WinAPIDiag.au3>)]
@@ -7945,19 +8002,19 @@ _WinAPI_FileEncryptionStatus ( |$sFilePath )
 [_WinAPI_FileExists | Tests whether the specified path is existing file (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_FileExists ( |$sFilePath )
 ;
-[_WinAPI_FileIconInit | Initializes or reinitializes the system image list (Requires: #include <WinAPIRes.au3>)]
+[_WinAPI_FileIconInit | Initializes or reinitializes the system image list (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_FileIconInit ( |[$bRestore = True] )
 ;
 [_WinAPI_FileInUse | Tests whether the specified file in use by another application (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_FileInUse ( |$sFilePath )
 ;
-[_WinAPI_FillMemory | Fills a block of memory with the given value (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_FillMemory | Fills a block of memory with the given value (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_FillMemory ( |$pMemory, $iLength [, $iValue = 0] )
 ;
 [_WinAPI_FillPath | Closes any open figures in the current path and fills the path's interior by using the current brush (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_FillPath ( |$hDC )
 ;
-[_WinAPI_FillRect | Fills a rectangle by using the specified brush (Requires: #include <WinAPI.au3>)]
+[_WinAPI_FillRect | Fills a rectangle by using the specified brush (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_FillRect ( |$hDC, $tRECT, $hBrush )
 ;
 [_WinAPI_FillRgn | Fills a region by using the specified brush (Requires: #include <WinAPIGdi.au3>)]
@@ -7969,7 +8026,7 @@ _WinAPI_FindClose ( |$hSearch )
 [_WinAPI_FindCloseChangeNotification | Stops change notification handle monitoring (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_FindCloseChangeNotification ( |$hChange )
 ;
-[_WinAPI_FindExecutable | Retrieves the name of the executable file associated with the specified file name (Requires: #include <WinAPI.au3>)]
+[_WinAPI_FindExecutable | Retrieves the name of the executable file associated with the specified file name (Requires: #include <WinAPIShellEx.au3>)]
 _WinAPI_FindExecutable ( |$sFileName [, $sDirectory = ""] )
 ;
 [_WinAPI_FindFirstChangeNotification | Creates a change notification handle and sets up initial change notification filter conditions (Requires: #include <WinAPIFiles.au3>)]
@@ -8005,25 +8062,25 @@ _WinAPI_FindResourceEx ( |$hInstance, $sType, $sName, $iLanguage )
 [_WinAPI_FindTextDlg | Creates a system-defined modeless Find dialog box to search for text in a document (Requires: #include <WinAPIDlg.au3>)]
 _WinAPI_FindTextDlg ( |$hOwner [, $sFindWhat = '' [, $iFlags = 0 [, $pFindProc = 0 [, $lParam = 0]]]] )
 ;
-[_WinAPI_FindWindow | Retrieves the handle to the top-level window whose class name and window name match (Requires: #include <WinAPI.au3>)]
+[_WinAPI_FindWindow | Retrieves the handle to the top-level window whose class name and window name match (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_FindWindow ( |$sClassName, $sWindowName )
 ;
-[_WinAPI_FlashWindow | Flashes the specified window one time (Requires: #include <WinAPI.au3>)]
+[_WinAPI_FlashWindow | Flashes the specified window one time (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_FlashWindow ( |$hWnd [, $bInvert = True] )
 ;
-[_WinAPI_FlashWindowEx | Flashes the specified window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_FlashWindowEx | Flashes the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_FlashWindowEx ( |$hWnd [, $iFlags = 3 [, $iCount = 3 [, $iTimeout = 0]]] )
 ;
 [_WinAPI_FlattenPath | Transforms any curves in the path that is selected into the current DC, turning each curve into a sequence of lines (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_FlattenPath ( |$hDC )
 ;
-[_WinAPI_FloatToDWord | Converts a value of type FLOAT to a value of type DWORD (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_FloatToDWord | Converts a value of type FLOAT to a value of type DWORD (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_FloatToDWord ( |$iValue )
 ;
-[_WinAPI_FloatToInt | Returns a 4 byte float as an integer value (Requires: #include <WinAPI.au3>)]
+[_WinAPI_FloatToInt | Returns a 4 byte float as an integer value (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_FloatToInt ( |$nFloat )
 ;
-[_WinAPI_FlushFileBuffers | Flushes the buffers of a specified file and causes all buffered data to be written (Requires: #include <WinAPI.au3>)]
+[_WinAPI_FlushFileBuffers | Flushes the buffers of a specified file and causes all buffered data to be written (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_FlushFileBuffers ( |$hFile )
 ;
 [_WinAPI_FlushFRBuffer | Destroys the internal buffer that used the _WinAPI_FindTextDlg() and _WinAPI_ReplaceTextDlg() functions (Requires: #include <WinAPIDlg.au3>)]
@@ -8035,19 +8092,19 @@ _WinAPI_FlushViewOfFile ( |$pAddress [, $iBytes = 0] )
 [_WinAPI_FormatDriveDlg | Opens the Shell's Format dialog (Requires: #include <WinAPIDlg.au3>)]
 _WinAPI_FormatDriveDlg ( |$sDrive [, $iOption = 0 [, $hParent = 0]] )
 ;
-[_WinAPI_FormatMessage | Formats a message string (Requires: #include <WinAPI.au3>)]
+[_WinAPI_FormatMessage | Formats a message string (Requires: #include <WinAPIError.au3>)]
 _WinAPI_FormatMessage ( |$iFlags, $pSource, $iMessageID, $iLanguageID, ByRef $pBuffer, $iSize, $vArguments )
 ;
-[_WinAPI_FrameRect | Draws a border around the specified rectangle by using the specified brush (Requires: #include <WinAPI.au3>)]
+[_WinAPI_FrameRect | Draws a border around the specified rectangle by using the specified brush (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_FrameRect ( |$hDC, $tRECT, $hBrush )
 ;
 [_WinAPI_FrameRgn | Draws a border around the specified region by using the specified brush (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_FrameRgn ( |$hDC, $hRgn, $hBrush, $iWidth, $iHeight )
 ;
-[_WinAPI_FreeLibrary | Decrements the reference count of the loaded dynamic-link library (DLL) module (Requires: #include <WinAPI.au3>)]
+[_WinAPI_FreeLibrary | Decrements the reference count of the loaded dynamic-link library (DLL) module (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_FreeLibrary ( |$hModule )
 ;
-[_WinAPI_FreeMemory | Frees a memory block in the internal library heap (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_FreeMemory | Frees a memory block in the internal library heap (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_FreeMemory ( |$pMemory )
 ;
 [_WinAPI_FreeMRUList | Frees the handle associated with the most recently used (MRU) list and writes cached data to the registry (Requires: #include <WinAPIReg.au3>)]
@@ -8065,7 +8122,7 @@ _WinAPI_GetActiveWindow ( | )
 [_WinAPI_GetAllUsersProfileDirectory | Retrieves the path to the root of the directory that contains program data shared by all users (Requires: #include <WinAPIShellEx.au3>)]
 _WinAPI_GetAllUsersProfileDirectory ( | )
 ;
-[_WinAPI_GetAncestor | Retrieves the handle to the ancestor of the specified window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetAncestor | Retrieves the handle to the ancestor of the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetAncestor ( |$hWnd [, $iFlags = 1] )
 ;
 [_WinAPI_GetApplicationRestartSettings | Retrieves the restart information registered for the specified process (Requires: #include <WinAPIDiag.au3>)]
@@ -8074,7 +8131,7 @@ _WinAPI_GetApplicationRestartSettings ( |[$iPID = 0] )
 [_WinAPI_GetArcDirection | Retrieves the current arc direction for the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetArcDirection ( |$hDC )
 ;
-[_WinAPI_GetAsyncKeyState | Determines whether a key is up or down at the time the function is called (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetAsyncKeyState | Determines whether a key is up or down at the time the function is called (Requires: #include <WinAPISys.au3>)]
 _WinAPI_GetAsyncKeyState ( |$iKey )
 ;
 [_WinAPI_GetBinaryType | Determines whether a file is an executable (.exe) file, and if so, which subsystem runs the executable file (Requires: #include <WinAPIFiles.au3>)]
@@ -8092,7 +8149,7 @@ _WinAPI_GetBitmapDimensionEx ( |$hBitmap )
 [_WinAPI_GetBkColor | Retrieves the current background color for the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetBkColor ( |$hDC )
 ;
-[_WinAPI_GetBkMode | Returns the current background mix mode for a specified device context (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetBkMode | Returns the current background mix mode for a specified device context (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_GetBkMode ( |$hDC )
 ;
 [_WinAPI_GetBoundsRect | Obtains the current accumulated bounding rectangle for a specified device context (Requires: #include <WinAPIGdi.au3>)]
@@ -8125,22 +8182,22 @@ _WinAPI_GetCaretPos ( | )
 [_WinAPI_GetCDType | Retrieves a type of the media which is loaded into a specified CD-ROM device (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_GetCDType ( |$sDrive )
 ;
-[_WinAPI_GetClassInfoEx | Retrieves information about a window class (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetClassInfoEx | Retrieves information about a window class (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetClassInfoEx ( |$sClass [, $hInstance = 0] )
 ;
-[_WinAPI_GetClassLongEx | Retrieves the specified value associated with the specified window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetClassLongEx | Retrieves the specified value associated with the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetClassLongEx ( |$hWnd, $iIndex )
 ;
-[_WinAPI_GetClassName | Retrieves the name of the class to which the specified window belongs (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetClassName | Retrieves the name of the class to which the specified window belongs (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetClassName ( |$hWnd )
 ;
-[_WinAPI_GetClientHeight | Retrieves the height of a window's client area (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetClientHeight | Retrieves the height of a window's client area (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetClientHeight ( |$hWnd )
 ;
-[_WinAPI_GetClientRect | Retrieves the coordinates of a window's client area (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetClientRect | Retrieves the coordinates of a window's client area (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetClientRect ( |$hWnd )
 ;
-[_WinAPI_GetClientWidth | Retrieves the width of a window's client area (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetClientWidth | Retrieves the width of a window's client area (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetClientWidth ( |$hWnd )
 ;
 [_WinAPI_GetClipboardSequenceNumber | Retrieves the clipboard sequence number for the current window station (Requires: #include <WinAPISys.au3>)]
@@ -8173,43 +8230,43 @@ _WinAPI_GetCurrentDirectory ( | )
 [_WinAPI_GetCurrentHwProfile | Retrieves information about the current hardware profile for the local computer (Requires: #include <WinAPISys.au3>)]
 _WinAPI_GetCurrentHwProfile ( | )
 ;
-[_WinAPI_GetCurrentObject | Retrieves a handle to an object of the specified type that has been selected into the specified device context (Requires: #include <WinAPIGdi.au3>)]
+[_WinAPI_GetCurrentObject | Retrieves a handle to an object of the specified type that has been selected into the specified device context (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_GetCurrentObject ( |$hDC, $iType )
 ;
 [_WinAPI_GetCurrentPosition | Retrieves the current position for the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetCurrentPosition ( |$hDC )
 ;
-[_WinAPI_GetCurrentProcess | Returns the process handle of the calling process (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetCurrentProcess | Returns the process handle of the calling process (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_GetCurrentProcess ( | )
 ;
 [_WinAPI_GetCurrentProcessExplicitAppUserModelID | Retrieves the application-defined, explicit Application User Model ID for the current process (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_GetCurrentProcessExplicitAppUserModelID ( | )
 ;
-[_WinAPI_GetCurrentProcessID | Returns the process identifier of the calling process (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetCurrentProcessID | Returns the process identifier of the calling process (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_GetCurrentProcessID ( | )
 ;
 [_WinAPI_GetCurrentThemeName | Retrieves the name of the current visual styles, color scheme name, and size name (Requires: #include <WinAPITheme.au3>)]
 _WinAPI_GetCurrentThemeName ( | )
 ;
-[_WinAPI_GetCurrentThread | Retrieves a pseudo handle for the calling thread (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetCurrentThread | Retrieves a pseudo handle for the calling thread (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_GetCurrentThread ( | )
 ;
-[_WinAPI_GetCurrentThreadId | Returns the thread identifier of the calling thread (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetCurrentThreadId | Returns the thread identifier of the calling thread (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_GetCurrentThreadId ( | )
 ;
 [_WinAPI_GetCursor | Retrieves a handle to the current cursor (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_GetCursor ( | )
 ;
-[_WinAPI_GetCursorInfo | Retrieves information about the global cursor (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetCursorInfo | Retrieves information about the global cursor (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_GetCursorInfo ( | )
 ;
 [_WinAPI_GetDateFormat | Formats a date as a date string for a locale specified by the locale identifier (Requires: #include <WinAPILocale.au3>)]
 _WinAPI_GetDateFormat ( |[$iLCID = 0 [, $tSYSTEMTIME = 0 [, $iFlags = 0 [, $sFormat = '']]]] )
 ;
-[_WinAPI_GetDC | Retrieves a handle of a display device context for the client area a window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetDC | Retrieves a handle of a display device context for the client area a window (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_GetDC ( |$hWnd )
 ;
-[_WinAPI_GetDCEx | Retrieves a handle to a device context (DC) for the client area of a specified window (Requires: #include <WinAPIGdi.au3>)]
+[_WinAPI_GetDCEx | Retrieves a handle to a device context (DC) for the client area of a specified window (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_GetDCEx ( |$hWnd, $hRgn, $iFlags )
 ;
 [_WinAPI_GetDefaultPrinter | Retrieves the printer name of the default printer for the current user on the local computer (Requires: #include <WinAPISys.au3>)]
@@ -8218,10 +8275,10 @@ _WinAPI_GetDefaultPrinter ( | )
 [_WinAPI_GetDefaultUserProfileDirectory | Retrieves the path to the root of the default user's profile (Requires: #include <WinAPIShellEx.au3>)]
 _WinAPI_GetDefaultUserProfileDirectory ( | )
 ;
-[_WinAPI_GetDesktopWindow | Returns the handle of the Windows desktop window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetDesktopWindow | Returns the handle of the Windows desktop window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetDesktopWindow ( | )
 ;
-[_WinAPI_GetDeviceCaps | Retrieves device specific information about a specified device (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetDeviceCaps | Retrieves device specific information about a specified device (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_GetDeviceCaps ( |$hDC, $iIndex )
 ;
 [_WinAPI_GetDeviceDriverBaseName | Retrieves the base name of the specified device driver (Requires: #include <WinAPIProc.au3>)]
@@ -8236,16 +8293,16 @@ _WinAPI_GetDeviceGammaRamp ( |$hDC, ByRef $aRamp )
 [_WinAPI_GetDIBColorTable | Retrieves RGB color table from the DIB section bitmap (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetDIBColorTable ( |$hBitmap )
 ;
-[_WinAPI_GetDIBits | Retrieves the bits of the specified bitmap and copies them into a buffer as a DIB (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetDIBits | Retrieves the bits of the specified bitmap and copies them into a buffer as a DIB (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetDIBits ( |$hDC, $hBitmap, $iStartScan, $iScanLines, $pBits, $tBI, $iUsage )
 ;
 [_WinAPI_GetDiskFreeSpaceEx | Retrieves information about the amount of space that is available on a disk volume (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_GetDiskFreeSpaceEx ( |$sDrive )
 ;
-[_WinAPI_GetDlgCtrlID | Returns the identifier of the specified control (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetDlgCtrlID | Returns the identifier of the specified control (Requires: #include <WinAPIDlg.au3>)]
 _WinAPI_GetDlgCtrlID ( |$hWnd )
 ;
-[_WinAPI_GetDlgItem | Retrieves the handle of a control in the specified dialog box (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetDlgItem | Retrieves the handle of a control in the specified dialog box (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetDlgItem ( |$hWnd, $iItemID )
 ;
 [_WinAPI_GetDllDirectory | Retrieves the application-specific portion of the search path used to locate DLLs for the application (Requires: #include <WinAPISys.au3>)]
@@ -8284,7 +8341,7 @@ _WinAPI_GetEnhMetaFileDimension ( |$hEmf )
 [_WinAPI_GetEnhMetaFileHeader | Retrieves the record containing the header for the specified enhanced-format metafile (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetEnhMetaFileHeader ( |$hEmf )
 ;
-[_WinAPI_GetErrorMessage | Retrieves a text error message for the specified system error code (Requires: #include <WinAPIDiag.au3>)]
+[_WinAPI_GetErrorMessage | Retrieves a text error message for the specified system error code (Requires: #include <WinAPIError.au3>)]
 _WinAPI_GetErrorMessage ( |$iCode [, $iLanguage = 0] )
 ;
 [_WinAPI_GetErrorMode | Retrieves the error mode for the current process (Requires: #include <WinAPIDiag.au3>)]
@@ -8311,7 +8368,7 @@ _WinAPI_GetFileInformationByHandleEx ( |$hFile )
 [_WinAPI_GetFilePointerEx | Retrieves the file pointer of the specified file (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_GetFilePointerEx ( |$hFile )
 ;
-[_WinAPI_GetFileSizeEx | Retrieves the size of the specified file (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetFileSizeEx | Retrieves the size of the specified file (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_GetFileSizeEx ( |$hFile )
 ;
 [_WinAPI_GetFileSizeOnDisk | Retrieves the file allocation size on disk (Requires: #include <WinAPIFiles.au3>)]
@@ -8332,10 +8389,10 @@ _WinAPI_GetFinalPathNameByHandle ( |$hFile )
 [_WinAPI_GetFinalPathNameByHandleEx | Retrieves the final path of the specified file (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_GetFinalPathNameByHandleEx ( |$hFile [, $iFlags = 0] )
 ;
-[_WinAPI_GetFocus | Retrieves the handle of the window that has the keyboard focus (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetFocus | Retrieves the handle of the window that has the keyboard focus (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetFocus ( | )
 ;
-[_WinAPI_GetFontMemoryResourceInfo | Reads out font information from a TTF loaded into the memory (Requires: #include <GDIPlus.au3>)]
+[_WinAPI_GetFontMemoryResourceInfo | Reads out font information from a TTF loaded into the memory (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetFontMemoryResourceInfo ( |$pMemory [, $iFlag = 1] )
 ;
 [_WinAPI_GetFontName | Retrieves the unique name of the font based on its typeface name, character set, and style (Requires: #include <WinAPIGdi.au3>)]
@@ -8344,7 +8401,7 @@ _WinAPI_GetFontName ( |$sFaceName [, $iStyle = 0 [, $iCharSet = 1]] )
 [_WinAPI_GetFontResourceInfo | Retrieves the fontname from the specified font resource file (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetFontResourceInfo ( |$sFont [, $bForce = False [, $iFlag = Default]] )
 ;
-[_WinAPI_GetForegroundWindow | Returns the handle of the foreground window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetForegroundWindow | Returns the handle of the foreground window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetForegroundWindow ( | )
 ;
 [_WinAPI_GetFRBuffer | Retrieves the current size of the internal buffer that used the _WinAPI_FindTextDlg() and _WinAPI_ReplaceTextDlg() functions (Requires: #include <WinAPIDlg.au3>)]
@@ -8362,10 +8419,10 @@ _WinAPI_GetGlyphOutline ( |$hDC, $sChar, $iFormat, ByRef $pBuffer [, $tMAT2 = 0]
 [_WinAPI_GetGraphicsMode | Retrieves the current graphics mode for the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetGraphicsMode ( |$hDC )
 ;
-[_WinAPI_GetGuiResources | Retrieves the count of handles to graphical user interface (GUI) objects in use by the specified process (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetGuiResources | Retrieves the count of handles to graphical user interface (GUI) objects in use by the specified process (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_GetGuiResources ( |[$iFlag = 0 [, $hProcess = -1]] )
 ;
-[_WinAPI_GetGUIThreadInfo | Retrieves information about the active window or a specified GUI thread (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetGUIThreadInfo | Retrieves information about the active window or a specified GUI thread (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetGUIThreadInfo ( |$iThreadId )
 ;
 [_WinAPI_GetGValue | Retrieves an intensity value for the green component of a 32-bit RGB value (Requires: #include <WinAPIGdi.au3>)]
@@ -8377,13 +8434,13 @@ _WinAPI_GetHandleInformation ( |$hObject )
 [_WinAPI_GetHGlobalFromStream | Retrieves the global memory handle to a stream (Requires: #include <WinAPICom.au3>)]
 _WinAPI_GetHGlobalFromStream ( |$pStream )
 ;
-[_WinAPI_GetIconDimension | Retrieves a dimension of the specified icon (Requires: #include <WinAPIGdi.au3>)]
+[_WinAPI_GetIconDimension | Retrieves a dimension of the specified icon (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_GetIconDimension ( |$hIcon )
 ;
-[_WinAPI_GetIconInfo | Retrieves information about the specified icon or cursor (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetIconInfo | Retrieves information about the specified icon or cursor (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_GetIconInfo ( |$hIcon )
 ;
-[_WinAPI_GetIconInfoEx | Retrieves information about the specified icon or cursor (Requires: #include <WinAPIRes.au3>)]
+[_WinAPI_GetIconInfoEx | Retrieves information about the specified icon or cursor (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_GetIconInfoEx ( |$hIcon )
 ;
 [_WinAPI_GetIdleTime | Retrieves the time that has elapsed since the last input (Requires: #include <WinAPISys.au3>)]
@@ -8407,16 +8464,16 @@ _WinAPI_GetKeyNameText ( |$lParam )
 [_WinAPI_GetKeyState | Retrieves the status of the specified virtual key (Requires: #include <WinAPISys.au3>)]
 _WinAPI_GetKeyState ( |$vKey )
 ;
-[_WinAPI_GetLastActivePopup | Determines which pop-up window owned by the specified window was most recently active (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetLastActivePopup | Determines which pop-up window owned by the specified window was most recently active (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetLastActivePopup ( |$hWnd )
 ;
-[_WinAPI_GetLastError | Returns the calling thread's lasterror code value (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetLastError | Returns the calling thread's lasterror code value (Requires: #include <WinAPIError.au3>)]
 _WinAPI_GetLastError ( | )
 ;
-[_WinAPI_GetLastErrorMessage | Returns the calling threads last error message (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetLastErrorMessage | Returns the calling threads last error message (Requires: #include <WinAPIError.au3>)]
 _WinAPI_GetLastErrorMessage ( | )
 ;
-[_WinAPI_GetLayeredWindowAttributes | Gets Layered Window Attributes (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetLayeredWindowAttributes | Gets Layered Window Attributes (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetLayeredWindowAttributes ( |$hWnd, ByRef $iTransColor, ByRef $iTransGUI [, $bColorRef = False] )
 ;
 [_WinAPI_GetLocaleInfo | Retrieves information about a locale specified by identifier (Requires: #include <WinAPILocale.au3>)]
@@ -8428,16 +8485,16 @@ _WinAPI_GetLogicalDrives ( | )
 [_WinAPI_GetMapMode | Retrieves the current mapping mode (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetMapMode ( |$hDC )
 ;
-[_WinAPI_GetMemorySize | Retrieves the size of a memory block allocated from the internal library heap (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetMemorySize | Retrieves the size of a memory block allocated from the internal library heap (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_GetMemorySize ( |$pMemory )
 ;
-[_WinAPI_GetMessageExtraInfo | Retrieves the extra message information for the current thread (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetMessageExtraInfo | Retrieves the extra message information for the current thread (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetMessageExtraInfo ( | )
 ;
 [_WinAPI_GetModuleFileNameEx | Retrieves the fully-qualified path for the file containing the specified module (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_GetModuleFileNameEx ( |$hProcess [, $hModule = 0] )
 ;
-[_WinAPI_GetModuleHandle | Returns a module handle for the specified module (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetModuleHandle | Returns a module handle for the specified module (Requires: #include <WinAPISys.au3>)]
 _WinAPI_GetModuleHandle ( |$sModuleName )
 ;
 [_WinAPI_GetModuleHandleEx | Retrieves a module handle for the specified module (Requires: #include <WinAPISys.au3>)]
@@ -8446,16 +8503,16 @@ _WinAPI_GetModuleHandleEx ( |$sModule [, $iFlags = 0] )
 [_WinAPI_GetModuleInformation | Retrieves information about the specified module (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_GetModuleInformation ( |$hProcess [, $hModule = 0] )
 ;
-[_WinAPI_GetMonitorInfo | Retrieves information about a display monitor (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetMonitorInfo | Retrieves information about a display monitor (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetMonitorInfo ( |$hMonitor )
 ;
-[_WinAPI_GetMousePos | Returns the current mouse position (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetMousePos | Returns the current mouse position (Requires: #include <WinAPIMisc.au3>)]
 _WinAPI_GetMousePos ( |[$bToClient = False [, $hWnd = 0]] )
 ;
-[_WinAPI_GetMousePosX | Returns the current mouse X position (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetMousePosX | Returns the current mouse X position (Requires: #include <WinAPIMisc.au3>)]
 _WinAPI_GetMousePosX ( |[$bToClient = False [, $hWnd = 0]] )
 ;
-[_WinAPI_GetMousePosY | Returns the current mouse Y position (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetMousePosY | Returns the current mouse Y position (Requires: #include <WinAPIMisc.au3>)]
 _WinAPI_GetMousePosY ( |[$bToClient = False [, $hWnd = 0]] )
 ;
 [_WinAPI_GetMUILanguage | Gets the language currently in use by the common controls for a particular process (Requires: #include <WinAPISys.au3>)]
@@ -8464,31 +8521,31 @@ _WinAPI_GetMUILanguage ( | )
 [_WinAPI_GetNumberFormat | Formats a number string as a number string customized for a locale specified by identifier (Requires: #include <WinAPILocale.au3>)]
 _WinAPI_GetNumberFormat ( |$iLCID, $sNumber [, $tNUMBERFMT = 0] )
 ;
-[_WinAPI_GetObject | Retrieves information for the specified graphics object (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetObject | Retrieves information for the specified graphics object (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_GetObject ( |$hObject, $iSize, $pObject )
 ;
 [_WinAPI_GetObjectID | Retrieves the object identifier for the specified file or directory (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_GetObjectID ( |$sFilePath )
 ;
-[_WinAPI_GetObjectInfoByHandle | Retrieves information about a specified object (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetObjectInfoByHandle | Retrieves information about a specified object (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_GetObjectInfoByHandle ( |$hObject )
 ;
-[_WinAPI_GetObjectNameByHandle | Retrieves a name of the specified object (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetObjectNameByHandle | Retrieves a name of the specified object (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_GetObjectNameByHandle ( |$hObject )
 ;
-[_WinAPI_GetObjectType | Retrieves the type of the specified object (Requires: #include <WinAPIGdi.au3>)]
+[_WinAPI_GetObjectType | Retrieves the type of the specified object (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_GetObjectType ( |$hObject )
 ;
-[_WinAPI_GetOpenFileName | Creates an Open dialog box that lets the user specify the drive, directory, and the name of a file or set of files to open (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetOpenFileName | Creates an Open dialog box that lets the user specify the drive, directory, and the name of a file or set of files to open (Requires: #include <WinAPIDlg.au3>)]
 _WinAPI_GetOpenFileName ( |[$sTitle = "" [, $sFilter = "All files (*.*)" [, $sInitalDir = "." [, $sDefaultFile = "" [, $sDefaultExt = "" [, $iFilterIndex = 1 [, $iFlags = 0 [, $iFlagsEx = 0 [, $hWndOwner = 0]]]]]]]]] )
 ;
 [_WinAPI_GetOutlineTextMetrics | Retrieves text metrics for TrueType fonts (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetOutlineTextMetrics ( |$hDC )
 ;
-[_WinAPI_GetOverlappedResult | Retrieves the results of an overlapped operation (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetOverlappedResult | Retrieves the results of an overlapped operation (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_GetOverlappedResult ( |$hFile, $tOverlapped, ByRef $iBytes [, $bWait = False] )
 ;
-[_WinAPI_GetParent | Retrieves the handle of the specified child window's parent window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetParent | Retrieves the handle of the specified child window's parent window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetParent ( |$hWnd )
 ;
 [_WinAPI_GetParentProcess | Retrieves the PID of the parent process for the specified process (Requires: #include <WinAPIProc.au3>)]
@@ -8515,10 +8572,10 @@ _WinAPI_GetPosFromRect ( |$tRECT )
 [_WinAPI_GetPriorityClass | Retrieves the priority class for the specified process (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_GetPriorityClass ( |[$iPID = 0] )
 ;
-[_WinAPI_GetProcAddress | Retrieves the address of an exported function or variable from the specified module (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetProcAddress | Retrieves the address of an exported function or variable from the specified module (Requires: #include <WinAPISys.au3>)]
 _WinAPI_GetProcAddress ( |$hModule, $vName )
 ;
-[_WinAPI_GetProcessAffinityMask | Obtains the affinity masks for the process and the system (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetProcessAffinityMask | Obtains the affinity masks for the process and the system (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_GetProcessAffinityMask ( |$hProcess )
 ;
 [_WinAPI_GetProcessCommandLine | Retrieves the command-line string for the specified process (Requires: #include <WinAPIProc.au3>)]
@@ -8593,19 +8650,19 @@ _WinAPI_GetROP2 ( |$hDC )
 [_WinAPI_GetRValue | Retrieves an intensity value for the red component of a 32-bit RGB value (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetRValue ( |$iRGB )
 ;
-[_WinAPI_GetSaveFileName | Creates a Save dialog box that lets the user specify the drive, directory, and name of a file to save (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetSaveFileName | Creates a Save dialog box that lets the user specify the drive, directory, and name of a file to save (Requires: #include <WinAPIDlg.au3>)]
 _WinAPI_GetSaveFileName ( |[$sTitle = "" [, $sFilter = "All files (*.*)" [, $sInitalDir = "." [, $sDefaultFile = "" [, $sDefaultExt = "" [, $iFilterIndex = 1 [, $iFlags = 0 [, $iFlagsEx = 0 [, $hWndOwner = 0]]]]]]]]] )
 ;
-[_WinAPI_GetShellWindow | Retrieves a handle to the Shell's desktop window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetShellWindow | Retrieves a handle to the Shell's desktop window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetShellWindow ( | )
 ;
 [_WinAPI_GetStartupInfo | Retrieves the contents of the STARTUPINFO structure that was specified when the calling process was created (Requires: #include <WinAPISys.au3>)]
 _WinAPI_GetStartupInfo ( | )
 ;
-[_WinAPI_GetStdHandle | Retrieves a handle for the standard input, standard output, or standard error device (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetStdHandle | Retrieves a handle for the standard input, standard output, or standard error device (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_GetStdHandle ( |$iStdHandle )
 ;
-[_WinAPI_GetStockObject | Retrieves a handle to one of the predefined stock pens, brushes, fonts, or palettes (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetStockObject | Retrieves a handle to one of the predefined stock pens, brushes, fonts, or palettes (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_GetStockObject ( |$iObject )
 ;
 [_WinAPI_GetStretchBltMode | Retrieves the current stretching mode (Requires: #include <WinAPIGdi.au3>)]
@@ -8614,10 +8671,10 @@ _WinAPI_GetStretchBltMode ( |$hDC )
 [_WinAPI_GetString | Returns a string located at the specified memory address (Requires: #include <WinAPIMisc.au3>)]
 _WinAPI_GetString ( |$pString [, $bUnicode = True] )
 ;
-[_WinAPI_GetSysColor | Retrieves the current color of the specified display element (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetSysColor | Retrieves the current color of the specified display element (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetSysColor ( |$iIndex )
 ;
-[_WinAPI_GetSysColorBrush | Retrieves a handle identifying a logical brush that corresponds to the specified color index (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetSysColorBrush | Retrieves a handle identifying a logical brush that corresponds to the specified color index (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetSysColorBrush ( |$iIndex )
 ;
 [_WinAPI_GetSystemDefaultLangID | Returns the language identifier for the system locale (Requires: #include <WinAPILocale.au3>)]
@@ -8635,7 +8692,7 @@ _WinAPI_GetSystemDEPPolicy ( | )
 [_WinAPI_GetSystemInfo | Retrieves information about the current system (Requires: #include <WinAPISys.au3>)]
 _WinAPI_GetSystemInfo ( | )
 ;
-[_WinAPI_GetSystemMetrics | Retrieves the specified system metric or system configuration setting (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetSystemMetrics | Retrieves the specified system metric or system configuration setting (Requires: #include <WinAPISys.au3>)]
 _WinAPI_GetSystemMetrics ( |$iIndex )
 ;
 [_WinAPI_GetSystemPowerStatus | Retrieves the power status of the system (Requires: #include <WinAPISys.au3>)]
@@ -8659,16 +8716,16 @@ _WinAPI_GetTextAlign ( |$hDC )
 [_WinAPI_GetTextCharacterExtra | Retrieves the current intercharacter spacing for the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetTextCharacterExtra ( |$hDC )
 ;
-[_WinAPI_GetTextColor | Retrieves the current text color for the specified device context (Requires: #include <WinAPIGdi.au3>)]
+[_WinAPI_GetTextColor | Retrieves the current text color for the specified device context (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_GetTextColor ( |$hDC )
 ;
-[_WinAPI_GetTextExtentPoint32 | Computes the width and height of the specified string of text (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetTextExtentPoint32 | Computes the width and height of the specified string of text (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetTextExtentPoint32 ( |$hDC, $sText )
 ;
 [_WinAPI_GetTextFace | Retrieves the typeface name of the font that is selected into the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetTextFace ( |$hDC )
 ;
-[_WinAPI_GetTextMetrics | Retrieves basic information for the currently selected font (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetTextMetrics | Retrieves basic information for the currently selected font (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetTextMetrics ( |$hDC )
 ;
 [_WinAPI_GetThemeAppProperties | Retrieves the property flags that control how visual styles are applied in the current application (Requires: #include <WinAPITheme.au3>)]
@@ -8779,7 +8836,7 @@ _WinAPI_GetTickCount64 ( | )
 [_WinAPI_GetTimeFormat | Formats time as a time string for a locale specified by identifier (Requires: #include <WinAPILocale.au3>)]
 _WinAPI_GetTimeFormat ( |[$iLCID = 0 [, $tSYSTEMTIME = 0 [, $iFlags = 0 [, $sFormat = '']]]] )
 ;
-[_WinAPI_GetTopWindow | Retrieves a handle to the child window at the top of the Z order (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetTopWindow | Retrieves a handle to the child window at the top of the Z order (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetTopWindow ( |$hWnd )
 ;
 [_WinAPI_GetUDFColorMode | Retrieves the current color mode for WinAPIEx UDF library (Requires: #include <WinAPIGdi.au3>)]
@@ -8821,13 +8878,13 @@ _WinAPI_GetVolumeInformationByHandle ( |$hFile )
 [_WinAPI_GetVolumeNameForVolumeMountPoint | Retrieves a volume GUID path for the volume that is associated with the specified volume mount point (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_GetVolumeNameForVolumeMountPoint ( |$sMountedPath )
 ;
-[_WinAPI_GetWindow | Retrieves the handle of a window that has a specified relationship to the specified window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetWindow | Retrieves the handle of a window that has a specified relationship to the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetWindow ( |$hWnd, $iCmd )
 ;
-[_WinAPI_GetWindowDC | Retrieves the device context (DC) for the entire window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetWindowDC | Retrieves the device context (DC) for the entire window (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_GetWindowDC ( |$hWnd )
 ;
-[_WinAPI_GetWindowDisplayAffinity | Retrieves the current display affinity setting, from any process, for a given window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetWindowDisplayAffinity | Retrieves the current display affinity setting, from any process, for a given window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetWindowDisplayAffinity ( |$hWnd )
 ;
 [_WinAPI_GetWindowExt | Retrieves the x-extent and y-extent of the window for the specified device context (Requires: #include <WinAPIGdi.au3>)]
@@ -8836,25 +8893,25 @@ _WinAPI_GetWindowExt ( |$hDC )
 [_WinAPI_GetWindowFileName | Retrieves the fully-qualified path of the module associated with the specified window handle (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_GetWindowFileName ( |$hWnd )
 ;
-[_WinAPI_GetWindowHeight | Returns the height of the window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetWindowHeight | Returns the height of the window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetWindowHeight ( |$hWnd )
 ;
-[_WinAPI_GetWindowInfo | Retrieves information about the specified window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_GetWindowInfo | Retrieves information about the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetWindowInfo ( |$hWnd )
 ;
-[_WinAPI_GetWindowLong | Retrieves information about the specified window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetWindowLong | Retrieves information about the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetWindowLong ( |$hWnd, $iIndex )
 ;
 [_WinAPI_GetWindowOrg | Retrieves the x-coordinates and y-coordinates of the window origin for the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetWindowOrg ( |$hDC )
 ;
-[_WinAPI_GetWindowPlacement | Retrieves the placement of the window for Min, Max, and normal positions (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetWindowPlacement | Retrieves the placement of the window for Min, Max, and normal positions (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetWindowPlacement ( |$hWnd )
 ;
-[_WinAPI_GetWindowRect | Retrieves the dimensions of the bounding rectangle of the specified window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetWindowRect | Retrieves the dimensions of the bounding rectangle of the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetWindowRect ( |$hWnd )
 ;
-[_WinAPI_GetWindowRgn | Obtains a copy of the window region of a window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetWindowRgn | Obtains a copy of the window region of a window (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetWindowRgn ( |$hWnd, $hRgn )
 ;
 [_WinAPI_GetWindowRgnBox | Retrieves the dimensions of the tightest bounding rectangle for the window region of a window (Requires: #include <WinAPIGdi.au3>)]
@@ -8863,16 +8920,16 @@ _WinAPI_GetWindowRgnBox ( |$hWnd, ByRef $tRECT )
 [_WinAPI_GetWindowSubclass | Retrieves the reference data for the specified window subclass callback (Requires: #include <WinAPIShellEx.au3>)]
 _WinAPI_GetWindowSubclass ( |$hWnd, $pSubclassProc, $idSubClass )
 ;
-[_WinAPI_GetWindowText | Retrieves the text of the specified window's title bar (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetWindowText | Retrieves the text of the specified window's title bar (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetWindowText ( |$hWnd )
 ;
 [_WinAPI_GetWindowTheme | Retrieves a theme handle to a window that has visual styles applied (Requires: #include <WinAPITheme.au3>)]
 _WinAPI_GetWindowTheme ( |$hWnd )
 ;
-[_WinAPI_GetWindowThreadProcessId | Retrieves the identifier of the thread that created the specified window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetWindowThreadProcessId | Retrieves the identifier of the thread that created the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetWindowThreadProcessId ( |$hWnd, ByRef $iPID )
 ;
-[_WinAPI_GetWindowWidth | Returns the width of the window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetWindowWidth | Returns the width of the window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_GetWindowWidth ( |$hWnd )
 ;
 [_WinAPI_GetWorkArea | Retrieves the size of the working area on the primary display monitor (Requires: #include <WinAPISys.au3>)]
@@ -8881,37 +8938,37 @@ _WinAPI_GetWorkArea ( | )
 [_WinAPI_GetWorldTransform | Retrieves the current world-space to page-space transformation (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GetWorldTransform ( |$hDC )
 ;
-[_WinAPI_GetXYFromPoint | Returns the X/Y values from a $tagPOINT structure (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GetXYFromPoint | Returns the X/Y values from a $tagPOINT structure (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_GetXYFromPoint ( |ByRef $tPoint, ByRef $iX, ByRef $iY )
 ;
-[_WinAPI_GlobalMemoryStatus | Retrieves information about current available memory (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GlobalMemoryStatus | Retrieves information about current available memory (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_GlobalMemoryStatus ( | )
 ;
 [_WinAPI_GradientFill | Fills rectangle or triangle gradient (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_GradientFill ( |$hDC, Const ByRef $aVertex [, $iStart = 0 [, $iEnd = -1 [, $bRotate = False]]] )
 ;
-[_WinAPI_GUIDFromString | Converts a string GUID to binary form (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GUIDFromString | Converts a string GUID to binary form (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_GUIDFromString ( |$sGUID )
 ;
-[_WinAPI_GUIDFromStringEx | Converts a string GUID to binary form (Requires: #include <WinAPI.au3>)]
+[_WinAPI_GUIDFromStringEx | Converts a string GUID to binary form (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_GUIDFromStringEx ( |$sGUID, $tGUID )
 ;
-[_WinAPI_HashData | Hashes a memory block (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_HashData | Hashes a memory block (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_HashData ( |$pMemory, $iSize [, $iLength = 32] )
 ;
-[_WinAPI_HashString | Hashes a string (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_HashString | Hashes a string (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_HashString ( |$sString [, $bCaseSensitive = True [, $iLength = 32]] )
 ;
-[_WinAPI_HiByte | Returns the high BYTE of a 16-bit (2 bytes) value (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_HiByte | Returns the high BYTE of a 16-bit (2 bytes) value (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_HiByte ( |$iValue )
 ;
 [_WinAPI_HideCaret | Removes the caret from the screen (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_HideCaret ( |$hWnd )
 ;
-[_WinAPI_HiDWord | Returns the high DWORD of a 64-bit (8 bytes) value (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_HiDWord | Returns the high DWORD of a 64-bit (8 bytes) value (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_HiDWord ( |$iValue )
 ;
-[_WinAPI_HiWord | Returns the high word of a longword value (Requires: #include <WinAPI.au3>)]
+[_WinAPI_HiWord | Returns the high word of a longword value (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_HiWord ( |$iLong )
 ;
 [_WinAPI_InflateRect | Increases or decreases the width and height of the specified rectangle (Requires: #include <WinAPIGdi.au3>)]
@@ -8920,7 +8977,7 @@ _WinAPI_InflateRect ( |ByRef $tRECT, $iDX, $iDY )
 [_WinAPI_InitMUILanguage | Enables an application to specify a language to be used with the common controls that is different from the system language (Requires: #include <WinAPISys.au3>)]
 _WinAPI_InitMUILanguage ( |$iLanguage )
 ;
-[_WinAPI_InProcess | Determines whether a window belongs to the current process (Requires: #include <WinAPI.au3>)]
+[_WinAPI_InProcess | Determines whether a window belongs to the current process (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_InProcess ( |$hWnd, ByRef $hLastWnd )
 ;
 [_WinAPI_IntersectClipRect | Creates a new clipping region from the intersection of the current clipping region and the specified rectangle (Requires: #include <WinAPIGdi.au3>)]
@@ -8929,13 +8986,13 @@ _WinAPI_IntersectClipRect ( |$hDC, $tRECT )
 [_WinAPI_IntersectRect | Creates the intersection of two rectangles (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_IntersectRect ( |$tRECT1, $tRECT2 )
 ;
-[_WinAPI_IntToDWord | Converts a value of type INT to a value of type DWORD (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_IntToDWord | Converts a value of type INT to a value of type DWORD (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_IntToDWord ( |$iValue )
 ;
-[_WinAPI_IntToFloat | Returns a 4 byte integer as a float value (Requires: #include <WinAPI.au3>)]
+[_WinAPI_IntToFloat | Returns a 4 byte integer as a float value (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_IntToFloat ( |$iInt )
 ;
-[_WinAPI_InvalidateRect | Adds a rectangle to the specified window's update region (Requires: #include <WinAPI.au3>)]
+[_WinAPI_InvalidateRect | Adds a rectangle to the specified window's update region (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_InvalidateRect ( |$hWnd [, $tRECT = 0 [, $bErase = True]] )
 ;
 [_WinAPI_InvalidateRgn | Adds a region to the specified window's update region (Requires: #include <WinAPIGdi.au3>)]
@@ -8959,22 +9016,22 @@ _WinAPI_IOCTL ( |$iDeviceType, $iFunction, $iMethod, $iAccess )
 [_WinAPI_IsAlphaBitmap | Determines whether the specified bitmap has an alpha channel (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_IsAlphaBitmap ( |$hBitmap )
 ;
-[_WinAPI_IsBadCodePtr | Determines whether the calling process has read access to the memory at the specified address (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_IsBadCodePtr | Determines whether the calling process has read access to the memory at the specified address (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_IsBadCodePtr ( |$pAddress )
 ;
-[_WinAPI_IsBadReadPtr | Verifies that the calling process has read access to the specified range of memory (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_IsBadReadPtr | Verifies that the calling process has read access to the specified range of memory (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_IsBadReadPtr ( |$pAddress, $iLength )
 ;
-[_WinAPI_IsBadStringPtr | Verifies that the calling process has read access to the specified range of memory (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_IsBadStringPtr | Verifies that the calling process has read access to the specified range of memory (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_IsBadStringPtr ( |$pAddress, $iLength )
 ;
-[_WinAPI_IsBadWritePtr | Verifies that the calling process has write access to the specified range of memory (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_IsBadWritePtr | Verifies that the calling process has write access to the specified range of memory (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_IsBadWritePtr ( |$pAddress, $iLength )
 ;
-[_WinAPI_IsChild | Tests whether a window is a child window of a specified parent window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_IsChild | Tests whether a window is a child window of a specified parent window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_IsChild ( |$hWnd, $hWndParent )
 ;
-[_WinAPI_IsClassName | Wrapper to check ClassName of the control (Requires: #include <WinAPI.au3>)]
+[_WinAPI_IsClassName | Wrapper to check ClassName of the control (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_IsClassName ( |$hWnd, $sClassName )
 ;
 [_WinAPI_IsDoorOpen | Checks if a CD (DVD) tray is open (Requires: #include <WinAPIFiles.au3>)]
@@ -8983,10 +9040,10 @@ _WinAPI_IsDoorOpen ( |$sDrive )
 [_WinAPI_IsElevated | Determines whether the current process is elevated (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_IsElevated ( | )
 ;
-[_WinAPI_IsHungAppWindow | Determines whether the specified application is not responding (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_IsHungAppWindow | Determines whether the specified application is not responding (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_IsHungAppWindow ( |$hWnd )
 ;
-[_WinAPI_IsIconic | Determines whether the specified window is minimized (iconic) (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_IsIconic | Determines whether the specified window is minimized (iconic) (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_IsIconic ( |$hWnd )
 ;
 [_WinAPI_IsInternetConnected | Determines whether the current user is connected to the Internet (Requires: #include <WinAPIDiag.au3>)]
@@ -8995,7 +9052,7 @@ _WinAPI_IsInternetConnected ( | )
 [_WinAPI_IsLoadKBLayout | Determines whether the specified input locale loaded into the system (Requires: #include <WinAPISys.au3>)]
 _WinAPI_IsLoadKBLayout ( |$iLanguage )
 ;
-[_WinAPI_IsMemory | Determines whether the specified pointer points to the memory block in the internal library heap (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_IsMemory | Determines whether the specified pointer points to the memory block in the internal library heap (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_IsMemory ( |$pMemory )
 ;
 [_WinAPI_IsNameInExpression | Determines whether a string matches the specified pattern (Requires: #include <WinAPIShPath.au3>)]
@@ -9028,16 +9085,16 @@ _WinAPI_IsThemePartDefined ( |$hTheme, $iPartID )
 [_WinAPI_IsValidLocale | Determines if the specified locale is installed or supported on the operating system (Requires: #include <WinAPILocale.au3>)]
 _WinAPI_IsValidLocale ( |$iLCID [, $iFlag = 0] )
 ;
-[_WinAPI_IsWindow | Determines whether the specified window handle identifies an existing window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_IsWindow | Determines whether the specified window handle identifies an existing window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_IsWindow ( |$hWnd )
 ;
 [_WinAPI_IsWindowEnabled | Determines whether the specified window is enabled for mouse and keyboard input (Requires: #include <WinAPISys.au3>)]
 _WinAPI_IsWindowEnabled ( |$hWnd )
 ;
-[_WinAPI_IsWindowUnicode | Determines whether the specified window is a native Unicode window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_IsWindowUnicode | Determines whether the specified window is a native Unicode window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_IsWindowUnicode ( |$hWnd )
 ;
-[_WinAPI_IsWindowVisible | Retrieves the visibility state of the specified window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_IsWindowVisible | Retrieves the visibility state of the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_IsWindowVisible ( |$hWnd )
 ;
 [_WinAPI_IsWow64Process | Determines whether the specified process is running under WOW64 (Requires: #include <WinAPIProc.au3>)]
@@ -9046,22 +9103,22 @@ _WinAPI_IsWow64Process ( |[$iPID = 0] )
 [_WinAPI_IsWritable | Determines whether a disk is writable (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_IsWritable ( |$sDrive )
 ;
-[_WinAPI_IsZoomed | Determines whether a window is maximized (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_IsZoomed | Determines whether a window is maximized (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_IsZoomed ( |$hWnd )
 ;
 [_WinAPI_Keybd_Event | Synthesizes a keystroke (Requires: #include <WinAPISys.au3>)]
 _WinAPI_Keybd_Event ( |$vKey, $iFlags [, $iScanCode = 0 [, $iExtraInfo = 0]] )
 ;
-[_WinAPI_KillTimer | Destroys the specified timer (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_KillTimer | Destroys the specified timer (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_KillTimer ( |$hWnd, $iTimerID )
 ;
 [_WinAPI_LineDDA | Determines which pixels should be highlighted for a line (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_LineDDA ( |$iX1, $iY1, $iX2, $iY2, $pLineProc [, $pData = 0] )
 ;
-[_WinAPI_LineTo | Draws a line from the current position up to, but not including, the specified point (Requires: #include <WinAPI.au3>)]
+[_WinAPI_LineTo | Draws a line from the current position up to, but not including, the specified point (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_LineTo ( |$hDC, $iX, $iY )
 ;
-[_WinAPI_LoadBitmap | Loads the specified bitmap resource from a module's executable file (Requires: #include <WinAPI.au3>)]
+[_WinAPI_LoadBitmap | Loads the specified bitmap resource from a module's executable file (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_LoadBitmap ( |$hInstance, $sBitmap )
 ;
 [_WinAPI_LoadCursor | Loads the specified cursor resource from the executable (.exe) file (Requires: #include <WinAPIRes.au3>)]
@@ -9070,16 +9127,16 @@ _WinAPI_LoadCursor ( |$hInstance, $sName )
 [_WinAPI_LoadCursorFromFile | Creates a cursor based on data contained in a file (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_LoadCursorFromFile ( |$sFilePath )
 ;
-[_WinAPI_LoadIcon | Loads the specified icon resource from the executable (.exe) file associated with an application instance (Requires: #include <WinAPIRes.au3>)]
+[_WinAPI_LoadIcon | Loads the specified icon resource from the executable (.exe) file associated with an application instance (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_LoadIcon ( |$hInstance, $sName )
 ;
-[_WinAPI_LoadIconMetric | Loads a specified icon resource with a client-specified system metric (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_LoadIconMetric | Loads a specified icon resource with a client-specified system metric (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_LoadIconMetric ( |$hInstance, $sName, $iMetric )
 ;
-[_WinAPI_LoadIconWithScaleDown | Loads an icon and scales down a larger image instead of scaling up a smaller image (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_LoadIconWithScaleDown | Loads an icon and scales down a larger image instead of scaling up a smaller image (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_LoadIconWithScaleDown ( |$hInstance, $sName, $iWidth, $iHeight )
 ;
-[_WinAPI_LoadImage | Loads an icon, cursor, or bitmap (Requires: #include <WinAPI.au3>)]
+[_WinAPI_LoadImage | Loads an icon, cursor, or bitmap (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_LoadImage ( |$hInstance, $sImage, $iType, $iXDesired, $iYDesired, $iLoad )
 ;
 [_WinAPI_LoadIndirectString | Extracts the string from the specified resource when given an indirect string (Requires: #include <WinAPIRes.au3>)]
@@ -9088,10 +9145,10 @@ _WinAPI_LoadIndirectString ( |$sStrIn )
 [_WinAPI_LoadKeyboardLayout | Loads a new input locale identifier into the system (Requires: #include <WinAPISys.au3>)]
 _WinAPI_LoadKeyboardLayout ( |$iLanguage [, $iFlag = 0] )
 ;
-[_WinAPI_LoadLibrary | Maps a specified executable module into the address space of the calling process (Requires: #include <WinAPI.au3>)]
+[_WinAPI_LoadLibrary | Maps a specified executable module into the address space of the calling process (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_LoadLibrary ( |$sFileName )
 ;
-[_WinAPI_LoadLibraryEx | Maps a specified executable module into the address space of the calling process (Requires: #include <WinAPI.au3>)]
+[_WinAPI_LoadLibraryEx | Maps a specified executable module into the address space of the calling process (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_LoadLibraryEx ( |$sFileName [, $iFlags = 0] )
 ;
 [_WinAPI_LoadMedia | Loads media into a device (Requires: #include <WinAPIFiles.au3>)]
@@ -9100,19 +9157,19 @@ _WinAPI_LoadMedia ( |$sDrive )
 [_WinAPI_LoadResource | Loads the specified resource into global memory (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_LoadResource ( |$hInstance, $hResource )
 ;
-[_WinAPI_LoadShell32Icon | Extracts an icon from the shell32.dll file (Requires: #include <WinAPI.au3>)]
+[_WinAPI_LoadShell32Icon | Extracts an icon from the shell32.dll file (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_LoadShell32Icon ( |$iIconID )
 ;
-[_WinAPI_LoadString | loads a string resource from the executable file associated with a specified module (Requires: #include <WinAPI.au3>)]
+[_WinAPI_LoadString | loads a string resource from the executable file associated with a specified module (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_LoadString ( |$hInstance, $iStringID )
 ;
 [_WinAPI_LoadStringEx | Loads a string resource for the specified language from the specified module (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_LoadStringEx ( |$hModule, $iID [, $iLanguage = $LOCALE_USER_DEFAULT] )
 ;
-[_WinAPI_LoByte | Returns the low BYTE of a 16-bit (2 bytes) value (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_LoByte | Returns the low BYTE of a 16-bit (2 bytes) value (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_LoByte ( |$iValue )
 ;
-[_WinAPI_LocalFree | Frees the specified local memory object and invalidates its handle (Requires: #include <WinAPI.au3>)]
+[_WinAPI_LocalFree | Frees the specified local memory object and invalidates its handle (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_LocalFree ( |$hMemory )
 ;
 [_WinAPI_LockDevice | Enables or disables the mechanism that ejects media, for those devices possessing that locking capability (Requires: #include <WinAPIFiles.au3>)]
@@ -9130,34 +9187,34 @@ _WinAPI_LockWindowUpdate ( |$hWnd )
 [_WinAPI_LockWorkStation | Locks the workstation's display (Requires: #include <WinAPISys.au3>)]
 _WinAPI_LockWorkStation ( | )
 ;
-[_WinAPI_LoDWord | Returns the low DWORD of a 64-bit (8 bytes) value (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_LoDWord | Returns the low DWORD of a 64-bit (8 bytes) value (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_LoDWord ( |$iValue )
 ;
-[_WinAPI_LongMid | Extracts a number of bits from a DWORD (32-bit) value (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_LongMid | Extracts a number of bits from a DWORD (32-bit) value (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_LongMid ( |$iValue, $iStart, $iCount )
 ;
-[_WinAPI_LookupIconIdFromDirectoryEx | Searches through icon or cursor data for the icon or cursor that best fits the current display device (Requires: #include <WinAPIRes.au3>)]
+[_WinAPI_LookupIconIdFromDirectoryEx | Searches through icon or cursor data for the icon or cursor that best fits the current display device (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_LookupIconIdFromDirectoryEx ( |$pData [, $bIcon = True [, $iXDesiredPixels = 0 [, $iYDesiredPixels = 0 [, $iFlags = 0]]]] )
 ;
-[_WinAPI_LoWord | Returns the low word of a longword (Requires: #include <WinAPI.au3>)]
+[_WinAPI_LoWord | Returns the low word of a longword (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_LoWord ( |$iLong )
 ;
 [_WinAPI_LPtoDP | Converts a logical coordinates into device coordinates (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_LPtoDP ( |$hDC, ByRef $tPOINT [, $iCount = 1] )
 ;
-[_WinAPI_MAKELANGID | Construct language id from a primary language id and a sublanguage id (Requires: #include <WinAPI.au3>)]
+[_WinAPI_MAKELANGID | Construct language id from a primary language id and a sublanguage id (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_MAKELANGID ( |$iLngIDPrimary, $iLngIDSub )
 ;
-[_WinAPI_MAKELCID | Construct locale id from a language id and a sort id (Requires: #include <WinAPI.au3>)]
+[_WinAPI_MAKELCID | Construct locale id from a language id and a sort id (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_MAKELCID ( |$iLngID, $iSortID )
 ;
-[_WinAPI_MakeLong | Returns a long int value from two int values (Requires: #include <WinAPI.au3>)]
+[_WinAPI_MakeLong | Returns a long int value from two int values (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_MakeLong ( |$iLo, $iHi )
 ;
-[_WinAPI_MakeQWord | Returns a QWORD value from two int values (Requires: #include <WinAPI.au3>)]
+[_WinAPI_MakeQWord | Returns a QWORD value from two int values (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_MakeQWord ( |$iLoDWORD, $iHiDWORD )
 ;
-[_WinAPI_MakeWord | Returns a WORD (16-bit) value from two BYTE (8-bit) values (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_MakeWord | Returns a WORD (16-bit) value from two BYTE (8-bit) values (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_MakeWord ( |$iLo, $iHi )
 ;
 [_WinAPI_MapViewOfFile | Maps a view of a file mapping into the address space of a calling process (Requires: #include <WinAPIFiles.au3>)]
@@ -9169,7 +9226,7 @@ _WinAPI_MapVirtualKey ( |$iCode, $iType [, $hLocale = 0] )
 [_WinAPI_MaskBlt | Combines the color data for the source and destination bitmaps using the specified mask and raster operation (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_MaskBlt ( |$hDestDC, $iXDest, $iYDest, $iWidth, $iHeight, $hSrcDC, $iXSrc, $iYSrc, $hMask, $iXMask, $iYMask, $iRop )
 ;
-[_WinAPI_MessageBeep | Plays a waveform sound (Requires: #include <WinAPI.au3>)]
+[_WinAPI_MessageBeep | Plays a waveform sound (Requires: #include <WinAPIError.au3>)]
 _WinAPI_MessageBeep ( |[$iType = 1] )
 ;
 [_WinAPI_MessageBoxCheck | Displays a message box that gives the user the option of suppressing further occurrences (Requires: #include <WinAPIDlg.au3>)]
@@ -9178,7 +9235,7 @@ _WinAPI_MessageBoxCheck ( |$iType, $sTitle, $sText, $sRegVal [, $iDefault = -1 [
 [_WinAPI_MessageBoxIndirect | Creates, displays, and operates a message box (Requires: #include <WinAPIDlg.au3>)]
 _WinAPI_MessageBoxIndirect ( |$tMSGBOXPARAMS )
 ;
-[_WinAPI_MirrorIcon | Reverses (mirrors) icons so that they are displayed correctly on a mirrored device context (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_MirrorIcon | Reverses (mirrors) icons so that they are displayed correctly on a mirrored device context (Requires: #include <WinAPIIcons.au3>)]
 _WinAPI_MirrorIcon ( |$hIcon [, $bDelete = False] )
 ;
 [_WinAPI_ModifyWorldTransform | Changes the world transformation for a device context using the specified mode (Requires: #include <WinAPIGdi.au3>)]
@@ -9193,40 +9250,40 @@ _WinAPI_MonitorFromRect ( |$tRECT [, $iFlag = 1] )
 [_WinAPI_MonitorFromWindow | Retrieves a handle to the display monitor that has the largest area of intersection with the specified window (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_MonitorFromWindow ( |$hWnd [, $iFlag = 1] )
 ;
-[_WinAPI_Mouse_Event | Synthesizes mouse motion and button clicks (Requires: #include <WinAPI.au3>)]
+[_WinAPI_Mouse_Event | Synthesizes mouse motion and button clicks (Requires: #include <WinAPISys.au3>)]
 _WinAPI_Mouse_Event ( |$iFlags [, $iX = 0 [, $iY = 0 [, $iData = 0 [, $iExtraInfo = 0]]]] )
 ;
 [_WinAPI_MoveFileEx | Moves a file or directory, notifying the application of its progress through a callback function (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_MoveFileEx ( |$sExistingFile, $sNewFile [, $iFlags = 0 [, $pProgressProc = 0 [, $pData = 0]]] )
 ;
-[_WinAPI_MoveMemory | Moves a block of memory from one location to another (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_MoveMemory | Moves a block of memory from one location to another (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_MoveMemory ( |$pDestination, $pSource, $iLength )
 ;
-[_WinAPI_MoveTo | Updates the current position to the specified point (Requires: #include <WinAPI.au3>)]
+[_WinAPI_MoveTo | Updates the current position to the specified point (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_MoveTo ( |$hDC, $iX, $iY )
 ;
 [_WinAPI_MoveToEx | Updates the current position to the specified point (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_MoveToEx ( |$hDC, $iX, $iY )
 ;
-[_WinAPI_MoveWindow | Changes the position and dimensions of the specified window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_MoveWindow | Changes the position and dimensions of the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_MoveWindow ( |$hWnd, $iX, $iY, $iWidth, $iHeight [, $bRepaint = True] )
 ;
-[_WinAPI_MsgBox | Displays a message box with wider margin than original (Requires: #include <WinAPI.au3>)]
+[_WinAPI_MsgBox | Displays a message box with wider margin than original (Requires: #include <WinAPIError.au3>)]
 _WinAPI_MsgBox ( |$iFlags, $sTitle, $sText )
 ;
-[_WinAPI_MulDiv | Multiplies two 32-bit values and then divides the 64-bit result by a third 32-bit value (Requires: #include <WinAPI.au3>)]
+[_WinAPI_MulDiv | Multiplies two 32-bit values and then divides the 64-bit result by a third 32-bit value (Requires: #include <WinAPIMisc.au3>)]
 _WinAPI_MulDiv ( |$iNumber, $iNumerator, $iDenominator )
 ;
-[_WinAPI_MultiByteToWideChar | Maps a character string to a wide-character (Unicode) string (Requires: #include <WinAPI.au3>)]
+[_WinAPI_MultiByteToWideChar | Maps a character string to a wide-character (Unicode) string (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_MultiByteToWideChar ( |$vText [, $iCodePage = 0 [, $iFlags = 0 [, $bRetString = False]]] )
 ;
-[_WinAPI_MultiByteToWideCharEx | Maps a character string to a wide-character (Unicode) string (Requires: #include <WinAPI.au3>)]
+[_WinAPI_MultiByteToWideCharEx | Maps a character string to a wide-character (Unicode) string (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_MultiByteToWideCharEx ( |$sText, $pText [, $iCodePage = 0 [, $iFlags = 0]] )
 ;
 [_WinAPI_NtStatusToDosError | Converts the specified NTSTATUS error code to its equivalent system error code (Requires: #include <WinAPIDiag.au3>)]
 _WinAPI_NtStatusToDosError ( |$iStatus )
 ;
-[_WinAPI_OemToChar | Converts a string from the OEM-defined character set into either an ANSI string (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_OemToChar | Converts a string from the OEM-defined character set into either an ANSI string (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_OemToChar ( |$sStr )
 ;
 [_WinAPI_OffsetClipRgn | Moves the clipping region of a device context by the specified offsets (Requires: #include <WinAPIGdi.au3>)]
@@ -9256,7 +9313,7 @@ _WinAPI_OpenFileDlg ( |[$sTitle = '' [, $sInitDir = '' [, $sFilters = '' [, $iDe
 [_WinAPI_OpenFileMapping | Opens a named file mapping object (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_OpenFileMapping ( |$sName [, $iAccess = 0x0006 [, $bInherit = False]] )
 ;
-[_WinAPI_OpenIcon | Restores a minimized (iconic) window to its previous size and position and activates the window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_OpenIcon | Restores a minimized (iconic) window to its previous size and position and activates the window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_OpenIcon ( |$hWnd )
 ;
 [_WinAPI_OpenInputDesktop | Opens the desktop that receives user input (Requires: #include <WinAPISys.au3>)]
@@ -9268,7 +9325,7 @@ _WinAPI_OpenJobObject ( |$sName [, $iAccess = $JOB_OBJECT_ALL_ACCESS [, $bInheri
 [_WinAPI_OpenMutex | Opens an existing named mutex object (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_OpenMutex ( |$sMutex [, $iAccess = $MUTEX_ALL_ACCESS [, $bInherit = False]] )
 ;
-[_WinAPI_OpenProcess | Returns a handle of an existing process object (Requires: #include <WinAPI.au3>)]
+[_WinAPI_OpenProcess | Returns a handle of an existing process object (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_OpenProcess ( |$iAccess, $bInherit, $iPID [, $bDebugPriv = False] )
 ;
 [_WinAPI_OpenProcessToken | Opens the access token associated with a process (Requires: #include <WinAPIProc.au3>)]
@@ -9337,7 +9394,7 @@ _WinAPI_PathFindFileName ( |$sFilePath )
 [_WinAPI_PathFindNextComponent | Parses a path and returns the portion of that path that follows the first backslash (Requires: #include <WinAPIShPath.au3>)]
 _WinAPI_PathFindNextComponent ( |$sFilePath )
 ;
-[_WinAPI_PathFindOnPath | Searchs for a file in the default system paths (Requires: #include <WinAPI.au3>)]
+[_WinAPI_PathFindOnPath | Searchs for a file in the default system paths (Requires: #include <WinAPIShPath.au3>)]
 _WinAPI_PathFindOnPath ( |$sFilePath [, $aExtraPaths = "" [, $sPathDelimiter = @LF]] )
 ;
 [_WinAPI_PathGetArgs | Finds the command-line arguments within a given path (Requires: #include <WinAPIShPath.au3>)]
@@ -9457,7 +9514,7 @@ _WinAPI_PlaySound ( |$sSound [, $iFlags = $SND_SYSTEM_NOSTOP [, $hInstance = 0]]
 [_WinAPI_PlgBlt | Performs a bit-block transfer of color data from the specified rectangle in the source DC to the specified parallelogram in the DC context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_PlgBlt ( |$hDestDC, Const ByRef $aPoint, $hSrcDC, $iXSrc, $iYSrc, $iWidth, $iHeight [, $hMask = 0 [, $iXMask = 0 [, $iYMask = 0]]] )
 ;
-[_WinAPI_PointFromRect | Returns the top/left coordinates of a $tagRECT as a $tagPOINT structure (Requires: #include <WinAPI.au3>)]
+[_WinAPI_PointFromRect | Returns the top/left coordinates of a $tagRECT as a $tagPOINT structure (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_PointFromRect ( |ByRef $tRECT [, $bCenter = True] )
 ;
 [_WinAPI_PolyBezier | Draws one or more Bezier curves (Requires: #include <WinAPIGdi.au3>)]
@@ -9472,10 +9529,10 @@ _WinAPI_PolyDraw ( |$hDC, Const ByRef $aPoint [, $iStart = 0 [, $iEnd = -1]] )
 [_WinAPI_Polygon | Draws a polygon consisting of two or more vertices connected by straight lines (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_Polygon ( |$hDC, Const ByRef $aPoint [, $iStart = 0 [, $iEnd = -1]] )
 ;
-[_WinAPI_PostMessage | Places a message in the message queue and then returns (Requires: #include <WinAPI.au3>)]
+[_WinAPI_PostMessage | Places a message in the message queue and then returns (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_PostMessage ( |$hWnd, $iMsg, $wParam, $lParam )
 ;
-[_WinAPI_PrimaryLangId | Extract primary language id from a language id (Requires: #include <WinAPI.au3>)]
+[_WinAPI_PrimaryLangId | Extract primary language id from a language id (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_PrimaryLangId ( |$iLngID )
 ;
 [_WinAPI_PrintDlg | Displays a Print dialog box (Requires: #include <WinAPIDlg.au3>)]
@@ -9484,13 +9541,13 @@ _WinAPI_PrintDlg ( |ByRef $tPRINTDLG )
 [_WinAPI_PrintDlgEx | Displays a Print property sheet that enables the user to specify the properties of a particular print job (Requires: #include <WinAPIDlg.au3>)]
 _WinAPI_PrintDlgEx ( |ByRef $tPRINTDLGEX )
 ;
-[_WinAPI_PrintWindow | Copies a visual window into the specified device context (Requires: #include <WinAPIGdi.au3>)]
+[_WinAPI_PrintWindow | Copies a visual window into the specified device context (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_PrintWindow ( |$hWnd, $hDC [, $bClient = False] )
 ;
 [_WinAPI_ProgIDFromCLSID | Retrieves the ProgID for a given CLSID (Requires: #include <WinAPICom.au3>)]
 _WinAPI_ProgIDFromCLSID ( |$sCLSID )
 ;
-[_WinAPI_PtInRect | Determines whether the specified point lies within the specified rectangle (Requires: #include <WinAPI.au3>)]
+[_WinAPI_PtInRect | Determines whether the specified point lies within the specified rectangle (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_PtInRect ( |ByRef $tRECT, ByRef $tPoint )
 ;
 [_WinAPI_PtInRectEx | Determines whether the specified point lies within the specified rectangle (Requires: #include <WinAPIGdi.au3>)]
@@ -9520,10 +9577,10 @@ _WinAPI_RadialGradientFill ( |$hDC, $iX, $iY, $iRadius, $iRGB1, $iRGB2 [, $fAngl
 [_WinAPI_ReadDirectoryChanges | Retrieves information that describes the changes within the specified directory (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_ReadDirectoryChanges ( |$hDirectory, $iFilter, $pBuffer, $iLength [, $bSubtree = 0] )
 ;
-[_WinAPI_ReadFile | Reads data from a file (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ReadFile | Reads data from a file (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_ReadFile ( |$hFile, $pBuffer, $iToRead, ByRef $iRead [, $tOverlapped = 0] )
 ;
-[_WinAPI_ReadProcessMemory | Reads memory in a specified process (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ReadProcessMemory | Reads memory in a specified process (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_ReadProcessMemory ( |$hProcess, $pBaseAddress, $pBuffer, $iSize, ByRef $iRead )
 ;
 [_WinAPI_Rectangle | Draws a rectangle (Requires: #include <WinAPIGdi.au3>)]
@@ -9532,13 +9589,13 @@ _WinAPI_Rectangle ( |$hDC, $tRECT )
 [_WinAPI_RectInRegion | Determines whether any part of the specified rectangle is within the boundaries of a region (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_RectInRegion ( |$hRgn, $tRECT )
 ;
-[_WinAPI_RectIsEmpty | Determins whether a rectangle is empty (Requires: #include <WinAPI.au3>)]
+[_WinAPI_RectIsEmpty | Determins whether a rectangle is empty (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_RectIsEmpty ( |ByRef $tRECT )
 ;
 [_WinAPI_RectVisible | Determines whether any part of the specified rectangle lies within the clipping region (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_RectVisible ( |$hDC, $tRECT )
 ;
-[_WinAPI_RedrawWindow | Updates the specified rectangle or region in a window's client area (Requires: #include <WinAPI.au3>)]
+[_WinAPI_RedrawWindow | Updates the specified rectangle or region in a window's client area (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_RedrawWindow ( |$hWnd [, $tRECT = 0 [, $hRegion = 0 [, $iFlags = 5]]] )
 ;
 [_WinAPI_RegCloseKey | Closes a handle to the specified registry key (Requires: #include <WinAPIReg.au3>)]
@@ -9595,10 +9652,10 @@ _WinAPI_RegFlushKey ( |$hKey )
 [_WinAPI_RegisterApplicationRestart | Registers the active instance of an application for restart (Requires: #include <WinAPIDiag.au3>)]
 _WinAPI_RegisterApplicationRestart ( |[$iFlags = 0 [, $sCmd = '']] )
 ;
-[_WinAPI_RegisterClass | Registers a window class (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_RegisterClass | Registers a window class (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_RegisterClass ( |$tWNDCLASS )
 ;
-[_WinAPI_RegisterClassEx | Registers a window class (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_RegisterClassEx | Registers a window class (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_RegisterClassEx ( |$tWNDCLASSEX )
 ;
 [_WinAPI_RegisterHotKey | Defines a system-wide hot key (Requires: #include <WinAPISys.au3>)]
@@ -9610,10 +9667,10 @@ _WinAPI_RegisterPowerSettingNotification ( |$hWnd, $sGUID )
 [_WinAPI_RegisterRawInputDevices | Registers the devices that supply the raw input data (Requires: #include <WinAPISys.au3>)]
 _WinAPI_RegisterRawInputDevices ( |$paDevice [, $iCount = 1] )
 ;
-[_WinAPI_RegisterShellHookWindow | Registers a specified Shell window to receive certain messages for events or notifications (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_RegisterShellHookWindow | Registers a specified Shell window to receive certain messages for events or notifications (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_RegisterShellHookWindow ( |$hWnd )
 ;
-[_WinAPI_RegisterWindowMessage | Defines a new window message that is guaranteed to be unique throughout the system (Requires: #include <WinAPI.au3>)]
+[_WinAPI_RegisterWindowMessage | Defines a new window message that is guaranteed to be unique throughout the system (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_RegisterWindowMessage ( |$sMessage )
 ;
 [_WinAPI_RegLoadMUIString | Loads the specified string from the specified key and subkey (Requires: #include <WinAPIReg.au3>)]
@@ -9649,10 +9706,10 @@ _WinAPI_RegSaveKey ( |$hKey, $sFilePath [, $bReplace = False [, $tSecurity = 0]]
 [_WinAPI_RegSetValue | Sets the data and type of a specified value under a registry key (Requires: #include <WinAPIReg.au3>)]
 _WinAPI_RegSetValue ( |$hKey, $sValueName, $iType, $tValueData, $iBytes )
 ;
-[_WinAPI_ReleaseCapture | Releases the mouse capture from a window in the current thread and restores normal mouse input processing (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ReleaseCapture | Releases the mouse capture from a window in the current thread and restores normal mouse input processing (Requires: #include <WinAPISys.au3>)]
 _WinAPI_ReleaseCapture ( | )
 ;
-[_WinAPI_ReleaseDC | Releases a device context (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ReleaseDC | Releases a device context (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_ReleaseDC ( |$hWnd, $hDC )
 ;
 [_WinAPI_ReleaseMutex | Releases ownership of the specified mutex object (Requires: #include <WinAPIProc.au3>)]
@@ -9694,7 +9751,7 @@ _WinAPI_ResetEvent ( |$hEvent )
 [_WinAPI_RestartDlg | Displays a dialog box that prompts the user to restart Microsoft Windows (Requires: #include <WinAPIDlg.au3>)]
 _WinAPI_RestartDlg ( |[$sText = '' [, $iFlags = 2 [, $hParent = 0]]] )
 ;
-[_WinAPI_RestoreDC | Restores a device context (DC) to the specified state (Requires: #include <WinAPIGdi.au3>)]
+[_WinAPI_RestoreDC | Restores a device context (DC) to the specified state (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_RestoreDC ( |$hDC, $iID )
 ;
 [_WinAPI_RGB | Creates a RGB color value based on red, green, and blue components (Requires: #include <WinAPIGdi.au3>)]
@@ -9706,7 +9763,7 @@ _WinAPI_RotatePoints ( |ByRef $aPoint, $iXC, $iYC, $fAngle [, $iStart = 0 [, $iE
 [_WinAPI_RoundRect | Draws a rectangle with rounded corners (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_RoundRect ( |$hDC, $tRECT, $iWidth, $iHeight )
 ;
-[_WinAPI_SaveDC | Saves the current state of the specified device context (DC) by copying data describing selected objects and graphic modes to a context stack (Requires: #include <WinAPIGdi.au3>)]
+[_WinAPI_SaveDC | Saves the current state of the specified device context (DC) by copying data describing selected objects and graphic modes to a context stack (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_SaveDC ( |$hDC )
 ;
 [_WinAPI_SaveFileDlg | Creates a dialog box that lets the user specify the drive, directory, and name of a file to save (Requires: #include <WinAPIDlg.au3>)]
@@ -9721,7 +9778,7 @@ _WinAPI_SaveHICONToFile ( |$sFilePath, Const ByRef $vIcon [, $bCompress = 0 [, $
 [_WinAPI_ScaleWindowExt | Modifies the window for a device context using the ratios formed by the specified multiplicands and divisors (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_ScaleWindowExt ( |$hDC, $iXNum, $iXDenom, $iYNum, $iYDenom )
 ;
-[_WinAPI_ScreenToClient | Converts screen coordinates of a specified point on the screen to client coordinates (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ScreenToClient | Converts screen coordinates of a specified point on the screen to client coordinates (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_ScreenToClient ( |$hWnd, ByRef $tPoint )
 ;
 [_WinAPI_SearchPath | Searches for a specified file in a specified path (Requires: #include <WinAPIFiles.au3>)]
@@ -9733,10 +9790,10 @@ _WinAPI_SelectClipPath ( |$hDC [, $iMode = 5] )
 [_WinAPI_SelectClipRgn | Selects a region as the current clipping region for the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SelectClipRgn ( |$hDC, $hRgn )
 ;
-[_WinAPI_SelectObject | Selects an object into the specified device context (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SelectObject | Selects an object into the specified device context (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_SelectObject ( |$hDC, $hGDIObj )
 ;
-[_WinAPI_SendMessageTimeout | Sends the specified message to one of more windows (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_SendMessageTimeout | Sends the specified message to one of more windows (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SendMessageTimeout ( |$hWnd, $iMsg [, $wParam = 0 [, $lParam = 0 [, $iTimeout = 1000 [, $iFlags = 0]]]] )
 ;
 [_WinAPI_SetActiveWindow | Activates the specified window (Requires: #include <WinAPISys.au3>)]
@@ -9751,10 +9808,10 @@ _WinAPI_SetBitmapBits ( |$hBitmap, $iSize, $pBits )
 [_WinAPI_SetBitmapDimensionEx | Assigns preferred dimensions to a compatible bitmap (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetBitmapDimensionEx ( |$hBitmap, $iWidth, $iHeight )
 ;
-[_WinAPI_SetBkColor | Sets the current background color to the specified color value (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetBkColor | Sets the current background color to the specified color value (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_SetBkColor ( |$hDC, $iColor )
 ;
-[_WinAPI_SetBkMode | Sets the background mix mode of the specified device context (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetBkMode | Sets the background mix mode of the specified device context (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_SetBkMode ( |$hDC, $iBkMode )
 ;
 [_WinAPI_SetBoundsRect | Controls the accumulation of bounding rectangle information for the specified device context (Requires: #include <WinAPIGdi.au3>)]
@@ -9763,7 +9820,7 @@ _WinAPI_SetBoundsRect ( |$hDC, $iFlags [, $tRECT = 0] )
 [_WinAPI_SetBrushOrg | Sets the brush origin that GDI assigns to the next brush an application selects into the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetBrushOrg ( |$hDC, $iX, $iY )
 ;
-[_WinAPI_SetCapture | Sets the mouse capture to the specified window belonging to the current thread (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetCapture | Sets the mouse capture to the specified window belonging to the current thread (Requires: #include <WinAPISys.au3>)]
 _WinAPI_SetCapture ( |$hWnd )
 ;
 [_WinAPI_SetCaretBlinkTime | Sets the caret blink time (Requires: #include <WinAPIRes.au3>)]
@@ -9772,7 +9829,7 @@ _WinAPI_SetCaretBlinkTime ( |$iDuration )
 [_WinAPI_SetCaretPos | Moves the caret to the specified coordinates (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_SetCaretPos ( |$iX, $iY )
 ;
-[_WinAPI_SetClassLongEx | Replaces the specified value into the specified window belongs (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_SetClassLongEx | Replaces the specified value into the specified window belongs (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetClassLongEx ( |$hWnd, $iIndex, $iNewLong )
 ;
 [_WinAPI_SetColorAdjustment | Sets the color adjustment for a device context (DC) (Requires: #include <WinAPIGdi.au3>)]
@@ -9787,7 +9844,7 @@ _WinAPI_SetCurrentDirectory ( |$sDir )
 [_WinAPI_SetCurrentProcessExplicitAppUserModelID | Specifies a unique application-defined Application User Model ID that identifies the current process to the taskbar (Requires: #include <WinAPIShellEx.au3>)]
 _WinAPI_SetCurrentProcessExplicitAppUserModelID ( |$sAppID )
 ;
-[_WinAPI_SetCursor | Establishes the cursor shape (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetCursor | Establishes the cursor shape (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_SetCursor ( |$hCursor )
 ;
 [_WinAPI_SetDCBrushColor | Sets the current device context (DC) brush color to the specified color value (Requires: #include <WinAPIGdi.au3>)]
@@ -9796,7 +9853,7 @@ _WinAPI_SetDCBrushColor ( |$hDC, $iRGB )
 [_WinAPI_SetDCPenColor | Sets the current device context (DC) pen color to the specified color value (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetDCPenColor ( |$hDC, $iRGB )
 ;
-[_WinAPI_SetDefaultPrinter | Sets the default printer for the current user on the local computer (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetDefaultPrinter | Sets the default printer for the current user on the local computer (Requires: #include <WinAPISys.au3>)]
 _WinAPI_SetDefaultPrinter ( |$sPrinter )
 ;
 [_WinAPI_SetDeviceGammaRamp | Sets the gamma ramp on direct color display boards that support downloadable gamma ramps in hardware (Requires: #include <WinAPIGdi.au3>)]
@@ -9805,7 +9862,7 @@ _WinAPI_SetDeviceGammaRamp ( |$hDC, Const ByRef $aRamp )
 [_WinAPI_SetDIBColorTable | Sets RGB color table in the DIB section bitmap (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetDIBColorTable ( |$hBitmap, $tColorTable, $iColorCount )
 ;
-[_WinAPI_SetDIBits | Sets the pixels in a compatible bitmap using the color data found in a DIB (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetDIBits | Sets the pixels in a compatible bitmap using the color data found in a DIB (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetDIBits ( |$hDC, $hBitmap, $iStartScan, $iScanLines, $pBits, $tBMI [, $iColorUse = 0] )
 ;
 [_WinAPI_SetDIBitsToDevice | Sets the pixels in the specified rectangle on the device (Requires: #include <WinAPIGdi.au3>)]
@@ -9814,7 +9871,7 @@ _WinAPI_SetDIBitsToDevice ( |$hDC, $iXDest, $iYDest, $iWidth, $iHeight, $iXSrc, 
 [_WinAPI_SetDllDirectory | Adds a directory to the search path used to locate DLLs for the application (Requires: #include <WinAPISys.au3>)]
 _WinAPI_SetDllDirectory ( |[$sDirPath = Default] )
 ;
-[_WinAPI_SetEndOfFile | Sets the physical file size for the specified file to the current position of the file pointer (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetEndOfFile | Sets the physical file size for the specified file to the current position of the file pointer (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_SetEndOfFile ( |$hFile )
 ;
 [_WinAPI_SetEnhMetaFileBits | Creates a memory-based enhanced-format metafile from the specified data (Requires: #include <WinAPIGdi.au3>)]
@@ -9823,7 +9880,7 @@ _WinAPI_SetEnhMetaFileBits ( |$pData, $iLength )
 [_WinAPI_SetErrorMode | Controls whether the system will handle the specified types of serious errors or whether the process will handle them (Requires: #include <WinAPIDiag.au3>)]
 _WinAPI_SetErrorMode ( |$iMode )
 ;
-[_WinAPI_SetEvent | Sets the specified event object to the signaled state (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetEvent | Sets the specified event object to the signaled state (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_SetEvent ( |$hEvent )
 ;
 [_WinAPI_SetFileAttributes | Sets the attributes for a file or directory (Requires: #include <WinAPIFiles.au3>)]
@@ -9832,7 +9889,7 @@ _WinAPI_SetFileAttributes ( |$sFilePath, $iAttributes )
 [_WinAPI_SetFileInformationByHandleEx | Sets the file information for the specified file (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_SetFileInformationByHandleEx ( |$hFile, $tFILEINFO )
 ;
-[_WinAPI_SetFilePointer | Moves the file pointer of the specified file (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetFilePointer | Moves the file pointer of the specified file (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_SetFilePointer ( |$hFile, $iPos [, $iMethod = 0] )
 ;
 [_WinAPI_SetFilePointerEx | Moves the file pointer of the specified file (Requires: #include <WinAPIFiles.au3>)]
@@ -9844,13 +9901,13 @@ _WinAPI_SetFileShortName ( |$hFile, $sShortName )
 [_WinAPI_SetFileValidData | Sets the valid data length of the specified file (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_SetFileValidData ( |$hFile, $iLength )
 ;
-[_WinAPI_SetFocus | Sets the keyboard focus to the specified window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetFocus | Sets the keyboard focus to the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetFocus ( |$hWnd )
 ;
-[_WinAPI_SetFont | Sets a window font (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetFont | Sets a window font (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetFont ( |$hWnd, $hFont [, $bRedraw = True] )
 ;
-[_WinAPI_SetForegroundWindow | Puts the specified window into the foreground and activates its (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_SetForegroundWindow | Puts the specified window into the foreground and activates its (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetForegroundWindow ( |$hWnd )
 ;
 [_WinAPI_SetFRBuffer | Sets the size of the internal buffer that used the _WinAPI_FindTextDlg() and _WinAPI_ReplaceTextDlg() functions (Requires: #include <WinAPIDlg.au3>)]
@@ -9859,7 +9916,7 @@ _WinAPI_SetFRBuffer ( |$iChars )
 [_WinAPI_SetGraphicsMode | Sets the graphics mode for the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetGraphicsMode ( |$hDC, $iMode )
 ;
-[_WinAPI_SetHandleInformation | Sets certain properties of an object handle (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetHandleInformation | Sets certain properties of an object handle (Requires: #include <WinAPIHObj.au3>)]
 _WinAPI_SetHandleInformation ( |$hObject, $iMask, $iFlags )
 ;
 [_WinAPI_SetInformationJobObject | Sets limits for a job object (Requires: #include <WinAPIProc.au3>)]
@@ -9871,10 +9928,10 @@ _WinAPI_SetKeyboardLayout ( |$hWnd, $iLanguage [, $iFlags = 0] )
 [_WinAPI_SetKeyboardState | Copies a 256-byte array of keyboard key states into the calling process's keyboard input-state table (Requires: #include <WinAPISys.au3>)]
 _WinAPI_SetKeyboardState ( |$tState )
 ;
-[_WinAPI_SetLastError | Sets the last-error code for the calling thread (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetLastError | Sets the last-error code for the calling thread (Requires: #include <WinAPIError.au3>)]
 _WinAPI_SetLastError ( |$iErrorCode )
 ;
-[_WinAPI_SetLayeredWindowAttributes | Sets Layered Window Attributes (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetLayeredWindowAttributes | Sets Layered Window Attributes (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetLayeredWindowAttributes ( |$hWnd, $iTransColor [, $iTransGUI = 255 [, $iFlags = 0x03 [, $bColorRef = False]]] )
 ;
 [_WinAPI_SetLocaleInfo | Sets an item of information in the user override portion of the current locale (Requires: #include <WinAPILocale.au3>)]
@@ -9883,10 +9940,10 @@ _WinAPI_SetLocaleInfo ( |$iLCID, $iType, $sData )
 [_WinAPI_SetMapMode | Sets the mapping mode of the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetMapMode ( |$hDC, $iMode )
 ;
-[_WinAPI_SetMessageExtraInfo | Sets the extra message information for the current thread (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_SetMessageExtraInfo | Sets the extra message information for the current thread (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetMessageExtraInfo ( |$lParam )
 ;
-[_WinAPI_SetParent | Changes the parent window of the specified child window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetParent | Changes the parent window of the specified child window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetParent ( |$hWndChild, $hWndParent )
 ;
 [_WinAPI_SetPixel | Sets the pixel at the specified coordinates to the specified color (Requires: #include <WinAPIGdi.au3>)]
@@ -9898,7 +9955,7 @@ _WinAPI_SetPolyFillMode ( |$hDC [, $iMode = 1] )
 [_WinAPI_SetPriorityClass | Sets the priority class for the specified process (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_SetPriorityClass ( |$iPriority [, $iPID = 0] )
 ;
-[_WinAPI_SetProcessAffinityMask | Sets a processor affinity mask for the threads of a specified process (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetProcessAffinityMask | Sets a processor affinity mask for the threads of a specified process (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_SetProcessAffinityMask ( |$hProcess, $iMask )
 ;
 [_WinAPI_SetProcessShutdownParameters | Sets a shutdown order for a process relative to the other processes in the system (Requires: #include <WinAPISys.au3>)]
@@ -9919,7 +9976,7 @@ _WinAPI_SetSearchPathMode ( |$iFlags )
 [_WinAPI_SetStretchBltMode | Sets the bitmap stretching mode in the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetStretchBltMode ( |$hDC, $iMode )
 ;
-[_WinAPI_SetSysColors | Obtains information about the display devices in a system (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetSysColors | Obtains information about the display devices in a system (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetSysColors ( |$vElements, $vColors )
 ;
 [_WinAPI_SetSystemCursor | Enables an application to customize the system cursors (Requires: #include <WinAPIRes.au3>)]
@@ -9931,7 +9988,7 @@ _WinAPI_SetTextAlign ( |$hDC [, $iMode = 0] )
 [_WinAPI_SetTextCharacterExtra | Sets the intercharacter spacing for the specified device context (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetTextCharacterExtra ( |$hDC, $iCharExtra )
 ;
-[_WinAPI_SetTextColor | Sets the current text color to the specified color value (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetTextColor | Sets the current text color to the specified color value (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_SetTextColor ( |$hDC, $iColor )
 ;
 [_WinAPI_SetTextJustification | Specifies the amount of space the system should add to the break characters in a string of text (Requires: #include <WinAPIGdi.au3>)]
@@ -9955,7 +10012,7 @@ _WinAPI_SetThreadLocale ( |$iLCID )
 [_WinAPI_SetThreadUILanguage | Sets the user interface language for the current thread (Requires: #include <WinAPILocale.au3>)]
 _WinAPI_SetThreadUILanguage ( |$iLanguage )
 ;
-[_WinAPI_SetTimer | Creates a timer with the specified time-out value (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_SetTimer | Creates a timer with the specified time-out value (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetTimer ( |$hWnd, $iTimerID, $iElapse, $pTimerFunc )
 ;
 [_WinAPI_SetUDFColorMode | Sets the color mode for the WinAPIEx library (Requires: #include <WinAPIGdi.au3>)]
@@ -9970,38 +10027,38 @@ _WinAPI_SetUserObjectInformation ( |$hObject, $iIndex, $tData )
 [_WinAPI_SetVolumeMountPoint | Associates a volume with a drive letter or a directory on another volume (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_SetVolumeMountPoint ( |$sFilePath, $sGUID )
 ;
-[_WinAPI_SetWindowDisplayAffinity | Stores the display affinity setting in kernel mode on the specified window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_SetWindowDisplayAffinity | Stores the display affinity setting in kernel mode on the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetWindowDisplayAffinity ( |$hWnd, $iAffinity )
 ;
 [_WinAPI_SetWindowExt | Sets the horizontal and vertical extents of the window for a device context by using the specified values (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetWindowExt ( |$hDC, $iXExtent, $iYExtent )
 ;
-[_WinAPI_SetWindowLong | Sets information about the specified window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetWindowLong | Sets information about the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetWindowLong ( |$hWnd, $iIndex, $iValue )
 ;
 [_WinAPI_SetWindowOrg | Specifies which window point maps to the viewport origin (0,0) (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetWindowOrg ( |$hDC, $iX, $iY )
 ;
-[_WinAPI_SetWindowPlacement | Sets the placement of the window for Min, Max, and normal positions (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetWindowPlacement | Sets the placement of the window for Min, Max, and normal positions (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetWindowPlacement ( |$hWnd, $tWindowPlacement )
 ;
-[_WinAPI_SetWindowPos | Changes the size, position, and Z order of a child, pop-up, or top-level window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetWindowPos | Changes the size, position, and Z order of a child, pop-up, or top-level window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetWindowPos ( |$hWnd, $hAfter, $iX, $iY, $iCX, $iCY, $iFlags )
 ;
-[_WinAPI_SetWindowRgn | Sets the window region of a window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetWindowRgn | Sets the window region of a window (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SetWindowRgn ( |$hWnd, $hRgn [, $bRedraw = True] )
 ;
-[_WinAPI_SetWindowsHookEx | Installs an application-defined hook procedure into a hook chain (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetWindowsHookEx | Installs an application-defined hook procedure into a hook chain (Requires: #include <WinAPISys.au3>)]
 _WinAPI_SetWindowsHookEx ( |$iHook, $pProc, $hDll [, $iThreadId = 0] )
 ;
 [_WinAPI_SetWindowSubclass | Installs or updates a window subclass callback (Requires: #include <WinAPIShellEx.au3>)]
 _WinAPI_SetWindowSubclass ( |$hWnd, $pSubclassProc, $idSubClass [, $pData = 0] )
 ;
-[_WinAPI_SetWindowText | Changes the text of the specified window's title bar (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SetWindowText | Changes the text of the specified window's title bar (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SetWindowText ( |$hWnd, $sText )
 ;
 [_WinAPI_SetWindowTheme | Causes a window to use a different set of visual style information than its class normally uses (Requires: #include <WinAPITheme.au3>)]
-_WinAPI_SetWindowTheme ( |$hWnd [, $sName = 0 [, $sList = 0]] )
+_WinAPI_SetWindowTheme ( |$hWnd [, $sName = Default [, $sList = Default]] )
 ;
 [_WinAPI_SetWinEventHook | Sets an event hook function for a range of events (Requires: #include <WinAPISys.au3>)]
 _WinAPI_SetWinEventHook ( |$iEventMin, $iEventMax, $pEventProc [, $iPID = 0 [, $iThreadId = 0 [, $iFlags = 0]]] )
@@ -10141,28 +10198,28 @@ _WinAPI_ShellUserAuthenticationDlg ( |$sCaption, $sMessage, $sUser, $sPassword, 
 [_WinAPI_ShellUserAuthenticationDlgEx | Creates and displays a configurable dialog box that accepts credentials information from a user (Requires: #include <WinAPIDlg.au3>)]
 _WinAPI_ShellUserAuthenticationDlgEx ( |$sCaption, $sMessage, $sUser, $sPassword [, $iFlags = 0 [, $iAuthError = 0 [, $bSave = False [, $iPackage = 0 [, $hParent = 0]]]]] )
 ;
-[_WinAPI_ShortToWord | Converts a value of type SHORT to a value of type WORD (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_ShortToWord | Converts a value of type SHORT to a value of type WORD (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_ShortToWord ( |$iValue )
 ;
 [_WinAPI_ShowCaret | Makes the caret visible on the screen at the caret's current position (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_ShowCaret ( |$hWnd )
 ;
-[_WinAPI_ShowCursor | Displays or hides the cursor (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ShowCursor | Displays or hides the cursor (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_ShowCursor ( |$bShow )
 ;
-[_WinAPI_ShowError | Displays an error message box with an optional exit (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ShowError | Displays an error message box with an optional exit (Requires: #include <WinAPIError.au3>)]
 _WinAPI_ShowError ( |$sText [, $bExit = True] )
 ;
-[_WinAPI_ShowLastError | Shows the last error code and message (Requires: #include <WinAPIDiag.au3>)]
+[_WinAPI_ShowLastError | Shows the last error code and message (Requires: #include <WinAPIError.au3>)]
 _WinAPI_ShowLastError ( |[$sText = '' [, $bAbort = False [, $iLanguage = 0]]] )
 ;
-[_WinAPI_ShowMsg | Displays an "Information" message box (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ShowMsg | Displays an "Information" message box (Requires: #include <WinAPIError.au3>)]
 _WinAPI_ShowMsg ( |$sText )
 ;
-[_WinAPI_ShowOwnedPopups | Shows or hides all pop-up windows owned by the specified window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_ShowOwnedPopups | Shows or hides all pop-up windows owned by the specified window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_ShowOwnedPopups ( |$hWnd, $bShow )
 ;
-[_WinAPI_ShowWindow | Sets the specified window's show state (Requires: #include <WinAPI.au3>)]
+[_WinAPI_ShowWindow | Sets the specified window's show state (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_ShowWindow ( |$hWnd [, $iCmdShow = 5] )
 ;
 [_WinAPI_ShutdownBlockReasonCreate | Indicates that the system cannot be shut down and sets a reason string to be displayed to the user if system shutdown is initiated (Requires: #include <WinAPISys.au3>)]
@@ -10183,25 +10240,25 @@ _WinAPI_StretchBlt ( |$hDestDC, $iXDest, $iYDest, $iWidthDest, $iHeightDest, $hS
 [_WinAPI_StretchDIBits | Copies the color data for a rectangle of pixels in a DIB, JPEG, or PNG image to the specified destination rectangle, stretching or compressing the rows and columns by using the specified raster operation (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_StretchDIBits ( |$hDestDC, $iXDest, $iYDest, $iWidthDest, $iHeightDest, $iXSrc, $iYSrc, $iWidthSrc, $iHeightSrc, $tBITMAPINFO, $iUsage, $pBits, $iRop )
 ;
-[_WinAPI_StrFormatByteSize | Converts a numeric value into a string that represents the number expressed as a size value in bytes, kilobytes, megabytes, or gigabytes (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_StrFormatByteSize | Converts a numeric value into a string that represents the number expressed as a size value in bytes, kilobytes, megabytes, or gigabytes (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_StrFormatByteSize ( |$iSize )
 ;
-[_WinAPI_StrFormatByteSizeEx | Converts a numeric value into a string that represents the number expressed as separated groups of digits to the left of the decimal (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_StrFormatByteSizeEx | Converts a numeric value into a string that represents the number expressed as separated groups of digits to the left of the decimal (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_StrFormatByteSizeEx ( |$iSize )
 ;
-[_WinAPI_StrFormatKBSize | Converts a numeric value into a string that represents the number expressed as a size value in kilobytes (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_StrFormatKBSize | Converts a numeric value into a string that represents the number expressed as a size value in kilobytes (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_StrFormatKBSize ( |$iSize )
 ;
-[_WinAPI_StrFromTimeInterval | Converts a time interval to a string (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_StrFromTimeInterval | Converts a time interval to a string (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_StrFromTimeInterval ( |$iTime [, $iDigits = 7] )
 ;
-[_WinAPI_StringFromGUID | Converts a binary GUID to string form (Requires: #include <WinAPI.au3>)]
+[_WinAPI_StringFromGUID | Converts a binary GUID to string form (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_StringFromGUID ( |$tGUID )
 ;
-[_WinAPI_StringLenA | Calculates the size of ANSI string (Requires: #include <WinAPI.au3>)]
+[_WinAPI_StringLenA | Calculates the size of ANSI string (Requires: #include <WinAPIMisc.au3>)]
 _WinAPI_StringLenA ( |Const ByRef $tString )
 ;
-[_WinAPI_StringLenW | Calculates the size of wide string (Requires: #include <WinAPI.au3>)]
+[_WinAPI_StringLenW | Calculates the size of wide string (Requires: #include <WinAPIMisc.au3>)]
 _WinAPI_StringLenW ( |Const ByRef $tString )
 ;
 [_WinAPI_StrLen | Returns the length of the specified string (Requires: #include <WinAPIMisc.au3>)]
@@ -10216,19 +10273,19 @@ _WinAPI_StrokePath ( |$hDC )
 [_WinAPI_StructToArray | Converts the structure to the array of strings (Requires: #include <WinAPIMisc.au3>)]
 _WinAPI_StructToArray ( |$tStruct [, $iItems = 0] )
 ;
-[_WinAPI_SubLangId | Extract sublanguage id from a language id (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SubLangId | Extract sublanguage id from a language id (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_SubLangId ( |$iLngID )
 ;
 [_WinAPI_SubtractRect | Determines the coordinates of a rectangle formed by subtracting one rectangle from another (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_SubtractRect ( |$tRECT1, $tRECT2 )
 ;
-[_WinAPI_SwapDWord | Converts a ULONG from little-endian to big-endian, and vice versa (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_SwapDWord | Converts a ULONG from little-endian to big-endian, and vice versa (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_SwapDWord ( |$iValue )
 ;
-[_WinAPI_SwapQWord | Converts a ULONGLONG from little-endian to big-endian, and vice versa (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_SwapQWord | Converts a ULONGLONG from little-endian to big-endian, and vice versa (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_SwapQWord ( |$iValue )
 ;
-[_WinAPI_SwapWord | Converts a USHORT from little-endian to big-endian, and vice versa (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_SwapWord | Converts a USHORT from little-endian to big-endian, and vice versa (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_SwapWord ( |$iValue )
 ;
 [_WinAPI_SwitchColor | Converts a color from BGR to RGB and vice versa (Requires: #include <WinAPIGdi.au3>)]
@@ -10237,10 +10294,10 @@ _WinAPI_SwitchColor ( |$iColor )
 [_WinAPI_SwitchDesktop | Makes the specified desktop visible and activates it (Requires: #include <WinAPISys.au3>)]
 _WinAPI_SwitchDesktop ( |$hDesktop )
 ;
-[_WinAPI_SwitchToThisWindow | Switches the focus to a specified window and bring it to the foreground (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_SwitchToThisWindow | Switches the focus to a specified window and bring it to the foreground (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_SwitchToThisWindow ( |$hWnd [, $bAltTab = False] )
 ;
-[_WinAPI_SystemParametersInfo | Retrieves or sets the value of one of the system-wide parameters (Requires: #include <WinAPI.au3>)]
+[_WinAPI_SystemParametersInfo | Retrieves or sets the value of one of the system-wide parameters (Requires: #include <WinAPISys.au3>)]
 _WinAPI_SystemParametersInfo ( |$iAction [, $iParam = 0 [, $vParam = 0 [, $iWinIni = 0]]] )
 ;
 [_WinAPI_TabbedTextOut | Writes a character string at a specified location and expanding tabs to the specified tab-stop positions (Requires: #include <WinAPIGdi.au3>)]
@@ -10255,7 +10312,7 @@ _WinAPI_TerminateProcess ( |$hProcess [, $iExitCode = 0] )
 [_WinAPI_TextOut | Writes a string at the specified location, using the currently selected font, background color, and text color (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_TextOut ( |$hDC, $iX, $iY, $sText )
 ;
-[_WinAPI_TileWindows | Tiles the specified child windows of the specified parent window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_TileWindows | Tiles the specified child windows of the specified parent window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_TileWindows ( |$aWnds [, $tRECT = 0 [, $hParent = 0 [, $iFlags = 0 [, $iStart = 0 [, $iEnd = -1]]]]] )
 ;
 [_WinAPI_TrackMouseEvent | Posts messages when the mouse pointer leaves a window or hovers over a window for a specified amount of time (Requires: #include <WinAPISys.au3>)]
@@ -10264,13 +10321,13 @@ _WinAPI_TrackMouseEvent ( |$hWnd, $iFlags [, $iTime = -1] )
 [_WinAPI_TransparentBlt | Performs a bit-block transfer of the color data corresponding to a rectangle of pixels (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_TransparentBlt ( |$hDestDC, $iXDest, $iYDest, $iWidthDest, $iHeightDest, $hSrcDC, $iXSrc, $iYSrc, $iWidthSrc, $iHeightSrc, $iRGB )
 ;
-[_WinAPI_TwipsPerPixelX | Returns the width of a pixel, in twips (Requires: #include <WinAPI.au3>)]
+[_WinAPI_TwipsPerPixelX | Returns the width of a pixel, in twips (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_TwipsPerPixelX ( | )
 ;
-[_WinAPI_TwipsPerPixelY | Returns the height of a pixel, in twips (Requires: #include <WinAPI.au3>)]
+[_WinAPI_TwipsPerPixelY | Returns the height of a pixel, in twips (Requires: #include <WinAPIGdiDC.au3>)]
 _WinAPI_TwipsPerPixelY ( | )
 ;
-[_WinAPI_UnhookWindowsHookEx | Removes a hook procedure installed in a hook chain by the _WinAPI_SetWindowsHookEx function (Requires: #include <WinAPI.au3>)]
+[_WinAPI_UnhookWindowsHookEx | Removes a hook procedure installed in a hook chain by the _WinAPI_SetWindowsHookEx function (Requires: #include <WinAPISys.au3>)]
 _WinAPI_UnhookWindowsHookEx ( |$hHook )
 ;
 [_WinAPI_UnhookWinEvent | Removes an event hook function (Requires: #include <WinAPISys.au3>)]
@@ -10297,7 +10354,7 @@ _WinAPI_UnmapViewOfFile ( |$pAddress )
 [_WinAPI_UnregisterApplicationRestart | Removes the active instance of an application from the restart list (Requires: #include <WinAPIDiag.au3>)]
 _WinAPI_UnregisterApplicationRestart ( | )
 ;
-[_WinAPI_UnregisterClass | Unregisters a window class, freeing the memory required for the class (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_UnregisterClass | Unregisters a window class, freeing the memory required for the class (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_UnregisterClass ( |$sClass [, $hInstance = 0] )
 ;
 [_WinAPI_UnregisterHotKey | Frees a hot key previously registered by the calling thread (Requires: #include <WinAPISys.au3>)]
@@ -10306,19 +10363,19 @@ _WinAPI_UnregisterHotKey ( |$hWnd, $iID )
 [_WinAPI_UnregisterPowerSettingNotification | Unregisters the power setting notification (Requires: #include <WinAPISys.au3>)]
 _WinAPI_UnregisterPowerSettingNotification ( |$hNotify )
 ;
-[_WinAPI_UpdateLayeredWindow | Updates the position, size, shape, content, and translucency of a layered window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_UpdateLayeredWindow | Updates the position, size, shape, content, and translucency of a layered window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_UpdateLayeredWindow ( |$hWnd, $hDestDC, $tPTDest, $tSize, $hSrcDC, $tPTSrce, $iRGB, $tBlend, $iFlags )
 ;
-[_WinAPI_UpdateLayeredWindowEx | Updates a bitmap translucency of a layered window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_UpdateLayeredWindowEx | Updates a bitmap translucency of a layered window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_UpdateLayeredWindowEx ( |$hWnd, $iX, $iY, $hBitmap [, $iOpacity = 255 [, $bDelete = False]] )
 ;
-[_WinAPI_UpdateLayeredWindowIndirect | Updates the position, size, shape, content, and translucency of a layered window (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_UpdateLayeredWindowIndirect | Updates the position, size, shape, content, and translucency of a layered window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_UpdateLayeredWindowIndirect ( |$hWnd, $tULWINFO )
 ;
 [_WinAPI_UpdateResource | Adds, deletes, or replaces a resource in a portable executable (PE) file (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_UpdateResource ( |$hUpdate, $sType, $sName, $iLanguage, $pData, $iSize )
 ;
-[_WinAPI_UpdateWindow | Updates the client area of a window by sending a WM_PAINT message to the window (Requires: #include <WinAPI.au3>)]
+[_WinAPI_UpdateWindow | Updates the client area of a window by sending a WM_PAINT message to the window (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_UpdateWindow ( |$hWnd )
 ;
 [_WinAPI_UrlApplyScheme | Determines a scheme for a specified URL string, and returns a string with an appropriate prefix (Requires: #include <WinAPIShPath.au3>)]
@@ -10366,17 +10423,17 @@ _WinAPI_VerQueryValue ( |$pData [, $sValues = ''] )
 [_WinAPI_VerQueryValueEx | Retrieves the text information from the version-information resource of the specified binary module (Requires: #include <WinAPIRes.au3>)]
 _WinAPI_VerQueryValueEx ( |$hModule [, $sValues = '' [, $iLanguage = 0x0400]] )
 ;
-[_WinAPI_WaitForInputIdle | Waits until a process is waiting for user input with no input pending, or a time out (Requires: #include <WinAPI.au3>)]
+[_WinAPI_WaitForInputIdle | Waits until a process is waiting for user input with no input pending, or a time out (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_WaitForInputIdle ( |$hProcess [, $iTimeout = -1] )
 ;
-[_WinAPI_WaitForMultipleObjects | Waits until one or all of the specified objects are in the signaled state (Requires: #include <WinAPI.au3>)]
+[_WinAPI_WaitForMultipleObjects | Waits until one or all of the specified objects are in the signaled state (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_WaitForMultipleObjects ( |$iCount, $paHandles [, $bWaitAll = False [, $iTimeout = -1]] )
 ;
-[_WinAPI_WaitForSingleObject | Waits until the specified object is in the signaled state (Requires: #include <WinAPI.au3>)]
+[_WinAPI_WaitForSingleObject | Waits until the specified object is in the signaled state (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_WaitForSingleObject ( |$hHandle [, $iTimeout = -1] )
 ;
-[_WinAPI_WideCharToMultiByte | Converts a Unicode string to a multibyte string (Requires: #include <WinAPI.au3>)]
-_WinAPI_WideCharToMultiByte ( |$vUnicode [, $iCodePage = 0 [, $bRetString = True]] )
+[_WinAPI_WideCharToMultiByte | Converts a UTF-16 (wide character) string to a multibyte string (Requires: #include <WinAPIConv.au3>)]
+_WinAPI_WideCharToMultiByte ( |$vUnicode [, $iCodePage = 0 [, $bRetNoStruct = True [, $bRetBinary = False]]] )
 ;
 [_WinAPI_WidenPath | Redefines the current path as the area that would be painted if the path were stroked (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_WidenPath ( |$hDC )
@@ -10384,25 +10441,25 @@ _WinAPI_WidenPath ( |$hDC )
 [_WinAPI_WindowFromDC | Retrieves a handle to the window associated with the specified display device context (DC) (Requires: #include <WinAPIGdi.au3>)]
 _WinAPI_WindowFromDC ( |$hDC )
 ;
-[_WinAPI_WindowFromPoint | Retrieves the handle of the window that contains the specified point (Requires: #include <WinAPI.au3>)]
+[_WinAPI_WindowFromPoint | Retrieves the handle of the window that contains the specified point (Requires: #include <WinAPISysWin.au3>)]
 _WinAPI_WindowFromPoint ( |ByRef $tPoint )
 ;
-[_WinAPI_WordToShort | Converts a value of type WORD to a value of type SHORT (Requires: #include <WinAPIMisc.au3>)]
+[_WinAPI_WordToShort | Converts a value of type WORD to a value of type SHORT (Requires: #include <WinAPIConv.au3>)]
 _WinAPI_WordToShort ( |$iValue )
 ;
 [_WinAPI_Wow64EnableWow64FsRedirection | Enables or disables file system redirection for the calling thread (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_Wow64EnableWow64FsRedirection ( |$bEnable )
 ;
-[_WinAPI_WriteConsole | Writes a character string to a console screen buffer (Requires: #include <WinAPI.au3>)]
+[_WinAPI_WriteConsole | Writes a character string to a console screen buffer (Requires: #include <WinAPIProc.au3>)]
 _WinAPI_WriteConsole ( |$hConsole, $sText )
 ;
-[_WinAPI_WriteFile | Writes data to a file at the position specified by the file pointer (Requires: #include <WinAPI.au3>)]
+[_WinAPI_WriteFile | Writes data to a file at the position specified by the file pointer (Requires: #include <WinAPIFiles.au3>)]
 _WinAPI_WriteFile ( |$hFile, $pBuffer, $iToWrite, ByRef $iWritten [, $tOverlapped = 0] )
 ;
-[_WinAPI_WriteProcessMemory | Writes memory in a specified process (Requires: #include <WinAPI.au3>)]
+[_WinAPI_WriteProcessMemory | Writes memory in a specified process (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_WriteProcessMemory ( |$hProcess, $pBaseAddress, $pBuffer, $iSize, ByRef $iWritten [, $sBuffer = "ptr"] )
 ;
-[_WinAPI_ZeroMemory | Fills a block of memory with zeros (Requires: #include <WinAPISys.au3>)]
+[_WinAPI_ZeroMemory | Fills a block of memory with zeros (Requires: #include <WinAPIMem.au3>)]
 _WinAPI_ZeroMemory ( |$pMemory, $iLength )
 ;
 [_WinNet_AddConnection | Connects a local device to a network resource (Requires: #include <WinNet.au3>)]

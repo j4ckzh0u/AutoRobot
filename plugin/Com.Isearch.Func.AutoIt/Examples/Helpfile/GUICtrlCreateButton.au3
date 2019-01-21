@@ -7,8 +7,8 @@ Func Example()
 	Local $hGUI = GUICreate("Example", 300, 200)
 
 	; Create a button control.
-	Local $idNotepad = GUICtrlCreateButton("Run Notepad", 120, 170, 85, 25)
-	Local $idClose = GUICtrlCreateButton("Close", 210, 170, 85, 25)
+	Local $idButton_Notepad = GUICtrlCreateButton("Run Notepad", 120, 170, 85, 25)
+	Local $idButton_Close = GUICtrlCreateButton("Close", 210, 170, 85, 25)
 
 	; Display the GUI.
 	GUISetState(@SW_SHOW, $hGUI)
@@ -18,10 +18,10 @@ Func Example()
 	; Loop until the user exits.
 	While 1
 		Switch GUIGetMsg()
-			Case $GUI_EVENT_CLOSE, $idClose
+			Case $GUI_EVENT_CLOSE, $idButton_Close
 				ExitLoop
 
-			Case $idNotepad
+			Case $idButton_Notepad
 				; Run Notepad with the window maximized.
 				$iPID = Run("notepad.exe", "", @SW_SHOWMAXIMIZED)
 

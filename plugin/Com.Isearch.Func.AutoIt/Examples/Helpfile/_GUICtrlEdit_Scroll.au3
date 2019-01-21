@@ -1,6 +1,5 @@
 #include <GUIConstantsEx.au3>
 #include <GuiEdit.au3>
-#include <GuiStatusBar.au3>
 #include <MsgBoxConstants.au3>
 #include <ScrollBarsConstants.au3>
 #include <WindowsConstants.au3>

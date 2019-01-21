@@ -1,7 +1,12 @@
 #include <APIDlgConstants.au3>
 #include <MsgBoxConstants.au3>
+#include <SendMessage.au3>
 #include <WinAPIDlg.au3>
-#include <WinAPISys.au3>
+#include <WinAPIMem.au3>
+#include <WinAPIMisc.au3>
+#include <WinAPIShellEx.au3>
+#include <WinAPIShPath.au3>
+#include <WinAPISysWin.au3>
 
 Local Const $sInitDir = @ProgramFilesDir
 

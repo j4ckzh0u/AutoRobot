@@ -1,6 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <StaticConstants.au3>
-#include <WinAPIRes.au3>
+#include <WinAPIIcons.au3>
 #include <WinAPIShellEx.au3>
 
 Local $hIcon = _WinAPI_Create32BitHICON(_WinAPI_ShellExtractIcon(@SystemDir & '\shell32.dll', 1, 32, 32), 1)

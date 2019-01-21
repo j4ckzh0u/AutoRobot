@@ -1,4 +1,4 @@
-#include <WinAPI.au3>
+#include <WinAPIHObj.au3>
 
 Local $hCurProcessPseudo = _WinAPI_GetCurrentProcess()
 ConsoleWrite("Pseudo handle for current process = " & $hCurProcessPseudo & @CRLF)

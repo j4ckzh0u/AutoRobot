@@ -1,6 +1,7 @@
 #include <Security.au3>
 #include <SecurityConstants.au3>
-#include <WinAPI.au3>
+#include <WinAPIError.au3>
+#include <WinAPIHObj.au3>
 
 Local $hToken = _Security__OpenThreadToken($TOKEN_ADJUST_PRIVILEGES)
 If $hToken Then

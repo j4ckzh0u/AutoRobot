@@ -1,4 +1,3 @@
-#include <Array.au3>
 #include <Excel.au3>
 #include <MsgBoxConstants.au3>
 
@@ -12,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Write a part of a 2D array to the active sheet in the active workbook
-; *****************************************************************************
 Local $aArray2D[3][5] = [[11, 12, 13, 14, 15], [21, 22, 23, 24, 25], [31, 32, 33, 34, 35]]
 _Excel_RangeWrite($oWorkbook, $oWorkbook.Activesheet, $aArray2D, "B1")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeWrite Example 3", "Error writing to worksheet." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

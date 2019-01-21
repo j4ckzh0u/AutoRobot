@@ -29,7 +29,7 @@ Local $aInfo[25][2] = _
 		['Minimum device wake state', 0]]
 Local $aData = _WinAPI_GetPwrCapabilities()
 
-If @error Then
+If Not @error Then
 	For $i = 0 To UBound($aInfo) - 1
 		$aInfo[$i][1] = $aData[$i]
 	Next

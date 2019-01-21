@@ -10,9 +10,7 @@ Local $oDoc = _Word_DocOpen($oWord, @ScriptDir & "\Extras\Test.doc", Default, De
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocFind Example", _
 		"Error opening '.\Extras\Test.doc'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Find the last text "test document" in the document and mark it bold.
-; *****************************************************************************
 Local $oRangeFound
 #forceref $oRangeFound
 $oRangeFound = _Word_DocFind($oDoc, "test document", 0, Default, False)

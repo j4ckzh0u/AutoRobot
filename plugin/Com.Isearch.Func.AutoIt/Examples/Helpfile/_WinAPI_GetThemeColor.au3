@@ -1,6 +1,7 @@
 #include <APIThemeConstants.au3>
 #include <GUIConstantsEx.au3>
-#include <WinAPI.au3>
+#include <WinAPIGdi.au3>
+#include <WinAPISysWin.au3>
 #include <WinAPITheme.au3>
 #include <WindowsConstants.au3>
 

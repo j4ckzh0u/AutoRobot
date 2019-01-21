@@ -1,4 +1,5 @@
 #include <ProcessConstants.au3>
+#include <WinAPIHObj.au3>
 #include <WinAPIProc.au3>
 #include <WinAPISys.au3>
 
@@ -10,7 +11,7 @@ EndIf
 
 ; Note, immediately open the process
 Local $hProcess
-If _WinAPI_GetVersion() >= 6.0 Then
+If Number(_WinAPI_GetVersion()) >= 6.0 Then
 	$hProcess = _WinAPI_OpenProcess($PROCESS_QUERY_LIMITED_INFORMATION, 0, $iPID)
 Else
 	$hProcess = _WinAPI_OpenProcess($PROCESS_QUERY_INFORMATION, 0, $iPID)

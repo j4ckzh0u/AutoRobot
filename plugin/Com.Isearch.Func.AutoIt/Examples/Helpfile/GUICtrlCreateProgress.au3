@@ -23,9 +23,9 @@ Func Example()
 			GUICtrlSetData($idButton, "Stop")
 			For $i = $iSavPos To 100
 				If GUICtrlRead($idProgressbar1) = 50 Then MsgBox($MB_SYSTEMMODAL, "Info", "The half is done...", 1)
-				$idM = GUIGetMsg()
 
-				If $idM = -3 Then ExitLoop
+				$idM = GUIGetMsg()
+				If $idM = $GUI_EVENT_CLOSE Then ExitLoop
 
 				If $idM = $idButton Then
 					GUICtrlSetData($idButton, "Next")
@@ -39,7 +39,6 @@ Func Example()
 				EndIf
 			Next
 			If $i > 100 Then
-				;		$iSavPos=0
 				GUICtrlSetData($idButton, "Start")
 			EndIf
 		EndIf

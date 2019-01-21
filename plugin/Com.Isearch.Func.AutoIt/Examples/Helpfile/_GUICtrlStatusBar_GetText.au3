@@ -1,6 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <GuiStatusBar.au3>
-#include <WinAPI.au3>
+#include <WinAPIIcons.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo
@@ -9,7 +9,7 @@ Example()
 
 Func Example()
 	Local $hGUI, $ahIcons[2], $hStatus
-	Local $aParts[4] = [75, 150, 300, 400]
+	Local $aParts[4] = [75, 150, 300, -1]
 
 	; Create GUI
 	$hGUI = GUICreate("(Example 1) StatusBar Get Text", 400, 300)
@@ -24,6 +24,8 @@ Func Example()
 	_GUICtrlStatusBar_SetParts($hStatus, $aParts)
 	_GUICtrlStatusBar_SetText($hStatus, "Part 1")
 	_GUICtrlStatusBar_SetText($hStatus, "Part 2", 1)
+	_GUICtrlStatusBar_SetText($hStatus, "Part 3", 2)
+	_GUICtrlStatusBar_SetText($hStatus, "Part 4", 3)
 
 	; Set icons
 	$ahIcons[0] = _WinAPI_LoadShell32Icon(23)

@@ -1,6 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <GuiStatusBar.au3>
-#include <WinAPI.au3>
+#include <WinAPIIcons.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo
@@ -24,6 +24,9 @@ Func Example()
 	_GUICtrlStatusBar_SetParts($hStatus, $aParts)
 	_GUICtrlStatusBar_SetText($hStatus, "Part 1")
 	_GUICtrlStatusBar_SetText($hStatus, "Part 2", 1)
+	_GUICtrlStatusBar_SetText($hStatus, "Part 3", 2)
+	_GUICtrlStatusBar_SetText($hStatus, "Part 4", 3)
+	Local $iWrongSetText = _GUICtrlStatusBar_SetText($hStatus, "Wrong Part", 4)
 
 	; Set icons
 	$ahIcons[0] = _WinAPI_LoadShell32Icon(23)
@@ -38,6 +41,8 @@ Func Example()
 	; Show icon handles
 	MemoWrite("Part 1 icon handle .: 0x" & Hex(_GUICtrlStatusBar_GetIcon($hStatus, 0)))
 	MemoWrite("Part 2 icon handle .: 0x" & Hex(_GUICtrlStatusBar_GetIcon($hStatus, 1)))
+
+	MemoWrite("Wrong Part SetText .: " & $iWrongSetText)
 
 	; Loop until the user exits.
 	Do

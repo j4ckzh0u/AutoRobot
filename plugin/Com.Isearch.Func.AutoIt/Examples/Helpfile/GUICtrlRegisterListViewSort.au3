@@ -14,7 +14,7 @@ Func Example()
 	GUICreate("Test", 300, 200)
 
 	Local $idLv = GUICtrlCreateListView("Column1|Col2|Col3", 10, 10, 280, 180)
-	GUICtrlRegisterListViewSort(-1, "LVSort") ; Register the function "SortLV" for the sorting callback
+	GUICtrlRegisterListViewSort(-1, "LVSort") ; Register the function "LVSort" for the sorting callback
 
 	GUICtrlCreateListViewItem("ABC|666|10.05.2004", $idLv)
 	GUICtrlSetImage(-1, "shell32.dll", 7)

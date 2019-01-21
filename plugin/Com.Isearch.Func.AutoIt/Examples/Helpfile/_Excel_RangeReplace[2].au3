@@ -1,4 +1,3 @@
-#include <Array.au3>
 #include <Excel.au3>
 #include <MsgBoxConstants.au3>
 
@@ -12,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Find all cells with text "long " and remove it (replace with "")
-; *****************************************************************************
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeReplace Example 1", "Press OK to modify data in cell 'G1'.")
 _Excel_RangeReplace($oWorkbook, Default, Default, "long ", "")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeReplace Example 2", "Error replacing data the range." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

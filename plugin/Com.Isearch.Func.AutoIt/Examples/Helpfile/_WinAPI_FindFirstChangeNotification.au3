@@ -1,7 +1,7 @@
 #include <APIFilesConstants.au3>
 #include <MsgBoxConstants.au3>
-#include <WinAPI.au3>
 #include <WinAPIFiles.au3>
+#include <WinAPIProc.au3>
 
 Opt('TrayAutoPause', 0)
 
@@ -55,5 +55,5 @@ Func OnAutoItExit()
 			_WinAPI_FindCloseChangeNotification($g_ahObj[$i])
 		EndIf
 	Next
-	DirRemove($g_sPath, 1)
+	DirRemove($g_sPath, $DIR_REMOVE)
 EndFunc   ;==>OnAutoItExit

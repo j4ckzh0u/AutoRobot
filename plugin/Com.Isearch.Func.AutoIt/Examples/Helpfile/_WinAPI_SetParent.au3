@@ -1,5 +1,5 @@
 #include <GUIConstantsEx.au3>
-#include <WinAPI.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Local $hParent = WinGetHandle('[CLASS:Progman;TITLE:Program Manager]')

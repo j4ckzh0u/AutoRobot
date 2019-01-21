@@ -11,10 +11,8 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Insert an index sheet with links to all other sheets.
 ; Handles Sheet names with spaces correctly.
-; *****************************************************************************
 Local $oSheet = _Excel_SheetAdd($oWorkbook, 1, True, 1, "Index")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_SheetAdd Example 3", "Error adding sheet." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 $oSheet.Range("A1").Value = "Index"

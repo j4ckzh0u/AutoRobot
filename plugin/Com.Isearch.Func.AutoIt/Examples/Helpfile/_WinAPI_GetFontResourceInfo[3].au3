@@ -1,6 +1,4 @@
-#include <GDIPlus.au3>
 #include <WinAPIGdi.au3>
-#include <WinAPIMisc.au3>
 
 Example()
 

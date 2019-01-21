@@ -1,4 +1,3 @@
-#include <Array.au3>
 #include <Excel.au3>
 #include <MsgBoxConstants.au3>
 
@@ -12,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Insert 2 rows before row 1 on worksheet 2
-; *****************************************************************************
 _Excel_RangeInsert($oWorkbook.Worksheets(2), "1:2")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeInsert Example 3", "Error inserting rows." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeInsert Example 3", "Rows successfully inserted on worksheet 2.")

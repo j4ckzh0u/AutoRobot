@@ -8,8 +8,8 @@ Func Example()
 	GUISetBkColor(0x00E0FFFF) ; will change background color
 
 	Local $idUser = GUICtrlCreateDummy()
-	Local $idButton = GUICtrlCreateButton("event", 75, 170, 70, 20)
-	Local $idCancel = GUICtrlCreateButton("Cancel", 150, 170, 70, 20)
+	Local $idButton_Event = GUICtrlCreateButton("event", 75, 170, 70, 20)
+	Local $idButton_Cancel = GUICtrlCreateButton("Cancel", 150, 170, 70, 20)
 	GUISetState(@SW_SHOW)
 
 	Local $idMsg
@@ -18,9 +18,9 @@ Func Example()
 		$idMsg = GUIGetMsg()
 
 		Select
-			Case $idMsg = $idButton
+			Case $idMsg = $idButton_Event
 				GUICtrlSendToDummy($idUser)
-			Case $idMsg = $idCancel
+			Case $idMsg = $idButton_Cancel
 				GUICtrlSendToDummy($idUser)
 			Case $idMsg = $idUser
 				; special action before closing

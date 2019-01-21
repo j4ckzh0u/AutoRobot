@@ -2,9 +2,9 @@
 #include <GUIConstantsEx.au3>
 #include <WindowsConstants.au3>
 
-Global $g_idBtn, $g_idRdo, $g_idChk, $g_idMemo
+Global $g_hBtn, $g_hRdo, $g_hChk, $g_idMemo
 
-; Note the controlID from these buttons can NOT be read with GUICtrlRead
+; Note: The handle from these buttons can NOT be read with GUICtrlRead
 
 Example()
 
@@ -15,20 +15,20 @@ Func Example()
 	$g_idMemo = GUICtrlCreateEdit("", 119, 10, 276, 374, $WS_VSCROLL)
 	GUICtrlSetFont($g_idMemo, 9, 400, 0, "Courier New")
 
-	$g_idBtn = _GUICtrlButton_Create($hGUI, "Button1", 10, 10, 90, 50)
+	$g_hBtn = _GUICtrlButton_Create($hGUI, "Button1", 10, 10, 90, 50)
 
-	$g_idRdo = _GUICtrlButton_Create($hGUI, "Radio1", 10, 60, 90, 50, $BS_AUTORADIOBUTTON)
+	$g_hRdo = _GUICtrlButton_Create($hGUI, "Radio1", 10, 60, 90, 50, $BS_AUTORADIOBUTTON)
 
-	$g_idChk = _GUICtrlButton_Create($hGUI, "Check1", 10, 120, 90, 50, $BS_AUTO3STATE)
+	$g_hChk = _GUICtrlButton_Create($hGUI, "Check1", 10, 120, 90, 50, $BS_AUTO3STATE)
 
 	GUIRegisterMsg($WM_COMMAND, "WM_COMMAND")
 	GUIRegisterMsg($WM_NOTIFY, "WM_NOTIFY")
 
 	GUISetState(@SW_SHOW)
 
-	MemoWrite("$g_idBtn handle: " & $g_idBtn)
-	MemoWrite("$g_idRdo handle: " & $g_idRdo)
-	MemoWrite("$g_idChk handle: " & $g_idChk & @CRLF)
+	MemoWrite("$g_hBtn handle: " & $g_hBtn)
+	MemoWrite("$g_hRdo handle: " & $g_hRdo)
+	MemoWrite("$g_hChk handle: " & $g_hChk & @CRLF)
 
 	While 1
 		Switch GUIGetMsg()
@@ -84,7 +84,7 @@ Func WM_COMMAND($hWnd, $iMsg, $wParam, $lParam)
 	Local $sText = ""
 
 	Switch $hCtrl
-		Case $g_idBtn, $g_idRdo, $g_idChk
+		Case $g_hBtn, $g_hRdo, $g_hChk
 			Switch $nNotifyCode
 				Case $BN_CLICKED
 					$sText = "$BN_CLICKED" & @CRLF

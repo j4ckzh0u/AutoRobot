@@ -1,5 +1,5 @@
 #include <Array.au3>
-#include <WinAPISys.au3>
+#include <WinAPISysWin.au3>
 
 Local $hForm = GUICreate('Test ' & StringReplace(@ScriptName, '.au3', '()'), 310, 360)
 GUISetFont(8.5, 400, 0, 'MS Shell Dlg', $hForm)

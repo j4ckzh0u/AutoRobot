@@ -11,10 +11,8 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Save the workbook (xls) in another format (html) to another directory and
 ; overwrite an existing version
-; *****************************************************************************
 Local $sWorkbook = @TempDir & "\_Excel1.html"
 _Excel_BookSaveAs($oWorkbook, $sWorkbook, $xlHtml, True)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_BookSaveAs Example 1", "Error saving workbook to '" & $sWorkbook & "'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

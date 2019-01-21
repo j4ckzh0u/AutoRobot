@@ -1,5 +1,5 @@
 #include <WinAPIGdi.au3>
-#include <WinAPISys.au3>
+#include <WinAPIMisc.au3>
 
 Local $tPos = _WinAPI_GetMousePos()
 DllStructSetData($tPos, 1, 12000)

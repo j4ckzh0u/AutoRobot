@@ -1,6 +1,7 @@
 #include <GUIConstantsEx.au3>
+#include <SendMessage.au3>
 #include <StaticConstants.au3>
-#include <WinAPI.au3>
+#include <WinAPIIcons.au3>
 #include <WinAPIShellEx.au3>
 
 Local $iIndex = 0, $iTotal = _WinAPI_ExtractIconEx(@SystemDir & '\shell32.dll', -1, 0, 0, 0)

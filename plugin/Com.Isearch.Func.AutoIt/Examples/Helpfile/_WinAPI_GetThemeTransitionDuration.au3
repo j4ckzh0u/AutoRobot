@@ -7,7 +7,7 @@ Global Const $BP_PUSHBUTTON = 1
 Global Const $PBS_NORMAL = 1
 Global Const $PBS_HOT = 2
 
-If _WinAPI_GetVersion() < '6.0' Then
+If Number(_WinAPI_GetVersion()) < 6.0 Then
 	MsgBox(BitOR($MB_ICONERROR, $MB_SYSTEMMODAL), 'Error', 'Require Windows Vista or later.')
 	Exit
 EndIf

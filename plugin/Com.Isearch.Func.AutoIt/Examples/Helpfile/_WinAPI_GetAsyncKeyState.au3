@@ -1,6 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <MsgBoxConstants.au3>
-#include <WinAPI.au3>
+#include <WinAPISys.au3>
 #include <WinAPIvkeysConstants.au3>
 
 Example()

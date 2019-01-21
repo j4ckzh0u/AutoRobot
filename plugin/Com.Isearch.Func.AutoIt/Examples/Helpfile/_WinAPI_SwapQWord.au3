@@ -1,5 +1,4 @@
-#include <WinAPI.au3>
-#include <WinAPIMisc.au3>
+#include <WinAPIConv.au3>
 
 Local $iValue = _WinAPI_MakeQWord(0x55667788, 0x11223344)
 

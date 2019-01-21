@@ -12,9 +12,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Paste the format of a cell to other cells
-; *****************************************************************************
 _Excel_RangeCopyPaste($oWorkbook1.Activesheet, "A1") ; Copy the cell to the clipboards
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeCopy Example5", "Error copying rcell A1." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 _Excel_RangeCopyPaste($oWorkbook1.Activesheet, Default, "B1:E16", Default, $xlPasteFormats) ; paste the format to the target range

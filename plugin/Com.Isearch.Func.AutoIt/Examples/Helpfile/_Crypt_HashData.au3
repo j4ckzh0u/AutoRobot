@@ -3,7 +3,7 @@
 #include <EditConstants.au3>
 #include <GUIConstantsEx.au3>
 #include <StringConstants.au3>
-#include <WinAPI.au3>
+#include <WinAPIConv.au3>
 #include <WindowsConstants.au3>
 
 Global $g_iAlgorithm = $CALG_SHA1, $g_idInputEdit = -1, $g_idOutputEdit = -1
@@ -15,7 +15,7 @@ Func Example()
 	$g_idInputEdit = GUICtrlCreateEdit("", 0, 0, 400, 150, $ES_WANTRETURN)
 	$g_idOutputEdit = GUICtrlCreateEdit("", 0, 150, 400, 150, $ES_READONLY)
 	Local $idCombo = GUICtrlCreateCombo("", 0, 300, 100, 20, $CBS_DROPDOWNLIST)
-	GUICtrlSetData($idCombo, "MD2|MD4|MD5|SHA1", "SHA1")
+	GUICtrlSetData($idCombo, "MD2 (128bit)|MD4 (128bit)|MD5 (128bit)|SHA1 (160bit)|SHA_256|SHA_384|SHA_512", "SHA1 (160bit)")
 	GUIRegisterMsg($WM_COMMAND, "WM_COMMAND")
 	GUISetState(@SW_SHOW, $hGUI)
 
@@ -30,17 +30,26 @@ Func Example()
 
 			Case $idCombo ; Check when the combobox is selected and retrieve the correct algorithm.
 				Switch GUICtrlRead($idCombo) ; Read the combobox selection.
-					Case "MD2"
+					Case "MD2 (128bit)"
 						$g_iAlgorithm = $CALG_MD2
 
-					Case "MD4"
+					Case "MD4 (128bit)"
 						$g_iAlgorithm = $CALG_MD4
 
-					Case "MD5"
+					Case "MD5 (128bit)"
 						$g_iAlgorithm = $CALG_MD5
 
-					Case "SHA1"
+					Case "SHA1 (160bit)"
 						$g_iAlgorithm = $CALG_SHA1
+
+                    Case  "SHA_256"
+                        $g_iAlgorithm = $CALG_SHA_256
+
+                    Case "SHA_384"
+                        $g_iAlgorithm = $CALG_SHA_384
+
+                    Case "SHA_512"
+                        $g_iAlgorithm = $CALG_SHA_512
 
 				EndSwitch
 

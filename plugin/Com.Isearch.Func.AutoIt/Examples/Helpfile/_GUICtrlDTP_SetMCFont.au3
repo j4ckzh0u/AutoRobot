@@ -1,5 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <GuiDateTimePicker.au3>
+#include <WinAPIGdi.au3>
 
 Global $g_idMemo
 

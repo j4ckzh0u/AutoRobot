@@ -1,5 +1,6 @@
 #include <GUIConstantsEx.au3>
 #include <GuiToolbar.au3>
+#include <WinAPIConstants.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo
@@ -38,8 +39,8 @@ Func Example()
 	Sleep(1000)
 
 	; Set Save button state
-	Local $idBalloon = _GUICtrlToolbar_SetButtonState($hToolbar, $e_idSave, BitOR($TBSTATE_ENABLED, $TBSTATE_PRESSED))
-	MemoWrite("Set button state: " & $idBalloon)
+	Local $bBalloon = _GUICtrlToolbar_SetButtonState($hToolbar, $e_idSave, BitOR($TBSTATE_ENABLED, $TBSTATE_PRESSED))
+	MemoWrite("Set button state: " & $bBalloon)
 
 	; Show Save button state
 	MemoWrite("Save button state: " & _GUICtrlToolbar_GetButtonState($hToolbar, $e_idSave))

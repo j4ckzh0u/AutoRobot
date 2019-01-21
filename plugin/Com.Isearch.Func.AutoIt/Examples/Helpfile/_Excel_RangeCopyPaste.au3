@@ -12,10 +12,8 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Copy a range with 3 rows and 2 columns on the active worksheet.
 ; Pass the source range as object.
-; *****************************************************************************
 Local $oRange = $oWorkbook1.ActiveSheet.Range("I2:J4")
 _Excel_RangeCopyPaste($oWorkbook1.ActiveSheet, $oRange, "G7")
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeCopy Example 1", "Error copying cells." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

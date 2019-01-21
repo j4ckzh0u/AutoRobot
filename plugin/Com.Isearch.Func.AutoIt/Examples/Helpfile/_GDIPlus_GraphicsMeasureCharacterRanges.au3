@@ -1,5 +1,6 @@
 #include <GDIPlus.au3>
 #include <GUIConstantsEx.au3>
+#include <MsgBoxConstants.au3>
 
 Example()
 
@@ -66,6 +67,9 @@ Func Example()
 		_GDIPlus_RegionDispose($aRegions[$i])
 	Next
 	_GDIPlus_FontDispose($hFont)
+
+	Local $iCount = _GDIPlus_StringFormatGetMeasurableCharacterRangeCount($hFormat)
+	MsgBox($MB_SYSTEMMODAL, "", "MeasurableCharacterRangeCount: " & $iCount)
 
 	; Loop until the user exits.
 	Do

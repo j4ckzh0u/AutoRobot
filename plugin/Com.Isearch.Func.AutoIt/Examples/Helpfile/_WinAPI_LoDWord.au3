@@ -1,4 +1,4 @@
-#include <WinAPIMisc.au3>
+#include <WinAPIConv.au3>
 
 Local $iValue = Int('0x1111111122222222')
 

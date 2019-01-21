@@ -4,7 +4,7 @@
 Example()
 
 Func Example()
-	Local $sFilePath = "..\GUI\logo4.gif"
+	Local $sFilePath = "..\GUI\logo_autoit_210x72.gif"
 
 	; Create a GUI with various controls.
 	Local $hGUI = GUICreate("Example", 400, 100)
@@ -13,10 +13,10 @@ Func Example()
 	; Display the GUI.
 	GUISetState(@SW_SHOW, $hGUI)
 
-	Local $hChild = GUICreate("", 169, 68, 20, 20, $WS_POPUP, BitOR($WS_EX_LAYERED, $WS_EX_MDICHILD), $hGUI)
+	Local $hChild = GUICreate("", 210, 72, 20, 15, $WS_POPUP, BitOR($WS_EX_LAYERED, $WS_EX_MDICHILD), $hGUI)
 
 	; Create a picture control with a transparent image.
-	GUICtrlCreatePic($sFilePath, 0, 0, 169, 68)
+	GUICtrlCreatePic($sFilePath, 0, 0, 210, 72)
 
 	; Display the child GUI.
 	GUISetState(@SW_SHOW)

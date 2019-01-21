@@ -1,4 +1,3 @@
-#include <Array.au3>
 #include <Excel.au3>
 #include <MsgBoxConstants.au3>
 
@@ -12,9 +11,7 @@ If @error Then
 	Exit
 EndIf
 
-; *****************************************************************************
 ; Replace content of cell A1 with another value
-; *****************************************************************************
 MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeReplace Example 1", "Press OK to modify data in cell 'A1'.")
 _Excel_RangeReplace($oWorkbook, Default, "A1", 1, 3.37)
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_RangeReplace Example 1", "Error replacing data the range." & @CRLF & "@error = " & @error & ", @extended = " & @extended)

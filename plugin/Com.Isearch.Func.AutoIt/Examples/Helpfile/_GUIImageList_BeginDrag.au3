@@ -1,6 +1,8 @@
 #include <GUIConstantsEx.au3>
 #include <GuiImageList.au3>
 #include <GuiListView.au3>
+#include <SendMessage.au3>
+#include <WinAPISys.au3>
 #include <WindowsConstants.au3>
 
 #Region Globals *************************************************************************

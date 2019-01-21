@@ -1,5 +1,5 @@
 #include <Array.au3>
-#include <WinAPI.au3>
+#include <WinAPISysWin.au3>
 
 Example()
 

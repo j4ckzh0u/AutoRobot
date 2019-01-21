@@ -1,5 +1,5 @@
 #include <GUIConstantsEx.au3>
-#include <WinAPISys.au3>
+#include <WinAPISysWin.au3>
 #include <WindowsConstants.au3>
 
 Local $hForm = GUICreate('', 240, 268, 10, 10, BitOR($WS_CAPTION, $WS_POPUP), $WS_EX_TOPMOST)

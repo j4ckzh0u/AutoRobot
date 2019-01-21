@@ -9,7 +9,6 @@ Func Example()
 
 	GUICreate("ListView Set ToolTips", 400, 300)
 	$idListView = GUICtrlCreateListView("", 2, 2, 394, 268)
-	; $idListView = _GUICtrlListView_Create($hGui, "", 2, 2, 394, 268)
 	GUISetState(@SW_SHOW)
 
 	; Add columns

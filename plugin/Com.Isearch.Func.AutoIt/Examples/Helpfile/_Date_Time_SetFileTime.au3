@@ -1,6 +1,8 @@
 #include <Date.au3>
 #include <GUIConstantsEx.au3>
-#include <WinAPI.au3>
+#include <WinAPIError.au3>
+#include <WinAPIFiles.au3>
+#include <WinAPIHObj.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo

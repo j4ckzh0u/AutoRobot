@@ -1,4 +1,3 @@
-#include <Array.au3>
 #include <Inet.au3>
 #include <MsgBoxConstants.au3>
 
@@ -10,5 +9,5 @@ $sResult = _TCPIpToName($sIp)
 If @error Then
 	MsgBox($MB_SYSTEMMODAL, "_TCPIpToName()", "@error = " & @error & @CRLF & "@extended = " & @extended)
 Else
-	MsgBox($MB_SYSTEMMODAL, "autoitscript.com really is:", $sResult)
+	MsgBox($MB_SYSTEMMODAL, "autoitscript.com really is: ", $sResult)
 EndIf

@@ -1,6 +1,6 @@
 #include <APIFilesConstants.au3>
 #include <Misc.au3>
-#include <WinAPIDiag.au3>
+#include <WinAPIError.au3>
 #include <WinAPIFiles.au3>
 
 Opt('TrayAutoPause', 0)

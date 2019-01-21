@@ -1,4 +1,5 @@
 #include <WinAPIGdi.au3>
+#include <WinAPIIcons.au3>
 #include <WinAPIShellEx.au3>
 
 Local $aIcon[3] = [48, 32, 16]

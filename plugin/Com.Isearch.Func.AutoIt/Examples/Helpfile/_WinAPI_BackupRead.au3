@@ -1,8 +1,9 @@
 #include <MsgBoxConstants.au3>
-#include <WinAPI.au3>
 #include <WinAPIFiles.au3>
+#include <WinAPIHObj.au3>
+#include <WinAPIMem.au3>
 #include <WinAPIProc.au3>
-#include <WinAPISys.au3>
+#include <WinAPIShPath.au3>
 
 Local Const $sFile = @ScriptFullPath
 

@@ -1,4 +1,4 @@
-#include <WinAPI.au3>
+#include <WinAPISysWin.au3>
 
 HotKeySet("{ESC}", "Close") ; Set ESC as a hotkey to exit the script.
 

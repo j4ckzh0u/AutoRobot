@@ -10,9 +10,7 @@ Local $oDoc = _Word_DocOpen($oWord, @ScriptDir & "\Extras\Test.doc", Default, De
 If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Word UDF: _Word_DocPrint Example", _
 		"Error opening '.\Extras\Test.doc'." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Export a range as PDF/A and display the exported file
-; *****************************************************************************
 ; Set the range to lines 2 and 3
 Local $oRange = _Word_DocRangeSet($oDoc, -1, $wdParagraph, 1, $wdParagraph, 2)
 Local $sFileName = @TempDir & "\Test2.pdf"

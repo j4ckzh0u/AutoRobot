@@ -1,6 +1,7 @@
 #include <GUIConstantsEx.au3>
 #include <GuiReBar.au3>
 #include <GuiToolbar.au3>
+#include <WinAPIConstants.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo
@@ -49,7 +50,7 @@ Func Example()
 	_GUICtrlRebar_SetBandBackColor($hReBar, 1, Int(0x00008B))
 	_GUICtrlRebar_SetBandForeColor($hReBar, 1, Int(0xFFFFFF))
 
-	$tMargins = _GUICtrlRebar_GetBandMargins($hReBar)
+	$tMargins = _GUICtrlRebar_GetBandMarginsEx($hReBar)
 	MemoWrite("==== Band Margins ====")
 	MemoWrite("===================================")
 	MemoWrite("Minimum OS -> Win XP")

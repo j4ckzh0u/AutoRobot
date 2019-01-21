@@ -12,8 +12,6 @@ Local $oTextArea = _IEFormElementGetObjByName($oForm, "textareaExample")
 ; Get coordinates and dimensions of the textarea
 Local $iScreenX = _IEPropertyGet($oTextArea, "screenx")
 Local $iScreenY = _IEPropertyGet($oTextArea, "screeny")
-Local $iBrowserX = _IEPropertyGet($oTextArea, "browserx")
-Local $iBrowserY = _IEPropertyGet($oTextArea, "browserY")
 Local $iWidth = _IEPropertyGet($oTextArea, "width")
 Local $iHeight = _IEPropertyGet($oTextArea, "height")
 

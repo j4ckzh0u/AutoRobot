@@ -1,6 +1,7 @@
 #include <GUIConstantsEx.au3>
 #include <GUIToolTip.au3>
 #include <MsgBoxConstants.au3>
+#include <WinAPIIcons.au3>
 
 Global $g_hToolTip, $g_aPos, $g_hAdd
 

@@ -3,12 +3,10 @@
 
 ; Create application object
 Local $oExcel = _Excel_Open()
-If @error Then Exit MsgBox(16, "Excel UDF: _Excel_BookOpenText Example", "Error creating the Excel application object." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
+If @error Then Exit MsgBox($MB_SYSTEMMODAL, "Excel UDF: _Excel_BookOpenText Example", "Error creating the Excel application object." & @CRLF & "@error = " & @error & ", @extended = " & @extended)
 
-; *****************************************************************************
 ; Open a text file as delimited, separator = |, pass fieldinfo and set
 ; DecimalSeparator and ThousandsSeparator.
-; *****************************************************************************
 Local $sTextFile = @ScriptDir & "\Extras\_Excel1.txt"
 Local $aField1[2] = [1, $xlTextFormat]
 Local $aField2[2] = [2, $xlTextFormat]

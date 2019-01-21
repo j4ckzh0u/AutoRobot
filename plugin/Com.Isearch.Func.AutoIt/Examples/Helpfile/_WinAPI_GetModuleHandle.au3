@@ -1,6 +1,7 @@
 #include <MsgBoxConstants.au3>
 #include <StructureConstants.au3>
-#include <WinAPI.au3>
+#include <WinAPIConstants.au3>
+#include <WinAPISys.au3>
 #include <WindowsConstants.au3>
 
 Global $g_hHook, $g_hStub_KeyProc, $g_sBuffer = ""

@@ -1,9 +1,9 @@
 #include <APIRegConstants.au3>
 #include <Array.au3>
 #include <MsgBoxConstants.au3>
-#include <WinAPIDiag.au3>
+#include <WinAPIError.au3>
+#include <WinAPIMem.au3>
 #include <WinAPIReg.au3>
-#include <WinAPISys.au3>
 
 Local $aValent[19][4]
 

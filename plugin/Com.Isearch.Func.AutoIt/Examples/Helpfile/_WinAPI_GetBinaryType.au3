@@ -1,10 +1,11 @@
 #include <APIFilesConstants.au3>
 #include <MsgBoxConstants.au3>
 #include <WinAPIFiles.au3>
+#include <WinAPIShPath.au3>
 
 Local $sText, $sPath = @MyDocumentsDir & '\'
 While 1
-	$sPath = FileOpenDialog('Select File', _WinAPI_PathRemoveFileSpec($sPath), 'All Files (*.*)', 1 + 2)
+	$sPath = FileOpenDialog('Select File', _WinAPI_PathRemoveFileSpec($sPath), 'All Files (*.*)', BitOR($FD_FILEMUSTEXIST, $FD_PATHMUSTEXIST))
 	If $sPath Then
 		If _WinAPI_GetBinaryType($sPath) Then
 			Switch @extended

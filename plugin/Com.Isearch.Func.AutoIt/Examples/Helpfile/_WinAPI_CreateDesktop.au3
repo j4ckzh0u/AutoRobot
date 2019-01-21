@@ -1,7 +1,7 @@
 #include <APIProcConstants.au3>
 #include <APISysConstants.au3>
 #include <MsgBoxConstants.au3>
-#include <WinAPI.au3>
+#include <WinAPIMem.au3>
 #include <WinAPIProc.au3>
 #include <WinAPISys.au3>
 

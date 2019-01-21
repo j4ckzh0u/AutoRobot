@@ -1,4 +1,4 @@
-#include <WinAPI.au3>
+#include <WinAPISys.au3>
 
 ; Get handle of the loaded module
 Local $hModule = _WinAPI_GetModuleHandle("kernel32.dll")

@@ -1,6 +1,7 @@
 #include <Clipboard.au3>
 #include <GUIConstantsEx.au3>
-#include <WinAPI.au3>
+#include <Memory.au3>
+#include <WinAPIError.au3>
 #include <WindowsConstants.au3>
 
 Global $g_idMemo

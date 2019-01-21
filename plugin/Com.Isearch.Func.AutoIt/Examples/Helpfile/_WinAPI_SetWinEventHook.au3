@@ -1,5 +1,8 @@
 #include <APISysConstants.au3>
-#include <GUIMenu.au3>
+#include <GuiMenu.au3>
+#include <SendMessage.au3>
+#include <WinAPIGdi.au3>
+#include <WinAPIMisc.au3>
 #include <WinAPIProc.au3>
 #include <WinAPISys.au3>
 #include <WindowsConstants.au3>

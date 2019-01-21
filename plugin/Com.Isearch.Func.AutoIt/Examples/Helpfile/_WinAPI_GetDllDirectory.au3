@@ -1,3 +1,4 @@
+#include <WinAPIRes.au3>
 #include <WinAPISys.au3>
 
 If Not _WinAPI_SetDllDirectory(@ScriptDir & '\Extras') Then

@@ -6,12 +6,12 @@
 Example()
 
 Func Example()
-	Local $sFileList = _FileListToArray(_WinAPI_ShellGetSpecialFolderPath($CSIDL_FONTS), '*.ttf', 1)
-	Local $aFontList[UBound($sFileList) - 1][2]
+	Local $aFileList = _FileListToArray(_WinAPI_ShellGetSpecialFolderPath($CSIDL_FONTS), '*.ttf', 1)
+	Local $aFontList[UBound($aFileList) - 1][2]
 
-	For $i = 1 To $sFileList[0]
-		$aFontList[$i - 1][0] = $sFileList[$i]
-		$aFontList[$i - 1][1] = _WinAPI_GetFontResourceInfo($sFileList[$i], 1)
+	For $i = 1 To $aFileList[0]
+		$aFontList[$i - 1][0] = $aFileList[$i]
+		$aFontList[$i - 1][1] = _WinAPI_GetFontResourceInfo($aFileList[$i], 1)
 	Next
 
 	_ArrayDisplay($aFontList, '_WinAPI_GetFontResourceInfo')
